@@ -8,10 +8,10 @@ interface Module3Props {
 }
 
 const Module3Calculator = ({ onComplete }: Module3Props) => {
-  const [amount, setAmount] = useState(10000000);
+  const [amount, setAmount] = useState(5000000);
   const [months, setMonths] = useState(12);
 
-  const monthOptions = [6, 12, 24];
+  const monthOptions = [6, 12, 24, 36];
   
   // Simple calculation (in reality would include interest)
   const monthlyPayment = Math.round(amount / months);
@@ -58,17 +58,17 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               Valor del tratamiento
             </label>
             <div className="mb-4">
-              <Slider
-                value={[amount]}
-                onValueChange={(value) => setAmount(value[0])}
-                min={1000000}
-                max={30000000}
-                step={500000}
-                className="w-full"
-              />
-            </div>
-            <div className="flex justify-between text-sm text-muted-foreground">
-              <span>$1M</span>
+            <Slider
+              value={[amount]}
+              onValueChange={(value) => setAmount(value[0])}
+              min={500000}
+              max={25000000}
+              step={500000}
+              className="w-full"
+            />
+          </div>
+          <div className="flex justify-between text-sm text-muted-foreground">
+            <span>$500K</span>
               <motion.span
                 key={amount}
                 initial={{ scale: 1.2 }}
@@ -77,7 +77,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               >
                 {formatCurrency(amount)}
               </motion.span>
-              <span>$30M</span>
+              <span>$25M</span>
             </div>
           </div>
 
