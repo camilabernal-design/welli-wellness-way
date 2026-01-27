@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, AlertCircle, Heart, ArrowRight, Sparkles } from "lucide-react";
+import { Calculator, AlertCircle, Heart, ArrowRight, Sparkles, Building2, Percent } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 
 interface Module3Props {
@@ -13,8 +13,10 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
 
   const monthOptions = [6, 12, 24, 36];
   
-  // Simple calculation (in reality would include interest)
+  // Calculations
   const monthlyPayment = Math.round(amount / months);
+  const clinicDisbursement = Math.round(amount * 0.95); // 95% to clinic
+  const welliCommission = Math.round(amount * 0.05); // 5% Welli fee
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('es-CO', {
@@ -35,9 +37,9 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
             <Calculator className="w-4 h-4" />
-            <span className="text-sm font-medium">El Traductor de Salud</span>
+            <span className="text-sm font-medium">Simulador de Crédito Welli</span>
           </div>
           <h2 className="section-title">Transforma el susto en solución</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
@@ -55,20 +57,20 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
           {/* Amount Slider */}
           <div className="mb-10">
             <label className="block text-sm font-medium text-muted-foreground mb-4">
-              Valor del tratamiento
+              Monto solicitado por el paciente
             </label>
             <div className="mb-4">
-            <Slider
-              value={[amount]}
-              onValueChange={(value) => setAmount(value[0])}
-              min={500000}
-              max={25000000}
-              step={500000}
-              className="w-full"
-            />
-          </div>
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>$500K</span>
+              <Slider
+                value={[amount]}
+                onValueChange={(value) => setAmount(value[0])}
+                min={300000}
+                max={25000000}
+                step={100000}
+                className="w-full"
+              />
+            </div>
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>$300K</span>
               <motion.span
                 key={amount}
                 initial={{ scale: 1.2 }}
@@ -86,17 +88,17 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
             <label className="block text-sm font-medium text-muted-foreground mb-4">
               Plazo de financiación
             </label>
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center flex-wrap">
               {monthOptions.map((m) => (
                 <motion.button
                   key={m}
                   onClick={() => setMonths(m)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-8 py-4 rounded-xl font-bold text-lg transition-all ${
+                  className={`px-6 py-3 rounded-xl font-bold text-lg transition-all ${
                     months === m
-                      ? "bg-accent text-accent-foreground shadow-lg"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                      ? "bg-primary text-primary-foreground shadow-lg"
+                      : "bg-muted text-foreground hover:bg-muted/80"
                   }`}
                 >
                   {m} meses
@@ -104,6 +106,58 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               ))}
             </div>
           </div>
+
+          {/* Disbursement Display */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-accent/10 to-success/10 border-2 border-accent/30"
+          >
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Building2 className="w-5 h-5 text-accent" />
+                  <span className="text-sm font-medium text-muted-foreground">Valor a desembolsar a la clínica</span>
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={clinicDisbursement}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    className="text-4xl font-extrabold text-accent"
+                  >
+                    {formatCurrency(clinicDisbursement)}
+                  </motion.p>
+                </AnimatePresence>
+                <p className="text-sm text-muted-foreground mt-1">95% del monto solicitado</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Percent className="w-5 h-5 text-secondary" />
+                  <span className="text-sm font-medium text-muted-foreground">Comisión Welli</span>
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={welliCommission}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    className="text-4xl font-extrabold text-secondary"
+                  >
+                    {formatCurrency(welliCommission)}
+                  </motion.p>
+                </AnimatePresence>
+                <p className="text-sm text-muted-foreground mt-1">Solo 5% por el servicio</p>
+              </div>
+            </div>
+            <div className="mt-4 p-4 rounded-xl bg-card/80 text-center">
+              <p className="text-sm text-foreground">
+                <span className="font-bold text-primary">Welli solo cobra el 5%</span> por el servicio de financiación más exitoso del mercado.
+              </p>
+            </div>
+          </motion.div>
 
           {/* Comparison Display */}
           <div className="grid md:grid-cols-2 gap-6">
@@ -144,10 +198,10 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
             {/* Welli Solution - Right Side */}
             <motion.div
               layout
-              className="p-8 rounded-2xl bg-gradient-to-br from-accent/10 to-welli-neon/10 border-2 border-accent/30 text-center relative overflow-hidden"
+              className="p-8 rounded-2xl bg-gradient-to-br from-accent/10 to-success/10 border-2 border-accent/30 text-center relative overflow-hidden"
             >
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-welli-neon/5 to-transparent animate-pulse-soft" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent animate-pulse-soft" />
               
               <div className="relative">
                 <div className="flex items-center justify-center gap-2 mb-4">
@@ -177,7 +231,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
                 </p>
                 <div className="mt-6 p-4 rounded-xl bg-card/50">
                   <div className="flex items-start gap-2">
-                    <Sparkles className="w-4 h-4 text-accent mt-0.5" />
+                    <Sparkles className="w-4 h-4 text-primary mt-0.5" />
                     <p className="text-sm text-foreground/80">
                       Una cuota manejable que cabe en su presupuesto mensual.
                     </p>
@@ -199,7 +253,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
             <span className="font-bold text-foreground">El secreto:</span> No vendas el tratamiento de{" "}
             <span className="text-danger font-bold">{formatCurrency(amount)}</span>.
             Vende la cuota de bienestar de{" "}
-            <span className="text-success font-bold">{formatCurrency(monthlyPayment)}/mes</span>.
+            <span className="text-accent font-bold">{formatCurrency(monthlyPayment)}/mes</span>.
           </p>
         </motion.div>
 
@@ -212,7 +266,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
         >
           <button
             onClick={onComplete}
-            className="btn-neon group inline-flex items-center gap-3 text-lg"
+            className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
             <span>Practicar con objeciones reales</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

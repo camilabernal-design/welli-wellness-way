@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -56,8 +56,12 @@ export default {
           foreground: "hsl(var(--warning-foreground))",
         },
         welli: {
-          neon: "hsl(var(--welli-neon))",
-          "neon-foreground": "hsl(var(--welli-neon-foreground))",
+          yellow: "hsl(var(--welli-yellow))",
+          "yellow-foreground": "hsl(var(--welli-yellow-foreground))",
+          coral: "hsl(var(--welli-coral))",
+          "coral-foreground": "hsl(var(--welli-coral-foreground))",
+          blue: "hsl(var(--welli-blue))",
+          "blue-foreground": "hsl(var(--welli-blue-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -105,8 +109,8 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(145 100% 50% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(145 100% 50% / 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(28 100% 52% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(28 100% 52% / 0.6)" },
         },
       },
       animation: {

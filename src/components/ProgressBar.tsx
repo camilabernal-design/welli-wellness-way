@@ -31,7 +31,7 @@ const ProgressBar = ({ currentModule, totalModules, moduleNames }: ProgressBarPr
             <span className="text-sm font-medium text-muted-foreground">
               {currentModule}/{totalModules}
             </span>
-            <CheckCircle2 className="w-5 h-5 text-accent" />
+            <CheckCircle2 className="w-5 h-5 text-primary" />
           </div>
         </div>
         
@@ -44,26 +44,39 @@ const ProgressBar = ({ currentModule, totalModules, moduleNames }: ProgressBarPr
           />
         </div>
 
-        {/* Module dots for desktop */}
-        <div className="hidden md:flex justify-between mt-3">
+        {/* Simplified progress indicators for many modules */}
+        <div className="hidden lg:flex justify-between mt-3 gap-1">
           {moduleNames.map((name, index) => (
-            <div key={index} className="flex flex-col items-center gap-1">
+            <div key={index} className="flex flex-col items-center">
               <motion.div
-                className={`w-3 h-3 rounded-full transition-colors ${
+                className={`w-2 h-2 rounded-full transition-colors ${
                   index + 1 <= currentModule
-                    ? "bg-accent"
+                    ? "bg-primary"
                     : "bg-border"
                 }`}
-                animate={index + 1 === currentModule ? { scale: [1, 1.2, 1] } : {}}
+                animate={index + 1 === currentModule ? { scale: [1, 1.3, 1] } : {}}
                 transition={{ duration: 0.5, repeat: index + 1 === currentModule ? Infinity : 0, repeatDelay: 1 }}
               />
-              <span className={`text-xs ${
-                index + 1 <= currentModule ? "text-accent font-medium" : "text-muted-foreground"
-              }`}>
-                {index + 1}
-              </span>
             </div>
           ))}
+        </div>
+
+        {/* Mobile compact view */}
+        <div className="flex lg:hidden justify-center mt-2 gap-1">
+          {Array.from({ length: Math.min(totalModules, 10) }).map((_, index) => {
+            const actualIndex = Math.floor((index / 10) * totalModules);
+            const isActive = currentModule > actualIndex;
+            const isCurrent = Math.floor(((currentModule - 1) / totalModules) * 10) === index;
+            
+            return (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  isActive || isCurrent ? "bg-primary" : "bg-border"
+                } ${isCurrent ? "ring-2 ring-primary/30" : ""}`}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -10,6 +10,11 @@ import ModuleMythsReality from "@/components/ModuleMythsReality";
 import ModuleSuccessFlow from "@/components/ModuleSuccessFlow";
 import ModuleObjectionHandling from "@/components/ModuleObjectionHandling";
 import Module4RolePlay from "@/components/Module4RolePlay";
+import ModuleWelliCheck from "@/components/ModuleWelliCheck";
+import ModuleReferrals from "@/components/ModuleReferrals";
+import ModulePOPGallery from "@/components/ModulePOPGallery";
+import ModuleEquipmentFinancing from "@/components/ModuleEquipmentFinancing";
+import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import Module5DigitalKit from "@/components/Module5DigitalKit";
 import ModuleSuccessChecklist from "@/components/ModuleSuccessChecklist";
 import Module6Certification from "@/components/Module6Certification";
@@ -20,17 +25,22 @@ const moduleNames = [
   "Señales del Paciente",
   "Reality Check",
   "Dashboard de Impacto",
-  "Calculadora",
+  "Simulador de Crédito",
   "Mitos vs Realidad",
   "Flujo del Éxito",
   "Manejo de Objeciones",
   "Role-Play Arena",
+  "Welli Check",
+  "Referidos",
+  "Material POP",
+  "Equipos Médicos",
+  "Registro de Equipo",
   "Kit Digital",
   "Checklist de Éxito",
   "Certificación",
 ];
 
-const TOTAL_MODULES = 12;
+const TOTAL_MODULES = 17;
 
 const Index = () => {
   const [currentModule, setCurrentModule] = useState(1);
@@ -68,10 +78,20 @@ const Index = () => {
       case 9:
         return <Module4RolePlay onComplete={handleModuleComplete} />;
       case 10:
-        return <Module5DigitalKit onComplete={handleModuleComplete} />;
+        return <ModuleWelliCheck onComplete={handleModuleComplete} />;
       case 11:
-        return <ModuleSuccessChecklist onComplete={handleModuleComplete} />;
+        return <ModuleReferrals onComplete={handleModuleComplete} />;
       case 12:
+        return <ModulePOPGallery onComplete={handleModuleComplete} />;
+      case 13:
+        return <ModuleEquipmentFinancing onComplete={handleModuleComplete} />;
+      case 14:
+        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+      case 15:
+        return <Module5DigitalKit onComplete={handleModuleComplete} />;
+      case 16:
+        return <ModuleSuccessChecklist onComplete={handleModuleComplete} />;
+      case 17:
         return <Module6Certification onComplete={() => setCurrentModule(1)} />;
       default:
         return <Module1EmptyChair onComplete={handleModuleComplete} />;
@@ -94,8 +114,8 @@ const Index = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={goToCalculator}
-          className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-accent text-accent-foreground shadow-lg hover:shadow-xl transition-shadow"
-          title="Ir a la Calculadora"
+          className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
+          title="Ir al Simulador"
         >
           <Calculator className="w-6 h-6" />
         </motion.button>
@@ -120,8 +140,16 @@ const Index = () => {
       <footer className="py-8 border-t border-border mt-auto">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Welli — Financiación que transforma la salud
+            © {new Date().getFullYear()} Welli — Financia tu Bienestar
           </p>
+          <a
+            href="https://www.welli.com.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary hover:underline mt-2 inline-block"
+          >
+            welli.com.co
+          </a>
         </div>
       </footer>
     </div>
