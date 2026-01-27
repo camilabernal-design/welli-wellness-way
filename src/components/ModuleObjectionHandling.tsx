@@ -37,6 +37,16 @@ const objections = [
     color: "text-accent",
     bgColor: "bg-accent/10",
   },
+  {
+    category: "Score de Crédito",
+    objection: '"No quiero hacer un estudio de crédito porque me afecta el score"',
+    context: "Miedo a afectar historial crediticio",
+    response: '"Que Welli te consulte en centrales de riesgo deja huella pero NO afecta tu score de crédito. Es solo una consulta informativa."',
+    tip: "Explica que la consulta es 'blanda' y no impacta negativamente el puntaje crediticio.",
+    icon: AlertCircle,
+    color: "text-secondary",
+    bgColor: "bg-secondary/10",
+  },
 ];
 
 const ModuleObjectionHandling = ({ onComplete }: ModuleProps) => {
