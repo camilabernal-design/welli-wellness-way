@@ -22,7 +22,7 @@ const pensarData = [
 
 const comisionData = [
   { concepto: "Venta Perdida", valor: 0, fill: "hsl(var(--danger))" },
-  { concepto: "Ingreso Neto\ncon Comisión", valor: 85, fill: "hsl(var(--success))" },
+  { concepto: "Ingreso Neto\ncon Comisión", valor: 95, fill: "hsl(var(--success))" },
 ];
 
 const ModuleImpactDashboard = ({ onComplete }: ModuleProps) => {
@@ -194,13 +194,13 @@ const ModuleImpactDashboard = ({ onComplete }: ModuleProps) => {
             </div>
             <div className="p-6 rounded-xl bg-success/10 border border-success/30 text-center">
               <p className="text-sm font-medium text-success mb-2">CON WELLI (después de comisión)</p>
-              <p className="text-4xl font-display font-bold text-success mb-2">85%</p>
+              <p className="text-4xl font-display font-bold text-success mb-2">95%</p>
               <p className="text-sm text-muted-foreground">Del valor del tratamiento en tu bolsillo</p>
             </div>
           </div>
 
           <p className="text-center text-muted-foreground mt-6">
-            <span className="font-bold text-foreground">El 85% de algo</span> siempre será mejor que{" "}
+            <span className="font-bold text-foreground">El 95% de algo</span> siempre será mejor que{" "}
             <span className="font-bold text-danger">el 100% de nada</span>.
           </p>
         </motion.div>

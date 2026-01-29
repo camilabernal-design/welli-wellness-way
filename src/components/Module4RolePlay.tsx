@@ -106,6 +106,11 @@ const Module4RolePlay = ({ onComplete }: Module4Props) => {
       setCurrentScenario(currentScenario + 1);
       setSelectedOption(null);
       setShowResult(false);
+    } else {
+      // Finish the last scenario and show the completion screen
+      setCurrentScenario(scenarios.length);
+      setSelectedOption(null);
+      setShowResult(false);
     }
   };
 
