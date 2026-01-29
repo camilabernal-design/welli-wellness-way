@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 interface ProgressBarProps {
   currentModule: number;
   totalModules: number;
   moduleNames: string[];
+  onBack?: () => void;
 }
 
-const ProgressBar = ({ currentModule, totalModules, moduleNames }: ProgressBarProps) => {
+const ProgressBar = ({ currentModule, totalModules, moduleNames, onBack }: ProgressBarProps) => {
   const progress = (currentModule / totalModules) * 100;
 
   return (
@@ -15,6 +16,18 @@ const ProgressBar = ({ currentModule, totalModules, moduleNames }: ProgressBarPr
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
+            {onBack && (
+              <button
+                type="button"
+                onClick={onBack}
+                disabled={currentModule <= 1}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-muted/50 text-foreground transition hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Volver"
+                aria-label="Volver"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+            )}
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">W</span>
             </div>

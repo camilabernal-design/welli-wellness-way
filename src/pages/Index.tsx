@@ -52,6 +52,13 @@ const Index = () => {
     }
   };
 
+  const handleBack = () => {
+    if (currentModule > 1) {
+      setCurrentModule(currentModule - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const goToCalculator = () => {
     setCurrentModule(5);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -104,6 +111,7 @@ const Index = () => {
         currentModule={currentModule}
         totalModules={TOTAL_MODULES}
         moduleNames={moduleNames}
+        onBack={handleBack}
       />
 
       {/* Floating Calculator Button */}
