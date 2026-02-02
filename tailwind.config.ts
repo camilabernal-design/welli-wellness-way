@@ -63,6 +63,10 @@ export default {
           blue: "hsl(var(--welli-blue))",
           "blue-foreground": "hsl(var(--welli-blue-foreground))",
         },
+        yellow: {
+          DEFAULT: "hsl(var(--yellow))",
+          foreground: "hsl(var(--yellow-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
