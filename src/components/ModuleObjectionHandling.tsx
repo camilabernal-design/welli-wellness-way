@@ -1,4 +1,5 @@
 import { useState } from "react";
+// Updated module with "always enabled" continue button for CS exploration
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Shield, Heart, ArrowRight, ChevronDown, AlertCircle, Lightbulb } from "lucide-react";
 
@@ -192,21 +193,25 @@ const ModuleObjectionHandling = ({ onComplete }: ModuleProps) => {
           </p>
         </motion.div>
 
-        {/* CTA */}
+        {/* CTA - Always enabled for CS exploration */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: allViewed ? 1 : 0.5, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
           className="text-center"
         >
           <button
             onClick={onComplete}
-            disabled={!allViewed}
-            className="btn-success group inline-flex items-center gap-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>{allViewed ? "Ir al Checklist Final" : "Revisa todas las objeciones"}</span>
+            <span>Continuar</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
+          {!allViewed && (
+            <p className="text-xs text-muted-foreground mt-3">
+              Revisa {objections.length - viewedCards.length} objeciones más para completar
+            </p>
+          )}
         </motion.div>
       </div>
     </div>

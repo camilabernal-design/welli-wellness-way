@@ -36,7 +36,7 @@
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
 
-    /* Welli Yellow #FFCE00 */
+    /* Welli Yellow #FFCE00 - Key accent color */
     --welli-yellow: 48 100% 50%;
     --welli-yellow-foreground: 45 5% 8%;
 
@@ -47,6 +47,10 @@
     /* Welli Blue #4C7DFF */
     --welli-blue: 224 100% 65%;
     --welli-blue-foreground: 0 0% 100%;
+
+    /* Yellow accent for dynamic elements */
+    --yellow: 48 100% 50%;
+    --yellow-foreground: 45 5% 8%;
 
     /* Warning/Scare red */
     --danger: 0 72% 51%;

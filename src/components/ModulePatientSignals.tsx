@@ -174,7 +174,7 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
         >
           <button
             onClick={onComplete}
-            className="btn-success group inline-flex items-center gap-3 text-lg"
+            className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
             <span>Continuar con Reality Check</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

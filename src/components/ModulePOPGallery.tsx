@@ -143,6 +143,40 @@ const ModulePOPGallery = ({ onComplete }: ModuleProps) => {
           </div>
         </motion.div>
 
+        {/* Videos de Aliados Exitosos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="mb-10"
+        >
+          <h3 className="font-bold text-xl mb-6">Historias de éxito de aliados</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((video, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 + index * 0.1 }}
+                className="card-elevated overflow-hidden"
+              >
+                <div className="aspect-video bg-gradient-to-br from-secondary/20 to-welli-yellow/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2">
+                      <span className="text-2xl">▶️</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Video {video}</p>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <p className="font-medium text-sm">Testimonio de aliado #{video}</p>
+                  <p className="text-xs text-muted-foreground">Próximamente</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
