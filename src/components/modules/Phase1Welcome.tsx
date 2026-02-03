@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Armchair, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
+import { Armchair, ArrowRight, Sparkles, TrendingDown, Wallet } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -28,7 +27,7 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             <span className="text-sm font-bold">Welli Sales Clinic • Fase 1</span>
           </motion.div>
 
-          {/* Main Hook */}
+          {/* Main Hook - El Costo del Silencio */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,43 +45,21 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             transition={{ delay: 0.6 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            El gasto de bolsillo en salud en Colombia subió al <span className="font-bold text-foreground">16.8%</span>. 
-            Tus pacientes quieren el tratamiento, pero el presupuesto los frena.
+            Cada silla vacía representa <span className="font-bold text-foreground">ingresos perdidos</span> y 
+            <span className="font-bold text-danger"> pacientes sin salud</span>.
           </motion.p>
         </motion.div>
 
         {/* Two column layout */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Video Column */}
+          {/* Chair illustration */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            <div className="mb-4">
-              <h3 className="font-bold text-lg text-foreground flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-secondary" />
-                Perfilamiento Proactivo
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Conoce cómo identificar oportunidades antes de perderlas
-              </p>
-            </div>
-            <YouTubeEmbed 
-              videoId="LuynQ4k1DQQ" 
-              title="La Frustración del No"
-              borderColor="secondary"
-            />
-          </motion.div>
-
-          {/* Chair illustration with data */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
             className="flex flex-col items-center justify-center"
           >
-            <div className="w-64 h-64 relative mb-6">
+            <div className="w-64 h-64 md:w-80 md:h-80 relative mb-6">
               {/* Room background with yellow/purple gradient */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-welli-yellow/40 via-secondary/20 to-welli-yellow/10 border-2 border-welli-yellow/30" />
               
@@ -93,28 +70,73 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <div className="relative">
-                  <Armchair className="w-28 h-28 text-secondary" strokeWidth={1.5} />
+                  <Armchair className="w-32 h-32 md:w-40 md:h-40 text-secondary" strokeWidth={1.5} />
                   <div className="absolute inset-0 blur-2xl bg-welli-yellow/30 -z-10" />
                 </div>
               </motion.div>
             </div>
 
-            {/* Lost revenue card */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-center text-muted-foreground italic"
+            >
+              "Cada 'lo voy a pensar' es una agenda que no se llena"
+            </motion.p>
+          </motion.div>
+
+          {/* Data cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col gap-4"
+          >
+            {/* Data card 1 */}
             <motion.div
-              initial={{ scale: 0.8 }}
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.7, type: "spring" }}
+              className="p-6 rounded-2xl bg-gradient-to-r from-warning/20 to-welli-yellow/30 border-2 border-welli-yellow/40"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-welli-yellow/30">
+                  <Wallet className="w-6 h-6 text-warning" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Los datos no mienten</p>
+                  <span className="text-3xl md:text-4xl font-extrabold text-foreground">
+                    16.8%
+                  </span>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    El gasto de bolsillo en salud en Colombia <span className="font-bold text-danger">subió</span>
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Data card 2 */}
+            <motion.div
+              initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.8, type: "spring" }}
-              className="text-center p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-secondary/20 border-2 border-welli-yellow/40"
+              className="p-6 rounded-2xl bg-gradient-to-r from-danger/10 to-danger/20 border-2 border-danger/30"
             >
-              <p className="text-sm text-muted-foreground mb-2">
-                Cada <span className="font-bold text-foreground">"lo voy a pensar"</span> representa
-              </p>
-              <span className="text-3xl md:text-4xl font-extrabold text-danger">
-                65%
-              </span>
-              <span className="block text-sm text-muted-foreground mt-1">
-                de pacientes que se pierden por el monto total
-              </span>
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-danger/20">
+                  <TrendingDown className="w-6 h-6 text-danger" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Pacientes que se pierden</p>
+                  <span className="text-3xl md:text-4xl font-extrabold text-danger">
+                    65%
+                  </span>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Se van por el <span className="font-bold">monto total</span>
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
