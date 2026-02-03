@@ -1,6 +1,6 @@
 import { 
   Armchair, 
-  TrendingUp, 
+  Brain,
   Calculator, 
   ShieldQuestion, 
   PlayCircle, 
@@ -17,7 +17,10 @@ import {
   CheckSquare,
   ChevronRight,
   Instagram,
-  Zap
+  Zap,
+  TrendingUp,
+  Sparkles,
+  Copy
 } from "lucide-react";
 import {
   Sidebar,
@@ -39,46 +42,42 @@ interface AppSidebarProps {
 }
 
 const phase1Modules = [
-  { id: 1, title: "Bienvenida", icon: Armchair },
-  { id: 2, title: "Señales del Paciente", icon: Target },
-  { id: 3, title: "Dashboard de Resultados", icon: TrendingUp },
-  { id: 4, title: "Cotizador Pro", icon: Calculator },
-  { id: 5, title: "¿Afecta el Score?", icon: ShieldQuestion },
-  { id: 6, title: "Video: Proceso", icon: PlayCircle },
-  { id: 7, title: "Welli Check", icon: Smartphone },
-  { id: 8, title: "Zona de Prueba", icon: LayoutDashboard },
-  { id: 9, title: "Práctica de Objeciones", icon: MessageSquare },
-  { id: 10, title: "Completaste Fase 1", icon: GraduationCap },
+  { id: 1, title: "El Costo del Silencio", icon: Armchair },
+  { id: 2, title: "Señales del Paciente", icon: Brain },
+  { id: 3, title: "Traductor de Cuotas", icon: Calculator },
+  { id: 4, title: "¿Cómo Funciona?", icon: PlayCircle },
+  { id: 5, title: "Objeciones Comunes", icon: MessageSquare },
+  { id: 6, title: "Perfilamiento (Video)", icon: Target },
+  { id: 7, title: "Welli Check", icon: Zap },
+  { id: 8, title: "¿Afecta el Score?", icon: ShieldQuestion },
+  { id: 9, title: "Zona de Prueba", icon: LayoutDashboard },
+  { id: 10, title: "Role-Play", icon: MessageSquare },
+  { id: 11, title: "Fin Fase 1", icon: GraduationCap },
 ];
 
 const phase2Modules = [
-  { id: 11, title: "Resumen Fase 1", icon: LayoutDashboard },
-  { id: 12, title: "Elegibilidad", icon: Zap },
-  { id: 13, title: "Aliados en Redes", icon: Instagram },
-  { id: 14, title: "Material POP", icon: Image },
-  { id: 15, title: "Referidos", icon: Gift },
-  { id: 16, title: "Videos Operativos", icon: Video },
-  { id: 17, title: "Registro de Clínica", icon: Building2 },
-  { id: 18, title: "Herramientas", icon: FileText },
-  { id: 19, title: "Checklist Final", icon: CheckSquare },
+  { id: 12, title: "Bienvenida Maestría", icon: Sparkles },
+  { id: 13, title: "Optimización Ingresos", icon: TrendingUp },
+  { id: 14, title: "Guiones de Poder", icon: Copy },
+  { id: 15, title: "Aliados en Redes", icon: Instagram },
+  { id: 16, title: "Material POP", icon: Image },
+  { id: 17, title: "Referidos", icon: Gift },
+  { id: 18, title: "Videos Operativos", icon: Video },
+  { id: 19, title: "Registro Clínica", icon: Building2 },
+  { id: 20, title: "Checklist del Éxito", icon: CheckSquare },
 ];
 
 const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
-  const isPhase1Complete = currentModule > 10;
+  const isPhase1Complete = currentModule > 11;
 
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          {/* Full Welli Logo */}
-          <div className="flex items-center">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-welli-yellow to-primary flex items-center justify-center">
-              <span className="text-white font-bold text-lg">W</span>
-            </div>
-            <div className="ml-2">
-              <h2 className="font-bold text-lg text-sidebar-foreground">Welli</h2>
-              <p className="text-[10px] text-welli-yellow font-medium -mt-1">Sales Clinic</p>
-            </div>
+          <WelliLogo size="md" />
+          <div>
+            <h2 className="font-bold text-lg text-sidebar-foreground">Sales Clinic</h2>
+            <p className="text-[10px] text-welli-yellow font-medium -mt-1">Capacitación Welli</p>
           </div>
         </div>
       </SidebarHeader>
@@ -88,7 +87,7 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
             <span className="w-5 h-5 rounded-full bg-welli-yellow text-welli-yellow-foreground flex items-center justify-center text-xs font-bold">1</span>
-            Fase 1: Fundamentos
+            Fase 1: El Método del "Sí"
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -122,14 +121,13 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
         <SidebarGroup className="mt-4">
           <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
             <span className="w-5 h-5 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center text-xs font-bold">2</span>
-            Fase 2: Crecimiento
+            Fase 2: Herramientas de Cierre
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {phase2Modules.map((module) => {
                 const isActive = currentModule === module.id;
                 const isCompleted = currentModule > module.id;
-                const isLocked = !isPhase1Complete && module.id > 10;
                 
                 return (
                   <SidebarMenuItem key={module.id}>
@@ -137,8 +135,8 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
                       onClick={() => onModuleChange(module.id)}
                       isActive={isActive}
                       className={`group transition-all ${
-                        isLocked ? "opacity-50" : ""
-                      } ${isCompleted ? "text-sidebar-foreground/80" : ""}`}
+                        isCompleted ? "text-sidebar-foreground/80" : ""
+                      }`}
                     >
                       <module.icon className={`w-4 h-4 ${isActive ? "text-secondary" : isCompleted ? "text-success" : ""}`} />
                       <span className="truncate text-sm">{module.title}</span>

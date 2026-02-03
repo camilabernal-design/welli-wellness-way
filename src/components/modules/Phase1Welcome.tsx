@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Armchair, MessageCircleQuestion, ArrowRight, Sparkles, Play } from "lucide-react";
+import { Armchair, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
@@ -7,9 +7,6 @@ interface ModuleProps {
 }
 
 const Phase1Welcome = ({ onComplete }: ModuleProps) => {
-  // Dynamic data - could be fetched from API
-  const lostRevenuePerPatient = "$2,500,000";
-
   return (
     <div className="module-container">
       <div className="max-w-5xl mx-auto">
@@ -20,7 +17,7 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          {/* Welli Badge - More yellow emphasis */}
+          {/* Welli Badge */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -31,31 +28,32 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             <span className="text-sm font-bold">Welli Sales Clinic • Fase 1</span>
           </motion.div>
 
-          {/* Main question */}
+          {/* Main Hook */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight"
           >
-            ¿Cuántos pacientes se fueron hoy
+            ¿Cuántos tratamientos se enfrían
             <br />
-            <span className="text-danger">diciendo: "Lo voy a pensar"?</span>
+            <span className="text-danger">porque el precio intimida?</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="text-lg text-muted-foreground max-w-xl mx-auto"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            La frustración del "No" es real. Mira este video y prepárate para cambiar la historia.
+            El gasto de bolsillo en salud en Colombia subió al <span className="font-bold text-foreground">16.8%</span>. 
+            Tus pacientes quieren el tratamiento, pero el presupuesto los frena.
           </motion.p>
         </motion.div>
 
-        {/* Two column layout: Video + Chair illustration */}
+        {/* Two column layout */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Video: La Frustración del "No" */}
+          {/* Video Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -63,11 +61,11 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
           >
             <div className="mb-4">
               <h3 className="font-bold text-lg text-foreground flex items-center gap-2">
-                <Play className="w-5 h-5 text-secondary" />
-                La Frustración del "No"
+                <TrendingUp className="w-5 h-5 text-secondary" />
+                Perfilamiento Proactivo
               </h3>
               <p className="text-sm text-muted-foreground">
-                Identifícate con la realidad que viven muchos aliados
+                Conoce cómo identificar oportunidades antes de perderlas
               </p>
             </div>
             <YouTubeEmbed 
@@ -99,23 +97,6 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
                   <div className="absolute inset-0 blur-2xl bg-welli-yellow/30 -z-10" />
                 </div>
               </motion.div>
-              
-              {/* Floating question marks */}
-              <motion.div
-                className="absolute top-4 right-4"
-                animate={{ y: [0, -15, 0], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <MessageCircleQuestion className="w-7 h-7 text-danger/60" />
-              </motion.div>
-              
-              <motion.div
-                className="absolute bottom-8 left-4"
-                animate={{ y: [0, -10, 0], opacity: [0.3, 0.8, 0.3] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <MessageCircleQuestion className="w-5 h-5 text-welli-yellow" />
-              </motion.div>
             </div>
 
             {/* Lost revenue card */}
@@ -126,17 +107,31 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
               className="text-center p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-secondary/20 border-2 border-welli-yellow/40"
             >
               <p className="text-sm text-muted-foreground mb-2">
-                Cada espacio de agenda vacía representa
+                Cada <span className="font-bold text-foreground">"lo voy a pensar"</span> representa
               </p>
-              <span className="text-3xl md:text-4xl font-extrabold text-foreground">
-                {lostRevenuePerPatient}
+              <span className="text-3xl md:text-4xl font-extrabold text-danger">
+                65%
               </span>
               <span className="block text-sm text-muted-foreground mt-1">
-                en ingresos potenciales perdidos
+                de pacientes que se pierden por el monto total
               </span>
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Key insight banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          className="p-6 rounded-2xl bg-gradient-to-r from-secondary/20 to-welli-yellow/20 border-2 border-secondary/30 mb-10"
+        >
+          <p className="text-center text-lg">
+            <span className="font-bold text-foreground">El secreto:</span>{" "}
+            Welli es el puente para ese 65% que antes se iba.{" "}
+            <span className="text-welli-yellow font-bold">No vendas el total, vende la viabilidad.</span>
+          </p>
+        </motion.div>
 
         {/* CTA Button */}
         <motion.div
@@ -149,12 +144,12 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Descubrir el costo del silencio</span>
+            <span>Identificar al Paciente Ideal</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
 
           <p className="mt-6 text-sm text-muted-foreground">
-            Fase 1 • Tiempo estimado: 15 minutos
+            Fase 1 • El Método del "Sí" • 11 módulos
           </p>
         </motion.div>
       </div>

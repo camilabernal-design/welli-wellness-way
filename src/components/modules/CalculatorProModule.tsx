@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, AlertCircle, Heart, ArrowRight, Sparkles, Building2, Percent } from "lucide-react";
+import { Calculator, AlertCircle, Heart, ArrowRight, Building2, Percent, Sparkles } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 
 interface ModuleProps {
@@ -43,11 +43,11 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
             <Calculator className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">Cotizador Pro</span>
+            <span className="text-sm font-medium">El Traductor de Cuotas</span>
           </div>
-          <h2 className="section-title">Simulador de Crédito Welli</h2>
+          <h2 className="section-title">No vendas el total, vende la viabilidad</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Transforma el susto en solución. Habla en cuotas, no en totales.
+            Transforma el susto del precio total en una cuota mensual accesible.
           </p>
         </motion.div>
 
@@ -61,7 +61,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
           {/* Amount Slider */}
           <div className="mb-10">
             <label className="block text-sm font-medium text-muted-foreground mb-4">
-              Monto solicitado por el paciente
+              Monto del tratamiento
             </label>
             <div className="mb-4">
               <Slider
@@ -122,18 +122,18 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
             </p>
           </motion.div>
 
-          {/* Disbursement Display */}
+          {/* Clinic Disbursement - Featured in Yellow */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-accent/10 to-success/10 border-2 border-accent/30"
+            className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-welli-yellow/10 border-2 border-welli-yellow/50"
           >
             <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <Building2 className="w-5 h-5 text-accent" />
-                  <span className="text-sm font-medium text-muted-foreground">Valor a desembolsar a la clínica</span>
+                  <Building2 className="w-5 h-5 text-welli-yellow" />
+                  <span className="text-sm font-medium text-foreground">La clínica recibe</span>
                 </div>
                 <AnimatePresence mode="wait">
                   <motion.p
@@ -141,12 +141,12 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.8, opacity: 0 }}
-                    className="text-4xl font-extrabold text-accent"
+                    className="text-4xl font-extrabold text-welli-yellow"
                   >
                     {formatCurrency(clinicDisbursement)}
                   </motion.p>
                 </AnimatePresence>
-                <p className="text-sm text-muted-foreground mt-1">95% del monto solicitado</p>
+                <p className="text-sm text-foreground font-bold mt-1">95% del monto ✓</p>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
@@ -166,11 +166,6 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
                 </AnimatePresence>
                 <p className="text-sm text-muted-foreground mt-1">Solo 5% por el servicio</p>
               </div>
-            </div>
-            <div className="mt-4 p-4 rounded-xl bg-card/80 text-center">
-              <p className="text-sm text-foreground">
-                <span className="font-bold text-primary">Welli solo cobra el 5%</span> por el servicio de financiación más exitoso del mercado.
-              </p>
             </div>
           </motion.div>
 
@@ -208,14 +203,14 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
             {/* Welli Solution - Right Side */}
             <motion.div
               layout
-              className="p-8 rounded-2xl bg-gradient-to-br from-accent/10 to-success/10 border-2 border-accent/30 text-center relative overflow-hidden"
+              className="p-8 rounded-2xl bg-gradient-to-br from-success/10 to-welli-yellow/10 border-2 border-success/30 text-center relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent animate-pulse-soft" />
+              <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent animate-pulse-soft" />
               
               <div className="relative">
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <Heart className="w-5 h-5 text-accent" />
-                  <span className="text-sm font-medium text-accent">La Solución Welli</span>
+                  <Heart className="w-5 h-5 text-success" />
+                  <span className="text-sm font-medium text-success">La Solución Welli</span>
                 </div>
                 <p className="text-sm text-muted-foreground mb-4">
                   "Con Welli, son solo..."
@@ -232,7 +227,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
                     {formatCurrency(monthlyPayment)}
                   </motion.div>
                 </AnimatePresence>
-                <p className="mt-2 text-lg font-medium text-accent">
+                <p className="mt-2 text-lg font-medium text-success">
                   al mes por {months} meses
                 </p>
                 <p className="mt-4 text-success font-bold">
@@ -248,13 +243,17 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-center mb-10"
+          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-secondary/10 border-2 border-welli-yellow/30 text-center mb-10"
         >
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Sparkles className="w-5 h-5 text-welli-yellow" />
+            <span className="font-bold text-foreground">El Secreto del Cierre</span>
+          </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            <span className="font-bold text-foreground">El secreto:</span> No vendas el tratamiento de{" "}
+            No vendas el tratamiento de{" "}
             <span className="text-danger font-bold">{formatCurrency(amount)}</span>.
             Vende la cuota de bienestar de{" "}
-            <span className="text-accent font-bold">{formatCurrency(monthlyPayment)}/mes</span>.
+            <span className="text-success font-bold">{formatCurrency(monthlyPayment)}/mes</span>.
           </p>
         </motion.div>
 

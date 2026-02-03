@@ -2,32 +2,34 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/AppSidebar";
+import WelliLogo from "@/components/WelliLogo";
 import { Calculator } from "lucide-react";
 
-// Phase 1 Modules
+// Phase 1 Modules - El Método del "Sí"
 import Phase1Welcome from "@/components/modules/Phase1Welcome";
 import ModulePatientSignals from "@/components/ModulePatientSignals";
-import ModuleImpactDashboard from "@/components/ModuleImpactDashboard";
 import CalculatorProModule from "@/components/modules/CalculatorProModule";
-import ScoreMythModule from "@/components/modules/ScoreMythModule";
 import VideoProcessModule from "@/components/modules/VideoProcessModule";
-import WelliCheckPhase1 from "@/components/modules/WelliCheckPhase1";
-import PracticeSpaceModule from "@/components/modules/PracticeSpaceModule";
 import ModuleObjectionHandling from "@/components/ModuleObjectionHandling";
+import PerfilamientoModule from "@/components/modules/PerfilamientoModule";
+import WelliCheckPhase1 from "@/components/modules/WelliCheckPhase1";
+import ScoreMythModule from "@/components/modules/ScoreMythModule";
+import PracticeSpaceModule from "@/components/modules/PracticeSpaceModule";
+import Module4RolePlay from "@/components/Module4RolePlay";
 import Phase1Complete from "@/components/modules/Phase1Complete";
 
-// Phase 2 Modules
+// Phase 2 Modules - Herramientas de Cierre
 import Phase2Summary from "@/components/modules/Phase2Summary";
-import EligibilityModule from "@/components/modules/EligibilityModule";
+import IncomeOptimizationModule from "@/components/modules/IncomeOptimizationModule";
+import PowerScriptsModule from "@/components/modules/PowerScriptsModule";
 import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
 import ModulePOPGallery from "@/components/ModulePOPGallery";
 import ModuleReferrals from "@/components/ModuleReferrals";
 import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
 import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
-import ToolsModule from "@/components/modules/ToolsModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-const TOTAL_MODULES = 19;
+const TOTAL_MODULES = 20;
 
 const Index = () => {
   const [currentModule, setCurrentModule] = useState(1);
@@ -45,52 +47,54 @@ const Index = () => {
   };
 
   const goToCalculator = () => {
-    setCurrentModule(4); // Calculator is module 4
+    setCurrentModule(3); // Calculator is module 3
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const renderModule = () => {
     switch (currentModule) {
-      // Phase 1: Fundamentals
+      // Phase 1: El Método del "Sí" (11 modules)
       case 1:
         return <Phase1Welcome onComplete={handleModuleComplete} />;
       case 2:
         return <ModulePatientSignals onComplete={handleModuleComplete} />;
       case 3:
-        return <ModuleImpactDashboard onComplete={handleModuleComplete} />;
-      case 4:
         return <CalculatorProModule onComplete={handleModuleComplete} />;
-      case 5:
-        return <ScoreMythModule onComplete={handleModuleComplete} />;
-      case 6:
+      case 4:
         return <VideoProcessModule onComplete={handleModuleComplete} />;
+      case 5:
+        return <ModuleObjectionHandling onComplete={handleModuleComplete} />;
+      case 6:
+        return <PerfilamientoModule onComplete={handleModuleComplete} />;
       case 7:
         return <WelliCheckPhase1 onComplete={handleModuleComplete} />;
       case 8:
-        return <PracticeSpaceModule onComplete={handleModuleComplete} />;
+        return <ScoreMythModule onComplete={handleModuleComplete} />;
       case 9:
-        return <ModuleObjectionHandling onComplete={handleModuleComplete} />;
+        return <PracticeSpaceModule onComplete={handleModuleComplete} />;
       case 10:
+        return <Module4RolePlay onComplete={handleModuleComplete} />;
+      case 11:
         return <Phase1Complete onComplete={handleModuleComplete} />;
       
-      // Phase 2: Growth
-      case 11:
-        return <Phase2Summary onComplete={handleModuleComplete} />;
+      // Phase 2: Herramientas de Cierre (9 modules)
       case 12:
-        return <EligibilityModule onComplete={handleModuleComplete} />;
+        return <Phase2Summary onComplete={handleModuleComplete} />;
       case 13:
-        return <SocialAlliesModule onComplete={handleModuleComplete} />;
+        return <IncomeOptimizationModule onComplete={handleModuleComplete} />;
       case 14:
-        return <ModulePOPGallery onComplete={handleModuleComplete} />;
+        return <PowerScriptsModule onComplete={handleModuleComplete} />;
       case 15:
-        return <ModuleReferrals onComplete={handleModuleComplete} />;
+        return <SocialAlliesModule onComplete={handleModuleComplete} />;
       case 16:
-        return <OperationalVideosModule onComplete={handleModuleComplete} />;
+        return <ModulePOPGallery onComplete={handleModuleComplete} />;
       case 17:
-        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+        return <ModuleReferrals onComplete={handleModuleComplete} />;
       case 18:
-        return <ToolsModule onComplete={handleModuleComplete} />;
+        return <OperationalVideosModule onComplete={handleModuleComplete} />;
       case 19:
+        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+      case 20:
         return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       
       default:
@@ -99,10 +103,10 @@ const Index = () => {
   };
 
   const getPhaseInfo = () => {
-    if (currentModule <= 10) {
+    if (currentModule <= 11) {
       return { phase: 1, name: "Fundamentos", color: "welli-yellow" };
     }
-    return { phase: 2, name: "Crecimiento", color: "secondary" };
+    return { phase: 2, name: "Cierre", color: "secondary" };
   };
 
   const phaseInfo = getPhaseInfo();
@@ -121,9 +125,7 @@ const Index = () => {
             <SidebarTrigger className="md:hidden" />
             
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-welli-yellow to-primary flex items-center justify-center">
-                <span className="text-white font-bold text-sm">W</span>
-              </div>
+              <WelliLogo size="sm" />
               <div className="hidden md:block">
                 <h1 className="font-bold text-foreground">Welli Sales Clinic</h1>
               </div>
@@ -149,7 +151,7 @@ const Index = () => {
           </header>
 
           {/* Floating Calculator Button */}
-          {currentModule !== 4 && (
+          {currentModule !== 3 && (
             <motion.button
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
