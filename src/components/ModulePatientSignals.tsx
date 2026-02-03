@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, ChevronLeft, ChevronRight, MessageCircle, Lightbulb, ArrowRight, Target } from "lucide-react";
+import { Users, ChevronLeft, ChevronRight, MessageCircle, Lightbulb, ArrowRight, Target, Brain } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -9,21 +9,27 @@ interface ModuleProps {
 const flashcards = [
   {
     signal: '"Necesito pensarlo / Hablar con mi familia"',
-    meaning: "Inseguridad por monto total",
+    meaning: "Inseguridad económica, no por el tratamiento sino por el monto",
     response: '"Muchos pacientes dividen la inversión hasta en 36 meses. ¿Hacemos el ejemplo?"',
     icon: "🤔",
   },
   {
     signal: '"Pensé que mi prepagada cubría más"',
-    meaning: "Presupuesto limitado",
+    meaning: "Presupuesto limitado para el copago o excedente",
     response: '"Podemos financiar solo ese excedente con Welli en cuotas cómodas"',
     icon: "💳",
   },
   {
     signal: '"¿Puedo pagarles mensualmente mientras vengo a citas?"',
-    meaning: "Quiere plazos sin bancos",
+    meaning: "Quiere plazos sin burocracia bancaria",
     response: '"Welli es mejor que un acuerdo informal: crea vida crediticia y no toca tus tarjetas"',
     icon: "📅",
+  },
+  {
+    signal: '"¿Aceptan tarjeta de crédito con cuotas?"',
+    meaning: "Busca financiación pero no quiere usar su cupo disponible",
+    response: '"Con Welli tienes un cupo exclusivo para salud, sin tocar tus tarjetas actuales"',
+    icon: "💰",
   },
 ];
 
@@ -57,13 +63,25 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            <Users className="w-4 h-4" />
-            <span className="text-sm font-medium">Identificando al Paciente</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
+            <Brain className="w-4 h-4 text-welli-yellow" />
+            <span className="text-sm font-medium">Identifica al Paciente Ideal</span>
           </div>
-          <h2 className="section-title">Señales que revelan oportunidades</h2>
+          <h2 className="section-title">Lo que el paciente dice vs. Lo que siente</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Aprende a identificar las señales de tus pacientes y responde como un profesional.
+            Aprende a leer entre líneas. <span className="font-bold text-foreground">No juzgues la capacidad de pago</span>, identifica la oportunidad.
+          </p>
+        </motion.div>
+
+        {/* Insight Banner */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-secondary/20 to-welli-yellow/20 border-2 border-secondary/30"
+        >
+          <p className="text-center text-muted-foreground">
+            <span className="font-bold text-foreground">Regla de oro:</span> Cada señal de duda económica es una oportunidad Welli esperando ser activada.
           </p>
         </motion.div>
 
@@ -73,14 +91,14 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
           <button
             onClick={prevCard}
             disabled={currentCard === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 p-3 rounded-full bg-card border border-border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-secondary transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 p-3 rounded-full bg-card border border-border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-welli-yellow/20 transition-colors"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextCard}
             disabled={currentCard === flashcards.length - 1}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 p-3 rounded-full bg-card border border-border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-secondary transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 p-3 rounded-full bg-card border border-border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-welli-yellow/20 transition-colors"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -99,32 +117,32 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
                 transition={{ duration: 0.3 }}
                 className={`card-elevated p-8 md:p-12 min-h-[350px] cursor-pointer ${
                   flipped
-                    ? "bg-gradient-to-br from-accent/10 to-success/10 border-accent/30"
-                    : "bg-gradient-to-br from-warning/10 to-primary/10 border-warning/30"
+                    ? "bg-gradient-to-br from-success/10 to-welli-yellow/10 border-success/30"
+                    : "bg-gradient-to-br from-welli-yellow/20 to-secondary/10 border-welli-yellow/30"
                 }`}
               >
                 {!flipped ? (
                   /* Front - Signal */
                   <div className="flex flex-col items-center justify-center h-full text-center">
                     <span className="text-6xl mb-6">{card.icon}</span>
-                    <div className="flex items-center gap-2 text-warning mb-4">
+                    <div className="flex items-center gap-2 text-welli-yellow mb-4">
                       <MessageCircle className="w-5 h-5" />
-                      <span className="text-sm font-medium uppercase tracking-wide">Señal del Paciente</span>
+                      <span className="text-sm font-medium uppercase tracking-wide">El Paciente Dice</span>
                     </div>
                     <p className="text-xl md:text-2xl font-display font-bold text-foreground">
                       {card.signal}
                     </p>
                     <p className="mt-6 text-sm text-muted-foreground">
-                      Toca para ver el significado y la respuesta
+                      Toca para ver el significado real y la respuesta pro
                     </p>
                   </div>
                 ) : (
                   /* Back - Meaning & Response */
                   <div className="flex flex-col h-full">
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 text-warning mb-2">
+                      <div className="flex items-center gap-2 text-secondary mb-2">
                         <Lightbulb className="w-5 h-5" />
-                        <span className="text-sm font-medium uppercase tracking-wide">Significado</span>
+                        <span className="text-sm font-medium uppercase tracking-wide">El Paciente Siente</span>
                       </div>
                       <p className="text-lg text-foreground font-medium">{card.meaning}</p>
                     </div>
@@ -158,7 +176,7 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
               }}
               className={`w-3 h-3 rounded-full transition-all ${
                 index === currentCard
-                  ? "bg-accent w-8"
+                  ? "bg-welli-yellow w-8"
                   : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
               }`}
             />
@@ -176,7 +194,7 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Continuar con Reality Check</span>
+            <span>Continuar al Traductor de Cuotas</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { LayoutDashboard, ArrowRight, ExternalLink, CheckCircle2, Play, Monitor, Smartphone } from "lucide-react";
+import { LayoutDashboard, ArrowRight, ExternalLink, CheckCircle2, Play, Monitor, Smartphone, AlertTriangle } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
@@ -10,27 +10,24 @@ interface ModuleProps {
 const practiceSteps = [
   {
     id: 1,
-    title: "Simular una Solicitud",
-    description: "Aprende cómo se ve el proceso desde el lado del paciente",
+    title: "Crear una Solicitud",
+    description: "Simula el proceso que hará tu paciente",
     icon: "📱",
-    action: "Ver demo",
-    completed: false,
+    action: "Practicar",
   },
   {
     id: 2,
-    title: "Entender el Desembolso",
-    description: "Mira cómo la clínica recibe el 95% del monto aprobado",
-    icon: "💰",
-    action: "Ver proceso",
-    completed: false,
+    title: "Ver la Verificación",
+    description: "Entiende cómo Welli valida la información",
+    icon: "✅",
+    action: "Explorar",
   },
   {
     id: 3,
-    title: "Panel de Administración",
-    description: "Conoce tu dashboard donde verás todas las solicitudes",
+    title: "Acceso al Admin",
+    description: "Conoce tu panel donde verás todo",
     icon: "📊",
-    action: "Explorar panel",
-    completed: false,
+    action: "Abrir panel",
   },
 ];
 
@@ -45,8 +42,6 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
     }
   };
 
-  const allCompleted = completedSteps.length === practiceSteps.length;
-
   return (
     <div className="module-container">
       <div className="max-w-5xl mx-auto">
@@ -59,28 +54,33 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 text-foreground mb-6">
             <LayoutDashboard className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-bold">Zona de Prueba</span>
+            <span className="text-sm font-bold">ZONA DE PRUEBA</span>
           </div>
-          <h2 className="section-title">¡Es hora de practicar!</h2>
+          <h2 className="section-title">¡Ensúciate las manos!</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Antes de terminar la Fase 1, es vital que "toques" la plataforma. 
-            <span className="font-medium text-foreground"> Esto reduce la fricción de tu primera solicitud real.</span>
+            No te vayas de esta sesión sin haber <span className="font-bold text-foreground">"tocado"</span> la plataforma. 
+            Esto reduce la fricción de tu primera solicitud real.
           </p>
         </motion.div>
 
-        {/* Critical Badge */}
+        {/* Critical Warning */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-primary/20 border-2 border-welli-yellow/50 text-center"
+          className="mb-10 p-5 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-primary/20 border-2 border-welli-yellow/50"
         >
-          <p className="font-bold text-lg text-foreground">
-            ⚠️ SECCIÓN CRÍTICA
-          </p>
-          <p className="text-muted-foreground mt-1">
-            No te vayas de esta sesión sin haber explorado estas 3 áreas
-          </p>
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-8 h-8 text-welli-yellow" />
+            <div>
+              <p className="font-bold text-lg text-foreground">
+                ⚠️ SECCIÓN CRÍTICA
+              </p>
+              <p className="text-muted-foreground">
+                Es vital que explores estas 3 áreas antes de terminar la Fase 1
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Two column layout */}
@@ -94,10 +94,10 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
             <div className="mb-4">
               <h3 className="font-bold text-lg text-foreground flex items-center gap-2">
                 <Smartphone className="w-5 h-5 text-welli-yellow" />
-                ¿Cómo crear una solicitud en segundos?
+                Tutorial: Crea una solicitud
               </h3>
               <p className="text-sm text-muted-foreground">
-                Mira este tutorial mientras practicas
+                Mira el video mientras practicas
               </p>
             </div>
             <YouTubeEmbed 
@@ -164,33 +164,32 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
           </div>
         </div>
 
-        {/* Admin Panel Preview */}
+        {/* Admin Panel CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
           className="card-elevated p-6 mb-10"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <Monitor className="w-5 h-5 text-secondary" />
-            <h3 className="font-bold text-lg">Vista previa del Panel Admin</h3>
-          </div>
-          <div className="aspect-video rounded-xl bg-gradient-to-br from-secondary/10 to-welli-yellow/10 border-2 border-dashed border-secondary/30 flex items-center justify-center">
-            <div className="text-center">
-              <Monitor className="w-16 h-16 text-secondary/50 mx-auto mb-4" />
-              <p className="text-muted-foreground">
-                Aquí verás tu panel de administración con todas las solicitudes
-              </p>
-              <a
-                href="https://admin.welli.com.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 text-primary hover:underline font-medium"
-              >
-                Ir al panel real
-                <ExternalLink className="w-4 h-4" />
-              </a>
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
+              <Monitor className="w-8 h-8 text-secondary" />
             </div>
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="font-bold text-lg text-foreground mb-1">Panel de Administración</h3>
+              <p className="text-muted-foreground">
+                Aquí verás todas tus solicitudes, estados de aprobación y desembolsos.
+              </p>
+            </div>
+            <a
+              href="https://admin.welli.com.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary inline-flex items-center gap-2"
+            >
+              <span>Ir al panel</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </motion.div>
 
@@ -206,7 +205,7 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
           </p>
         </motion.div>
 
-        {/* CTA - Always enabled for free exploration */}
+        {/* CTA - Always enabled */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -217,14 +216,9 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Continuar</span>
+            <span>Continuar a Role-Play</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
-          {!allCompleted && (
-            <p className="text-xs text-muted-foreground mt-3">
-              Puedes continuar, pero te recomendamos completar todos los pasos
-            </p>
-          )}
         </motion.div>
       </div>
     </div>

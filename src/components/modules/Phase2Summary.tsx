@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { LayoutDashboard, CheckCircle2, XCircle, ArrowRight, MessageSquare, RefreshCw } from "lucide-react";
+import { LayoutDashboard, CheckCircle2, XCircle, ArrowRight, MessageSquare, RefreshCw, Sparkles } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -38,7 +38,6 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
   };
 
   const allAnswered = Object.keys(answers).length === questions.length;
-  const correctAnswers = questions.filter(q => q.correct !== undefined && answers[q.id] === q.correct).length;
 
   return (
     <div className="module-container">
@@ -51,12 +50,12 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/20 text-foreground mb-6">
-            <LayoutDashboard className="w-4 h-4 text-secondary" />
-            <span className="text-sm font-medium">Resumen Fase 1</span>
+            <Sparkles className="w-4 h-4 text-secondary" />
+            <span className="text-sm font-medium">Bienvenida a la Maestría</span>
           </div>
-          <h2 className="section-title">Bienvenido a la Fase 2</h2>
+          <h2 className="section-title">¿Listo para escalar?</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Antes de continuar, repasemos lo que aprendiste en la Fase 1.
+            Antes de las herramientas de cierre, repasemos los fundamentos de la Fase 1.
           </p>
         </motion.div>
 
@@ -65,19 +64,20 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/10 to-secondary/10 border border-welli-yellow/20 mb-10"
+          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-secondary/10 border-2 border-welli-yellow/30 mb-10"
         >
           <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
             <RefreshCw className="w-5 h-5 text-welli-yellow" />
-            Lo que aprendiste en Fase 1:
+            Lo que dominaste en Fase 1:
           </h3>
           <ul className="space-y-3">
             {[
-              "El costo de cada paciente que dice 'lo voy a pensar'",
-              "Cómo presentar el tratamiento en cuotas, no en totales",
-              "Que las consultas de crédito NO afectan el score",
-              "Cómo funciona Welli Check en 30 segundos",
-              "El proceso de solicitud y el Panel de Admin",
+              "Identificar señales del paciente que indican oportunidad Welli",
+              "Presentar el tratamiento en cuotas, no en totales",
+              "Explicar que las consultas NO afectan el score crediticio",
+              "Usar Welli Check para preaprobaciones en 30 segundos",
+              "Navegar el Panel de Admin y simular solicitudes",
+              "Responder las objeciones más comunes con confianza",
             ].map((item, index) => (
               <li key={index} className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
@@ -96,7 +96,7 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
         >
           <div className="flex items-center gap-2 mb-6">
             <MessageSquare className="w-5 h-5 text-secondary" />
-            <h3 className="font-bold text-xl">Preguntas de repaso</h3>
+            <h3 className="font-bold text-xl">Preguntas de validación</h3>
           </div>
 
           <div className="space-y-8">
@@ -125,8 +125,8 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
                             : isWrong
                             ? "border-danger bg-danger/10"
                             : isSelected
-                            ? "border-primary bg-primary/10"
-                            : "border-border hover:border-primary/50 bg-card"
+                            ? "border-welli-yellow bg-welli-yellow/10"
+                            : "border-border hover:border-welli-yellow/50 bg-card"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
               className="mt-8 p-4 rounded-xl bg-success/10 border border-success/30 text-center"
             >
               <p className="font-medium text-success">
-                ¡Buen repaso! Continuemos con las herramientas de crecimiento.
+                ¡Excelente repaso! Ahora sí, vamos con las herramientas de crecimiento.
               </p>
             </motion.div>
           )}
@@ -181,7 +181,7 @@ const Phase2Summary = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Continuar a Herramientas</span>
+            <span>Continuar a Herramientas de Cierre</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>
