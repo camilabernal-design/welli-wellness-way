@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Smartphone, CheckCircle2, XCircle, ArrowRight, Play, Sparkles } from "lucide-react";
+import { Smartphone, CheckCircle2, XCircle, ArrowRight, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -57,9 +58,9 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 text-foreground mb-6">
             <Smartphone className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">Welli Check</span>
+            <span className="text-sm font-bold">Welli Check</span>
           </div>
           <h2 className="section-title">Preaprobado en 30 segundos</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
@@ -84,7 +85,7 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="welli-card text-center"
+              className="p-6 rounded-2xl bg-welli-yellow/10 border-2 border-welli-yellow/30 text-center"
             >
               <span className="text-4xl mb-4 block">{feature.icon}</span>
               <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
@@ -98,21 +99,17 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="card-elevated p-6 mb-12"
+          className="mb-12"
         >
           <div className="flex items-center gap-2 mb-4">
-            <Play className="w-5 h-5 text-primary" />
+            <Sparkles className="w-5 h-5 text-welli-yellow" />
             <h3 className="font-bold text-lg">Mira cómo funciona</h3>
           </div>
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-muted">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/EN7ao47-Is8"
-              title="Welli Check - Cómo funciona"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+          <YouTubeEmbed 
+            videoId="EN7ao47-Is8" 
+            title="Welli Check - Cómo funciona"
+            borderColor="welli-yellow"
+          />
         </motion.div>
 
         {/* Quiz Section */}

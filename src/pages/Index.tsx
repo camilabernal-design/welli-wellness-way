@@ -19,6 +19,7 @@ import Phase1Complete from "@/components/modules/Phase1Complete";
 // Phase 2 Modules
 import Phase2Summary from "@/components/modules/Phase2Summary";
 import EligibilityModule from "@/components/modules/EligibilityModule";
+import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
 import ModulePOPGallery from "@/components/ModulePOPGallery";
 import ModuleReferrals from "@/components/ModuleReferrals";
 import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
@@ -26,7 +27,7 @@ import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import ToolsModule from "@/components/modules/ToolsModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-const TOTAL_MODULES = 18;
+const TOTAL_MODULES = 19;
 
 const Index = () => {
   const [currentModule, setCurrentModule] = useState(1);
@@ -78,16 +79,18 @@ const Index = () => {
       case 12:
         return <EligibilityModule onComplete={handleModuleComplete} />;
       case 13:
-        return <ModulePOPGallery onComplete={handleModuleComplete} />;
+        return <SocialAlliesModule onComplete={handleModuleComplete} />;
       case 14:
-        return <ModuleReferrals onComplete={handleModuleComplete} />;
+        return <ModulePOPGallery onComplete={handleModuleComplete} />;
       case 15:
-        return <OperationalVideosModule onComplete={handleModuleComplete} />;
+        return <ModuleReferrals onComplete={handleModuleComplete} />;
       case 16:
-        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+        return <OperationalVideosModule onComplete={handleModuleComplete} />;
       case 17:
-        return <ToolsModule onComplete={handleModuleComplete} />;
+        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
       case 18:
+        return <ToolsModule onComplete={handleModuleComplete} />;
+      case 19:
         return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       
       default:
@@ -118,8 +121,8 @@ const Index = () => {
             <SidebarTrigger className="md:hidden" />
             
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">W</span>
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-welli-yellow to-primary flex items-center justify-center">
+                <span className="text-white font-bold text-sm">W</span>
               </div>
               <div className="hidden md:block">
                 <h1 className="font-bold text-foreground">Welli Sales Clinic</h1>
@@ -131,8 +134,8 @@ const Index = () => {
             {/* Phase indicator */}
             <div className={`px-4 py-1.5 rounded-full text-sm font-medium ${
               phaseInfo.phase === 1 
-                ? "bg-welli-yellow/20 text-foreground" 
-                : "bg-secondary/20 text-foreground"
+                ? "bg-welli-yellow/30 text-foreground border border-welli-yellow/50" 
+                : "bg-secondary/20 text-foreground border border-secondary/30"
             }`}>
               Fase {phaseInfo.phase}: {phaseInfo.name}
             </div>
@@ -153,7 +156,7 @@ const Index = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={goToCalculator}
-              className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow"
+              className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-welli-yellow text-welli-yellow-foreground shadow-lg hover:shadow-xl transition-shadow"
               title="Ir al Cotizador"
             >
               <Calculator className="w-6 h-6" />
