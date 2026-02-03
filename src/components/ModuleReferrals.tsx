@@ -16,13 +16,13 @@ const ModuleReferrals = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
-            <Users className="w-4 h-4" />
-            <span className="text-sm font-medium">Campaña de Referidos</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 text-foreground mb-6">
+            <Gift className="w-4 h-4 text-welli-yellow" />
+            <span className="text-sm font-bold">Campaña de Referidos</span>
           </div>
-          <h2 className="section-title">Trae un Colega</h2>
+          <h2 className="section-title">Trae un Colega y Gana $200.000</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Gana recompensas por cada colega que se una a la red Welli
+            Si tu colega hace un desembolso en los primeros 3 meses, tú ganas.
           </p>
         </motion.div>
 

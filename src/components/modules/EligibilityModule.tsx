@@ -16,14 +16,14 @@ const EligibilityModule = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 text-foreground mb-6">
             <Zap className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">Elegibilidad Express</span>
+            <span className="text-sm font-bold">Elegibilidad en Segundos</span>
           </div>
-          <h2 className="section-title">Elegibilidad en segundos</h2>
+          <h2 className="section-title">Solo con cédula y WhatsApp</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
             Tu paciente puede saber si es elegible{" "}
-            <span className="font-bold text-foreground">solo con su cédula y a través de WhatsApp</span>.
+            <span className="font-bold text-welli-yellow">en 30 segundos, sin apps adicionales</span>.
           </p>
         </motion.div>
 

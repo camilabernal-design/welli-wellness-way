@@ -1,31 +1,15 @@
 import { motion } from "framer-motion";
-import { Video, ArrowRight, Play, ExternalLink } from "lucide-react";
+import { Video, ArrowRight, ExternalLink } from "lucide-react";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
-const videos = [
-  {
-    id: 1,
-    title: "Cómo hacer un desembolso",
-    description: "Paso a paso del proceso de desembolso desde el panel admin",
-    icon: "💰",
-    duration: "5 min",
-  },
-  {
-    id: 2,
-    title: "Cómo gestionar un desistimiento",
-    description: "Qué hacer cuando un paciente decide cancelar el proceso",
-    icon: "🔄",
-    duration: "3 min",
-  },
-];
-
 const OperationalVideosModule = ({ onComplete }: ModuleProps) => {
   return (
     <div className="module-container">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,54 +21,69 @@ const OperationalVideosModule = ({ onComplete }: ModuleProps) => {
             <Video className="w-4 h-4 text-secondary" />
             <span className="text-sm font-medium">Videos Operativos</span>
           </div>
-          <h2 className="section-title">Tutoriales esenciales</h2>
+          <h2 className="section-title">Manual del Éxito: Tutoriales Esenciales</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
             Aprende las operaciones clave que realizarás en tu día a día con Welli.
           </p>
         </motion.div>
 
-        {/* Video Cards */}
-        <div className="space-y-6 mb-10">
-          {videos.map((video, index) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 + index * 0.15 }}
-              className="card-elevated p-6"
-            >
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-welli-yellow/20 flex items-center justify-center text-3xl flex-shrink-0">
-                  {video.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-lg text-foreground">{video.title}</h3>
-                    <span className="text-sm text-muted-foreground">{video.duration}</span>
-                  </div>
-                  <p className="text-muted-foreground mb-4">{video.description}</p>
-                  
-                  {/* Video Placeholder */}
-                  <div className="aspect-video rounded-xl bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center cursor-pointer group hover:from-secondary/10 hover:to-welli-yellow/10 transition-all">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center"
-                    >
-                      <Play className="w-8 h-8 text-primary" />
-                    </motion.div>
-                  </div>
-                </div>
+        {/* Video Cards Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-10">
+          {/* Video 1: Cómo desembolsar */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="card-elevated p-6"
+          >
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">💰</span>
+                <h3 className="font-bold text-lg text-foreground">Cómo Desembolsar</h3>
               </div>
-            </motion.div>
-          ))}
+              <p className="text-sm text-muted-foreground">
+                El paso más importante: recibir tu dinero es así de sencillo
+              </p>
+            </div>
+            <YouTubeEmbed 
+              videoId="0pem5PNZkSA" 
+              title="Manual del Éxito: Cómo Desembolsar"
+              borderColor="primary"
+            />
+          </motion.div>
+
+          {/* Video 2: Cómo gestionar desistimiento */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="card-elevated p-6"
+          >
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">🔄</span>
+                <h3 className="font-bold text-lg text-foreground">Cómo Gestionar un Desistimiento</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Qué hacer cuando un paciente decide cancelar el proceso
+              </p>
+            </div>
+            {/* Placeholder for second video */}
+            <div className="aspect-video rounded-2xl bg-gradient-to-br from-secondary/10 to-welli-yellow/10 border-4 border-secondary flex items-center justify-center">
+              <div className="text-center p-6">
+                <Video className="w-12 h-12 text-secondary/50 mx-auto mb-3" />
+                <p className="text-muted-foreground">Video próximamente</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Additional Resources */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-secondary/10 to-welli-yellow/10 border border-secondary/20 mb-10"
+          transition={{ delay: 0.5 }}
+          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-secondary/10 border-2 border-welli-yellow/30 mb-10"
         >
           <h3 className="font-bold text-lg mb-4">¿Necesitas más tutoriales?</h3>
           <p className="text-muted-foreground mb-4">
@@ -105,7 +104,7 @@ const OperationalVideosModule = ({ onComplete }: ModuleProps) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
           className="text-center"
         >
           <button

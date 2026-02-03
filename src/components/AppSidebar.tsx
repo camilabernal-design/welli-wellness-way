@@ -9,14 +9,15 @@ import {
   MessageSquare, 
   GraduationCap,
   LayoutDashboard,
-  Users,
   Image,
   Gift,
   Video,
   Building2,
   FileText,
   CheckSquare,
-  ChevronRight
+  ChevronRight,
+  Instagram,
+  Zap
 } from "lucide-react";
 import {
   Sidebar,
@@ -30,6 +31,7 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar";
+import WelliLogo from "@/components/WelliLogo";
 
 interface AppSidebarProps {
   currentModule: number;
@@ -41,23 +43,24 @@ const phase1Modules = [
   { id: 2, title: "Señales del Paciente", icon: Target },
   { id: 3, title: "Dashboard de Resultados", icon: TrendingUp },
   { id: 4, title: "Cotizador Pro", icon: Calculator },
-  { id: 5, title: "Mito del Score", icon: ShieldQuestion },
+  { id: 5, title: "¿Afecta el Score?", icon: ShieldQuestion },
   { id: 6, title: "Video: Proceso", icon: PlayCircle },
   { id: 7, title: "Welli Check", icon: Smartphone },
-  { id: 8, title: "Espacio de Prueba", icon: LayoutDashboard },
+  { id: 8, title: "Zona de Prueba", icon: LayoutDashboard },
   { id: 9, title: "Práctica de Objeciones", icon: MessageSquare },
   { id: 10, title: "Completaste Fase 1", icon: GraduationCap },
 ];
 
 const phase2Modules = [
   { id: 11, title: "Resumen Fase 1", icon: LayoutDashboard },
-  { id: 12, title: "Elegibilidad", icon: Smartphone },
-  { id: 13, title: "Material POP", icon: Image },
-  { id: 14, title: "Referidos", icon: Gift },
-  { id: 15, title: "Videos Operativos", icon: Video },
-  { id: 16, title: "Registro de Clínica", icon: Building2 },
-  { id: 17, title: "Herramientas", icon: FileText },
-  { id: 18, title: "Checklist Final", icon: CheckSquare },
+  { id: 12, title: "Elegibilidad", icon: Zap },
+  { id: 13, title: "Aliados en Redes", icon: Instagram },
+  { id: 14, title: "Material POP", icon: Image },
+  { id: 15, title: "Referidos", icon: Gift },
+  { id: 16, title: "Videos Operativos", icon: Video },
+  { id: 17, title: "Registro de Clínica", icon: Building2 },
+  { id: 18, title: "Herramientas", icon: FileText },
+  { id: 19, title: "Checklist Final", icon: CheckSquare },
 ];
 
 const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
@@ -67,12 +70,15 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">W</span>
-          </div>
-          <div>
-            <h2 className="font-bold text-sidebar-foreground">Welli</h2>
-            <p className="text-xs text-sidebar-foreground/70">Sales Clinic</p>
+          {/* Full Welli Logo */}
+          <div className="flex items-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-welli-yellow to-primary flex items-center justify-center">
+              <span className="text-white font-bold text-lg">W</span>
+            </div>
+            <div className="ml-2">
+              <h2 className="font-bold text-lg text-sidebar-foreground">Welli</h2>
+              <p className="text-[10px] text-welli-yellow font-medium -mt-1">Sales Clinic</p>
+            </div>
           </div>
         </div>
       </SidebarHeader>
@@ -99,10 +105,10 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
                         isCompleted ? "text-sidebar-foreground/80" : ""
                       }`}
                     >
-                      <module.icon className={`w-4 h-4 ${isActive ? "text-primary" : isCompleted ? "text-success" : ""}`} />
+                      <module.icon className={`w-4 h-4 ${isActive ? "text-welli-yellow" : isCompleted ? "text-success" : ""}`} />
                       <span className="truncate text-sm">{module.title}</span>
                       {isActive && (
-                        <ChevronRight className="ml-auto w-4 h-4 text-primary" />
+                        <ChevronRight className="ml-auto w-4 h-4 text-welli-yellow" />
                       )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -134,10 +140,10 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
                         isLocked ? "opacity-50" : ""
                       } ${isCompleted ? "text-sidebar-foreground/80" : ""}`}
                     >
-                      <module.icon className={`w-4 h-4 ${isActive ? "text-primary" : isCompleted ? "text-success" : ""}`} />
+                      <module.icon className={`w-4 h-4 ${isActive ? "text-secondary" : isCompleted ? "text-success" : ""}`} />
                       <span className="truncate text-sm">{module.title}</span>
                       {isActive && (
-                        <ChevronRight className="ml-auto w-4 h-4 text-primary" />
+                        <ChevronRight className="ml-auto w-4 h-4 text-secondary" />
                       )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -157,7 +163,7 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
             href="https://www.welli.com.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-primary hover:underline"
+            className="text-xs text-welli-yellow hover:underline"
           >
             welli.com.co
           </a>

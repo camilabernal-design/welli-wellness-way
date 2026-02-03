@@ -19,9 +19,9 @@ const ScoreMythModule = ({ onComplete }: ModuleProps) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 text-foreground mb-6">
             <ShieldQuestion className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">Mito del Score</span>
+            <span className="text-sm font-bold">¿Afecta el Score?</span>
           </div>
           <h2 className="section-title">La objeción más común sobre el crédito</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">

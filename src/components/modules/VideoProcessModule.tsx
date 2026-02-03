@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { PlayCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -27,32 +28,24 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
             <PlayCircle className="w-4 h-4 text-secondary" />
             <span className="text-sm font-medium">Proceso de Venta</span>
           </div>
-          <h2 className="section-title">El Flujo del Éxito Welli</h2>
+          <h2 className="section-title">El Proceso Welli: De la Consulta al Cierre</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
             Mira cómo es el proceso de financiación paso a paso. 100% digital, sin papeles.
           </p>
         </motion.div>
 
-        {/* Video Placeholder */}
+        {/* YouTube Video */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="card-elevated p-6 mb-10"
+          className="mb-10"
         >
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-secondary/20 to-welli-yellow/20 flex items-center justify-center">
-            <div className="text-center">
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4"
-              >
-                <PlayCircle className="w-12 h-12 text-primary" />
-              </motion.div>
-              <p className="text-lg font-medium text-foreground">Video: Proceso de Venta</p>
-              <p className="text-sm text-muted-foreground mt-2">Próximamente - Video explicativo del proceso</p>
-            </div>
-          </div>
+          <YouTubeEmbed 
+            videoId="EN7ao47-Is8" 
+            title="El Proceso Welli: De la Consulta al Cierre"
+            borderColor="secondary"
+          />
         </motion.div>
 
         {/* Steps Summary */}
@@ -70,13 +63,13 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
               transition={{ delay: 0.6 + index * 0.1 }}
               className={`p-4 rounded-xl border-2 ${
                 index === 3 
-                  ? "bg-welli-yellow/10 border-welli-yellow/30" 
+                  ? "bg-welli-yellow/20 border-welli-yellow/40" 
                   : "bg-card border-border"
               }`}
             >
               <div className="flex items-start gap-3">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  index === 3 ? "bg-welli-yellow/20" : "bg-secondary/20"
+                  index === 3 ? "bg-welli-yellow/30" : "bg-secondary/20"
                 }`}>
                   {index === 3 ? (
                     <span className="text-sm font-bold text-welli-yellow">B</span>
@@ -102,7 +95,7 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-success/10 to-accent/10 border border-success/20 text-center mb-10"
+          className="p-6 rounded-2xl bg-gradient-to-r from-success/10 to-welli-yellow/10 border border-success/20 text-center mb-10"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
             <CheckCircle2 className="w-5 h-5 text-success" />
