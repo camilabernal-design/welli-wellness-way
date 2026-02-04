@@ -1,31 +1,29 @@
 import { motion } from "framer-motion";
-import { Instagram, ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { Instagram, ArrowRight, ExternalLink, Sparkles, Play } from "lucide-react";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
-const instagramPosts = [
+const youtubeShorts = [
   {
     id: 1,
-    url: "https://www.instagram.com/p/DUHUaJpDmfu/",
-    title: "Ejemplo creativo #1",
+    videoId: "t9-Gqjj6l4I",
+    title: "Clínica Ejemplo #1",
     description: "Mira cómo este aliado promociona Welli en sus redes",
-    thumbnail: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&h=400&fit=crop",
   },
   {
     id: 2,
-    url: "https://www.instagram.com/p/DTTISDfjiwW/",
-    title: "Ejemplo creativo #2",
+    videoId: "REKXh6TeKG8",
+    title: "Clínica Ejemplo #2",
     description: "Una forma innovadora de comunicar financiación",
-    thumbnail: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=400&fit=crop",
   },
   {
     id: 3,
-    url: "https://www.instagram.com/p/DT3BWf2jhqi/",
-    title: "Ejemplo creativo #3",
+    videoId: "IcUWtYu2HyY",
+    title: "Clínica Ejemplo #3",
     description: "Contenido que conecta con los pacientes",
-    thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=400&fit=crop",
   },
 ];
 
@@ -42,12 +40,11 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 text-foreground mb-6">
             <Instagram className="w-4 h-4 text-pink-500" />
-            <span className="text-sm font-medium">Nuestros Aliados en Redes</span>
+            <span className="text-sm font-bold">Nuestros Aliados en Redes</span>
           </div>
-          <h2 className="section-title">Inspírate con el éxito de otros</h2>
+          <h2 className="section-title">Nuestros aliados en redes</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Algunos de nuestros aliados han sido muy creativos...
-            <span className="font-medium text-foreground"> ¡mira estos ejemplos!</span>
+            Mira cómo otras clínicas nos muestran en su Instagram:
           </p>
         </motion.div>
 
@@ -73,52 +70,32 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
           </div>
         </motion.div>
 
-        {/* Instagram Posts Grid */}
+        {/* YouTube Shorts Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {instagramPosts.map((post, index) => (
-            <motion.a
-              key={post.id}
-              href={post.url}
-              target="_blank"
-              rel="noopener noreferrer"
+          {youtubeShorts.map((video, index) => (
+            <motion.div
+              key={video.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
-              className="group block"
+              className="card-elevated p-4"
             >
-              <div className="card-elevated overflow-hidden">
-                {/* Thumbnail */}
-                <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-pink-500/20 to-purple-500/20">
-                  <img
-                    src={post.thumbnail}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
-                    <div className="flex items-center gap-2 text-white font-medium">
-                      <Instagram className="w-5 h-5" />
-                      <span>Ver en Instagram</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </div>
+              <div className="mb-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                    <Play className="w-4 h-4 text-white" />
                   </div>
-                  {/* Instagram icon badge */}
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-lg">
-                    <Instagram className="w-5 h-5 text-white" />
-                  </div>
+                  <h3 className="font-bold text-sm text-foreground">{video.title}</h3>
                 </div>
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {post.description}
-                  </p>
-                </div>
+                <p className="text-xs text-muted-foreground">{video.description}</p>
               </div>
-            </motion.a>
+              <YouTubeEmbed
+                videoId={video.videoId}
+                title={video.title}
+                isShort={true}
+                borderColor="secondary"
+              />
+            </motion.div>
           ))}
         </div>
 

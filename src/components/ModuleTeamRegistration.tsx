@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, ArrowRight, CheckCircle2, UserPlus, Plus, Trash2, Building2 } from "lucide-react";
+import { Users, ArrowRight, CheckCircle2, UserPlus, Plus, Trash2, Building2, Key, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -21,6 +21,7 @@ interface RoleData {
 }
 
 interface FormData {
+  clinicKey: string; // NIT or Cédula - Primary key
   doctor: RoleData;
   admin: RoleData;
   finance: RoleData;
@@ -43,6 +44,7 @@ const roles = [
 
 const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   const [formData, setFormData] = useState<FormData>({
+    clinicKey: "",
     doctor: { members: [createNewMember()] },
     admin: { members: [createNewMember()] },
     finance: { members: [createNewMember()] },
@@ -51,7 +53,9 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedRoles, setSubmittedRoles] = useState<string[]>([]);
 
-  const handleChange = (role: keyof FormData, memberId: string, field: keyof Omit<TeamMember, 'id'>, value: string) => {
+  type RoleKey = 'doctor' | 'admin' | 'finance' | 'marketing';
+
+  const handleChange = (role: RoleKey, memberId: string, field: keyof Omit<TeamMember, 'id'>, value: string) => {
     setFormData(prev => ({
       ...prev,
       [role]: {
@@ -62,7 +66,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
     }));
   };
 
-  const addMember = (role: keyof FormData) => {
+  const addMember = (role: RoleKey) => {
     setFormData(prev => ({
       ...prev,
       [role]: {
@@ -71,7 +75,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
     }));
   };
 
-  const removeMember = (role: keyof FormData, memberId: string) => {
+  const removeMember = (role: RoleKey, memberId: string) => {
     setFormData(prev => ({
       ...prev,
       [role]: {
@@ -81,19 +85,40 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   };
 
   const handleRoleSubmit = async (roleKey: string) => {
+    if (!formData.clinicKey) {
+      toast.error("Por favor ingresa el NIT o Cédula primero");
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate API call - In production, this would send to HubSpot
+    // Prepare data for webhook (n8n/Google Sheets compatible structure)
+    const roleData = formData[roleKey as keyof Omit<FormData, 'clinicKey'>];
+    const webhookData = {
+      clinicKey: formData.clinicKey, // Primary key
+      role: roleKey,
+      members: (roleData as RoleData).members.filter(m => m.name && m.email),
+      timestamp: new Date().toISOString(),
+    };
+
+    // Log data for debugging - In production, send to n8n webhook
+    console.log("Webhook data:", webhookData);
+
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     setIsSubmitting(false);
     setSubmittedRoles(prev => [...prev, roleKey]);
-    toast.success(`¡Datos de ${roles.find(r => r.key === roleKey)?.title} registrados!`);
+    toast.success(`¡Datos de ${roles.find(r => r.key === roleKey)?.title} registrados!`, {
+      description: `Llave: ${formData.clinicKey}`,
+    });
   };
 
-  const isRoleValid = (role: keyof FormData) => {
+  const isRoleValid = (role: keyof Omit<FormData, 'clinicKey'>) => {
     return formData[role].members.some(m => m.name && m.email);
   };
+
+  const isClinicKeyValid = formData.clinicKey.length >= 6;
 
   return (
     <div className="module-container">
@@ -109,11 +134,50 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
             <Building2 className="w-4 h-4 text-welli-yellow" />
             <span className="text-sm font-medium">Registro de Clínica</span>
           </div>
-          <h2 className="section-title">Ingresa los datos de tu clínica</h2>
+          <h2 className="section-title">Registro de Crecimiento</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
+            "Póngame aquí su NIT. Esta será nuestra llave maestra para que todo el equipo de marketing y finanzas reciba las notificaciones automáticas vía HubSpot."
+          </p>
+          <p className="section-subtitle max-w-2xl mx-auto mt-2">
             Registra a tu equipo para recibir información personalizada y soporte prioritario.
             <span className="font-medium text-foreground"> Puedes agregar múltiples personas por área.</span>
           </p>
+        </motion.div>
+
+        {/* Clinic Key - NIT or Cédula */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="card-elevated p-6 mb-8"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
+              <Key className="w-6 h-6 text-welli-yellow" />
+            </div>
+            <div>
+              <h3 className="font-bold text-lg text-foreground">Llave Maestra</h3>
+              <p className="text-sm text-muted-foreground">NIT de la clínica o Cédula del doctor titular</p>
+            </div>
+          </div>
+          <div className="max-w-md">
+            <Label className="text-sm font-medium">NIT / Cédula *</Label>
+            <Input
+              type="text"
+              placeholder="Ej: 900123456-7 o 1234567890"
+              value={formData.clinicKey}
+              onChange={(e) => setFormData(prev => ({ ...prev, clinicKey: e.target.value }))}
+              className="mt-1 text-lg"
+            />
+            {!isClinicKeyValid && formData.clinicKey && (
+              <p className="text-xs text-danger mt-1">Mínimo 6 caracteres</p>
+            )}
+            {isClinicKeyValid && (
+              <p className="text-xs text-success mt-1 flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> Llave válida
+              </p>
+            )}
+          </div>
         </motion.div>
 
         {/* Form by Role */}
