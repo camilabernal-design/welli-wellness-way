@@ -94,9 +94,9 @@ const OperationalVideosModule = ({ onComplete }: ModuleProps) => {
           <h3 className="font-bold text-lg mb-4">Puntos clave del desembolso:</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              "El 95% del monto aprobado se desembolsa en 48-72 horas hábiles",
-              "El dinero llega directamente a la cuenta registrada de la clínica",
-              "Puedes ver el estado de cada solicitud en tu Panel de Admin",
+              "Una vez solicitas el desembolso, recibes el dinero en 24-48 horas hábiles",
+              "El 95% del monto aprobado llega directo a la cuenta de la clínica",
+              "Puedes ver el estado de cada solicitud en tu Portal de Admin",
               "Si hay desistimiento, el proceso es igual de sencillo",
             ].map((point, index) => (
               <div key={index} className="flex items-center gap-2">

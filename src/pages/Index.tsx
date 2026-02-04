@@ -20,16 +20,17 @@ import Phase1Complete from "@/components/modules/Phase1Complete";
 
 // Phase 2 Modules - Herramientas de Cierre
 import Phase2Summary from "@/components/modules/Phase2Summary";
-import IncomeOptimizationModule from "@/components/modules/IncomeOptimizationModule";
-import PowerScriptsModule from "@/components/modules/PowerScriptsModule";
-import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
-import ModulePOPGallery from "@/components/ModulePOPGallery";
-import ModuleReferrals from "@/components/ModuleReferrals";
+import DisbursementWarningModule from "@/components/modules/DisbursementWarningModule";
 import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
+import DesistimientoModule from "@/components/modules/DesistimientoModule";
+import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
+import ModuleReferrals from "@/components/ModuleReferrals";
+import ModulePOPGallery from "@/components/ModulePOPGallery";
 import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
+import FinalQuizModule from "@/components/modules/FinalQuizModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-const TOTAL_MODULES = 20;
+const TOTAL_MODULES = 21;
 
 const Index = () => {
   const [currentModule, setCurrentModule] = useState(1);
@@ -77,24 +78,26 @@ const Index = () => {
       case 11:
         return <Phase1Complete onComplete={handleModuleComplete} />;
       
-      // Phase 2: Herramientas de Cierre (9 modules)
+      // Phase 2: Maestría Operativa (10 modules)
       case 12:
         return <Phase2Summary onComplete={handleModuleComplete} />;
       case 13:
-        return <IncomeOptimizationModule onComplete={handleModuleComplete} />;
+        return <DisbursementWarningModule onComplete={handleModuleComplete} />;
       case 14:
-        return <PowerScriptsModule onComplete={handleModuleComplete} />;
+        return <OperationalVideosModule onComplete={handleModuleComplete} />;
       case 15:
-        return <SocialAlliesModule onComplete={handleModuleComplete} />;
+        return <DesistimientoModule onComplete={handleModuleComplete} />;
       case 16:
-        return <ModulePOPGallery onComplete={handleModuleComplete} />;
+        return <SocialAlliesModule onComplete={handleModuleComplete} />;
       case 17:
         return <ModuleReferrals onComplete={handleModuleComplete} />;
       case 18:
-        return <OperationalVideosModule onComplete={handleModuleComplete} />;
+        return <ModulePOPGallery onComplete={handleModuleComplete} />;
       case 19:
         return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
       case 20:
+        return <FinalQuizModule onComplete={handleModuleComplete} />;
+      case 21:
         return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       
       default:

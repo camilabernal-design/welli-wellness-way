@@ -11,7 +11,7 @@ interface ModuleProps {
 const quizOptions = [
   {
     id: "a",
-    text: "Para que mi paciente pueda saber si es elegible para un crédito con Welli en menos de 30 segundos. Solo con la foto de la cédula y a través de WhatsApp.",
+    text: "Para que mi paciente obtenga una respuesta DEFINITIVA (APROBADO o rechazado) en segundos. Solo con la foto de la cédula y a través de WhatsApp.",
     correct: true,
   },
   {
@@ -62,9 +62,9 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
             <Smartphone className="w-4 h-4 text-welli-yellow" />
             <span className="text-sm font-bold">Welli Check</span>
           </div>
-          <h2 className="section-title">Preaprobado en 30 segundos</h2>
+          <h2 className="section-title">APROBADO en segundos</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Tu paciente solo necesita la foto de su cédula y WhatsApp para saber si es elegible.
+            Tu paciente solo necesita la foto de su cédula y WhatsApp para obtener una respuesta definitiva.
           </p>
         </motion.div>
 
@@ -78,7 +78,7 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
           {[
             { icon: "📱", title: "Foto de Cédula", desc: "Solo necesita tomar una foto clara de su documento" },
             { icon: "💬", title: "WhatsApp", desc: "Todo el proceso se hace por WhatsApp, sin apps adicionales" },
-            { icon: "⚡", title: "30 Segundos", desc: "Respuesta inmediata de elegibilidad" },
+            { icon: "✅", title: "Respuesta Definitiva", desc: "APROBADO o rechazado, sin esperas" },
           ].map((feature, index) => (
             <motion.div
               key={index}
@@ -179,8 +179,8 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
             >
               <p className={`font-medium ${isCorrect ? "text-success" : "text-danger"}`}>
                 {isCorrect
-                  ? "¡Correcto! 🎉 Welli Check permite preaprobaciones instantáneas por WhatsApp."
-                  : "No es correcto. Welli Check es exclusivamente para verificar elegibilidad de crédito."}
+                  ? "¡Correcto! 🎉 Welli Check da una respuesta DEFINITIVA de aprobación en segundos por WhatsApp."
+                  : "No es correcto. Welli Check es exclusivamente para obtener la aprobación de crédito."}
               </p>
             </motion.div>
           )}

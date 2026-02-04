@@ -10,25 +10,25 @@ const flashcards = [
   {
     signal: '"Necesito pensarlo / Hablar con mi familia"',
     meaning: "Inseguridad económica, no por el tratamiento sino por el monto",
-    response: '"Muchos pacientes dividen la inversión hasta en 36 meses. ¿Hacemos el ejemplo?"',
+    response: '"Muchos pacientes se dan cuenta que pagar una Cuota Fija de Bienestar facilita la decisión. ¿Hacemos el ejemplo?"',
     icon: "🤔",
   },
   {
     signal: '"Pensé que mi prepagada cubría más"',
     meaning: "Presupuesto limitado para el copago o excedente",
-    response: '"Podemos financiar solo ese excedente con Welli en cuotas cómodas"',
+    response: '"Podemos financiar solo ese excedente con una Cuota Fija de Bienestar muy accesible"',
     icon: "💳",
   },
   {
     signal: '"¿Puedo pagarles mensualmente mientras vengo a citas?"',
     meaning: "Quiere plazos sin burocracia bancaria",
-    response: '"Welli es mejor que un acuerdo informal: crea vida crediticia y no toca tus tarjetas"',
+    response: '"Welli es mejor: pagas una Cuota Fija de Bienestar, creas vida crediticia y no tocas tus tarjetas"',
     icon: "📅",
   },
   {
     signal: '"¿Aceptan tarjeta de crédito con cuotas?"',
     meaning: "Busca financiación pero no quiere usar su cupo disponible",
-    response: '"Con Welli tienes un cupo exclusivo para salud, sin tocar tus tarjetas actuales"',
+    response: '"Con Welli tienes un cupo exclusivo para salud. Manejas tu bienestar con una Cuota Fija de Bienestar independiente"',
     icon: "💰",
   },
 ];
@@ -194,7 +194,7 @@ const ModulePatientSignals = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Continuar al Traductor de Cuotas</span>
+            <span>Continuar al Simulador de Cuotas</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>

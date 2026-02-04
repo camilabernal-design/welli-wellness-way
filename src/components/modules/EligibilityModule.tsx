@@ -57,7 +57,7 @@ const EligibilityModule = ({ onComplete }: ModuleProps) => {
                         transition={{ delay: 1, repeat: Infinity, repeatDelay: 3 }}
                         className="p-3 rounded-xl bg-success/20 border border-success/40"
                       >
-                        <p className="text-sm font-medium text-success">✓ Preaprobado</p>
+                        <p className="text-sm font-medium text-success">✓ APROBADO</p>
                       </motion.div>
                     </div>
                   </div>

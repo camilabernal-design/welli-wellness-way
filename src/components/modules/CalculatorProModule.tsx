@@ -43,11 +43,11 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
             <Calculator className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">El Traductor de Cuotas</span>
+            <span className="text-sm font-medium">Simulador de Cuotas de Bienestar</span>
           </div>
           <h2 className="section-title">No vendas el total, vende la viabilidad</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Transforma el susto del precio total en una cuota mensual accesible.
+            Transforma el susto del precio total en una <span className="font-bold text-welli-yellow">Cuota Fija de Bienestar</span>.
           </p>
         </motion.div>
 
@@ -252,7 +252,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             No vendas el tratamiento de{" "}
             <span className="text-danger font-bold">{formatCurrency(amount)}</span>.
-            Vende la cuota de bienestar de{" "}
+            Vende la <span className="font-bold text-welli-yellow">Cuota Fija de Bienestar</span> de{" "}
             <span className="text-success font-bold">{formatCurrency(monthlyPayment)}/mes</span>.
           </p>
         </motion.div>
