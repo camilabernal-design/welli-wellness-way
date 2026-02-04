@@ -1,11 +1,58 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, TrendingDown, Wallet } from "lucide-react";
+import { ArrowRight, Sparkles, DollarSign, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
 const Phase1Welcome = ({ onComplete }: ModuleProps) => {
+  const [lostAmount, setLostAmount] = useState(0);
+  const targetAmount = 2850000; // Example lost revenue per day
+  
+  // Animated counter effect
+  useEffect(() => {
+    const duration = 2000;
+    const steps = 60;
+    const increment = targetAmount / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetAmount) {
+        setLostAmount(targetAmount);
+        clearInterval(timer);
+      } else {
+        setLostAmount(Math.floor(current));
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  // Calendar slots - some are "lost" (empty with crossed money)
+  const weekDays = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie'];
+  const timeSlots = ['9:00', '10:00', '11:00', '12:00', '3:00', '4:00'];
+  
+  // Mark some slots as "lost" (true = lost opportunity)
+  const lostSlots = [
+    [false, true, false, false, true],
+    [true, false, false, true, false],
+    [false, false, true, false, false],
+    [false, true, false, false, true],
+    [true, false, false, true, false],
+    [false, false, true, false, false],
+  ];
+
   return (
     <div className="module-container">
       <div className="max-w-5xl mx-auto">
@@ -14,25 +61,25 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           {/* Welli Badge */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-welli-yellow/30 border-2 border-welli-yellow/50 text-foreground mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-welli-yellow/30 border-2 border-welli-yellow/50 text-foreground mb-6"
           >
             <Sparkles className="w-5 h-5 text-welli-yellow" />
             <span className="text-sm font-bold">Welli Sales Clinic • Fase 1</span>
           </motion.div>
 
-          {/* Main Hook - El Secreto de la Agenda */}
+          {/* Main Title */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight"
+            className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight"
           >
             El Secreto: Welli es el puente para ese
             <br />
@@ -43,144 +90,132 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            Cada espacio en la agenda representa una <span className="font-bold text-foreground">oportunidad de salud que no se concretó</span>.
+            No vendas el total, vende la viabilidad. <span className="font-bold text-welli-yellow">Presenta Cuotas de Bienestar.</span>
           </motion.p>
         </motion.div>
 
-        {/* Two column layout */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Calendar/Agenda illustration */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-col items-center justify-center"
-          >
-            <div className="w-64 h-64 md:w-80 md:h-80 relative mb-6">
-              {/* Calendar background with yellow/purple gradient */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-welli-yellow/40 via-secondary/20 to-welli-yellow/10 border-2 border-welli-yellow/30" />
-              
-              {/* Empty agenda illustration */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center p-4"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  {/* Calendar grid representation */}
-                  <div className="grid grid-cols-3 gap-2 w-full max-w-[200px]">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-                      <div 
-                        key={i} 
-                        className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xs font-bold ${
-                          i === 5 
-                            ? "border-danger/50 bg-danger/10 text-danger" 
-                            : "border-muted/30 bg-muted/10 text-muted-foreground"
-                        }`}
-                      >
-                        {i === 5 ? "?" : ""}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="absolute -bottom-2 -right-2 text-4xl">💸</div>
-                  <div className="absolute inset-0 blur-2xl bg-welli-yellow/20 -z-10" />
-                </div>
-              </motion.div>
+        {/* Lost Agenda Monitor */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="mb-8"
+        >
+          <div className="bg-card border-2 border-border rounded-2xl p-6 shadow-lg">
+            {/* Monitor Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-danger animate-pulse" />
+                <span className="text-sm font-semibold text-muted-foreground">Monitor de Agenda Perdida</span>
+              </div>
+              <span className="text-xs text-muted-foreground">Esta semana</span>
             </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-center text-muted-foreground italic"
-            >
-              "Cada espacio vacío en la agenda = dinero que no llegó"
-            </motion.p>
-          </motion.div>
+            {/* Calendar Grid */}
+            <div className="overflow-x-auto">
+              <div className="min-w-[400px]">
+                {/* Days Header */}
+                <div className="grid grid-cols-6 gap-2 mb-2">
+                  <div className="text-xs text-muted-foreground font-medium"></div>
+                  {weekDays.map((day) => (
+                    <div key={day} className="text-center text-xs font-bold text-foreground">
+                      {day}
+                    </div>
+                  ))}
+                </div>
 
-          {/* Data cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-col gap-4"
-          >
-            {/* Data card 1 */}
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.7, type: "spring" }}
-              className="p-6 rounded-2xl bg-gradient-to-r from-warning/20 to-welli-yellow/30 border-2 border-welli-yellow/40"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-welli-yellow/30">
-                  <Wallet className="w-6 h-6 text-warning" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Los datos no mienten</p>
-                  <span className="text-3xl md:text-4xl font-extrabold text-foreground">
-                    16.8%
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    El gasto de bolsillo en salud en Colombia <span className="font-bold text-danger">subió</span>
-                  </p>
-                </div>
+                {/* Time Slots Grid */}
+                {timeSlots.map((time, rowIdx) => (
+                  <div key={time} className="grid grid-cols-6 gap-2 mb-2">
+                    <div className="text-xs text-muted-foreground font-medium flex items-center">
+                      {time}
+                    </div>
+                    {weekDays.map((day, colIdx) => {
+                      const isLost = lostSlots[rowIdx][colIdx];
+                      return (
+                        <motion.div
+                          key={`${day}-${time}`}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.7 + (rowIdx * 0.05) + (colIdx * 0.03) }}
+                          className={`aspect-square rounded-lg flex items-center justify-center relative ${
+                            isLost 
+                              ? 'bg-danger/10 border-2 border-danger/30' 
+                              : 'bg-success/10 border border-success/20'
+                          }`}
+                        >
+                          {isLost ? (
+                            <div className="relative">
+                              <DollarSign className="w-4 h-4 text-danger/60" />
+                              <X className="w-6 h-6 text-danger absolute -top-1 -left-1" strokeWidth={3} />
+                            </div>
+                          ) : (
+                            <div className="w-2 h-2 rounded-full bg-success/50" />
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Data card 2 */}
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.8, type: "spring" }}
-              className="p-6 rounded-2xl bg-gradient-to-r from-danger/10 to-danger/20 border-2 border-danger/30"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-danger/20">
-                  <TrendingDown className="w-6 h-6 text-danger" />
+            {/* Legend */}
+            <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-border">
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <DollarSign className="w-4 h-4 text-danger/60" />
+                  <X className="w-5 h-5 text-danger absolute -top-0.5 -left-0.5" strokeWidth={3} />
                 </div>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Pacientes que se pierden</p>
-                  <span className="text-3xl md:text-4xl font-extrabold text-danger">
-                    65%
-                  </span>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Se van por el <span className="font-bold">monto total</span>
-                  </p>
-                </div>
+                <span className="text-xs text-muted-foreground">Oportunidad perdida</span>
               </div>
-            </motion.div>
-          </motion.div>
-        </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-success/50" />
+                <span className="text-xs text-muted-foreground">Cita confirmada</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-        {/* Key insight banner */}
+        {/* Dynamic Impact Counter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-secondary/20 to-welli-yellow/20 border-2 border-secondary/30 mb-10"
+          transition={{ delay: 0.8 }}
+          className="mb-10"
         >
-          <p className="text-center text-lg">
-            <span className="font-bold text-foreground">El secreto:</span>{" "}
-            Welli es el puente para ese 65% que antes se iba.{" "}
-            <span className="text-welli-yellow font-bold">No vendas el total, vende la viabilidad.</span>
-          </p>
+          <div className="p-6 rounded-2xl bg-gradient-to-r from-danger/10 via-danger/20 to-danger/10 border-2 border-danger/30 text-center">
+            <p className="text-sm text-muted-foreground mb-2">
+              Este espacio en la agenda le costó hoy a tu clínica
+            </p>
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 1, type: "spring" }}
+              className="text-4xl md:text-5xl font-extrabold text-danger"
+            >
+              {formatCurrency(lostAmount)}
+            </motion.div>
+            <p className="text-xs text-muted-foreground mt-2">
+              *Promedio basado en tratamientos no cerrados por precio
+            </p>
+          </div>
         </motion.div>
 
         {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.4 }}
+          transition={{ delay: 1.2, duration: 0.4 }}
           className="text-center"
         >
           <button
             onClick={onComplete}
-            className="btn-welli group inline-flex items-center gap-3 text-lg"
+            className="group inline-flex items-center gap-3 text-lg px-8 py-4 rounded-xl font-bold bg-welli-yellow text-welli-yellow-foreground hover:bg-welli-yellow/90 transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <span>Presenta Cuotas de Bienestar</span>
+            <span>Recuperar mi Agenda</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
 
