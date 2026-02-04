@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Video, ArrowRight, ExternalLink, DollarSign, RotateCcw } from "lucide-react";
+import { Video, ArrowRight, ExternalLink, DollarSign, Calendar, Clock } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
@@ -19,88 +19,99 @@ const OperationalVideosModule = ({ onComplete }: ModuleProps) => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
             <Video className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">El Momento del Dinero</span>
+            <span className="text-sm font-bold">El Momento del Dinero</span>
           </div>
-          <h2 className="section-title">Lo que todos los doctores quieren saber</h2>
+          <h2 className="section-title">Operación de Desembolso</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            ¿Cómo recibo mi pago? Aquí están los tutoriales operativos esenciales.
+            ¿Cómo y cuándo recibes tu pago? Aquí está el proceso completo.
           </p>
         </motion.div>
 
-        {/* Video Cards Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-10">
-          {/* Video 1: Cómo desembolsar */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="card-elevated p-6"
-          >
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
-                  <DollarSign className="w-5 h-5 text-welli-yellow" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground">Cómo Desembolsar</h3>
-                  <p className="text-sm text-muted-foreground">
-                    El paso más importante: recibir tu dinero
-                  </p>
-                </div>
+        {/* Critical Info Banner */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="mb-10 p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/30 to-success/20 border-2 border-welli-yellow/50"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
+            <div className="flex items-center gap-3">
+              <Clock className="w-8 h-8 text-welli-yellow" />
+              <div>
+                <p className="text-sm text-muted-foreground">Tiempo máximo</p>
+                <p className="text-2xl font-extrabold text-foreground">72 horas hábiles</p>
               </div>
             </div>
-            <YouTubeEmbed 
-              videoId="0pem5PNZkSA" 
-              title="Manual del Éxito: Cómo Desembolsar"
-              borderColor="welli-yellow"
-            />
-          </motion.div>
+            <div className="hidden md:block w-px h-12 bg-border" />
+            <div className="flex items-center gap-3">
+              <Calendar className="w-8 h-8 text-success" />
+              <div>
+                <p className="text-sm text-muted-foreground">Días de pago</p>
+                <p className="text-2xl font-extrabold text-success">Martes y Jueves</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Video 2: Cómo gestionar desistimiento */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="card-elevated p-6"
-          >
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center">
-                  <RotateCcw className="w-5 h-5 text-secondary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground">Gestionar un Desistimiento</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Qué hacer cuando un paciente cancela
-                  </p>
-                </div>
+        {/* CS Script */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-8 p-5 rounded-xl bg-secondary/10 border border-secondary/20"
+        >
+          <p className="text-sm text-muted-foreground mb-2">💡 Guion para el Customer Success:</p>
+          <p className="text-foreground italic">
+            "Doctor, para su flujo de caja: desembolsamos <span className="font-bold text-welli-yellow">martes y jueves</span>. 
+            Si usted solicita su pago un lunes, el martes ya estamos procesando para que en máximo 
+            <span className="font-bold text-success"> 72 horas</span> esté en su cuenta."
+          </p>
+        </motion.div>
+
+        {/* Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="card-elevated p-6 mb-10"
+        >
+          <div className="mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-10 h-10 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
+                <DollarSign className="w-5 h-5 text-welli-yellow" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-foreground">Cómo Desembolsar</h3>
+                <p className="text-sm text-muted-foreground">
+                  El paso más importante: recibir tu dinero
+                </p>
               </div>
             </div>
-            <YouTubeEmbed 
-              videoId="LuynQ4k1DQQ" 
-              title="Cómo gestionar un desistimiento"
-              borderColor="secondary"
-            />
-          </motion.div>
-        </div>
+          </div>
+          <YouTubeEmbed 
+            videoId="0pem5PNZkSA" 
+            title="Manual del Éxito: Cómo Desembolsar"
+            borderColor="welli-yellow"
+          />
+        </motion.div>
 
         {/* Key Points */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-success/10 border-2 border-welli-yellow/30 mb-10"
+          className="p-6 rounded-2xl bg-card border-2 border-border mb-10"
         >
           <h3 className="font-bold text-lg mb-4">Puntos clave del desembolso:</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              "Una vez solicitas el desembolso, recibes el dinero en 24-48 horas hábiles",
-              "El 95% del monto aprobado llega directo a la cuenta de la clínica",
-              "Puedes ver el estado de cada solicitud en tu Portal de Admin",
-              "Si hay desistimiento, el proceso es igual de sencillo",
+              "El desembolso se realiza en máximo 72 horas hábiles",
+              "Los pagos se ejecutan todos los Martes y Jueves",
+              "El 95% del monto aprobado llega directo a la clínica",
+              "Puedes ver el estado de cada solicitud en tu Portal Admin",
             ].map((point, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-welli-yellow" />
+              <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
+                <div className="w-2 h-2 rounded-full bg-welli-yellow flex-shrink-0" />
                 <span className="text-foreground text-sm">{point}</span>
               </div>
             ))}

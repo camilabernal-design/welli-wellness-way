@@ -34,7 +34,7 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import WelliLogo from "@/components/WelliLogo";
+import WelliLogoFull from "@/components/WelliLogoFull";
 
 interface AppSidebarProps {
   currentModule: number;
@@ -58,14 +58,15 @@ const phase1Modules = [
 const phase2Modules = [
   { id: 12, title: "Bienvenida Maestría", icon: Sparkles },
   { id: 13, title: "⚠️ Error del Desembolso", icon: TrendingUp },
-  { id: 14, title: "Videos Operativos", icon: Video },
-  { id: 15, title: "Desistimientos", icon: FileText },
-  { id: 16, title: "Aliados en Redes", icon: Instagram },
-  { id: 17, title: "Referidos", icon: Gift },
-  { id: 18, title: "Material POP", icon: Image },
-  { id: 19, title: "Registro Clínica", icon: Building2 },
-  { id: 20, title: "Quiz Final", icon: CheckSquare },
-  { id: 21, title: "Checklist del Éxito", icon: CheckSquare },
+  { id: 14, title: "Aliados en Redes", icon: Instagram },
+  { id: 15, title: "Testimonios", icon: Video },
+  { id: 16, title: "Referidos", icon: Gift },
+  { id: 17, title: "Material POP", icon: Image },
+  { id: 18, title: "Desembolso (72h)", icon: Video },
+  { id: 19, title: "Desistimientos", icon: FileText },
+  { id: 20, title: "Registro Clínica", icon: Building2 },
+  { id: 21, title: "Quiz Final", icon: CheckSquare },
+  { id: 22, title: "Checklist del Éxito", icon: CheckSquare },
 ];
 
 const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
@@ -75,7 +76,7 @@ const AppSidebar = ({ currentModule, onModuleChange }: AppSidebarProps) => {
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <WelliLogo size="md" />
+          <WelliLogoFull size="md" />
           <div>
             <h2 className="font-bold text-lg text-sidebar-foreground">Sales Clinic</h2>
             <p className="text-[10px] text-welli-yellow font-medium -mt-1">Capacitación Welli</p>

@@ -10,41 +10,41 @@ interface ModuleProps {
 const questions = [
   {
     id: 1,
-    question: "¿Estar APROBADO es el último paso para recibir el dinero?",
+    question: "¿Qué días se realizan los pagos en Welli?",
     options: [
-      { text: "Sí, el dinero llega automáticamente", correct: false },
-      { text: "No, falta solicitar el DESEMBOLSO en el portal", correct: true },
-      { text: "Depende del monto aprobado", correct: false },
+      { text: "Lunes y Viernes", correct: false },
+      { text: "Martes y Jueves", correct: true },
+      { text: "Todos los días hábiles", correct: false },
     ],
     feedback: {
-      correct: "¡Exacto! Debes solicitar el desembolso en el portal para recibir el dinero.",
-      incorrect: "Recuerda: APROBADO ≠ dinero. Debes solicitar el DESEMBOLSO.",
+      correct: "¡Correcto! Los desembolsos se procesan los Martes y Jueves.",
+      incorrect: "Recuerda: los pagos se ejecutan los Martes y Jueves.",
     },
   },
   {
     id: 2,
-    question: "¿En cuánto tiempo llega el dinero después de solicitar el desembolso?",
+    question: "¿Qué pasa si el doctor no responde un desistimiento en 20 días?",
     options: [
-      { text: "1-2 semanas", correct: false },
-      { text: "24-48 horas hábiles", correct: true },
-      { text: "Inmediatamente", correct: false },
+      { text: "Se rechaza automáticamente la solicitud", correct: false },
+      { text: "Se considera Aceptación Total Automática", correct: true },
+      { text: "Se extiende el plazo otros 20 días", correct: false },
     ],
     feedback: {
-      correct: "¡Correcto! El dinero llega en 24-48 horas hábiles.",
-      incorrect: "El tiempo es 24-48 horas hábiles después de solicitar el desembolso.",
+      correct: "¡Exacto! El silencio administrativo se considera aceptación total.",
+      incorrect: "Si no respondes en 20 días, se asume aceptación total del desistimiento.",
     },
   },
   {
     id: 3,
-    question: "¿Quién puede aplicar por el paciente si este no es aprobado?",
+    question: "¿El proceso termina cuando el crédito sale APROBADO?",
     options: [
-      { text: "Solo el paciente puede aplicar", correct: false },
-      { text: "Un familiar o AMIGO", correct: true },
-      { text: "Nadie, debe esperar 6 meses", correct: false },
+      { text: "Sí, el dinero llega automáticamente", correct: false },
+      { text: "No, el doctor debe entrar al portal y solicitar el DESEMBOLSO", correct: true },
+      { text: "Depende del monto aprobado", correct: false },
     ],
     feedback: {
-      correct: "¡Muy bien! Un familiar o amigo puede aplicar para que el tratamiento inicie hoy.",
-      incorrect: "Un familiar o AMIGO puede aplicar por el paciente.",
+      correct: "¡Muy bien! Debes solicitar el desembolso para recibir el dinero.",
+      incorrect: "APROBADO ≠ dinero. Debes solicitar el DESEMBOLSO en el portal.",
     },
   },
 ];

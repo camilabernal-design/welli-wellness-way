@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/AppSidebar";
-import WelliLogo from "@/components/WelliLogo";
+import WelliLogoFull from "@/components/WelliLogoFull";
 import { Calculator } from "lucide-react";
 
 // Phase 1 Modules - El Método del "Sí"
@@ -21,16 +21,17 @@ import Phase1Complete from "@/components/modules/Phase1Complete";
 // Phase 2 Modules - Herramientas de Cierre
 import Phase2Summary from "@/components/modules/Phase2Summary";
 import DisbursementWarningModule from "@/components/modules/DisbursementWarningModule";
-import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
-import DesistimientoModule from "@/components/modules/DesistimientoModule";
 import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
+import TestimonialsModule from "@/components/modules/TestimonialsModule";
 import ModuleReferrals from "@/components/ModuleReferrals";
 import ModulePOPGallery from "@/components/ModulePOPGallery";
+import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
+import DesistimientoModule from "@/components/modules/DesistimientoModule";
 import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import FinalQuizModule from "@/components/modules/FinalQuizModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-const TOTAL_MODULES = 21;
+const TOTAL_MODULES = 22;
 
 const Index = () => {
   const [currentModule, setCurrentModule] = useState(1);
@@ -78,26 +79,28 @@ const Index = () => {
       case 11:
         return <Phase1Complete onComplete={handleModuleComplete} />;
       
-      // Phase 2: Maestría Operativa (10 modules)
+      // Phase 2: Maestría Operativa (11 modules: 12-22)
       case 12:
         return <Phase2Summary onComplete={handleModuleComplete} />;
       case 13:
         return <DisbursementWarningModule onComplete={handleModuleComplete} />;
       case 14:
-        return <OperationalVideosModule onComplete={handleModuleComplete} />;
-      case 15:
-        return <DesistimientoModule onComplete={handleModuleComplete} />;
-      case 16:
         return <SocialAlliesModule onComplete={handleModuleComplete} />;
-      case 17:
+      case 15:
+        return <TestimonialsModule onComplete={handleModuleComplete} />;
+      case 16:
         return <ModuleReferrals onComplete={handleModuleComplete} />;
-      case 18:
+      case 17:
         return <ModulePOPGallery onComplete={handleModuleComplete} />;
+      case 18:
+        return <OperationalVideosModule onComplete={handleModuleComplete} />;
       case 19:
-        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+        return <DesistimientoModule onComplete={handleModuleComplete} />;
       case 20:
-        return <FinalQuizModule onComplete={handleModuleComplete} />;
+        return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
       case 21:
+        return <FinalQuizModule onComplete={handleModuleComplete} />;
+      case 22:
         return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       
       default:
@@ -128,7 +131,7 @@ const Index = () => {
             <SidebarTrigger className="md:hidden" />
             
             <div className="flex items-center gap-3">
-              <WelliLogo size="sm" />
+              <WelliLogoFull size="sm" />
               <div className="hidden md:block">
                 <h1 className="font-bold text-foreground">Welli Sales Clinic</h1>
               </div>
