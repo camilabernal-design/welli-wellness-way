@@ -30,7 +30,7 @@ const practiceSteps = [
     description: "Conoce tu panel donde verás todo",
     icon: "📊",
     action: "Ir al Portal",
-    url: "https://portal.admin.welli.com.co/admin/login/?next=/admin/",
+    url: "https://stg.admin.welli.com.co/admin/login/?next=/admin/",
   },
 ];
 
@@ -211,7 +211,7 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
               </p>
             </div>
             <a
-              href="https://portal.admin.welli.com.co/admin/login/?next=/admin/"
+              href="https://stg.admin.welli.com.co/admin/login/?next=/admin/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary inline-flex items-center gap-2"
