@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Armchair, ArrowRight, Sparkles, TrendingDown, Wallet } from "lucide-react";
+import { ArrowRight, Sparkles, TrendingDown, Wallet } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -27,16 +27,16 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             <span className="text-sm font-bold">Welli Sales Clinic • Fase 1</span>
           </motion.div>
 
-          {/* Main Hook - El Costo del Silencio */}
+          {/* Main Hook - El Secreto de la Agenda */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight"
           >
-            ¿Cuántos tratamientos se enfrían
+            El Secreto: Welli es el puente para ese
             <br />
-            <span className="text-danger">porque el precio intimida?</span>
+            <span className="text-welli-yellow">65% que antes se iba</span>
           </motion.h1>
 
           <motion.p
@@ -45,14 +45,13 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             transition={{ delay: 0.6 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Cada silla vacía representa <span className="font-bold text-foreground">ingresos perdidos</span> y 
-            <span className="font-bold text-danger"> pacientes sin salud</span>.
+            Cada espacio en la agenda representa una <span className="font-bold text-foreground">oportunidad de salud que no se concretó</span>.
           </motion.p>
         </motion.div>
 
         {/* Two column layout */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Chair illustration */}
+          {/* Calendar/Agenda illustration */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -60,18 +59,33 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             className="flex flex-col items-center justify-center"
           >
             <div className="w-64 h-64 md:w-80 md:h-80 relative mb-6">
-              {/* Room background with yellow/purple gradient */}
+              {/* Calendar background with yellow/purple gradient */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-welli-yellow/40 via-secondary/20 to-welli-yellow/10 border-2 border-welli-yellow/30" />
               
-              {/* Empty chair illustration */}
+              {/* Empty agenda illustration */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{ y: [0, -10, 0] }}
+                className="absolute inset-0 flex items-center justify-center p-4"
+                animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <div className="relative">
-                  <Armchair className="w-32 h-32 md:w-40 md:h-40 text-secondary" strokeWidth={1.5} />
-                  <div className="absolute inset-0 blur-2xl bg-welli-yellow/30 -z-10" />
+                <div className="relative w-full h-full flex flex-col items-center justify-center">
+                  {/* Calendar grid representation */}
+                  <div className="grid grid-cols-3 gap-2 w-full max-w-[200px]">
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+                      <div 
+                        key={i} 
+                        className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xs font-bold ${
+                          i === 5 
+                            ? "border-danger/50 bg-danger/10 text-danger" 
+                            : "border-muted/30 bg-muted/10 text-muted-foreground"
+                        }`}
+                      >
+                        {i === 5 ? "?" : ""}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 text-4xl">💸</div>
+                  <div className="absolute inset-0 blur-2xl bg-welli-yellow/20 -z-10" />
                 </div>
               </motion.div>
             </div>
@@ -82,7 +96,7 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
               transition={{ delay: 0.8 }}
               className="text-center text-muted-foreground italic"
             >
-              "Cada 'lo voy a pensar' es una agenda que no se llena"
+              "Cada espacio vacío en la agenda = dinero que no llegó"
             </motion.p>
           </motion.div>
 
@@ -166,7 +180,7 @@ const Phase1Welcome = ({ onComplete }: ModuleProps) => {
             onClick={onComplete}
             className="btn-welli group inline-flex items-center gap-3 text-lg"
           >
-            <span>Identificar al Paciente Ideal</span>
+            <span>Presenta Cuotas de Bienestar</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
 

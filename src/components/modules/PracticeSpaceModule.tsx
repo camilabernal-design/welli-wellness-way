@@ -13,7 +13,8 @@ const practiceSteps = [
     title: "Crear una Solicitud",
     description: "Simula el proceso que hará tu paciente",
     icon: "📱",
-    action: "Practicar",
+    action: "Crear Solicitud",
+    url: "https://app.welli.com.co/create_account",
   },
   {
     id: 2,
@@ -21,13 +22,15 @@ const practiceSteps = [
     description: "Entiende cómo Welli valida la información",
     icon: "✅",
     action: "Explorar",
+    url: null,
   },
   {
     id: 3,
-    title: "Acceso al Admin",
+    title: "Acceso al Portal Admin",
     description: "Conoce tu panel donde verás todo",
     icon: "📊",
-    action: "Abrir panel",
+    action: "Ir al Portal",
+    url: "https://portal.admin.welli.com.co/admin/login/?next=/admin/",
   },
 ];
 
@@ -137,26 +140,52 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
                       <p className="text-sm text-muted-foreground">{step.description}</p>
                     </div>
 
-                    <button
-                      onClick={() => toggleStep(step.id)}
-                      className={`px-4 py-2 rounded-xl font-medium text-sm flex items-center gap-2 transition-all ${
-                        isCompleted
-                          ? "bg-success text-success-foreground"
-                          : "bg-welli-yellow text-welli-yellow-foreground hover:opacity-90"
-                      }`}
-                    >
-                      {isCompleted ? (
-                        <>
-                          <CheckCircle2 className="w-4 h-4" />
-                          Listo
-                        </>
-                      ) : (
-                        <>
-                          <Play className="w-4 h-4" />
-                          {step.action}
-                        </>
-                      )}
-                    </button>
+                    {step.url ? (
+                      <a
+                        href={step.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => toggleStep(step.id)}
+                        className={`px-4 py-2 rounded-xl font-medium text-sm flex items-center gap-2 transition-all ${
+                          isCompleted
+                            ? "bg-success text-success-foreground"
+                            : "bg-welli-yellow text-welli-yellow-foreground hover:opacity-90"
+                        }`}
+                      >
+                        {isCompleted ? (
+                          <>
+                            <CheckCircle2 className="w-4 h-4" />
+                            Listo
+                          </>
+                        ) : (
+                          <>
+                            <ExternalLink className="w-4 h-4" />
+                            {step.action}
+                          </>
+                        )}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => toggleStep(step.id)}
+                        className={`px-4 py-2 rounded-xl font-medium text-sm flex items-center gap-2 transition-all ${
+                          isCompleted
+                            ? "bg-success text-success-foreground"
+                            : "bg-welli-yellow text-welli-yellow-foreground hover:opacity-90"
+                        }`}
+                      >
+                        {isCompleted ? (
+                          <>
+                            <CheckCircle2 className="w-4 h-4" />
+                            Listo
+                          </>
+                        ) : (
+                          <>
+                            <Play className="w-4 h-4" />
+                            {step.action}
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               );
@@ -182,15 +211,30 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
               </p>
             </div>
             <a
-              href="https://admin.welli.com.co"
+              href="https://portal.admin.welli.com.co/admin/login/?next=/admin/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary inline-flex items-center gap-2"
             >
-              <span>Ir al panel</span>
+              <span>Ir al Portal Admin</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
+        </motion.div>
+
+        {/* Plan B: Familiar o Amigo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65 }}
+          className="p-5 rounded-2xl bg-gradient-to-r from-secondary/20 to-welli-yellow/20 border-2 border-secondary/30 mb-8"
+        >
+          <h3 className="font-bold text-lg text-foreground mb-2 flex items-center gap-2">
+            🔄 El Plan B: ¿Qué pasa si no aprueban al paciente?
+          </h3>
+          <p className="text-muted-foreground">
+            <span className="font-bold text-foreground">No es el fin del proceso.</span> Un familiar o un <span className="font-bold text-welli-yellow">AMIGO</span> puede aplicar por el paciente para que el tratamiento inicie hoy mismo.
+          </p>
         </motion.div>
 
         {/* Progress */}

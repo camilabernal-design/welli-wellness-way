@@ -19,64 +19,106 @@ interface Scenario {
 const scenarios: Scenario[] = [
   {
     id: 1,
-    objection: "Prefiero usar mi tarjeta de crédito, así acumulo puntos.",
+    objection: "Doctor, el vecino me cobra $2 millones menos por lo mismo.",
     options: [
       {
-        text: "Claro, es una opción válida.",
+        text: "Bueno, puede ir donde el vecino si prefiere.",
         isCorrect: false,
-        feedback: "Dejaste ir al paciente sin mostrar el beneficio de Welli.",
+        feedback: "Perdiste al paciente sin mostrar el valor diferencial.",
       },
       {
-        text: "Entiendo, pero con la tarjeta ocupas tu cupo de emergencia. Con Welli, conservas tu tarjeta libre para imprevistos y pagas una cuota fija sin sorpresas.",
+        text: "Entiendo, pero aquí no solo pagas calidad, sino tranquilidad. Con nuestra Cuota Fija de Bienestar, pagas el tratamiento premium por menos de lo que gastas en una cena afuera, sin descapitalizarte.",
         isCorrect: true,
-        feedback: "¡Excelente! Resaltaste el valor del flujo de caja y la tranquilidad financiera.",
+        feedback: "¡Excelente! Usaste la Cuota Fija de Bienestar para mostrar accesibilidad y valor.",
       },
       {
-        text: "Las tarjetas tienen intereses muy altos.",
+        text: "Nuestros materiales son de mejor calidad.",
         isCorrect: false,
-        feedback: "Correcto, pero no conectaste con la necesidad emocional del paciente.",
+        feedback: "Válido, pero no resolviste el problema de presupuesto del paciente.",
       },
     ],
   },
   {
     id: 2,
-    objection: "Está muy caro, déjeme pensarlo.",
+    objection: "No quiero deudas, prefiero ahorrar y volver en un año.",
     options: [
       {
-        text: "Podemos hacerle un descuento del 10%.",
+        text: "Está bien, lo esperamos cuando tenga el dinero.",
         isCorrect: false,
-        feedback: "Bajar el precio no resuelve el problema de flujo de caja.",
+        feedback: "Perdiste la oportunidad de ayudar al paciente hoy.",
       },
       {
-        text: "Entiendo. ¿Y si en lugar de pensar en los $10 millones, hablamos de una cuota de bienestar de solo $400,000 al mes? Así puedes empezar hoy mismo.",
+        text: "La inflación en salud sube más rápido que tus ahorros. Con Welli, congelas el precio de hoy y empiezas tu recuperación mañana pagando una Cuota Fija de Bienestar mínima.",
         isCorrect: true,
-        feedback: "¡Perfecto! Tradujiste el precio a una cuota manejable.",
+        feedback: "¡Perfecto! Mostraste urgencia económica con la Cuota Fija de Bienestar.",
       },
       {
-        text: "Es el precio justo por la calidad que ofrecemos.",
+        text: "En un año el tratamiento va a costar más.",
         isCorrect: false,
-        feedback: "Válido, pero no le diste una solución al paciente.",
+        feedback: "Usaste miedo sin ofrecer la solución accesible.",
       },
     ],
   },
   {
     id: 3,
-    objection: "Voy a esperar a tener el dinero completo.",
+    objection: "Mi tarjeta de crédito está al límite por las vacaciones.",
     options: [
       {
-        text: "Está bien, lo esperamos cuando esté listo.",
+        text: "Podemos esperar a que libere cupo.",
         isCorrect: false,
-        feedback: "Perdiste la oportunidad de ayudar al paciente hoy.",
+        feedback: "El paciente se fue y probablemente no volverá.",
       },
       {
-        text: "¿Por qué esperar meses con una molestia que afecta tu calidad de vida? Con Welli puedes empezar hoy con una cuota que cabe en tu presupuesto mensual.",
+        text: "Perfecto, porque Welli es un cupo adicional de salud que no toca tus tarjetas. Mantienes tu cupo de crédito para emergencias y manejas tu salud con una Cuota Fija de Bienestar independiente.",
         isCorrect: true,
-        feedback: "¡Muy bien! Conectaste con la urgencia y el bienestar del paciente.",
+        feedback: "¡Excelente! Posicionaste Welli como un cupo separado con la Cuota Fija de Bienestar.",
       },
       {
-        text: "Pero mientras esperas, el problema puede empeorar.",
+        text: "Las tarjetas tienen intereses más altos.",
         isCorrect: false,
-        feedback: "Usaste el miedo, no la empatía. Faltó ofrecer la solución.",
+        feedback: "Correcto, pero no conectaste con la solución.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    objection: "¿No puedo ir pagándole a usted cada vez que venga?",
+    options: [
+      {
+        text: "Sí, podemos hacer un acuerdo de pagos.",
+        isCorrect: false,
+        feedback: "Los acuerdos informales son riesgosos para ambas partes.",
+      },
+      {
+        text: "Para su seguridad y la nuestra, usamos Welli. Así usted asegura su tratamiento completo desde hoy y crea historial crediticio positivo pagando su Cuota Fija de Bienestar.",
+        isCorrect: true,
+        feedback: "¡Muy bien! Mostraste el beneficio de crear historial con la Cuota Fija de Bienestar.",
+      },
+      {
+        text: "No aceptamos pagos parciales.",
+        isCorrect: false,
+        feedback: "Respuesta fría sin ofrecer alternativa.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    objection: "Mi esposo dice que los intereses son muy altos.",
+    options: [
+      {
+        text: "Los intereses son competitivos con el mercado.",
+        isCorrect: false,
+        feedback: "Respuesta técnica que no resuelve la objeción.",
+      },
+      {
+        text: "Dile que más caro es postergar la salud. Welli es transparente: pagas una Cuota Fija de Bienestar fija, sin sorpresas, y puedes abonar a capital cuando quieras sin penalidad.",
+        isCorrect: true,
+        feedback: "¡Perfecto! Usaste transparencia y la Cuota Fija de Bienestar para vencer la objeción.",
+      },
+      {
+        text: "Puede comparar con otras opciones de financiamiento.",
+        isCorrect: false,
+        feedback: "Lo enviaste a la competencia sin mostrar el valor de Welli.",
       },
     ],
   },
@@ -131,13 +173,13 @@ const Module4RolePlay = ({ onComplete }: Module4Props) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            <MessageSquare className="w-4 h-4" />
-            <span className="text-sm font-medium">Role-Play Arena</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
+            <MessageSquare className="w-4 h-4 text-welli-yellow" />
+            <span className="text-sm font-medium">Role-Play Arena: Las 5 Preguntas Difíciles</span>
           </div>
-          <h2 className="section-title">Entrena tu respuesta empática</h2>
+          <h2 className="section-title">Entrena tu respuesta con "Cuota Fija de Bienestar"</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            Practica cómo responder a las objeciones más comunes de tus pacientes.
+            La respuesta ganadora siempre usa el concepto de <span className="font-bold text-welli-yellow">"Cuota Fija de Bienestar"</span>.
           </p>
         </motion.div>
 
