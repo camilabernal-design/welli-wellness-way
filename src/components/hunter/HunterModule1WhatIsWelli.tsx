@@ -20,11 +20,11 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
           ✨ Bienvenido a Welli
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
-          Recupere el <span className="text-welli-orange">65%</span> de pacientes
-          <br />que hoy se le escapan
+          Recupera el <span className="text-welli-orange">65%</span> de pacientes
+          <br />que hoy se te escapan
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
-          Somos su aliado financiero que convierte tratamientos costosos en <strong className="text-welli-yellow">Cuotas de Bienestar</strong>
+          Somos tu aliado financiero que convierte tratamientos costosos en <strong className="text-welli-yellow">Cuotas de Bienestar</strong>
         </p>
       </motion.div>
 
@@ -49,7 +49,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
                   <Shield className="w-8 h-8 text-welli-yellow" />
                 </div>
                 <p className="text-3xl font-bold text-welli-yellow">0%</p>
-                <p className="text-white/80">Riesgo para usted</p>
+                <p className="text-white/80">Riesgo para ti</p>
               </div>
               <div className="space-y-3">
                 <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
@@ -70,7 +70,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.3 }}
         className="space-y-6"
       >
-        <h2 className="text-2xl font-bold text-indigo-950 text-center">¿Le suena familiar?</h2>
+        <h2 className="text-2xl font-bold text-indigo-950 text-center">¿Te suena familiar?</h2>
         
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="border-2 border-red-200 bg-red-50">

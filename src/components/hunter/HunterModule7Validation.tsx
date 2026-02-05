@@ -48,10 +48,10 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
         className="text-center space-y-4"
       >
         <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
-          📊 Resultados Reales
+          📊 Resultados reales
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
-          +1,800 Clínicas Ya Confían en Nosotros
+          +1,800 clínicas ya confían en nosotros
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
           Nuestro impacto en los primeros dos años de operaciones
@@ -91,7 +91,7 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.5 }}
         className="bg-gradient-to-r from-welli-yellow/20 via-welli-orange/10 to-secondary/10 rounded-2xl p-6 border border-welli-yellow/30"
       >
-        <h3 className="font-bold text-lg mb-4 text-center text-indigo-950">Especialidades que Trabajan con Welli</h3>
+        <h3 className="font-bold text-lg mb-4 text-center text-indigo-950">Especialidades que trabajan con Welli</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {['🦷 Odontología', '💉 Estética', '🐾 Veterinaria', '👶 Fertilidad', '👁️ Oftalmología', '🏥 Cirugía'].map((cat) => (
             <span
@@ -111,7 +111,7 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.6 }}
         className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-8 text-center"
       >
-        <h3 className="text-xl font-bold mb-2">Incremento Real de Facturación</h3>
+        <h3 className="text-xl font-bold mb-2">Incremento real de facturación</h3>
         <p className="text-6xl font-bold text-welli-yellow my-4">+40%</p>
         <p className="text-slate-300">
           Promedio de aumento en facturación de nuestros aliados activos
@@ -153,7 +153,7 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
           size="lg"
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Conocer al Equipo Welli
+          Conocer al equipo Welli
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>
