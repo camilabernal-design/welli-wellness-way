@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, X, Minus } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -23,7 +23,7 @@ const comparisonData = [
   },
   {
     feature: 'Desembolso',
-    welli: 'Aliado en 72h',
+    welli: 'Al aliado en 72h',
     banks: 'Al paciente',
     fintech: 'Aliado 30+ días',
     welliWins: true,
@@ -74,13 +74,13 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center space-y-4"
       >
-        <span className="inline-block px-4 py-1 rounded-full bg-welli-orange/20 text-welli-orange font-medium text-sm">
-          Módulo 4 · Comparativa Ganadora
+        <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
+          ⚔️ Comparativa Ganadora
         </span>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          Welli vs El Resto
+        <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
+          ¿Por Qué Welli y No Otros?
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
           Datos claros para cerrar cualquier objeción de "ya tenemos banco"
         </p>
       </motion.div>
@@ -95,8 +95,8 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className="p-4 text-left bg-slate-100 rounded-tl-xl">Característica</th>
-              <th className="p-4 text-center bg-welli-orange text-white">
+              <th className="p-4 text-left bg-slate-100 rounded-tl-xl text-indigo-950">Característica</th>
+              <th className="p-4 text-center bg-welli-yellow text-indigo-950">
                 <div className="flex flex-col items-center">
                   <span className="text-2xl mb-1">🏆</span>
                   <span className="font-bold">Welli</span>
@@ -105,13 +105,13 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
               <th className="p-4 text-center bg-slate-200">
                 <div className="flex flex-col items-center">
                   <span className="text-2xl mb-1">🏦</span>
-                  <span className="font-bold">Bancos</span>
+                  <span className="font-bold text-indigo-950">Bancos</span>
                 </div>
               </th>
               <th className="p-4 text-center bg-slate-100 rounded-tr-xl">
                 <div className="flex flex-col items-center">
                   <span className="text-2xl mb-1">📱</span>
-                  <span className="font-bold">Otras Fintech</span>
+                  <span className="font-bold text-indigo-950">Otras Fintech</span>
                 </div>
               </th>
             </tr>
@@ -125,15 +125,15 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
                 transition={{ delay: 0.1 * index }}
                 className={`${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'} border-b border-slate-100`}
               >
-                <td className="p-4 font-medium">{row.feature}</td>
-                <td className={`p-4 text-center font-semibold ${row.welliWins ? 'bg-green-50 text-green-700' : 'bg-welli-orange/5'}`}>
+                <td className="p-4 font-medium text-indigo-950">{row.feature}</td>
+                <td className={`p-4 text-center font-semibold ${row.welliWins ? 'bg-green-50 text-green-700' : 'bg-welli-yellow/10 text-indigo-950'}`}>
                   <div className="flex items-center justify-center gap-2">
                     {row.welliWins && <Check className="w-4 h-4 text-green-600" />}
                     {row.welli}
                   </div>
                 </td>
-                <td className="p-4 text-center text-muted-foreground">{row.banks}</td>
-                <td className="p-4 text-center text-muted-foreground">{row.fintech}</td>
+                <td className="p-4 text-center text-indigo-800">{row.banks}</td>
+                <td className="p-4 text-center text-indigo-800">{row.fintech}</td>
               </motion.tr>
             ))}
           </tbody>
@@ -147,20 +147,20 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.5 }}
         className="grid md:grid-cols-3 gap-4"
       >
-        <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6 text-center">
+        <div className="bg-welli-yellow/20 border-2 border-welli-yellow rounded-xl p-6 text-center">
           <div className="text-4xl mb-2">⚡</div>
-          <h4 className="font-bold text-green-800">3 minutos</h4>
-          <p className="text-sm text-green-700">vs 5+ días en bancos</p>
+          <h4 className="font-bold text-indigo-950">3 minutos</h4>
+          <p className="text-sm text-indigo-800">vs 5+ días en bancos</p>
         </div>
-        <div className="bg-welli-orange/10 border-2 border-welli-orange/30 rounded-xl p-6 text-center">
+        <div className="bg-welli-yellow/20 border-2 border-welli-yellow rounded-xl p-6 text-center">
           <div className="text-4xl mb-2">📊</div>
-          <h4 className="font-bold text-welli-orange">3x más aprobación</h4>
-          <p className="text-sm text-muted-foreground">que bancos tradicionales</p>
+          <h4 className="font-bold text-indigo-950">3x más aprobación</h4>
+          <p className="text-sm text-indigo-800">que bancos tradicionales</p>
         </div>
-        <div className="bg-secondary/10 border-2 border-secondary/30 rounded-xl p-6 text-center">
+        <div className="bg-welli-yellow/20 border-2 border-welli-yellow rounded-xl p-6 text-center">
           <div className="text-4xl mb-2">💰</div>
-          <h4 className="font-bold text-secondary">-50% en tasa</h4>
-          <p className="text-sm text-muted-foreground">vs otras fintechs</p>
+          <h4 className="font-bold text-indigo-950">-50% en tasa</h4>
+          <p className="text-sm text-indigo-800">vs otras fintechs</p>
         </div>
       </motion.div>
 
@@ -169,10 +169,10 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-slate-900 text-white rounded-xl p-6"
+        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-xl p-6"
       >
         <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-          💬 Manejo de Objeción: "Ya tenemos banco"
+          💬 Si Le Dicen: "Ya Tenemos Banco"
         </h3>
         <p className="text-slate-300 italic">
           "Entiendo perfectamente. El banco es para el 10% que ya tiene buen historial. 
@@ -191,9 +191,9 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         <Button
           onClick={onComplete}
           size="lg"
-          className="bg-welli-orange hover:bg-welli-orange/90 text-white gap-2"
+          className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Siguiente: Mapa del Tesoro
+          Ver Beneficios del Primer Mes
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>

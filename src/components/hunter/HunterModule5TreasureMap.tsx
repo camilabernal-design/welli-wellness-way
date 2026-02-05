@@ -14,7 +14,7 @@ const treasureStops = [
     reward: 'Bono de Activación',
     description: 'La primera solicitud activa todos los beneficios del aliado',
     icon: MapPin,
-    color: 'bg-blue-500',
+    color: 'bg-secondary',
     bonus: '$50k',
   },
   {
@@ -23,7 +23,7 @@ const treasureStops = [
     reward: 'Bono de Cine',
     description: 'Boletas de cine para todo el equipo de la clínica',
     icon: Film,
-    color: 'bg-purple-500',
+    color: 'bg-welli-orange',
     bonus: '🎬 x4',
   },
   {
@@ -39,7 +39,7 @@ const treasureStops = [
     id: 4,
     title: '1er Desembolso',
     reward: '¡Tesoro Desbloqueado!',
-    description: 'El primer dinero en la cuenta. El ciclo está completo.',
+    description: 'El primer dinero en su cuenta. El ciclo está completo.',
     icon: Trophy,
     color: 'bg-welli-yellow',
     bonus: '💰',
@@ -55,14 +55,14 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center space-y-4"
       >
-        <span className="inline-block px-4 py-1 rounded-full bg-welli-orange/20 text-welli-orange font-medium text-sm">
-          Módulo 5 · Gamificación
+        <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
+          🗺️ Beneficios del Primer Mes
         </span>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          El Mapa del Tesoro 🗺️
+        <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
+          Su Camino al Éxito con Welli
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Muéstrale al doctor que el primer mes es un juego con recompensas reales
+        <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
+          Premiamos su confianza desde el día uno
         </p>
       </motion.div>
 
@@ -74,7 +74,7 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         className="relative"
       >
         {/* Path Line */}
-        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 via-purple-500 via-welli-orange to-welli-yellow rounded-full transform -translate-y-1/2 z-0" />
+        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-secondary via-welli-orange to-welli-yellow rounded-full transform -translate-y-1/2 z-0" />
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
           {treasureStops.map((stop, index) => (
@@ -85,7 +85,7 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
               transition={{ delay: 0.2 + index * 0.15 }}
             >
               <Card className={`h-full border-2 hover:scale-105 transition-transform ${
-                stop.id === 4 ? 'border-welli-yellow bg-welli-yellow/10' : 'border-border'
+                stop.id === 4 ? 'border-welli-yellow bg-welli-yellow/10' : 'border-slate-200'
               }`}>
                 <CardContent className="p-6 text-center">
                   {/* Stop Number */}
@@ -94,13 +94,13 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
                   </div>
 
                   {/* Bonus Badge */}
-                  <div className="inline-block px-3 py-1 bg-slate-900 text-white text-sm font-bold rounded-full mb-3">
+                  <div className="inline-block px-3 py-1 bg-indigo-950 text-white text-sm font-bold rounded-full mb-3">
                     {stop.bonus}
                   </div>
 
-                  <h3 className="font-bold text-lg mb-1">{stop.title}</h3>
+                  <h3 className="font-bold text-lg mb-1 text-indigo-950">{stop.title}</h3>
                   <p className="text-welli-orange font-medium text-sm mb-2">{stop.reward}</p>
-                  <p className="text-xs text-muted-foreground">{stop.description}</p>
+                  <p className="text-xs text-indigo-800">{stop.description}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -113,44 +113,40 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gradient-to-br from-welli-orange to-welli-orange/90 rounded-2xl p-8 text-white"
+        className="bg-gradient-to-br from-welli-yellow to-welli-yellow/80 rounded-2xl p-8"
       >
-        <h3 className="text-xl font-bold mb-6 text-center">
-          Premiamos la fidelidad de nuestros aliados y su personal
+        <h3 className="text-xl font-bold mb-6 text-center text-indigo-950">
+          Premiamos la Fidelidad de Su Clínica y Su Personal
         </h3>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="text-center">
-            <Gift className="w-10 h-10 mx-auto mb-3" />
-            <h4 className="font-bold">Bonos en Efectivo</h4>
-            <p className="text-sm text-white/80">Por cada meta alcanzada</p>
+            <Gift className="w-10 h-10 mx-auto mb-3 text-indigo-950" />
+            <h4 className="font-bold text-indigo-950">Bonos en Efectivo</h4>
+            <p className="text-sm text-indigo-800">Por cada meta alcanzada</p>
           </div>
           <div className="text-center">
-            <Film className="w-10 h-10 mx-auto mb-3" />
-            <h4 className="font-bold">Experiencias</h4>
-            <p className="text-sm text-white/80">Cine, restaurantes, eventos</p>
+            <Film className="w-10 h-10 mx-auto mb-3 text-indigo-950" />
+            <h4 className="font-bold text-indigo-950">Experiencias</h4>
+            <p className="text-sm text-indigo-800">Cine, restaurantes, eventos</p>
           </div>
           <div className="text-center">
-            <Star className="w-10 h-10 mx-auto mb-3" />
-            <h4 className="font-bold">Estatus VIP</h4>
-            <p className="text-sm text-white/80">Acceso prioritario y soporte</p>
+            <Star className="w-10 h-10 mx-auto mb-3 text-indigo-950" />
+            <h4 className="font-bold text-indigo-950">Estatus VIP</h4>
+            <p className="text-sm text-indigo-800">Acceso prioritario y soporte</p>
           </div>
         </div>
       </motion.div>
 
-      {/* Hunter Script */}
+      {/* Key Message */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="bg-secondary/10 rounded-xl p-6 border-l-4 border-secondary"
+        className="bg-white rounded-xl p-6 border-2 border-welli-yellow/50"
       >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-          🎯 El Gancho del Tesoro
-        </h3>
-        <p className="text-muted-foreground italic">
-          "Doctor, si en su primer mes hacemos solo 3 aplicaciones, su equipo ya tiene 
-          <span className="text-welli-orange font-semibold"> boletos de cine y un bono en efectivo</span>. 
-          Yo lo acompaño en este mapa del tesoro."
+        <p className="text-xl text-center text-indigo-950">
+          <span className="font-bold">🎯 En resumen:</span> Con solo 3 aplicaciones en su primer mes, 
+          su equipo ya tiene <span className="text-welli-yellow font-bold">boletos de cine y bonos en efectivo</span>.
         </p>
       </motion.div>
 
@@ -164,9 +160,9 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         <Button
           onClick={onComplete}
           size="lg"
-          className="bg-welli-orange hover:bg-welli-orange/90 text-white gap-2"
+          className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Siguiente: Ecosistema Digital
+          Ver Herramientas Digitales
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>

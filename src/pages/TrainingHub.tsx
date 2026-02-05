@@ -11,8 +11,8 @@ const routes = [
   {
     id: 'hunter' as TrainingRoute,
     title: 'Hunter',
-    subtitle: 'Conquista Clínicas',
-    description: 'Ruta de prospección: Convierte clínicas en aliados Welli en 15 minutos',
+    subtitle: 'Pitch para Clínicas',
+    description: 'Material de presentación para conquistar nuevas clínicas aliadas',
     icon: Target,
     color: 'from-welli-orange to-welli-orange/80',
     borderColor: 'border-welli-orange',
@@ -54,7 +54,7 @@ const TrainingHub = ({ onSelectRoute }: TrainingHubProps) => {
         <div className="max-w-6xl mx-auto flex items-center justify-center gap-4">
           <WelliLogoFull size="lg" />
           <div className="hidden md:block">
-            <h1 className="font-bold text-xl text-foreground">Training Hub</h1>
+            <h1 className="font-bold text-xl text-indigo-950">Training Hub</h1>
             <p className="text-xs text-welli-yellow font-medium">Centro de Entrenamiento</p>
           </div>
         </div>
@@ -68,10 +68,10 @@ const TrainingHub = ({ onSelectRoute }: TrainingHubProps) => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-indigo-950 mb-4">
             Tu camino comienza aquí...
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-indigo-800 max-w-2xl mx-auto">
             Lo que debes saber sobre Welli y cómo hará crecer tu negocio. 
             Selecciona tu perfil para comenzar.
           </p>
@@ -98,16 +98,16 @@ const TrainingHub = ({ onSelectRoute }: TrainingHubProps) => {
 
               {/* Card Body */}
               <div className="p-6">
-                <p className="text-muted-foreground mb-4">{route.description}</p>
+                <p className="text-indigo-800 mb-4">{route.description}</p>
                 
                 <div className="flex items-center justify-between text-sm mb-4">
-                  <span className={`${route.bgColor} px-3 py-1 rounded-full font-medium`}>
+                  <span className={`${route.bgColor} px-3 py-1 rounded-full font-medium text-indigo-950`}>
                     {route.modules} módulos
                   </span>
-                  <span className="text-muted-foreground">{route.duration}</span>
+                  <span className="text-indigo-800">{route.duration}</span>
                 </div>
 
-                <div className={`flex items-center justify-center gap-2 py-3 rounded-lg ${route.bgColor} group-hover:bg-gradient-to-r group-hover:${route.color} group-hover:text-white transition-all font-medium`}>
+                <div className="flex items-center justify-center gap-2 py-3 rounded-lg bg-welli-yellow text-indigo-950 font-bold group-hover:bg-welli-yellow/90 transition-all">
                   Comenzar
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -134,9 +134,9 @@ const TrainingHub = ({ onSelectRoute }: TrainingHubProps) => {
             { value: '$50k M', label: 'Desembolsados' },
             { value: '3 min', label: 'Aprobación' },
           ].map((stat, i) => (
-            <div key={i} className="bg-white/80 rounded-xl p-4 border border-border/50">
-              <p className="text-2xl font-bold text-welli-orange">{stat.value}</p>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
+            <div key={i} className="bg-white/80 rounded-xl p-4 border border-welli-yellow/30">
+              <p className="text-2xl font-bold text-welli-yellow">{stat.value}</p>
+              <p className="text-sm text-indigo-800">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -145,7 +145,7 @@ const TrainingHub = ({ onSelectRoute }: TrainingHubProps) => {
       {/* Footer */}
       <footer className="py-6 border-t border-border/50 mt-8">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-indigo-800">
             © {new Date().getFullYear()} Welli — Financia tu Bienestar
           </p>
           <a
