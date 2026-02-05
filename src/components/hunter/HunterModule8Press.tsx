@@ -62,14 +62,14 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center space-y-4"
       >
-        <span className="inline-block px-4 py-1 rounded-full bg-welli-orange/20 text-welli-orange font-medium text-sm">
-          Módulo 8 · Credibilidad
+        <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
+          🏆 Credibilidad
         </span>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          Welli en el Mundo
+        <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
+          Respaldo de los Mejores
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Respaldados por los mejores. Reconocidos por los medios.
+        <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
+          Reconocidos por los medios. Liderados por expertos.
         </p>
       </motion.div>
 
@@ -80,7 +80,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.2 }}
         className="space-y-4"
       >
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold flex items-center gap-2 text-indigo-950">
           <Newspaper className="w-5 h-5" /> Welli en los Medios
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
@@ -98,10 +98,10 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
                     <p className="text-xs text-white/80">{article.date}</p>
                   </div>
                   <div className="p-4">
-                    <h4 className="font-semibold text-sm mb-2 group-hover:text-welli-orange transition-colors">
+                    <h4 className="font-semibold text-sm mb-2 group-hover:text-welli-orange transition-colors text-indigo-950">
                       {article.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground">{article.excerpt}</p>
+                    <p className="text-xs text-indigo-800">{article.excerpt}</p>
                     <div className="flex items-center gap-1 mt-3 text-welli-orange text-xs font-medium">
                       Leer más <ExternalLink className="w-3 h-3" />
                     </div>
@@ -120,27 +120,27 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.5 }}
         className="space-y-4"
       >
-        <h2 className="text-xl font-bold">Equipo Directivo TOP</h2>
+        <h2 className="text-xl font-bold text-indigo-950">Equipo Directivo TOP</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {leadership.map((leader) => (
-            <Card key={leader.name} className="border-2 border-secondary/30">
+            <Card key={leader.name} className="border-2 border-welli-yellow/30">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-secondary/70 flex items-center justify-center text-white text-2xl font-bold">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-welli-yellow to-welli-orange flex items-center justify-center text-indigo-950 text-2xl font-bold">
                     {leader.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-lg">{leader.name}</h3>
+                    <h3 className="font-bold text-lg text-indigo-950">{leader.name}</h3>
                     <p className="text-welli-orange font-medium text-sm">{leader.role}</p>
                     
                     <div className="mt-3 space-y-2">
                       <div className="flex items-center gap-2 text-sm">
                         <GraduationCap className="w-4 h-4 text-secondary" />
-                        <span className="text-muted-foreground">{leader.education.join(' • ')}</span>
+                        <span className="text-indigo-800">{leader.education.join(' • ')}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <Linkedin className="w-4 h-4 text-blue-600" />
-                        <span className="text-muted-foreground">{leader.experience.join(' • ')}</span>
+                        <span className="text-indigo-800">{leader.experience.join(' • ')}</span>
                       </div>
                     </div>
                   </div>
@@ -156,7 +156,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="bg-slate-900 text-white rounded-2xl p-6"
+        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-6"
       >
         <h3 className="font-bold text-lg mb-4">Junta Directiva e Inversionistas</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -177,11 +177,11 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="bg-gradient-to-r from-welli-orange to-welli-yellow rounded-xl p-6 text-white text-center"
+        className="bg-gradient-to-r from-welli-yellow to-welli-yellow/80 rounded-xl p-6 text-center"
       >
-        <p className="text-lg font-medium">Respaldados con</p>
-        <p className="text-4xl font-bold my-2">US$25 Millones</p>
-        <p className="text-sm text-white/80">en capital y deuda para expandir nuestra misión</p>
+        <p className="text-lg font-medium text-indigo-950">Respaldados con</p>
+        <p className="text-5xl font-bold my-2 text-indigo-950">US$25 Millones</p>
+        <p className="text-sm text-indigo-800">en capital y deuda para expandir nuestra misión</p>
       </motion.div>
 
       {/* CTA */}
@@ -194,9 +194,9 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         <Button
           onClick={onComplete}
           size="lg"
-          className="bg-welli-orange hover:bg-welli-orange/90 text-white gap-2"
+          className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Siguiente: Quiz Final
+          Ir a Validación Final
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>

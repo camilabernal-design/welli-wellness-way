@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Heart, Building2, Stethoscope, Globe } from "lucide-react";
+import { ArrowRight, Heart, TrendingUp, Shield, Users, Zap, CheckCircle2 } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -9,131 +9,105 @@ interface ModuleProps {
 
 const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
-      {/* Header */}
+    <div className="max-w-5xl mx-auto p-6 space-y-8">
+      {/* Header - Pitch Deck Style */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center space-y-4"
       >
-        <span className="inline-block px-4 py-1 rounded-full bg-welli-orange/20 text-welli-orange font-medium text-sm">
-          Módulo 1 · Elevator Pitch
+        <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
+          ✨ Bienvenido a Welli
         </span>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          ¿Qué es Welli?
+        <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
+          Recupere el <span className="text-welli-orange">65%</span> de pacientes
+          <br />que hoy se le escapan
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Tu pitch de 30 segundos para conquistar cualquier clínica
+        <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
+          Somos su aliado financiero que convierte tratamientos costosos en <strong className="text-welli-yellow">Cuotas de Bienestar</strong>
         </p>
       </motion.div>
 
-      {/* Main Pitch Card */}
+      {/* Main Value Proposition */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="bg-gradient-to-br from-welli-orange to-welli-orange/90 text-white border-0 overflow-hidden">
-          <CardContent className="p-8 text-center">
-            <div className="text-5xl mb-4">💡</div>
-            <blockquote className="text-xl md:text-2xl font-medium italic leading-relaxed">
-              "Somos el aliado financiero que convierte tratamientos costosos 
-              en <span className="text-welli-yellow font-bold">Cuotas de Bienestar</span>."
-            </blockquote>
-            <p className="mt-4 text-white/80">
-              Memoriza esta frase. Es tu llave de entrada.
-            </p>
+        <Card className="bg-gradient-to-br from-indigo-950 to-indigo-900 text-white border-0 overflow-hidden">
+          <CardContent className="p-8 md:p-10">
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <TrendingUp className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">+40%</p>
+                <p className="text-white/80">Aumento en facturación</p>
+              </div>
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">0%</p>
+                <p className="text-white/80">Riesgo para usted</p>
+              </div>
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">72h</p>
+                <p className="text-white/80">Desembolso máximo</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </motion.div>
 
-      {/* Vision */}
+      {/* The Problem We Solve */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="grid md:grid-cols-2 gap-6"
-      >
-        <Card className="border-2 border-secondary/30 bg-secondary/5">
-          <CardContent className="p-6 space-y-4">
-            <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-              <Globe className="w-6 h-6 text-secondary" />
-            </div>
-            <h3 className="font-bold text-xl">Nuestra Visión</h3>
-            <p className="text-muted-foreground">
-              Ser el <strong>socio financiero preferido</strong> de pacientes y profesionales de la salud 
-              en Latinoamérica.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-2 border-welli-yellow/30 bg-welli-yellow/5">
-          <CardContent className="p-6 space-y-4">
-            <div className="w-12 h-12 rounded-full bg-welli-yellow/20 flex items-center justify-center">
-              <Heart className="w-6 h-6 text-welli-yellow" />
-            </div>
-            <h3 className="font-bold text-xl">Nuestra Misión</h3>
-            <p className="text-muted-foreground">
-              Que <strong>todos los latinoamericanos</strong> tengan acceso a servicios de 
-              salud y bienestar de calidad.
-            </p>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Problem We Solve */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
         className="space-y-6"
       >
-        <h2 className="text-2xl font-bold text-center">El Problema que Resolvemos</h2>
+        <h2 className="text-2xl font-bold text-indigo-950 text-center">¿Le suena familiar?</h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Clinics Problem */}
-          <Card className="border-destructive/30 bg-destructive/5">
+          <Card className="border-2 border-red-200 bg-red-50">
             <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <Building2 className="w-6 h-6 text-destructive" />
-                <h3 className="font-bold text-lg">Clínicas y Doctores</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Pierden 25-35% de pacientes por falta de opciones de pago
+              <h3 className="font-bold text-lg text-indigo-950 mb-4">😔 Sin Welli</h3>
+              <ul className="space-y-3 text-indigo-800">
+                <li className="flex items-start gap-3">
+                  <span className="text-red-500 font-bold">✗</span>
+                  <span>Paciente dice "lo pienso" y nunca vuelve</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Reciben pago meses después de la consulta
+                <li className="flex items-start gap-3">
+                  <span className="text-red-500 font-bold">✗</span>
+                  <span>Pierde 25-35% de procedimientos por precio</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Sin socios financieros con productos relevantes
+                <li className="flex items-start gap-3">
+                  <span className="text-red-500 font-bold">✗</span>
+                  <span>Competencia ofrece financiación y gana</span>
                 </li>
               </ul>
             </CardContent>
           </Card>
 
-          {/* Patients Problem */}
-          <Card className="border-destructive/30 bg-destructive/5">
+          <Card className="border-2 border-green-300 bg-green-50">
             <CardContent className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <Stethoscope className="w-6 h-6 text-destructive" />
-                <h3 className="font-bold text-lg">Pacientes</h3>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Sin acceso a procedimientos de calidad
+              <h3 className="font-bold text-lg text-indigo-950 mb-4">🎉 Con Welli</h3>
+              <ul className="space-y-3 text-indigo-800">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span>Cierre hoy mismo con cuotas accesibles</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Proceso largo y dispendioso para créditos
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span>Reciba el 95% del valor en 72 horas</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-destructive">✗</span>
-                  Tasas altísimas (+40% E.A.) y condiciones poco claras
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span>Cero riesgo: nosotros asumimos todo</span>
                 </li>
               </ul>
             </CardContent>
@@ -141,20 +115,46 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         </div>
       </motion.div>
 
-      {/* Script Box */}
+      {/* Social Proof Bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-welli-yellow/20 border-2 border-welli-yellow/50 rounded-2xl p-6"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <p className="text-2xl font-bold text-indigo-950">+1,800</p>
+            <p className="text-sm text-indigo-800">Clínicas aliadas</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-indigo-950">+180k</p>
+            <p className="text-sm text-indigo-800">Aplicaciones</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-indigo-950">$60k M</p>
+            <p className="text-sm text-indigo-800">Desembolsados</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-indigo-950">3 min</p>
+            <p className="text-sm text-indigo-800">Aprobación</p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Mission */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-secondary/10 rounded-xl p-6 border-l-4 border-secondary"
+        className="text-center space-y-4"
       >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-          📝 Tu Apertura de Pitch
-        </h3>
-        <p className="text-muted-foreground italic">
-          "Doctor, no le vengo a vender un software. Le vengo a mostrar cómo 
-          <span className="text-welli-orange font-semibold"> recuperar el 65% de los pacientes</span> 
-          que hoy se le van por falta de dinero."
+        <div className="inline-flex items-center gap-2 text-indigo-950">
+          <Heart className="w-6 h-6 text-welli-orange" />
+          <span className="font-bold text-lg">Nuestra Misión</span>
+        </div>
+        <p className="text-xl text-indigo-800 max-w-3xl mx-auto">
+          Que todos los latinoamericanos tengan acceso a servicios de salud y bienestar de calidad
         </p>
       </motion.div>
 
@@ -168,9 +168,9 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         <Button
           onClick={onComplete}
           size="lg"
-          className="bg-welli-orange hover:bg-welli-orange/90 text-white gap-2"
+          className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Siguiente: Propuesta de Valor
+          Ver Beneficios Detallados
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>
