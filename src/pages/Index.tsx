@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/AppSidebar";
@@ -59,7 +59,7 @@ const ROUTE_MODULES = {
   aliado: 5,
 };
 
-const Index = () => {
+const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const [currentRoute, setCurrentRoute] = useState<TrainingRoute>('hub');
   const [currentModule, setCurrentModule] = useState(1);
 
@@ -190,7 +190,7 @@ const Index = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div ref={ref} className="min-h-screen flex w-full bg-background">
         <AppSidebar 
           currentModule={currentModule} 
           onModuleChange={handleModuleChange}
@@ -275,6 +275,8 @@ const Index = () => {
       </div>
     </SidebarProvider>
   );
-};
+});
+
+Index.displayName = "Index";
 
 export default Index;
