@@ -128,7 +128,7 @@ const DisbursementWarningModule = ({ onComplete }: ModuleProps) => {
             </div>
             <div className="flex items-center gap-2">
               <DollarSign className="w-6 h-6 text-success" />
-              <span className="text-2xl font-extrabold text-success">24-48 horas hábiles</span>
+              <span className="text-2xl font-extrabold text-success">72 horas hábiles</span>
             </div>
           </div>
           <p className="text-center text-muted-foreground mt-2">
