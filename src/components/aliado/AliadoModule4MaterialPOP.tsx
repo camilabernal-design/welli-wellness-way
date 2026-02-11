@@ -90,10 +90,12 @@ const AliadoModule4MaterialPOP = ({ onComplete }: ModuleProps) => {
               <p className="text-sm text-muted-foreground">Todos los materiales en alta resolución</p>
             </div>
           </div>
-          <Button className="gap-2 bg-secondary hover:bg-secondary/90">
-            <Download className="w-4 h-4" />
-            Descargar Kit
-          </Button>
+          <a href="https://drive.google.com/drive/folders/1RwSaeot5zEyLKUy1mAivNexj6He4zqF1" target="_blank" rel="noopener noreferrer">
+            <Button className="gap-2 bg-secondary hover:bg-secondary/90">
+              <Download className="w-4 h-4" />
+              Descargar Kit
+            </Button>
+          </a>
         </div>
       </motion.div>
 

@@ -1,13 +1,23 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Newspaper, Linkedin, GraduationCap } from "lucide-react";
+import { ArrowRight, Newspaper, Linkedin, GraduationCap, Building2 } from "lucide-react";
 import welliCharacterThinking from "@/assets/welli-character-thinking.png";
 import noticiaForbes from "@/assets/news/noticia-forbes.png";
 import noticiaEspectador from "@/assets/news/noticia-espectador.png";
 import noticiaPulzo from "@/assets/news/noticia-pulzo.png";
 import noticiaValora from "@/assets/news/noticia-valora.png";
 import noticiaPortafolio from "@/assets/news/noticia-portafolio.png";
+import felipeGomezImg from "@/assets/team/felipe-gomez.png";
+import felipeJaramilloImg from "@/assets/team/felipe-jaramillo.png";
+import aliadoImbanaco from "@/assets/aliados/imbanaco.png";
+import aliadoDentisalud from "@/assets/aliados/dentisalud.png";
+import aliadoProfamilia from "@/assets/aliados/profamilia.png";
+import aliadoSonria from "@/assets/aliados/sonria.png";
+import aliadoOdontoFamily from "@/assets/aliados/odonto-family.png";
+import aliadoMovet from "@/assets/aliados/movet.png";
+import aliadoPetplus from "@/assets/aliados/petplus.png";
+import aliadoPma from "@/assets/aliados/pma.png";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -27,13 +37,26 @@ const leadership = [
     role: 'Co-fundador y CEO',
     education: ['Harvard', 'Cornell University'],
     experience: ['McKinsey & Company'],
+    image: felipeGomezImg,
   },
   {
     name: 'Felipe Jaramillo López',
     role: 'Co-fundador y COO',
     education: ['NYU Stern', 'Universidad de los Andes'],
     experience: ['Western Union'],
+    image: felipeJaramilloImg,
   },
+];
+
+const aliadoLogos = [
+  { name: 'Clínica Imbanaco', image: aliadoImbanaco },
+  { name: 'DentiSalud', image: aliadoDentisalud },
+  { name: 'Profamilia Fertilidad', image: aliadoProfamilia },
+  { name: 'Sonría', image: aliadoSonria },
+  { name: 'Odonto Family', image: aliadoOdontoFamily },
+  { name: 'Clínica Movet', image: aliadoMovet },
+  { name: 'Petplus', image: aliadoPetplus },
+  { name: 'PMA', image: aliadoPma },
 ];
 
 const boardMembers = [
@@ -108,9 +131,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
             <Card key={leader.name} className="border-2 border-welli-yellow/30">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-welli-yellow to-welli-orange flex items-center justify-center text-indigo-950 text-2xl font-bold">
-                    {leader.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
-                  </div>
+                  <img src={leader.image} alt={leader.name} className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
                   <div className="flex-1">
                     <h3 className="font-bold text-lg text-indigo-950">{leader.name}</h3>
                     <p className="text-welli-orange font-medium text-sm">{leader.role}</p>
@@ -169,6 +190,39 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         <p className="text-lg font-medium text-indigo-950">Respaldados con</p>
         <p className="text-5xl font-bold my-2 text-indigo-950">US$25 millones</p>
         <p className="text-sm text-indigo-800">en capital y deuda para expandir nuestra misión</p>
+      </motion.div>
+
+      {/* Allied Medical Partners */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.85 }}
+        className="space-y-4"
+      >
+        <h2 className="text-xl font-bold flex items-center gap-2 text-indigo-950">
+          <Building2 className="w-5 h-5" /> Algunos de nuestros aliados médicos
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {aliadoLogos.map((aliado, index) => (
+            <motion.div
+              key={aliado.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.9 + index * 0.05 }}
+            >
+              <Card className="hover:shadow-lg transition-shadow border-2 border-welli-yellow/20 hover:border-welli-yellow">
+                <CardContent className="p-4 flex items-center justify-center h-28">
+                  <img
+                    src={aliado.image}
+                    alt={aliado.name}
+                    className="max-h-20 max-w-full object-contain"
+                  />
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
       </motion.div>
 
       {/* CTA */}
