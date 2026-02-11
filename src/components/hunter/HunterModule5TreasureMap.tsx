@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, MapPin, Gift, Film, Rocket, Trophy, Star } from "lucide-react";
+import welliCharacterStanding from "@/assets/welli-character-standing.png";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -10,8 +11,8 @@ interface ModuleProps {
 const treasureStops = [
   {
     id: 1,
-    title: '1ra Aplicación',
-    reward: 'Bono de Activación',
+    title: '1ra aplicación',
+    reward: 'Bono de activación',
     description: 'La primera solicitud activa todos los beneficios del aliado',
     icon: MapPin,
     color: 'bg-secondary',
@@ -19,8 +20,8 @@ const treasureStops = [
   },
   {
     id: 2,
-    title: '2da Aplicación',
-    reward: 'Bono de Cine',
+    title: '2da aplicación',
+    reward: 'Bono de cine',
     description: 'Boletas de cine para todo el equipo de la clínica',
     icon: Film,
     color: 'bg-welli-orange',
@@ -28,8 +29,8 @@ const treasureStops = [
   },
   {
     id: 3,
-    title: '3 Aplicaciones',
-    reward: 'Tracción Total',
+    title: '3 aplicaciones',
+    reward: 'Tracción total',
     description: 'El aliado demuestra compromiso y activa beneficios premium',
     icon: Rocket,
     color: 'bg-welli-orange',
@@ -37,9 +38,9 @@ const treasureStops = [
   },
   {
     id: 4,
-    title: '1er Desembolso',
-    reward: '¡Tesoro Desbloqueado!',
-    description: 'El primer dinero en su cuenta. El ciclo está completo.',
+    title: '1er desembolso',
+    reward: '¡Tesoro desbloqueado!',
+    description: 'El primer dinero en tu cuenta. El ciclo está completo.',
     icon: Trophy,
     color: 'bg-welli-yellow',
     bonus: '💰',
@@ -56,13 +57,13 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         className="text-center space-y-4"
       >
         <span className="inline-block px-6 py-2 rounded-full bg-welli-yellow text-indigo-950 font-bold text-sm">
-          🗺️ Beneficios del Primer Mes
+          🗺️ Beneficios del primer mes
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
-          Su Camino al Éxito con Welli
+          Tu camino al éxito con Welli
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
-          Premiamos su confianza desde el día uno
+          Premiamos tu confianza desde el día uno
         </p>
       </motion.div>
 
@@ -113,15 +114,20 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gradient-to-br from-welli-yellow to-welli-yellow/80 rounded-2xl p-8"
+        className="bg-gradient-to-br from-welli-yellow to-welli-yellow/80 rounded-2xl p-8 relative overflow-hidden"
       >
+        <img 
+          src={welliCharacterStanding} 
+          alt="Welli character" 
+          className="absolute -right-4 -bottom-4 w-32 h-32 object-contain opacity-30 md:opacity-60"
+        />
         <h3 className="text-xl font-bold mb-6 text-center text-indigo-950">
-          Premiamos la Fidelidad de Su Clínica y Su Personal
+          Premiamos la fidelidad de tu clínica y tu personal
         </h3>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 relative z-10">
           <div className="text-center">
             <Gift className="w-10 h-10 mx-auto mb-3 text-indigo-950" />
-            <h4 className="font-bold text-indigo-950">Bonos en Efectivo</h4>
+            <h4 className="font-bold text-indigo-950">Bonos en efectivo</h4>
             <p className="text-sm text-indigo-800">Por cada meta alcanzada</p>
           </div>
           <div className="text-center">
@@ -145,8 +151,8 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
         className="bg-white rounded-xl p-6 border-2 border-welli-yellow/50"
       >
         <p className="text-xl text-center text-indigo-950">
-          <span className="font-bold">🎯 En resumen:</span> Con solo 3 aplicaciones en su primer mes, 
-          su equipo ya tiene <span className="text-welli-yellow font-bold">boletos de cine y bonos en efectivo</span>.
+          <span className="font-bold">🎯 En resumen:</span> Con solo 3 aplicaciones en tu primer mes, 
+          tu equipo ya tiene <span className="text-welli-yellow font-bold">boletos de cine y bonos en efectivo</span>.
         </p>
       </motion.div>
 
@@ -162,7 +168,7 @@ const HunterModule5TreasureMap = ({ onComplete }: ModuleProps) => {
           size="lg"
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Ver Herramientas Digitales
+          Ver herramientas digitales
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>

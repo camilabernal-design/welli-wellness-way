@@ -125,7 +125,7 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
 
   const renderHunterModules = () => (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
+      <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
         <span className="w-5 h-5 rounded-full bg-welli-orange text-white flex items-center justify-center text-xs font-bold">🎯</span>
         Ruta Hunter
       </SidebarGroupLabel>
@@ -157,8 +157,8 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
   const renderFarmerModules = () => (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
-          <span className="w-5 h-5 rounded-full bg-welli-yellow text-welli-yellow-foreground flex items-center justify-center text-xs font-bold">1</span>
+        <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+          <span className="w-5 h-5 rounded-full bg-welli-orange text-white flex items-center justify-center text-xs font-bold">1</span>
           Fase 1: El Método del "Sí"
         </SidebarGroupLabel>
         <SidebarGroupContent>
@@ -186,8 +186,8 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
       </SidebarGroup>
 
       <SidebarGroup className="mt-4">
-        <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
-          <span className="w-5 h-5 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center text-xs font-bold">2</span>
+        <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+          <span className="w-5 h-5 rounded-full bg-secondary text-white flex items-center justify-center text-xs font-bold">2</span>
           Fase 2: Herramientas de Cierre
         </SidebarGroupLabel>
         <SidebarGroupContent>
@@ -218,8 +218,8 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
 
   const renderAliadoModules = () => (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-sidebar-foreground/70 flex items-center gap-2">
-        <span className="w-5 h-5 rounded-full bg-welli-yellow text-welli-yellow-foreground flex items-center justify-center text-xs font-bold">⚕️</span>
+      <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+        <span className="w-5 h-5 rounded-full bg-welli-orange text-white flex items-center justify-center text-xs font-bold">⚕️</span>
         Guía Rápida
       </SidebarGroupLabel>
       <SidebarGroupContent>
@@ -253,8 +253,8 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
         <div className="flex items-center gap-3">
           <WelliLogoFull size="md" />
           <div>
-            <h2 className="font-bold text-lg text-sidebar-foreground">{routeConfig.title}</h2>
-            <p className="text-[10px] text-welli-yellow font-medium -mt-1">{routeConfig.subtitle}</p>
+            <h2 className="font-bold text-lg text-indigo-950">{routeConfig.title}</h2>
+            <p className="text-[10px] text-indigo-800 font-medium -mt-1">{routeConfig.subtitle}</p>
           </div>
         </div>
       </SidebarHeader>
@@ -280,14 +280,14 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
 
       <SidebarFooter className="p-4 border-t border-sidebar-border">
         <div className="text-center">
-          <p className="text-xs text-sidebar-foreground/60">
+          <p className="text-xs text-indigo-950/60">
             © {new Date().getFullYear()} Welli
           </p>
           <a
             href="https://www.welli.com.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-welli-yellow hover:underline"
+            className="text-xs text-indigo-950 hover:underline"
           >
             welli.com.co
           </a>

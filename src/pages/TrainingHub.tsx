@@ -50,9 +50,9 @@ const routes = [
 const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
   ({ onSelectRoute }, ref) => {
     return (
-      <div ref={ref} className="min-h-screen bg-gradient-to-br from-slate-50 via-background to-slate-100">
+      <div ref={ref} className="min-h-screen bg-gradient-to-br from-welli-yellow/10 via-welli-yellow/5 to-white">
         {/* Header */}
-        <header className="py-6 px-4 border-b border-border/50 bg-white/80 backdrop-blur-sm">
+        <header className="py-6 px-4 border-b border-welli-yellow/30 bg-welli-yellow/10 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto flex items-center justify-center gap-4">
             <WelliLogoFull size="lg" />
             <div className="hidden md:block">
@@ -92,10 +92,10 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
                 className={`relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
               >
                 {/* Card Header with Gradient */}
-                <div className={`bg-gradient-to-br ${route.color} p-6 text-white`}>
-                  <route.icon className="w-12 h-12 mb-4" />
-                  <h2 className="text-2xl font-bold">{route.title}</h2>
-                  <p className="text-white/90 font-medium">{route.subtitle}</p>
+                <div className={`bg-gradient-to-br ${route.color} p-6`}>
+                  <route.icon className="w-12 h-12 mb-4 text-indigo-950" />
+                  <h2 className="text-2xl font-bold text-indigo-950">{route.title}</h2>
+                  <p className="text-indigo-800 font-medium">{route.subtitle}</p>
                 </div>
 
                 {/* Card Body */}
@@ -136,7 +136,7 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
               { value: '$50k M', label: 'Desembolsados' },
               { value: '3 min', label: 'Aprobación' },
             ].map((stat, i) => (
-              <div key={i} className="bg-white/80 rounded-xl p-4 border border-welli-yellow/30">
+              <div key={i} className="bg-welli-yellow/20 rounded-xl p-4 border border-welli-yellow/40">
                 <p className="text-2xl font-bold text-welli-yellow">{stat.value}</p>
                 <p className="text-sm text-indigo-800">{stat.label}</p>
               </div>
