@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Monitor, Smartphone, BarChart3, CreditCard, FileText, Bell, ExternalLink } from "lucide-react";
 import portalAliados from "@/assets/portal-aliados.png";
 import portalPagos from "@/assets/portal-pagos.png";
+import welliCharacterTablet from "@/assets/welli-character-tablet.png";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -153,10 +154,15 @@ const HunterModule6Ecosystem = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-8 text-center"
+        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-8 text-center relative overflow-hidden"
       >
+        <img 
+          src={welliCharacterTablet} 
+          alt="Welli character" 
+          className="absolute -right-2 -bottom-2 w-28 h-28 object-contain opacity-30 md:opacity-50"
+        />
         <h3 className="text-xl font-bold mb-4">Sin llamadas, sin WhatsApps, sin estrés</h3>
-        <p className="text-slate-300 max-w-2xl mx-auto">
+        <p className="text-slate-300 max-w-2xl mx-auto relative z-10">
           Tanto tú como tus pacientes pueden consultar todo desde su celular o computador. 
           Welli maneja la relación financiera para que te enfoques en la salud.
         </p>

@@ -33,7 +33,7 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
           Así de Fácil Funciona
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
-          Vea el proceso completo de aplicación y aprobación
+          Ve el proceso completo de aplicación y aprobación
         </p>
       </motion.div>
 
@@ -109,8 +109,8 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
           {[
             { step: 1, text: 'El paciente aplica desde su celular en 3 minutos' },
             { step: 2, text: 'Welli aprueba automáticamente con respuesta inmediata' },
-            { step: 3, text: 'Usted realiza el procedimiento con tranquilidad' },
-            { step: 4, text: 'Recibe el 95% en su cuenta en máximo 72 horas' },
+            { step: 3, text: 'Tú realizas el procedimiento con tranquilidad' },
+            { step: 4, text: 'Recibes el 95% en tu cuenta en máximo 72 horas' },
           ].map((item) => (
             <div key={item.step} className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-welli-yellow text-indigo-950 flex items-center justify-center font-bold flex-shrink-0">
@@ -133,7 +133,7 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
           🎯 Desembolsamos <span className="text-welli-yellow">Martes y Jueves</span>
         </p>
         <p className="text-indigo-800 mt-2">
-          Si el paciente aplica hoy, el jueves usted ya tiene su dinero.
+          Si el paciente aplica hoy, el jueves tú ya tienes tu dinero.
         </p>
       </motion.div>
 

@@ -1,34 +1,24 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Newspaper, ExternalLink, Linkedin, GraduationCap } from "lucide-react";
+import { ArrowRight, Newspaper, Linkedin, GraduationCap } from "lucide-react";
+import welliCharacterThinking from "@/assets/welli-character-thinking.png";
+import noticiaForbes from "@/assets/news/noticia-forbes.png";
+import noticiaEspectador from "@/assets/news/noticia-espectador.png";
+import noticiaPulzo from "@/assets/news/noticia-pulzo.png";
+import noticiaValora from "@/assets/news/noticia-valora.png";
+import noticiaPortafolio from "@/assets/news/noticia-portafolio.png";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
 const pressArticles = [
-  {
-    source: 'Forbes Colombia',
-    title: 'Welli, la fintech que ayuda a financiar tratamientos de salud en Colombia',
-    excerpt: 'Esta fintech financia más de 2,000 procedimientos médicos al mes y ya ha levantado más de US$25 millones.',
-    date: 'Julio 2025',
-    color: 'bg-red-600',
-  },
-  {
-    source: 'El Espectador',
-    title: 'Fintech Welli apuesta por financiar tratamientos médicos en solo 5 minutos',
-    excerpt: 'La startup anuncia que obtuvo US$25 millones en rondas de inversión. Ya ha otorgado más de $50,000 millones en créditos médicos.',
-    date: 'Julio 2025',
-    color: 'bg-blue-600',
-  },
-  {
-    source: 'Pulzo',
-    title: 'En dos años de operación, Welli ya prestó más de $50,000 millones',
-    excerpt: 'Espera abrir operaciones fuera del país y crear planes de ahorro en el mediano plazo.',
-    date: 'Julio 2025',
-    color: 'bg-purple-600',
-  },
+  { source: 'Forbes Colombia', image: noticiaForbes },
+  { source: 'El Espectador', image: noticiaEspectador },
+  { source: 'Pulzo', image: noticiaPulzo },
+  { source: 'Valora Analítik', image: noticiaValora },
+  { source: 'Portafolio', image: noticiaPortafolio },
 ];
 
 const leadership = [
@@ -66,14 +56,14 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
           🏆 Credibilidad
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
-          Respaldo de los Mejores
+          Respaldo de los mejores
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
           Reconocidos por los medios. Liderados por expertos.
         </p>
       </motion.div>
 
-      {/* Press Coverage */}
+      {/* Press Coverage - Image Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -81,9 +71,9 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         className="space-y-4"
       >
         <h2 className="text-xl font-bold flex items-center gap-2 text-indigo-950">
-          <Newspaper className="w-5 h-5" /> Welli en los Medios
+          <Newspaper className="w-5 h-5" /> Welli en los medios
         </h2>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {pressArticles.map((article, index) => (
             <motion.div
               key={article.source}
@@ -91,21 +81,13 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + index * 0.1 }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden border-2 border-welli-yellow/30 hover:border-welli-yellow">
                 <CardContent className="p-0">
-                  <div className={`${article.color} p-4 text-white`}>
-                    <p className="font-bold">{article.source}</p>
-                    <p className="text-xs text-white/80">{article.date}</p>
-                  </div>
-                  <div className="p-4">
-                    <h4 className="font-semibold text-sm mb-2 group-hover:text-welli-orange transition-colors text-indigo-950">
-                      {article.title}
-                    </h4>
-                    <p className="text-xs text-indigo-800">{article.excerpt}</p>
-                    <div className="flex items-center gap-1 mt-3 text-welli-orange text-xs font-medium">
-                      Leer más <ExternalLink className="w-3 h-3" />
-                    </div>
-                  </div>
+                  <img 
+                    src={article.image} 
+                    alt={`Welli en ${article.source}`}
+                    className="w-full h-auto object-cover"
+                  />
                 </CardContent>
               </Card>
             </motion.div>
@@ -120,7 +102,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.5 }}
         className="space-y-4"
       >
-        <h2 className="text-xl font-bold text-indigo-950">Equipo Directivo TOP</h2>
+        <h2 className="text-xl font-bold text-indigo-950">Equipo directivo TOP</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {leadership.map((leader) => (
             <Card key={leader.name} className="border-2 border-welli-yellow/30">
@@ -158,7 +140,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.7 }}
         className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-6"
       >
-        <h3 className="font-bold text-lg mb-4">Junta Directiva e Inversionistas</h3>
+        <h3 className="font-bold text-lg mb-4">Junta directiva e inversionistas</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {boardMembers.map((member) => (
             <div key={member.name} className="text-center">
@@ -177,10 +159,15 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="bg-gradient-to-r from-welli-yellow to-welli-yellow/80 rounded-xl p-6 text-center"
+        className="bg-gradient-to-r from-welli-yellow to-welli-yellow/80 rounded-xl p-6 text-center relative overflow-hidden"
       >
+        <img 
+          src={welliCharacterThinking} 
+          alt="Welli character" 
+          className="absolute -left-4 -bottom-4 w-28 h-28 object-contain opacity-30 md:opacity-50"
+        />
         <p className="text-lg font-medium text-indigo-950">Respaldados con</p>
-        <p className="text-5xl font-bold my-2 text-indigo-950">US$25 Millones</p>
+        <p className="text-5xl font-bold my-2 text-indigo-950">US$25 millones</p>
         <p className="text-sm text-indigo-800">en capital y deuda para expandir nuestra misión</p>
       </motion.div>
 
@@ -196,7 +183,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
           size="lg"
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Ir a Validación Final
+          Ir a validación final
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>

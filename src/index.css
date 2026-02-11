@@ -70,13 +70,13 @@
     --radius: 0.75rem;
 
     /* Sidebar */
-    --sidebar-background: 264 47% 59%;
-    --sidebar-foreground: 0 0% 100%;
+    --sidebar-background: 48 100% 50%;
+    --sidebar-foreground: 45 5% 8%;
     --sidebar-primary: 28 100% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 264 47% 65%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 264 47% 50%;
+    --sidebar-accent: 48 100% 45%;
+    --sidebar-accent-foreground: 45 5% 8%;
+    --sidebar-border: 48 100% 40%;
     --sidebar-ring: 28 100% 52%;
 
     /* Custom gradients - Welli style */

@@ -103,7 +103,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                  <span>Reciba el 95% del valor en 72 horas</span>
+                  <span>Recibe el 95% del valor en 72 horas</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
