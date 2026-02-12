@@ -2,21 +2,31 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Play, Building2, Stethoscope } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+import { ArrowRight, Play, ChevronDown } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
-const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
-  const [isDentalink, setIsDentalink] = useState(false);
+const videoOptions = [
+  { value: 'general', label: 'Proceso General Welli', id: 'XsU_GECGb5M', isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
+  { value: 'dentalink', label: 'Aliados Dentalink', id: 'ah71UndxWq4', isShort: false, description: 'Proceso integrado con sistema Dentalink' },
+  { value: 'dtdental', label: 'Aliados DT Dental', id: 'hgavNjo_aus', isShort: false, description: 'Proceso integrado con DT Dental' },
+  { value: 'okvet', label: 'Aliados OK Vet', id: '41bS6Wtk6GU', isShort: false, description: 'Proceso integrado con OK Vet' },
+];
 
-  const currentVideo = isDentalink 
-    ? { id: 'ah71UndxWq4', title: 'Proceso Dentalink', isShort: false }
-    : { id: 'XsU_GECGb5M', title: 'Proceso General Welli', isShort: true };
+const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
+  const [selectedVideo, setSelectedVideo] = useState('general');
+
+  const currentVideo = videoOptions.find(v => v.value === selectedVideo) || videoOptions[0];
 
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-8">
@@ -37,33 +47,25 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
         </p>
       </motion.div>
 
-      {/* Discrete Video Selector */}
+      {/* Video Selector Dropdown */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="flex items-center justify-center gap-4 p-4 bg-slate-100 rounded-xl"
+        className="flex justify-center"
       >
-        <div className={`flex items-center gap-2 transition-opacity ${!isDentalink ? 'opacity-100' : 'opacity-50'}`}>
-          <Stethoscope className="w-5 h-5 text-welli-orange" />
-          <Label htmlFor="video-toggle" className="text-indigo-950 font-medium cursor-pointer">
-            Proceso General
-          </Label>
-        </div>
-        
-        <Switch
-          id="video-toggle"
-          checked={isDentalink}
-          onCheckedChange={setIsDentalink}
-          className="data-[state=checked]:bg-secondary"
-        />
-        
-        <div className={`flex items-center gap-2 transition-opacity ${isDentalink ? 'opacity-100' : 'opacity-50'}`}>
-          <Building2 className="w-5 h-5 text-secondary" />
-          <Label htmlFor="video-toggle" className="text-indigo-950 font-medium cursor-pointer">
-            Aliados Dentalink
-          </Label>
-        </div>
+        <Select value={selectedVideo} onValueChange={setSelectedVideo}>
+          <SelectTrigger className="w-72 bg-white border-2 border-slate-200 text-indigo-950 font-medium">
+            <SelectValue placeholder="Selecciona el proceso" />
+          </SelectTrigger>
+          <SelectContent className="bg-white z-50">
+            {videoOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value} className="cursor-pointer">
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </motion.div>
 
       {/* Video Display */}
@@ -78,18 +80,14 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
           <div className="bg-gradient-to-r from-welli-yellow to-welli-yellow/80 p-4 text-indigo-950 flex items-center gap-3">
             <Play className="w-6 h-6" />
             <div>
-              <h3 className="font-bold text-lg">{currentVideo.title}</h3>
-              <p className="text-sm text-indigo-800">
-                {isDentalink 
-                  ? 'Proceso integrado con sistema Dentalink' 
-                  : 'Flujo de aplicación estándar para pacientes'}
-              </p>
+              <h3 className="font-bold text-lg">{currentVideo.label}</h3>
+              <p className="text-sm text-indigo-800">{currentVideo.description}</p>
             </div>
           </div>
           <CardContent className="p-6">
             <YouTubeEmbed 
               videoId={currentVideo.id} 
-              title={currentVideo.title}
+              title={currentVideo.label}
               isShort={currentVideo.isShort}
               borderColor="welli-yellow"
             />
@@ -104,7 +102,7 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.4 }}
         className="bg-slate-50 rounded-xl p-6 border border-slate-200"
       >
-        <h3 className="font-bold text-lg mb-4 text-indigo-950">El Proceso es Así de Simple:</h3>
+        <h3 className="font-bold text-lg mb-4 text-indigo-950">El proceso es así de simple:</h3>
         <div className="grid md:grid-cols-4 gap-4">
           {[
             { step: 1, text: 'El paciente aplica desde su celular en 3 minutos' },

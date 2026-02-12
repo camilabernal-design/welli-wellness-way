@@ -1,10 +1,25 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { PlayCircle, ArrowRight, CheckCircle2, Smartphone, QrCode, FileCheck, Pencil } from "lucide-react";
+import { PlayCircle, ArrowRight, Smartphone, QrCode, FileCheck, Pencil } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
 }
+
+const videoOptions = [
+  { value: 'general', label: 'Proceso General Welli', id: 'Y8YTex0JCyg', isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
+  { value: 'dentalink', label: 'Aliados Dentalink', id: 'ah71UndxWq4', isShort: false, description: 'Proceso integrado con sistema Dentalink' },
+  { value: 'dtdental', label: 'Aliados DT Dental', id: 'hgavNjo_aus', isShort: false, description: 'Proceso integrado con DT Dental' },
+  { value: 'okvet', label: 'Aliados OK Vet', id: '41bS6Wtk6GU', isShort: false, description: 'Proceso integrado con OK Vet' },
+];
 
 const steps = [
   {
@@ -30,6 +45,10 @@ const steps = [
 ];
 
 const VideoProcessModule = ({ onComplete }: ModuleProps) => {
+  const [selectedVideo, setSelectedVideo] = useState('general');
+
+  const currentVideo = videoOptions.find(v => v.value === selectedVideo) || videoOptions[0];
+
   return (
     <div className="module-container">
       <div className="max-w-4xl mx-auto">
@@ -50,17 +69,39 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
           </p>
         </motion.div>
 
+        {/* Video Selector Dropdown */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center mb-6"
+        >
+          <Select value={selectedVideo} onValueChange={setSelectedVideo}>
+            <SelectTrigger className="w-72 bg-white border-2 border-border text-foreground font-medium">
+              <SelectValue placeholder="Selecciona el proceso" />
+            </SelectTrigger>
+            <SelectContent className="bg-white z-50">
+              {videoOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value} className="cursor-pointer">
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </motion.div>
+
         {/* YouTube Video */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          key={currentVideo.id}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
           className="mb-10"
         >
           <YouTubeEmbed 
-            videoId="Y8YTex0JCyg" 
-            title="Cómo crear una solicitud"
-            isShort={true}
+            videoId={currentVideo.id} 
+            title={currentVideo.label}
+            isShort={currentVideo.isShort}
             borderColor="secondary"
             className="mx-auto"
           />

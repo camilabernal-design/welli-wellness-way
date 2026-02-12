@@ -46,6 +46,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import WelliLogoFull from "@/components/WelliLogoFull";
+import welliLogoWhite from "@/assets/welli-logo-white.png";
 import { TrainingRoute } from "@/types/training";
 
 interface AppSidebarProps {
@@ -251,7 +252,7 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <WelliLogoFull size="md" />
+          <img src={welliLogoWhite} alt="Welli" className="h-12 object-contain" />
           <div>
             <h2 className="font-bold text-lg text-indigo-950">{routeConfig.title}</h2>
             <p className="text-[10px] text-indigo-800 font-medium -mt-1">{routeConfig.subtitle}</p>
