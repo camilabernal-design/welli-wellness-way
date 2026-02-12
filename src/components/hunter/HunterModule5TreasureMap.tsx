@@ -24,7 +24,7 @@ const treasureStops = [
     reward: 'Bono de cine',
     description: 'Boletas de cine para todo el equipo de la clínica',
     icon: Film,
-    color: 'bg-welli-orange',
+    color: 'bg-indigo-950',
     bonus: '🎬 x4',
   },
   {
@@ -33,7 +33,7 @@ const treasureStops = [
     reward: 'Tracción total',
     description: 'El aliado demuestra compromiso y activa beneficios premium',
     icon: Rocket,
-    color: 'bg-welli-orange',
+    color: 'bg-indigo-950',
     bonus: 'VIP',
   },
   {
