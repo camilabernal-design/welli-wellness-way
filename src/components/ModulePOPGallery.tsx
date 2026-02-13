@@ -25,7 +25,6 @@ const popItems = [
   { src: rompetrafico, alt: "Rompetrafico Welli", title: "Rompetrafico" },
   { src: saltarin, alt: "Saltarin Welli", title: "Saltarín" },
   { src: stickerMesa, alt: "Sticker de Mesa Welli", title: "Sticker de Mesa" },
-  { src: bolsa, alt: "Bolsa Welli", title: "Bolsa Ecológica" },
   { src: pop1, alt: "POP Welli 1", title: "Material POP" },
 ];
 
