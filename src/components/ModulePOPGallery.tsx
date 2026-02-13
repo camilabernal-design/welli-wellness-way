@@ -10,6 +10,11 @@ import rompetrafico from "@/assets/pop/rompetrafico.png";
 import saltarin from "@/assets/pop/saltarin.png";
 import stickerMesa from "@/assets/pop/sticker-mesa.png";
 import hablador from "@/assets/pop/hablador.png";
+import pop1 from "@/assets/pop/pop1.jpeg";
+import pop2 from "@/assets/pop/pop2.jpeg";
+import pop3 from "@/assets/pop/pop3.jpeg";
+import pop4 from "@/assets/pop/pop4.jpeg";
+import pop5 from "@/assets/pop/pop5.jpeg";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -21,12 +26,17 @@ const popItems = [
   { src: saltarin, alt: "Saltarin Welli", title: "Saltarín" },
   { src: stickerMesa, alt: "Sticker de Mesa Welli", title: "Sticker de Mesa" },
   { src: bolsa, alt: "Bolsa Welli", title: "Bolsa Ecológica" },
+  { src: pop1, alt: "POP Welli 1", title: "Material POP" },
 ];
 
 const clinicExamples = [
   { src: ejemplo1, alt: "Ejemplo POP en clínica 1" },
   { src: ejemplo3, alt: "Ejemplo POP en clínica 3" },
   { src: ejemplo4, alt: "Ejemplo POP en clínica 4" },
+  { src: pop2, alt: "POP Welli 2" },
+  { src: pop3, alt: "POP Welli 3" },
+  { src: pop4, alt: "POP Welli 4" },
+  { src: pop5, alt: "POP Welli 5" },
 ];
 
 const ModulePOPGallery = ({ onComplete }: ModuleProps) => {
