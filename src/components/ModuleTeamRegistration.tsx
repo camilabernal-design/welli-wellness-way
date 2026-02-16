@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Users, ArrowRight, CheckCircle2, UserPlus, Plus, Trash2, Building2, Key, Send } from "lucide-react";
+import { ArrowRight, Plus, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -21,12 +20,16 @@ interface RoleData {
 }
 
 interface FormData {
-  clinicKey: string; // NIT or Cédula - Primary key
+  clinicName: string;      // nombre_sede
+  accountManager: string;  // farmer
   doctor: RoleData;
   admin: RoleData;
   finance: RoleData;
   marketing: RoleData;
 }
+
+const HUBSPOT_PORTAL_ID = "50421361";
+const HUBSPOT_FORM_ID = "97fe3f2f-3c37-4ffb-903f-93e03d86e396";
 
 const createNewMember = (): TeamMember => ({
   id: crypto.randomUUID(),
@@ -42,24 +45,31 @@ const roles = [
   { key: "marketing", title: "Área de Marketing", icon: "📱" },
 ] as const;
 
+type RoleKey = "doctor" | "admin" | "finance" | "marketing";
+
 const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   const [formData, setFormData] = useState<FormData>({
-    clinicKey: "",
+    clinicName: "",
+    accountManager: "",
     doctor: { members: [createNewMember()] },
     admin: { members: [createNewMember()] },
     finance: { members: [createNewMember()] },
     marketing: { members: [createNewMember()] },
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedRoles, setSubmittedRoles] = useState<string[]>([]);
 
-  type RoleKey = 'doctor' | 'admin' | 'finance' | 'marketing';
-
-  const handleChange = (role: RoleKey, memberId: string, field: keyof Omit<TeamMember, 'id'>, value: string) => {
-    setFormData(prev => ({
+  const handleChange = (
+    role: RoleKey,
+    memberId: string,
+    field: keyof Omit<TeamMember, "id">,
+    value: string
+  ) => {
+    setFormData((prev) => ({
       ...prev,
       [role]: {
-        members: prev[role].members.map(m => 
+        members: prev[role].members.map((m) =>
           m.id === memberId ? { ...m, [field]: value } : m
         ),
       },
@@ -67,7 +77,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   };
 
   const addMember = (role: RoleKey) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [role]: {
         members: [...prev[role].members, createNewMember()],
@@ -76,268 +86,192 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   };
 
   const removeMember = (role: RoleKey, memberId: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [role]: {
-        members: prev[role].members.filter(m => m.id !== memberId),
+        members: prev[role].members.filter((m) => m.id !== memberId),
       },
     }));
   };
 
-  const handleRoleSubmit = async (roleKey: string) => {
-    if (!formData.clinicKey) {
-      toast.error("Por favor ingresa el NIT o Cédula primero");
+  const handleRoleSubmit = async (roleKey: RoleKey) => {
+    if (!formData.clinicName) {
+      toast.error("Ingresa el nombre de la sede primero");
+      return;
+    }
+
+    const validMembers = formData[roleKey].members.filter(
+      (m) => m.name.trim() && m.email.trim()
+    );
+
+    if (validMembers.length === 0) {
+      toast.error("Agrega al menos un miembro válido");
       return;
     }
 
     setIsSubmitting(true);
-    
-    // Prepare data for webhook (n8n/Google Sheets compatible structure)
-    const roleData = formData[roleKey as keyof Omit<FormData, 'clinicKey'>];
-    const webhookData = {
-      clinicKey: formData.clinicKey, // Primary key
-      role: roleKey,
-      members: (roleData as RoleData).members.filter(m => m.name && m.email),
-      timestamp: new Date().toISOString(),
-    };
 
-    // Log data for debugging - In production, send to n8n webhook
-    console.log("Webhook data:", webhookData);
+    try {
+      for (const member of validMembers) {
+        const nameParts = member.name.trim().split(" ");
+        const firstname = nameParts[0];
+        const lastname = nameParts.slice(1).join(" ") || "-";
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+        const fields = [
+          { name: "nombre_sede", value: formData.clinicName },
+          { name: "farmer", value: formData.accountManager || "" },
+          { name: "firstname", value: firstname },
+          { name: "lastname", value: lastname },
+          { name: "email", value: member.email },
+          { name: "hs_whatsapp_phone_number", value: member.phone || "" },
+          { name: "jobtitle", value: roleKey },
+        ].filter((field) => field.value !== "");
+
+        const response = await fetch(
+          `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              fields,
+              context: {
+                pageUri: window.location.href,
+                pageName: "Registro Equipo Clínica",
+              },
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error("HubSpot RAW ERROR:", errorText);
+          throw new Error(errorText);
+        }
+      }
+
+      setSubmittedRoles((prev) => [...prev, roleKey]);
+      toast.success("Información enviada correctamente 🚀");
+    } catch (error) {
+      toast.error("Error enviando datos a HubSpot");
+    }
 
     setIsSubmitting(false);
-    setSubmittedRoles(prev => [...prev, roleKey]);
-    toast.success(`¡Datos de ${roles.find(r => r.key === roleKey)?.title} registrados!`, {
-      description: `Llave: ${formData.clinicKey}`,
-    });
   };
 
-  const isRoleValid = (role: keyof Omit<FormData, 'clinicKey'>) => {
-    return formData[role].members.some(m => m.name && m.email);
-  };
-
-  const isClinicKeyValid = formData.clinicKey.length >= 6;
+  const isRoleValid = (role: RoleKey) =>
+    formData[role].members.some((m) => m.name && m.email);
 
   return (
     <div className="module-container">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/20 text-foreground mb-6">
-            <Building2 className="w-4 h-4 text-welli-yellow" />
-            <span className="text-sm font-medium">Registro de Clínica</span>
-          </div>
-          <h2 className="section-title">Registro de Crecimiento</h2>
-          <p className="section-subtitle max-w-2xl mx-auto mt-4">
-            "Póngame aquí su NIT. Esta será nuestra llave maestra para que todo el equipo de marketing y finanzas reciba las notificaciones automáticas vía HubSpot."
-          </p>
-          <p className="section-subtitle max-w-2xl mx-auto mt-2">
-            Registra a tu equipo para recibir información personalizada y soporte prioritario.
-            <span className="font-medium text-foreground"> Puedes agregar múltiples personas por área.</span>
-          </p>
-        </motion.div>
 
-        {/* Clinic Key - NIT or Cédula */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="card-elevated p-6 mb-8"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
-              <Key className="w-6 h-6 text-welli-yellow" />
-            </div>
+        {/* Datos Clínica */}
+        <div className="card-elevated p-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-bold text-lg text-foreground">Llave Maestra</h3>
-              <p className="text-sm text-muted-foreground">NIT de la clínica o Cédula del doctor titular</p>
+              <Label>Nombre de la sede *</Label>
+              <Input
+                value={formData.clinicName}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    clinicName: e.target.value,
+                  }))
+                }
+              />
+            </div>
+
+            <div>
+              <Label>Gerente de cuenta Welli</Label>
+              <Input
+                value={formData.accountManager}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    accountManager: e.target.value,
+                  }))
+                }
+              />
             </div>
           </div>
-          <div className="max-w-md">
-            <Label className="text-sm font-medium">NIT / Cédula *</Label>
-            <Input
-              type="text"
-              placeholder="Ej: 900123456-7 o 1234567890"
-              value={formData.clinicKey}
-              onChange={(e) => setFormData(prev => ({ ...prev, clinicKey: e.target.value }))}
-              className="mt-1 text-lg"
-            />
-            {!isClinicKeyValid && formData.clinicKey && (
-              <p className="text-xs text-danger mt-1">Mínimo 6 caracteres</p>
-            )}
-            {isClinicKeyValid && (
-              <p className="text-xs text-success mt-1 flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" /> Llave válida
-              </p>
-            )}
-          </div>
-        </motion.div>
+        </div>
 
-        {/* Form by Role */}
-        <div className="space-y-6 mb-10">
-          {roles.map((role, index) => {
+        {/* Roles */}
+        <div className="space-y-6">
+          {roles.map((role) => {
             const isSubmitted = submittedRoles.includes(role.key);
-            
+
             return (
-              <motion.div
-                key={role.key}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className={`card-elevated p-6 ${isSubmitted ? 'border-2 border-success/40' : ''}`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{role.icon}</span>
-                    <h3 className="font-bold text-lg">{role.title}</h3>
-                    {isSubmitted && (
-                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-success/10 text-success text-xs font-medium">
-                        <CheckCircle2 className="w-3 h-3" />
-                        Enviado
-                      </span>
+              <div key={role.key} className="card-elevated p-6">
+                <h3 className="font-bold mb-4">
+                  {role.icon} {role.title}
+                </h3>
+
+                {formData[role.key].members.map((member) => (
+                  <div key={member.id} className="grid md:grid-cols-4 gap-4 mb-4">
+                    <Input
+                      placeholder="Nombre"
+                      value={member.name}
+                      onChange={(e) =>
+                        handleChange(role.key, member.id, "name", e.target.value)
+                      }
+                    />
+                    <Input
+                      placeholder="Correo"
+                      value={member.email}
+                      onChange={(e) =>
+                        handleChange(role.key, member.id, "email", e.target.value)
+                      }
+                    />
+                    <Input
+                      placeholder="WhatsApp"
+                      value={member.phone}
+                      onChange={(e) =>
+                        handleChange(role.key, member.id, "phone", e.target.value)
+                      }
+                    />
+
+                    {!isSubmitted && (
+                      <button
+                        onClick={() =>
+                          removeMember(role.key, member.id)
+                        }
+                      >
+                        <Trash2 size={18} />
+                      </button>
                     )}
                   </div>
-                  {!isSubmitted && (
-                    <button
-                      type="button"
-                      onClick={() => addMember(role.key)}
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
-                    >
-                      <Plus className="w-4 h-4" />
-                      Agregar persona
-                    </button>
-                  )}
-                </div>
-
-                <AnimatePresence>
-                  {formData[role.key].members.map((member, memberIndex) => (
-                    <motion.div
-                      key={member.id}
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mb-4 last:mb-0"
-                    >
-                      {memberIndex > 0 && <div className="border-t border-border my-4" />}
-                      
-                      <div className="grid md:grid-cols-4 gap-4 items-end">
-                        <div className="md:col-span-1">
-                          <Label className="text-sm font-medium">Nombre</Label>
-                          <Input
-                            type="text"
-                            placeholder="Juan Pérez"
-                            value={member.name}
-                            onChange={(e) => handleChange(role.key, member.id, "name", e.target.value)}
-                            className="mt-1"
-                            disabled={isSubmitted}
-                          />
-                        </div>
-                        <div className="md:col-span-1">
-                          <Label className="text-sm font-medium">Correo</Label>
-                          <Input
-                            type="email"
-                            placeholder="correo@clinica.com"
-                            value={member.email}
-                            onChange={(e) => handleChange(role.key, member.id, "email", e.target.value)}
-                            className="mt-1"
-                            disabled={isSubmitted}
-                          />
-                        </div>
-                        <div className="md:col-span-1">
-                          <Label className="text-sm font-medium">Teléfono</Label>
-                          <Input
-                            type="tel"
-                            placeholder="+57 300 123 4567"
-                            value={member.phone}
-                            onChange={(e) => handleChange(role.key, member.id, "phone", e.target.value)}
-                            className="mt-1"
-                            disabled={isSubmitted}
-                          />
-                        </div>
-                        <div className="md:col-span-1 flex gap-2">
-                          {formData[role.key].members.length > 1 && !isSubmitted && (
-                            <button
-                              type="button"
-                              onClick={() => removeMember(role.key, member.id)}
-                              className="p-2 rounded-lg text-danger hover:bg-danger/10 transition-colors"
-                              title="Eliminar"
-                            >
-                              <Trash2 className="w-5 h-5" />
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                ))}
 
                 {!isSubmitted && (
-                  <div className="mt-6 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => handleRoleSubmit(role.key)}
-                      disabled={!isRoleValid(role.key) || isSubmitting}
-                      className="px-4 py-2 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <span className="animate-spin">⏳</span>
-                          Enviando...
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle2 className="w-4 h-4" />
-                          Enviar {role.title}
-                        </>
-                      )}
+                  <>
+                    <button onClick={() => addMember(role.key)}>
+                      <Plus size={16} /> Agregar
                     </button>
-                  </div>
+
+                    <div className="mt-4">
+                      <button
+                        onClick={() => handleRoleSubmit(role.key)}
+                        disabled={!isRoleValid(role.key) || isSubmitting}
+                        className="btn-welli"
+                      >
+                        {isSubmitting ? "Enviando..." : "Enviar"}
+                      </button>
+                    </div>
+                  </>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* Progress */}
-        {submittedRoles.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center mb-6"
-          >
-            <p className="text-muted-foreground">
-              Roles enviados: <span className="font-bold text-success">{submittedRoles.length}</span> / {roles.length}
-            </p>
-          </motion.div>
-        )}
-
-        {/* CTA - Always enabled */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="text-center"
-        >
-          <button
-            onClick={onComplete}
-            className="btn-welli group inline-flex items-center gap-3 text-lg"
-          >
-            <span>Continuar</span>
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+        <div className="text-center mt-10">
+          <button onClick={onComplete} className="btn-welli">
+            Continuar <ArrowRight className="inline ml-2" size={16} />
           </button>
-          {submittedRoles.length === 0 && (
-            <p className="text-xs text-muted-foreground mt-3">
-              Puedes continuar ahora y completar el registro después
-            </p>
-          )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
