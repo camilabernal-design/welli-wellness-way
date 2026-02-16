@@ -20,8 +20,7 @@ interface RoleData {
 }
 
 interface FormData {
-  clinicName: string;      // nombre_sede
-  accountManager: string;  // farmer
+  nit: string;
   doctor: RoleData;
   admin: RoleData;
   finance: RoleData;
@@ -49,8 +48,7 @@ type RoleKey = "doctor" | "admin" | "finance" | "marketing";
 
 const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   const [formData, setFormData] = useState<FormData>({
-    clinicName: "",
-    accountManager: "",
+    nit: "",
     doctor: { members: [createNewMember()] },
     admin: { members: [createNewMember()] },
     finance: { members: [createNewMember()] },
@@ -95,8 +93,8 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
   };
 
   const handleRoleSubmit = async (roleKey: RoleKey) => {
-    if (!formData.clinicName) {
-      toast.error("Ingresa el nombre de la sede primero");
+    if (!formData.nit.trim()) {
+      toast.error("Ingresa el NIT primero");
       return;
     }
 
@@ -118,8 +116,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
         const lastname = nameParts.slice(1).join(" ") || "-";
 
         const fields = [
-          { name: "nombre_sede", value: formData.clinicName },
-          { name: "farmer", value: formData.accountManager || "" },
+          { name: "nit", value: Number(formData.nit) },
           { name: "firstname", value: firstname },
           { name: "lastname", value: lastname },
           { name: "email", value: member.email },
@@ -167,30 +164,31 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
     <div className="module-container">
       <div className="max-w-4xl mx-auto">
 
-        {/* Datos Clínica */}
-        <div className="card-elevated p-6 mb-8">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <Label>Nombre de la sede *</Label>
-              <Input
-                value={formData.clinicName}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    clinicName: e.target.value,
-                  }))
-                }
-              />
-            </div>
+        {/* BLOQUE NIT */}
+        <div className="card-elevated p-8 mb-10 border border-gray-100">
+          <div className="max-w-xl">
+            <h2 className="text-2xl font-bold mb-2">
+              🏥 Registro de Clínica
+            </h2>
+            <p className="text-sm text-gray-500 mb-6">
+              Ingresa el NIT de la clínica para asociar correctamente el equipo.
+            </p>
 
-            <div>
-              <Label>Gerente de cuenta Welli</Label>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-700">
+                NIT *
+              </Label>
+
               <Input
-                value={formData.accountManager}
+                type="number"
+                inputMode="numeric"
+                placeholder="Ej: 900123456"
+                className="h-12 text-lg rounded-xl border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                value={formData.nit}
                 onChange={(e) =>
                   setFormData((prev) => ({
                     ...prev,
-                    accountManager: e.target.value,
+                    nit: e.target.value,
                   }))
                 }
               />
@@ -198,7 +196,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
           </div>
         </div>
 
-        {/* Roles */}
+        {/* ROLES */}
         <div className="space-y-6">
           {roles.map((role) => {
             const isSubmitted = submittedRoles.includes(role.key);
@@ -210,9 +208,9 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
                 </h3>
 
                 {formData[role.key].members.map((member) => (
-                  <div key={member.id} className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div key={member.id} className="grid md:grid-cols-4 gap-4 mb-4 items-center">
                     <Input
-                      placeholder="Nombre"
+                      placeholder="Nombre completo"
                       value={member.name}
                       onChange={(e) =>
                         handleChange(role.key, member.id, "name", e.target.value)
@@ -238,6 +236,7 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
                         onClick={() =>
                           removeMember(role.key, member.id)
                         }
+                        className="text-gray-400 hover:text-red-500 transition"
                       >
                         <Trash2 size={18} />
                       </button>
@@ -247,15 +246,19 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
 
                 {!isSubmitted && (
                   <>
-                    <button onClick={() => addMember(role.key)}>
-                      <Plus size={16} /> Agregar
+                    <button
+                      onClick={() => addMember(role.key)}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-primary hover:bg-primary/5 text-sm font-medium transition-all duration-200"
+                    >
+                      <Plus size={16} />
+                      Agregar miembro
                     </button>
 
                     <div className="mt-4">
                       <button
                         onClick={() => handleRoleSubmit(role.key)}
                         disabled={!isRoleValid(role.key) || isSubmitting}
-                        className="btn-welli"
+                        className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-primary text-white font-medium hover:opacity-90 transition-all disabled:opacity-50"
                       >
                         {isSubmitting ? "Enviando..." : "Enviar"}
                       </button>
@@ -268,8 +271,12 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
         </div>
 
         <div className="text-center mt-10">
-          <button onClick={onComplete} className="btn-welli">
-            Continuar <ArrowRight className="inline ml-2" size={16} />
+          <button
+            onClick={onComplete}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-primary text-white font-medium hover:opacity-90 transition-all"
+          >
+            Continuar
+            <ArrowRight className="inline ml-2" size={16} />
           </button>
         </div>
       </div>
