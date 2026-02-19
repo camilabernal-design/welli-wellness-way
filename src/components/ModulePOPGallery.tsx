@@ -120,37 +120,7 @@ const ModulePOPGallery = ({ onComplete }: ModuleProps) => {
           </div>
         </motion.div>
 
-        {/* Social Media Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="card-elevated p-8 mb-10"
-        >
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <Palette className="w-10 h-10 text-white" />
-              </div>
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="font-bold text-xl mb-2">Cuéntale a todos que ahora ofreces Welli</h3>
-              <p className="text-muted-foreground mb-4">
-                Te ayudamos a diseñar tus redes. Diligencia el formulario y generamos tus piezas con tu marca y Welli.
-              </p>
-              <a
-                href="https://forms.gle/pg2UDJAqHSyhpmFM9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary inline-flex items-center gap-2"
-              >
-                <Palette className="w-5 h-5" />
-                <span>Diseña tus piezas para redes sociales</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </motion.div>
+      
 
 
         {/* CTA */}

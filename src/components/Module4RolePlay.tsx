@@ -110,7 +110,7 @@ const scenarios: Scenario[] = [
         feedback: "Respuesta técnica que no resuelve la objeción.",
       },
       {
-        text: "Dile que más caro es postergar la salud. Welli es transparente: pagas una Cuota Fija de Bienestar fija, sin sorpresas, y puedes abonar a capital cuando quieras sin penalidad.",
+        text: "Dile que más caro es postergar la salud. Welli es transparente: pagas una Cuota Fija de Bienestar, sin sorpresas, y puedes abonar a capital cuando quieras sin penalidad.",
         isCorrect: true,
         feedback: "¡Perfecto! Usaste transparencia y la Cuota Fija de Bienestar para vencer la objeción.",
       },
