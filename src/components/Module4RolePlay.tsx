@@ -25,17 +25,17 @@ const scenarios: Scenario[] = [
         text: "Bueno, puede ir donde el vecino si prefiere.",
         isCorrect: false,
         feedback: "Perdiste al paciente sin mostrar el valor diferencial.",
-      },
-      {
-        text: "Entiendo, pero aquí no solo pagas calidad, sino tranquilidad. Con nuestra Cuota Fija de Bienestar, pagas el tratamiento premium por menos de lo que gastas en una cena afuera, sin descapitalizarte.",
-        isCorrect: true,
-        feedback: "¡Excelente! Usaste la Cuota Fija de Bienestar para mostrar accesibilidad y valor.",
-      },
+      },  
       {
         text: "Nuestros materiales son de mejor calidad.",
         isCorrect: false,
         feedback: "Válido, pero no resolviste el problema de presupuesto del paciente.",
       },
+      {
+        text: "Entiendo, pero aquí no solo pagas calidad, sino tranquilidad. Con nuestra Cuota Fija de Bienestar, pagas el tratamiento premium por menos de lo que gastas en una cena afuera, sin descapitalizarte.",
+        isCorrect: true,
+        feedback: "¡Excelente! Usaste la Cuota Fija de Bienestar para mostrar accesibilidad y valor.",
+      }
     ],
   },
   {
@@ -43,14 +43,14 @@ const scenarios: Scenario[] = [
     objection: "No quiero deudas, prefiero ahorrar y volver en un año.",
     options: [
       {
-        text: "Está bien, lo esperamos cuando tenga el dinero.",
-        isCorrect: false,
-        feedback: "Perdiste la oportunidad de ayudar al paciente hoy.",
-      },
-      {
         text: "La inflación en salud sube más rápido que tus ahorros. Con Welli, congelas el precio de hoy y empiezas tu recuperación mañana pagando una Cuota Fija de Bienestar mínima.",
         isCorrect: true,
         feedback: "¡Perfecto! Mostraste urgencia económica con la Cuota Fija de Bienestar.",
+      },
+      {
+        text: "Está bien, lo esperamos cuando tenga el dinero.",
+        isCorrect: false,
+        feedback: "Perdiste la oportunidad de ayudar al paciente hoy.",
       },
       {
         text: "En un año el tratamiento va a costar más.",
@@ -90,15 +90,14 @@ const scenarios: Scenario[] = [
         feedback: "Los acuerdos informales son riesgosos para ambas partes.",
       },
       {
-        text: "Para su seguridad y la nuestra, usamos Welli. Así usted asegura su tratamiento completo desde hoy y crea historial crediticio positivo pagando su Cuota Fija de Bienestar.",
-        isCorrect: true,
-        feedback: "¡Muy bien! Mostraste el beneficio de crear historial con la Cuota Fija de Bienestar.",
-      },
-      {
         text: "No aceptamos pagos parciales.",
         isCorrect: false,
         feedback: "Respuesta fría sin ofrecer alternativa.",
-      },
+      },      {
+        text: "Para su seguridad y la nuestra, usamos Welli. Así usted asegura su tratamiento completo desde hoy y crea historial crediticio positivo pagando su Cuota Fija de Bienestar.",
+        isCorrect: true,
+        feedback: "¡Muy bien! Mostraste el beneficio de crear historial con la Cuota Fija de Bienestar.",
+      }
     ],
   },
   {

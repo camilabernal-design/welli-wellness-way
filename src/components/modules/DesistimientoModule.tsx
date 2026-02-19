@@ -37,21 +37,36 @@ const DesistimientoModule = ({ onComplete }: ModuleProps) => {
           <h2 className="section-title">¿Cómo manejar un Desistimiento?</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
             Si el paciente se arrepiente, gestionamos un desistimiento en el portal.
-            <span className="font-bold text-foreground"> No es un drama, es un proceso transparente.</span>
+            <span className="font-bold text-foreground"> Es un proceso transparente.</span>
           </p>
         </motion.div>
 
         {/* Video Placeholder */}
+        {/* Video Tutorial */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="mb-8 p-8 rounded-2xl bg-muted/50 border-2 border-dashed border-border text-center"
+          className="mb-10"
         >
-          <Video className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-          <p className="text-lg font-medium text-foreground mb-2">Video tutorial disponible pronto</p>
-          <p className="text-sm text-muted-foreground">Estamos preparando un video paso a paso para este proceso</p>
+          <div className="rounded-2xl overflow-hidden border-2 border-secondary/30 shadow-lg">
+            <div className="aspect-video">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/pqNvnA2PvpY"
+                title="Tutorial Proceso de Desistimiento"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-3">
+            🎥 Tutorial paso a paso del proceso de desistimiento
+          </p>
         </motion.div>
+
 
         {/* Download Policy Button */}
         <motion.div
