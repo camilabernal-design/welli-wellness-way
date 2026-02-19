@@ -59,7 +59,7 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
             <LayoutDashboard className="w-4 h-4 text-welli-yellow" />
             <span className="text-sm font-bold">ZONA DE PRUEBA</span>
           </div>
-          <h2 className="section-title">¡Ensúciate las manos!</h2>
+          <h2 className="section-title">¡Manos a la obra!</h2>
           <p className="section-subtitle max-w-2xl mx-auto mt-4">
             No te vayas de esta sesión sin haber <span className="font-bold text-foreground">"tocado"</span> la plataforma. 
             Esto reduce la fricción de tu primera solicitud real.
