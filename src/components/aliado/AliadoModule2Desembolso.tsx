@@ -86,7 +86,7 @@ const AliadoModule2Desembolso = ({ onComplete }: ModuleProps) => {
         <div className="space-y-3">
           {[
             { step: 1, text: 'Ingresa al Portal Admin de Welli' },
-            { step: 2, text: 'Busca el crédito APROBADO' },
+            { step: 2, text: 'Busca el crédito TOMADO' },
             { step: 3, text: 'Haz clic en "Solicitar Desembolso"' },
             { step: 4, text: 'Confirma los datos bancarios' },
             { step: 5, text: 'Espera máximo 72h hábiles' },
