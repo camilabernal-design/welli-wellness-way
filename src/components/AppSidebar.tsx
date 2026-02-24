@@ -62,7 +62,7 @@ const hunterModules = [
   { id: 2, title: "Propuesta de Valor", icon: Target },
   { id: 3, title: "Videos por Alianza", icon: PlayCircle },
   { id: 4, title: "Welli vs Competencia", icon: BarChart3 },
-  { id: 5, title: "Mapa del Tesoro", icon: Map },
+  { id: 5, title: "Welli Points", icon: Map },
   { id: 6, title: "Ecosistema Digital", icon: Monitor },
   { id: 7, title: "Validación y Cifras", icon: TrendingUp },
   { id: 8, title: "Welli en el Mundo", icon: Newspaper },
