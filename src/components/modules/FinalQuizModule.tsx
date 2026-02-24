@@ -12,8 +12,8 @@ const questions = [
     id: 1,
     question: "¿Qué días se realizan los pagos en Welli?",
     options: [
-      { text: "Lunes y Viernes", correct: false },
       { text: "Martes y Jueves", correct: true },
+      { text: "Lunes y Viernes", correct: false },
       { text: "Todos los días hábiles", correct: false },
     ],
     feedback: {
@@ -26,8 +26,8 @@ const questions = [
     question: "¿Qué pasa si el doctor no responde un desistimiento en 20 días?",
     options: [
       { text: "Se rechaza automáticamente la solicitud", correct: false },
-      { text: "Se considera Aceptación Total Automática", correct: true },
       { text: "Se extiende el plazo otros 20 días", correct: false },
+      { text: "Se considera Aceptación Total Automática", correct: true },
     ],
     feedback: {
       correct: "¡Exacto! El silencio administrativo se considera aceptación total.",
@@ -38,9 +38,9 @@ const questions = [
     id: 3,
     question: "¿El proceso termina cuando el crédito sale APROBADO?",
     options: [
-      { text: "Sí, el dinero llega automáticamente", correct: false },
-      { text: "No, el doctor debe entrar al portal y solicitar el DESEMBOLSO", correct: true },
       { text: "Depende del monto aprobado", correct: false },
+      { text: "No, el doctor debe entrar al portal y solicitar el DESEMBOLSO", correct: true },
+      { text: "Sí, el dinero llega automáticamente", correct: false },
     ],
     feedback: {
       correct: "¡Muy bien! Debes solicitar el desembolso para recibir el dinero.",
