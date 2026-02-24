@@ -163,7 +163,7 @@ const HunterModule2ValueProposition = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 rounded-2xl p-8 text-white"
+        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] rounded-2xl p-8 text-white"
       >
         <h3 className="text-center font-bold text-xl mb-6">El resultado para tu negocio</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
