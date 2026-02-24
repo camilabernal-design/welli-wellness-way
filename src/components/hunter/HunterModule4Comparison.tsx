@@ -169,7 +169,7 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-xl p-6"
+        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white rounded-xl p-6"
       >
         <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
           💬 Si Le Dicen: "Ya Tenemos Banco"

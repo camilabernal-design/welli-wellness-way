@@ -154,7 +154,7 @@ const HunterModule6Ecosystem = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-8 text-center relative overflow-hidden"
+        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white rounded-2xl p-8 text-center relative overflow-hidden"
       >
         <img 
           src={welliCharacterTablet} 

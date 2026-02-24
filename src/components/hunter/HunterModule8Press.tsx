@@ -159,7 +159,7 @@ const HunterModule8Press = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-6"
+        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white rounded-2xl p-6"
       >
         <h3 className="font-bold text-lg mb-4">Junta directiva e inversionistas</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

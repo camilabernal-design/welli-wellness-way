@@ -109,7 +109,7 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gradient-to-r from-indigo-950 to-indigo-900 text-white rounded-2xl p-8 text-center"
+        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white rounded-2xl p-8 text-center"
       >
         <h3 className="text-xl font-bold mb-2">Incremento real de facturación</h3>
         <p className="text-6xl font-bold text-welli-yellow my-4">+40%</p>

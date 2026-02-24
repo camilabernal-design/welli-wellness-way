@@ -34,7 +34,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="bg-gradient-to-br from-indigo-950 to-indigo-900 text-white border-0 overflow-hidden">
+        <Card className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white border-0 overflow-hidden">
           <CardContent className="p-8 md:p-10">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="space-y-3">
