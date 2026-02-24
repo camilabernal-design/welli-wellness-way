@@ -251,12 +251,10 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center text-center">
           <img src={welliLogoWhite} alt="Welli" className="h-12 object-contain" />
-          <div>
-            <h2 className="font-bold text-lg text-indigo-950">{routeConfig.title}</h2>
-            <p className="text-[10px] text-indigo-800 font-medium -mt-1">{routeConfig.subtitle}</p>
-          </div>
+          <h2 className="font-bold text-lg text-indigo-950 mt-1">{routeConfig.title}</h2>
+          <p className="text-[10px] text-indigo-800 font-medium -mt-1">{routeConfig.subtitle}</p>
         </div>
       </SidebarHeader>
 

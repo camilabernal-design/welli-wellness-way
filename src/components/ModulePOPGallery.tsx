@@ -15,6 +15,8 @@ import pop2 from "@/assets/pop/pop2.jpeg";
 import pop3 from "@/assets/pop/pop3.jpeg";
 import pop4 from "@/assets/pop/pop4.jpeg";
 import pop5 from "@/assets/pop/pop5.jpeg";
+import pop6 from "@/assets/pop/pop6.jpeg";
+import pop7 from "@/assets/pop/pop7.jpeg";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -36,6 +38,8 @@ const clinicExamples = [
   { src: pop3, alt: "POP Welli 3" },
   { src: pop4, alt: "POP Welli 4" },
   { src: pop5, alt: "POP Welli 5" },
+  { src: pop6, alt: "POP Welli 6" },
+  { src: pop7, alt: "POP Welli 7" },
 ];
 
 const ModulePOPGallery = ({ onComplete }: ModuleProps) => {
@@ -99,7 +103,7 @@ const ModulePOPGallery = ({ onComplete }: ModuleProps) => {
           className="mb-12"
         >
           <h3 className="font-bold text-xl mb-6">Así luce en clínicas reales</h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {clinicExamples.map((example, index) => (
               <motion.div
                 key={index}

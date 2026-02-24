@@ -176,7 +176,7 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         </h3>
         <p className="text-slate-300 italic">
           "Entiendo perfectamente. El banco es para el 10% que ya tiene buen historial. 
-          Welli es para el <span className="text-welli-yellow font-semibold">65% que el banco rechaza</span> 
+          Welli es para el <span className="text-welli-yellow font-semibold">65% que el banco rechaza</span>{' '}
           pero que sí puede pagar cuotas. No competimos con el banco. Lo complementamos."
         </p>
       </motion.div>
