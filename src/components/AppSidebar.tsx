@@ -72,10 +72,10 @@ const hunterModules = [
 // Farmer/CS modules - Phase 1 (11)
 const farmerPhase1Modules = [
   { id: 1, title: "El Secreto de la Agenda", icon: Armchair },
-  { id: 2, title: "Señales del Paciente", icon: Brain },
+  { id: 2, title: "Tu Aliado en la Agenda", icon: Sparkles },
   { id: 3, title: "Simulador de Cuotas", icon: Calculator },
   { id: 4, title: "¿Cómo Funciona?", icon: PlayCircle },
-  { id: 5, title: "Objeciones Comunes", icon: MessageSquare },
+  { id: 5, title: "Objeciones y Cierre", icon: MessageSquare },
   { id: 6, title: "Perfilamiento (Video)", icon: Target },
   { id: 7, title: "Welli Check", icon: Zap },
   { id: 8, title: "¿Afecta el Score?", icon: ShieldQuestion },

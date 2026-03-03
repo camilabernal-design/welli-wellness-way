@@ -29,10 +29,10 @@ import AliadoModule5Summary from "@/components/aliado/AliadoModule5Summary";
 
 // Farmer/CS Phase 1 Modules (11)
 import Phase1Welcome from "@/components/modules/Phase1Welcome";
-import ModulePatientSignals from "@/components/ModulePatientSignals";
+import AgendaAllyModule from "@/components/modules/AgendaAllyModule";
 import CalculatorProModule from "@/components/modules/CalculatorProModule";
 import VideoProcessModule from "@/components/modules/VideoProcessModule";
-import ModuleObjectionHandling from "@/components/ModuleObjectionHandling";
+import ObjectionsCloseModule from "@/components/modules/ObjectionsCloseModule";
 import PerfilamientoModule from "@/components/modules/PerfilamientoModule";
 import WelliCheckPhase1 from "@/components/modules/WelliCheckPhase1";
 import ScoreMythModule from "@/components/modules/ScoreMythModule";
@@ -133,10 +133,10 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     switch (currentModule) {
       // Phase 1
       case 1: return <Phase1Welcome onComplete={handleModuleComplete} />;
-      case 2: return <ModulePatientSignals onComplete={handleModuleComplete} />;
+      case 2: return <AgendaAllyModule onComplete={handleModuleComplete} />;
       case 3: return <CalculatorProModule onComplete={handleModuleComplete} />;
       case 4: return <VideoProcessModule onComplete={handleModuleComplete} />;
-      case 5: return <ModuleObjectionHandling onComplete={handleModuleComplete} />;
+      case 5: return <ObjectionsCloseModule onComplete={handleModuleComplete} />;
       case 6: return <PerfilamientoModule onComplete={handleModuleComplete} />;
       case 7: return <WelliCheckPhase1 onComplete={handleModuleComplete} />;
       case 8: return <ScoreMythModule onComplete={handleModuleComplete} />;

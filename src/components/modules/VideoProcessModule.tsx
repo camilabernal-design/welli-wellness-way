@@ -141,11 +141,47 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
           })}
         </motion.div>
 
-        {/* Plan B Callout */}
+        {/* Validation States */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
+          className="mb-10"
+        >
+          <h3 className="font-display font-bold text-lg text-center mb-6">Estados de validación de identidad</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {/* Success */}
+            <div className="p-5 rounded-2xl bg-success/10 border-2 border-success/30 text-center">
+              <div className="w-12 h-12 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">✅</span>
+              </div>
+              <h4 className="font-bold text-success mb-1">Éxito</h4>
+              <p className="text-sm text-muted-foreground">¡Identidad validada con éxito! El paciente puede proceder.</p>
+            </div>
+            {/* Pending */}
+            <div className="p-5 rounded-2xl bg-welli-yellow/10 border-2 border-welli-yellow/30 text-center">
+              <div className="w-12 h-12 rounded-full bg-welli-yellow/20 flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">⏳</span>
+              </div>
+              <h4 className="font-bold text-welli-yellow mb-1">Pendiente</h4>
+              <p className="text-sm text-muted-foreground">Necesitamos un dato adicional (Llamada de validación en curso).</p>
+            </div>
+            {/* Rejected */}
+            <div className="p-5 rounded-2xl bg-danger/10 border-2 border-danger/30 text-center">
+              <div className="w-12 h-12 rounded-full bg-danger/20 flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">❌</span>
+              </div>
+              <h4 className="font-bold text-danger mb-1">Rechazo</h4>
+              <p className="text-sm text-muted-foreground">No pudimos validar la identidad. Opción: reintentar o usar Plan B (Familiar).</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Plan B Callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
           className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-primary/10 border-2 border-welli-yellow/40 mb-10"
         >
           <div className="flex items-start gap-4">
@@ -153,7 +189,7 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
               <span className="text-lg font-bold text-welli-yellow">B</span>
             </div>
             <div>
-              <h3 className="font-bold text-lg text-foreground mb-1">Plan B: El As Bajo la Manga</h3>
+              <h3 className="font-bold text-lg text-foreground mb-1">Plan B: El as bajo la manga</h3>
               <p className="text-muted-foreground mb-2">
                 Si el paciente es rechazado, no es el fin:
               </p>
