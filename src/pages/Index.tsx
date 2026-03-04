@@ -47,7 +47,6 @@ import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
 import TestimonialsModule from "@/components/modules/TestimonialsModule";
 import ModuleReferrals from "@/components/ModuleReferrals";
 import ModulePOPGallery from "@/components/ModulePOPGallery";
-import OperationalVideosModule from "@/components/modules/OperationalVideosModule";
 import DesistimientoModule from "@/components/modules/DesistimientoModule";
 import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import FinalQuizModule from "@/components/modules/FinalQuizModule";
@@ -55,7 +54,7 @@ import FinalChecklist from "@/components/modules/FinalChecklist";
 
 const ROUTE_MODULES = {
   hunter: 9,
-  farmer: 22,
+  farmer: 21,
   aliado: 5,
 };
 
@@ -150,11 +149,10 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 15: return <TestimonialsModule onComplete={handleModuleComplete} />;
       case 16: return <ModuleReferrals onComplete={handleModuleComplete} />;
       case 17: return <ModulePOPGallery onComplete={handleModuleComplete} />;
-      case 18: return <OperationalVideosModule onComplete={handleModuleComplete} />;
-      case 19: return <DesistimientoModule onComplete={handleModuleComplete} />;
-      case 20: return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
-      case 21: return <FinalQuizModule onComplete={handleModuleComplete} />;
-      case 22: return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
+      case 18: return <DesistimientoModule onComplete={handleModuleComplete} />;
+      case 19: return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+      case 20: return <FinalQuizModule onComplete={handleModuleComplete} />;
+      case 21: return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       default: return <Phase1Welcome onComplete={handleModuleComplete} />;
     }
   };

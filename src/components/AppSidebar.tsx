@@ -30,7 +30,8 @@ import {
   HelpCircle,
   Stethoscope,
   Heart,
-  Download
+  Download,
+  DollarSign
 } from "lucide-react";
 import {
   Sidebar,
@@ -87,16 +88,15 @@ const farmerPhase1Modules = [
 // Farmer/CS modules - Phase 2 (11)
 const farmerPhase2Modules = [
   { id: 12, title: "Bienvenida Maestría", icon: Sparkles },
-  { id: 13, title: "⚠️ Error del Desembolso", icon: TrendingUp },
+  { id: 13, title: "Desembolso Completo", icon: DollarSign },
   { id: 14, title: "Aliados en Redes", icon: Instagram },
   { id: 15, title: "Testimonios", icon: Video },
   { id: 16, title: "Referidos", icon: Gift },
   { id: 17, title: "Material POP", icon: Image },
-  { id: 18, title: "Desembolso (72h)", icon: Video },
-  { id: 19, title: "Desistimientos", icon: FileText },
-  { id: 20, title: "Registro Clínica", icon: Building2 },
-  { id: 21, title: "Quiz Final", icon: CheckSquare },
-  { id: 22, title: "Checklist del Éxito", icon: CheckSquare },
+  { id: 18, title: "Desistimientos", icon: FileText },
+  { id: 19, title: "Registro Clínica", icon: Building2 },
+  { id: 20, title: "Quiz Final", icon: CheckSquare },
+  { id: 21, title: "Checklist del Éxito", icon: CheckSquare },
 ];
 
 // Aliado modules (5)
