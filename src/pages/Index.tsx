@@ -9,7 +9,7 @@ import { TrainingRoute } from "@/types/training";
 // Hub
 import TrainingHub from "@/pages/TrainingHub";
 
-// Hunter Modules (9)
+// Hunter Modules (10)
 import HunterModule1WhatIsWelli from "@/components/hunter/HunterModule1WhatIsWelli";
 import HunterModule2ValueProposition from "@/components/hunter/HunterModule2ValueProposition";
 import HunterModule3AllianceVideos from "@/components/hunter/HunterModule3AllianceVideos";
@@ -19,6 +19,7 @@ import HunterModule6Ecosystem from "@/components/hunter/HunterModule6Ecosystem";
 import HunterModule7Validation from "@/components/hunter/HunterModule7Validation";
 import HunterModule8Press from "@/components/hunter/HunterModule8Press";
 import HunterModule9Quiz from "@/components/hunter/HunterModule9Quiz";
+import HunterModule10NextSteps from "@/components/hunter/HunterModule10NextSteps";
 
 // Aliado Modules (5)
 import AliadoModule1WelliCheck from "@/components/aliado/AliadoModule1WelliCheck";
@@ -53,7 +54,7 @@ import FinalQuizModule from "@/components/modules/FinalQuizModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
 const ROUTE_MODULES = {
-  hunter: 9,
+  hunter: 10,
   farmer: 21,
   aliado: 5,
 };
@@ -103,14 +104,15 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const renderHunterModule = () => {
     switch (currentModule) {
       case 1: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
-      case 2: return <HunterModule2ValueProposition onComplete={handleModuleComplete} />;
-      case 3: return <HunterModule3AllianceVideos onComplete={handleModuleComplete} />;
-      case 4: return <HunterModule4Comparison onComplete={handleModuleComplete} />;
-      case 5: return <HunterModule5TreasureMap onComplete={handleModuleComplete} />;
-      case 6: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
-      case 7: return <HunterModule7Validation onComplete={handleModuleComplete} />;
-      case 8: return <HunterModule8Press onComplete={handleModuleComplete} />;
-      case 9: return <HunterModule9Quiz onComplete={handleGoToHub} />;
+      case 2: return <HunterModule3AllianceVideos onComplete={handleModuleComplete} />;
+      case 3: return <HunterModule4Comparison onComplete={handleModuleComplete} />;
+      case 4: return <HunterModule5TreasureMap onComplete={handleModuleComplete} />;
+      case 5: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
+      case 6: return <HunterModule7Validation onComplete={handleModuleComplete} />;
+      case 7: return <HunterModule8Press onComplete={handleModuleComplete} />;
+      case 8: return <HunterModule2ValueProposition onComplete={handleModuleComplete} />;
+      case 9: return <HunterModule9Quiz onComplete={handleModuleComplete} />;
+      case 10: return <HunterModule10NextSteps onComplete={handleGoToHub} />;
       default: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
     }
   };
@@ -127,7 +129,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  // Render Farmer/CS route (existing 22 modules)
+  // Render Farmer/CS route
   const renderFarmerModule = () => {
     switch (currentModule) {
       // Phase 1
@@ -169,13 +171,13 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const getRouteInfo = () => {
     switch (currentRoute) {
       case 'hunter':
-        return { title: 'Hunter', subtitle: 'Conquista Clínicas', color: 'welli-orange', total: 9 };
+        return { title: 'Hunter', subtitle: 'Conquista Clínicas', color: 'welli-orange', total: 10 };
       case 'farmer':
         return { 
           title: currentModule <= 11 ? 'Fase 1: Fundamentos' : 'Fase 2: Cierre', 
           subtitle: 'Farmer / CS', 
           color: currentModule <= 11 ? 'welli-yellow' : 'secondary',
-          total: 22 
+          total: 21 
         };
       case 'aliado':
         return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow', total: 5 };

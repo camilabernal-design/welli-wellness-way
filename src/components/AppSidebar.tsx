@@ -57,17 +57,18 @@ interface AppSidebarProps {
   onGoToHub: () => void;
 }
 
-// Hunter modules (9)
+// Hunter modules (10)
 const hunterModules = [
   { id: 1, title: "¿Qué es Welli?", icon: Lightbulb },
-  { id: 2, title: "Propuesta de Valor", icon: Target },
-  { id: 3, title: "Videos por Alianza", icon: PlayCircle },
-  { id: 4, title: "Welli vs Competencia", icon: BarChart3 },
-  { id: 5, title: "Welli Points", icon: Map },
-  { id: 6, title: "Ecosistema Digital", icon: Monitor },
-  { id: 7, title: "Validación y Cifras", icon: TrendingUp },
-  { id: 8, title: "Welli en el Mundo", icon: Newspaper },
+  { id: 2, title: "Videos por Alianza", icon: PlayCircle },
+  { id: 3, title: "Welli vs Competencia", icon: BarChart3 },
+  { id: 4, title: "Welli Points", icon: Map },
+  { id: 5, title: "Ecosistema Digital", icon: Monitor },
+  { id: 6, title: "Validación y Cifras", icon: TrendingUp },
+  { id: 7, title: "Welli en el Mundo", icon: Newspaper },
+  { id: 8, title: "Propuesta de Valor", icon: Target },
   { id: 9, title: "Quiz Final", icon: CheckSquare },
+  { id: 10, title: "Próximos Pasos", icon: ChevronRight },
 ];
 
 // Farmer/CS modules - Phase 1 (11)
