@@ -27,39 +27,20 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         </p>
       </motion.div>
 
-      {/* Main Value Proposition */}
+      {/* Mission */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
+        className="text-center space-y-4"
       >
-        <Card className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white border-0 overflow-hidden">
-          <CardContent className="p-8 md:p-10">
-            <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div className="space-y-3">
-                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
-                  <TrendingUp className="w-8 h-8 text-welli-yellow" />
-                </div>
-                <p className="text-3xl font-bold text-welli-yellow">+40%</p>
-                <p className="text-white/80">Aumento en facturación</p>
-              </div>
-              <div className="space-y-3">
-                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
-                  <Shield className="w-8 h-8 text-welli-yellow" />
-                </div>
-                <p className="text-3xl font-bold text-welli-yellow">0%</p>
-                <p className="text-white/80">Riesgo para ti</p>
-              </div>
-              <div className="space-y-3">
-                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
-                  <Zap className="w-8 h-8 text-welli-yellow" />
-                </div>
-                <p className="text-3xl font-bold text-welli-yellow">72h</p>
-                <p className="text-white/80">Desembolso máximo</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="inline-flex items-center gap-2 text-indigo-950">
+          <Heart className="w-6 h-6 text-welli-orange" />
+          <span className="font-bold text-lg">Nuestra Misión</span>
+        </div>
+        <p className="text-xl text-indigo-800 max-w-3xl mx-auto">
+          Que todos los latinoamericanos tengan acceso a servicios de salud y bienestar de calidad
+        </p>
       </motion.div>
 
       {/* The Problem */}
@@ -104,20 +85,39 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         </Card>
       </motion.div>
 
-      {/* Mission */}
+      {/* Main Value Proposition */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
-        className="text-center space-y-4"
       >
-        <div className="inline-flex items-center gap-2 text-indigo-950">
-          <Heart className="w-6 h-6 text-welli-orange" />
-          <span className="font-bold text-lg">Nuestra Misión</span>
-        </div>
-        <p className="text-xl text-indigo-800 max-w-3xl mx-auto">
-          Que todos los latinoamericanos tengan acceso a servicios de salud y bienestar de calidad
-        </p>
+        <Card className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white border-0 overflow-hidden">
+          <CardContent className="p-8 md:p-10">
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <TrendingUp className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">+40%</p>
+                <p className="text-white/80">Aumento en facturación</p>
+              </div>
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">0%</p>
+                <p className="text-white/80">Riesgo para ti</p>
+              </div>
+              <div className="space-y-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-welli-yellow" />
+                </div>
+                <p className="text-3xl font-bold text-welli-yellow">72h</p>
+                <p className="text-white/80">Desembolso máximo</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* CTA */}
