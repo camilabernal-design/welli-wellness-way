@@ -1,68 +1,21 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, Check, CheckCircle2 } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
 }
 
 const comparisonData = [
-  {
-    feature: 'Tasa de Interés',
-    welli: '20-25% E.A.',
-    banks: '25% E.A.',
-    fintech: '40-45%+ E.A.',
-    welliWins: true,
-  },
-  {
-    feature: 'Tasa de Aprobación',
-    welli: '~20-30%',
-    banks: '~10%',
-    fintech: '~10%',
-    welliWins: true,
-  },
-  {
-    feature: 'Desembolso',
-    welli: 'Al aliado en 72h',
-    banks: 'Al paciente',
-    fintech: 'Aliado 30+ días',
-    welliWins: true,
-  },
-  {
-    feature: 'Montos',
-    welli: '$300k – $25M',
-    banks: '$500k – $20M',
-    fintech: '$200k – $10M',
-    welliWins: true,
-  },
-  {
-    feature: 'Cuotas',
-    welli: '3-36 meses',
-    banks: '6-48 meses',
-    fintech: '3-24 meses',
-    welliWins: false,
-  },
-  {
-    feature: 'Tiempo Aprobación',
-    welli: '3 minutos',
-    banks: '5+ días',
-    fintech: 'Varía',
-    welliWins: true,
-  },
-  {
-    feature: 'Papeleo',
-    welli: 'No',
-    banks: 'Sí',
-    fintech: 'No',
-    welliWins: true,
-  },
-  {
-    feature: 'Riesgo para Clínica',
-    welli: '0%',
-    banks: 'Variable',
-    fintech: 'Variable',
-    welliWins: true,
-  },
+  { feature: 'Tasa de Interés', welli: '20-25% E.A.', banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
+  { feature: 'Tasa de Aprobación', welli: '~20-30%', banks: '~10%', fintech: '~10%', welliWins: true },
+  { feature: 'Desembolso', welli: 'Al aliado en 72h', banks: 'Al paciente', fintech: 'Aliado 30+ días', welliWins: true },
+  { feature: 'Montos', welli: '$300k – $25M', banks: '$500k – $20M', fintech: '$200k – $10M', welliWins: true },
+  { feature: 'Cuotas', welli: '3-36 meses', banks: '6-48 meses', fintech: '3-24 meses', welliWins: false },
+  { feature: 'Tiempo Aprobación', welli: '3 minutos', banks: '5+ días', fintech: 'Varía', welliWins: true },
+  { feature: 'Papeleo', welli: 'No', banks: 'Sí', fintech: 'No', welliWins: true },
+  { feature: 'Riesgo para Clínica', welli: '0%', banks: 'Variable', fintech: 'Variable', welliWins: true },
 ];
 
 const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
@@ -85,11 +38,59 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         </p>
       </motion.div>
 
+      {/* Sin Welli vs Con Welli */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="grid md:grid-cols-2 gap-6"
+      >
+        <Card className="border-2 border-red-200 bg-red-50">
+          <CardContent className="p-6">
+            <h3 className="font-bold text-lg text-indigo-950 mb-4">😔 Sin Welli</h3>
+            <ul className="space-y-3 text-indigo-800">
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Paciente dice "lo pienso" y nunca vuelve</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Pierde 25-35% de procedimientos por precio</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Competencia ofrece financiación y gana</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 border-green-300 bg-green-50">
+          <CardContent className="p-6">
+            <h3 className="font-bold text-lg text-indigo-950 mb-4">🎉 Con Welli</h3>
+            <ul className="space-y-3 text-indigo-800">
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Cierre hoy mismo con cuotas accesibles</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Recibe el 95% del valor en 72 horas</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Cero riesgo: nosotros asumimos todo</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </motion.div>
+
       {/* Comparison Table */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.3 }}
         className="overflow-x-auto"
       >
         <table className="w-full border-collapse">
@@ -193,7 +194,7 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
           size="lg"
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 font-bold gap-2 text-lg px-8 py-6"
         >
-          Ver Beneficios del Primer Mes
+          Continuar
           <ArrowRight className="w-5 h-5" />
         </Button>
       </motion.div>
