@@ -62,6 +62,7 @@ const ROUTE_MODULES = {
 const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const [currentRoute, setCurrentRoute] = useState<TrainingRoute>('hub');
   const [currentModule, setCurrentModule] = useState(1);
+  const [hunterSelectedVideo, setHunterSelectedVideo] = useState('general');
 
   const handleSelectRoute = (route: TrainingRoute) => {
     setCurrentRoute(route);
