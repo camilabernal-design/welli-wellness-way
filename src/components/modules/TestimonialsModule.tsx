@@ -25,6 +25,12 @@ const testimonials = [
     title: "Caso de Éxito",
     description: "Testimonio real de un aliado Welli",
   },
+  {
+    id: 4,
+    videoId: "TKeeNP3E2uo",
+    title: "Testimonio Destacado",
+    description: "Experiencia de un profesional con Welli",
+  },
 ];
 
 const TestimonialsModule = ({ onComplete }: ModuleProps) => {

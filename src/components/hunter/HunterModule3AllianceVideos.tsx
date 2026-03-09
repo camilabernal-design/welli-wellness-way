@@ -60,7 +60,7 @@ const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo,
         transition={{ delay: 0.2 }}
         className="flex justify-center"
       >
-        <Select value={selectedVideo} onValueChange={setSelectedVideo}>
+        <Select value={selectedVideo} onValueChange={handleVideoChange}>
           <SelectTrigger className="w-72 bg-white border-2 border-slate-200 text-indigo-950 font-medium">
             <SelectValue placeholder="Selecciona el proceso" />
           </SelectTrigger>
