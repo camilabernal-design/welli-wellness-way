@@ -14,6 +14,8 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
+  selectedVideo?: string;
+  onVideoChange?: (value: string) => void;
 }
 
 const videoOptions = [
@@ -23,8 +25,12 @@ const videoOptions = [
   { value: 'okvet', label: 'Aliados OK Vet', id: '41bS6Wtk6GU', isShort: false, description: 'Proceso integrado con OK Vet' },
 ];
 
-const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
-  const [selectedVideo, setSelectedVideo] = useState('general');
+const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo, onVideoChange }: ModuleProps) => {
+  const [internalVideo, setInternalVideo] = useState('general');
+  const selectedVideo = externalVideo ?? internalVideo;
+  const handleVideoChange = (value: string) => {
+    onVideoChange ? onVideoChange(value) : setInternalVideo(value);
+  };
 
   const currentVideo = videoOptions.find(v => v.value === selectedVideo) || videoOptions[0];
 
@@ -54,7 +60,7 @@ const HunterModule3AllianceVideos = ({ onComplete }: ModuleProps) => {
         transition={{ delay: 0.2 }}
         className="flex justify-center"
       >
-        <Select value={selectedVideo} onValueChange={setSelectedVideo}>
+        <Select value={selectedVideo} onValueChange={handleVideoChange}>
           <SelectTrigger className="w-72 bg-white border-2 border-slate-200 text-indigo-950 font-medium">
             <SelectValue placeholder="Selecciona el proceso" />
           </SelectTrigger>
