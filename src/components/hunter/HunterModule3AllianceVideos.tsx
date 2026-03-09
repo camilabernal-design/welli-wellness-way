@@ -14,6 +14,8 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
+  selectedVideo?: string;
+  onVideoChange?: (value: string) => void;
 }
 
 const videoOptions = [
