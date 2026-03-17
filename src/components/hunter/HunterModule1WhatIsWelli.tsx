@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Heart, TrendingUp, Shield, Zap, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, TrendingUp, Shield, Zap, CheckCircle2 } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -87,27 +87,6 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
                 <span>Cero riesgo: nosotros asumimos todo</span>
               </li>
             </ul>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* The Problem */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        <Card className="border-2 border-red-200 bg-red-50 overflow-hidden">
-          <CardContent className="p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
-                <AlertTriangle className="w-6 h-6 text-red-500" />
-              </div>
-              <h2 className="text-2xl font-bold text-indigo-950">El Problema</h2>
-            </div>
-            <p className="text-lg text-indigo-800">
-              Los médicos pierden hasta <strong className="text-red-600">1 de cada 3 pacientes</strong> por motivos financieros y sufren por <strong className="text-red-600">pagos demorados</strong> de otras plataformas.
-            </p>
           </CardContent>
         </Card>
       </motion.div>
