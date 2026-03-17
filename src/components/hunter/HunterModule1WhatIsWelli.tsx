@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Heart, TrendingUp, Shield, Zap, AlertTriangle, Stethoscope } from "lucide-react";
+import { ArrowRight, Heart, TrendingUp, Shield, Zap, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -23,7 +23,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
           ¿Qué es Welli?
         </h1>
         <p className="text-xl text-indigo-800 max-w-3xl mx-auto">
-          Una <strong className="text-welli-orange">Fintech 100% colombiana</strong> especializada en crédito para salud.
+          Una <strong className="text-welli-orange">Fintech 100% colombiana</strong> especializada en crédito y exclusiva para el sector de la salud.
         </p>
       </motion.div>
 
@@ -41,6 +41,54 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         <p className="text-xl text-indigo-800 max-w-3xl mx-auto">
           Que todos los latinoamericanos tengan acceso a servicios de salud y bienestar de calidad
         </p>
+      </motion.div>
+
+      {/* Sin Welli vs Con Welli */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="grid md:grid-cols-2 gap-6"
+      >
+        <Card className="border-2 border-red-200 bg-red-50">
+          <CardContent className="p-6">
+            <h3 className="font-bold text-lg text-indigo-950 mb-4">😔 Sin Welli</h3>
+            <ul className="space-y-3 text-indigo-800">
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Paciente dice "lo pienso" y nunca vuelve</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Pierde 25-35% de procedimientos por precio</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-500 font-bold">✗</span>
+                <span>Competencia ofrece financiación y gana</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 border-green-300 bg-green-50">
+          <CardContent className="p-6">
+            <h3 className="font-bold text-lg text-indigo-950 mb-4">🎉 Con Welli</h3>
+            <ul className="space-y-3 text-indigo-800">
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Cierre hoy mismo con cuotas accesibles</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Recibe el 95% del valor en 72 horas</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <span>Cero riesgo: nosotros asumimos todo</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* The Problem */}
@@ -64,32 +112,11 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
         </Card>
       </motion.div>
 
-      {/* Our Solution */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-      >
-        <Card className="border-2 border-green-300 bg-green-50 overflow-hidden">
-          <CardContent className="p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                <Stethoscope className="w-6 h-6 text-green-600" />
-              </div>
-              <h2 className="text-2xl font-bold text-indigo-950">Nuestra Solución</h2>
-            </div>
-            <p className="text-lg text-indigo-800">
-              Ofrecemos una plataforma <strong className="text-green-700">exclusiva para el sector salud</strong> que asegura que el paciente se atienda y el profesional reciba su pago hasta en <strong className="text-green-700">72 horas hábiles</strong>.
-            </p>
-          </CardContent>
-        </Card>
-      </motion.div>
-
       {/* Main Value Proposition */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.4 }}
       >
         <Card className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white border-0 overflow-hidden">
           <CardContent className="p-8 md:p-10">
@@ -124,7 +151,7 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.5 }}
         className="text-center pt-6"
       >
         <Button
