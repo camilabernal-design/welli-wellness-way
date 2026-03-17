@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Check, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -38,59 +38,11 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         </p>
       </motion.div>
 
-      {/* Sin Welli vs Con Welli */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="grid md:grid-cols-2 gap-6"
-      >
-        <Card className="border-2 border-red-200 bg-red-50">
-          <CardContent className="p-6">
-            <h3 className="font-bold text-lg text-indigo-950 mb-4">😔 Sin Welli</h3>
-            <ul className="space-y-3 text-indigo-800">
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 font-bold">✗</span>
-                <span>Paciente dice "lo pienso" y nunca vuelve</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 font-bold">✗</span>
-                <span>Pierde 25-35% de procedimientos por precio</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-500 font-bold">✗</span>
-                <span>Competencia ofrece financiación y gana</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
-
-        <Card className="border-2 border-green-300 bg-green-50">
-          <CardContent className="p-6">
-            <h3 className="font-bold text-lg text-indigo-950 mb-4">🎉 Con Welli</h3>
-            <ul className="space-y-3 text-indigo-800">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span>Cierre hoy mismo con cuotas accesibles</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span>Recibe el 95% del valor en 72 horas</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span>Cero riesgo: nosotros asumimos todo</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
-      </motion.div>
-
       {/* Comparison Table */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.2 }}
         className="overflow-x-auto"
       >
         <table className="w-full border-collapse">
@@ -145,7 +97,7 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.4 }}
         className="grid md:grid-cols-3 gap-4"
       >
         <div className="bg-welli-yellow/20 border-2 border-welli-yellow rounded-xl p-6 text-center">
@@ -165,20 +117,18 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
         </div>
       </motion.div>
 
-      {/* Script */}
+      {/* Desembolso Highlight */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="bg-gradient-to-r from-[#3B8BF6] via-[#7B5CF6] to-[#B55A9C] text-white rounded-xl p-6"
+        transition={{ delay: 0.5 }}
+        className="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-300 rounded-xl p-6 text-center"
       >
-        <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-          💬 Si Le Dicen: "Ya Tenemos Banco"
-        </h3>
-        <p className="text-slate-300 italic">
-          "Entiendo perfectamente. El banco es para el 10% que ya tiene buen historial. 
-          Welli es para el <span className="text-welli-yellow font-semibold">65% que el banco rechaza</span>{' '}
-          pero que sí puede pagar cuotas. No competimos con el banco. Lo complementamos."
+        <p className="text-2xl font-bold text-indigo-950">
+          🎯 Desembolsamos <span className="text-welli-yellow">Martes y Jueves</span>
+        </p>
+        <p className="text-indigo-800 mt-2">
+          Si el paciente aplica hoy, el jueves tú ya tienes tu dinero.
         </p>
       </motion.div>
 
@@ -186,7 +136,7 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.6 }}
         className="text-center pt-6"
       >
         <Button

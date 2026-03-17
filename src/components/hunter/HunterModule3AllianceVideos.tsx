@@ -125,21 +125,6 @@ const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo,
         </div>
       </motion.div>
 
-      {/* Key Highlight */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-300 rounded-xl p-6 text-center"
-      >
-        <p className="text-2xl font-bold text-indigo-950">
-          🎯 Desembolsamos <span className="text-welli-yellow">Martes y Jueves</span>
-        </p>
-        <p className="text-indigo-800 mt-2">
-          Si el paciente aplica hoy, el jueves tú ya tienes tu dinero.
-        </p>
-      </motion.div>
-
       {/* CTA */}
       <motion.div
         initial={{ opacity: 0 }}
