@@ -109,12 +109,11 @@ const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo,
         className="bg-slate-50 rounded-xl p-6 border border-slate-200"
       >
         <h3 className="font-bold text-lg mb-4 text-indigo-950">El proceso es así de simple:</h3>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           {[
             { step: 1, text: 'El paciente aplica desde su celular en 3 minutos' },
             { step: 2, text: 'Welli aprueba automáticamente con respuesta inmediata' },
             { step: 3, text: 'Tú realizas el procedimiento con tranquilidad' },
-            { step: 4, text: 'Recibes el 95% en tu cuenta en máximo 72 horas' },
           ].map((item) => (
             <div key={item.step} className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-welli-yellow text-indigo-950 flex items-center justify-center font-bold flex-shrink-0">
