@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Heart, TrendingUp, Shield, Zap, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, TrendingUp, Shield, Zap, CheckCircle2 } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
