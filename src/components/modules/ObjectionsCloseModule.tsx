@@ -18,11 +18,11 @@ const cards = [
     category: "Señal del Paciente",
   },
   {
-    signal: '"Pensé que mi prepagada cubría más"',
-    meaning: "Presupuesto limitado para el copago o excedente",
-    response: '"Podemos financiar solo ese excedente con una Cuota Fija de Bienestar muy accesible"',
+    signal: '"Yo tengo tarjeta de crédito"',
+    meaning: "El paciente cree que su TC es mejor opción",
+    response: '"Con la tarjeta de crédito tienes cuota de manejo, interés variable, seguros adicionales y a veces una tasa más alta. Con Welli la tasa es fija y transparente desde el inicio, sin costos ocultos. Además, no tocas tu cupo disponible. Siempre es bueno tener otra opción."',
     icon: "💳",
-    category: "Señal del Paciente",
+    category: "Objeción Común",
   },
   {
     signal: '"¿Puedo pagarles mensualmente mientras vengo a citas?"',
@@ -65,6 +65,13 @@ const cards = [
     response: '"Doctor, su trabajo es único. Cuando un paciente objeta precio, en realidad pide ayuda para poder pagarlo. No baje su precio, aumente la viabilidad con Welli."',
     icon: "⚡",
     category: "Objeción Maestra",
+  },
+  {
+    signal: '"Pensé que mi prepagada cubría más"',
+    meaning: "Presupuesto limitado para el copago o excedente",
+    response: '"Podemos financiar solo ese excedente con una Cuota Fija de Bienestar muy accesible"',
+    icon: "🏥",
+    category: "Señal del Paciente",
   },
 ];
 

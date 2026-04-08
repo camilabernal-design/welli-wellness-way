@@ -137,11 +137,11 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 1: return <Phase1Welcome onComplete={handleModuleComplete} />;
       case 2: return <AgendaAllyModule onComplete={handleModuleComplete} />;
       case 3: return <CalculatorProModule onComplete={handleModuleComplete} />;
-      case 4: return <VideoProcessModule onComplete={handleModuleComplete} />;
-      case 5: return <ObjectionsCloseModule onComplete={handleModuleComplete} />;
-      case 6: return <PerfilamientoModule onComplete={handleModuleComplete} />;
-      case 7: return <WelliCheckPhase1 onComplete={handleModuleComplete} />;
-      case 8: return <ScoreMythModule onComplete={handleModuleComplete} />;
+      case 4: return <ObjectionsCloseModule onComplete={handleModuleComplete} />;
+      case 5: return <ScoreMythModule onComplete={handleModuleComplete} />;
+      case 6: return <VideoProcessModule onComplete={handleModuleComplete} />;
+      case 7: return <PerfilamientoModule onComplete={handleModuleComplete} />;
+      case 8: return <WelliCheckPhase1 onComplete={handleModuleComplete} />;
       case 9: return <PracticeSpaceModule onComplete={handleModuleComplete} />;
       case 10: return <Module4RolePlay onComplete={handleModuleComplete} />;
       case 11: return <Phase1Complete onComplete={handleModuleComplete} />;
