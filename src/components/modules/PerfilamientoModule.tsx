@@ -93,7 +93,7 @@ const PerfilamientoModule = ({ onComplete }: ModuleProps) => {
               </div>
               <div className="text-xs font-bold text-muted-foreground mb-1">PASO 3</div>
               <h4 className="font-bold text-foreground mb-2">Resultado en segundos</h4>
-              <p className="text-sm text-muted-foreground">En menos de 3 minutos sabrás si el paciente tiene un preaprobado disponible.</p>
+              <p className="text-sm text-muted-foreground">En minutos sabrás si el paciente tiene un preaprobado disponible.</p>
             </motion.div>
           </div>
         </motion.div>
