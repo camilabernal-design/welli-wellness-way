@@ -79,7 +79,7 @@ const farmerPhase1Modules = [
   { id: 4, title: "Objeciones y Cierre", icon: MessageSquare },
   { id: 5, title: "¿Afecta el Score?", icon: ShieldQuestion },
   { id: 6, title: "¿Cómo Funciona?", icon: PlayCircle },
-  { id: 7, title: "Perfilamiento (Video)", icon: Target },
+  { id: 7, title: "Perfilamiento", icon: Target },
   { id: 8, title: "Welli Check", icon: Zap },
   { id: 9, title: "Zona de Prueba", icon: LayoutDashboard },
   { id: 10, title: "Role-Play (5 Escenarios)", icon: MessageSquare },
