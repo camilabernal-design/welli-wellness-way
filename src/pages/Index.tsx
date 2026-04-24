@@ -148,11 +148,11 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       // Phase 2
       case 12: return <Phase2Summary onComplete={handleModuleComplete} />;
       case 13: return <DisbursementWarningModule onComplete={handleModuleComplete} />;
-      case 14: return <SocialAlliesModule onComplete={handleModuleComplete} />;
-      case 15: return <TestimonialsModule onComplete={handleModuleComplete} />;
-      case 16: return <ModuleReferrals onComplete={handleModuleComplete} />;
-      case 17: return <ModulePOPGallery onComplete={handleModuleComplete} />;
-      case 18: return <DesistimientoModule onComplete={handleModuleComplete} />;
+      case 14: return <DesistimientoModule onComplete={handleModuleComplete} />;
+      case 15: return <SocialAlliesModule onComplete={handleModuleComplete} />;
+      case 16: return <TestimonialsModule onComplete={handleModuleComplete} />;
+      case 17: return <ModuleReferrals onComplete={handleModuleComplete} />;
+      case 18: return <ModulePOPGallery onComplete={handleModuleComplete} />;
       case 19: return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
       case 20: return <FinalQuizModule onComplete={handleModuleComplete} />;
       case 21: return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
