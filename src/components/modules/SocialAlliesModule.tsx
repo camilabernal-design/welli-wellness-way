@@ -121,6 +121,7 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
                 title={video.title}
                 isShort={true}
                 borderColor="secondary"
+                className="max-w-full"
               />
             </motion.div>
           ))}
