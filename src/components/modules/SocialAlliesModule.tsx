@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
-import { Instagram, ArrowRight, ExternalLink, Sparkles, Play } from "lucide-react";
+import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import pieza1 from "@/assets/welli-pieza-1.png";
+import pieza2 from "@/assets/welli-pieza-2.png";
+import pieza3 from "@/assets/welli-pieza-3.png";
+import pieza4 from "@/assets/welli-pieza-4.png";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -25,6 +29,29 @@ const youtubeShorts = [
     title: "Clínica Ejemplo #3",
     description: "Contenido que conecta con los pacientes",
   },
+  {
+    id: 4,
+    videoId: "bRjdjbZkzzk",
+    title: "Clínica Ejemplo #4",
+    description: "Otro gran ejemplo de comunicación con Welli",
+  },
+];
+
+const checklistItems = [
+  "Graba en vertical (9:16) para Reels, TikTok y Shorts.",
+  "Buena iluminación: aprovecha la luz natural o usa un aro de luz.",
+  "Audio claro: graba en un lugar silencioso o usa micrófono.",
+  "Mensaje corto y directo: menos de 30 segundos funciona mejor.",
+  "Habla del beneficio para el paciente, no solo del producto.",
+  "Menciona Welli como una opción de financiación disponible en tu clínica.",
+  "Cierra con un llamado a la acción claro: ¡Pregunta por Welli!",
+];
+
+const piezas = [
+  { src: pieza1, alt: "Pieza Welli - No esperes más por tu tratamiento" },
+  { src: pieza2, alt: "Pieza Welli - Tratamientos personalizados" },
+  { src: pieza3, alt: "Pieza Welli - Financiamos tu tratamiento" },
+  { src: pieza4, alt: "Pieza Welli - Tu salud no debería esperar" },
 ];
 
 const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
@@ -70,24 +97,24 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
           </div>
         </motion.div>
 
-        {/* YouTube Shorts Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        {/* YouTube Shorts Row - 4 in a single row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           {youtubeShorts.map((video, index) => (
             <motion.div
               key={video.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="card-elevated p-4"
+              className="card-elevated p-3"
             >
-              <div className="mb-3">
+              <div className="mb-2">
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                    <Play className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                    <Play className="w-3 h-3 text-white" />
                   </div>
-                  <h3 className="font-bold text-sm text-foreground">{video.title}</h3>
+                  <h3 className="font-bold text-xs text-foreground truncate">{video.title}</h3>
                 </div>
-                <p className="text-xs text-muted-foreground">{video.description}</p>
+                <p className="text-[11px] text-muted-foreground line-clamp-2">{video.description}</p>
               </div>
               <YouTubeEmbed
                 videoId={video.videoId}
@@ -99,29 +126,99 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
           ))}
         </div>
 
-        {/* CTA to design pieces */}
+        {/* Checklist - Cómo hacer un buen video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="p-6 rounded-2xl bg-gradient-to-r from-secondary/10 to-welli-yellow/10 border border-secondary/20 mb-10"
+          transition={{ delay: 0.5 }}
+          className="mb-10 p-6 rounded-2xl bg-card border-2 border-secondary/20"
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
+              <Megaphone className="w-6 h-6 text-secondary" />
+            </div>
+            <div>
+              <h3 className="font-bold text-xl text-foreground">Checklist: Cómo hacer un buen video</h3>
+              <p className="text-sm text-muted-foreground">Tips clave para que tu contenido conecte y convierta.</p>
+            </div>
+          </div>
+          <ul className="space-y-3">
+            {checklistItems.map((item, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 + index * 0.05 }}
+                className="flex items-start gap-3"
+              >
+                <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+                <span className="text-foreground text-sm">{item}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+
+        {/* Cuéntale a tus pacientes la alianza con Welli! */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mb-10"
+        >
+          <div className="p-6 rounded-2xl bg-gradient-to-r from-secondary/10 to-welli-yellow/10 border border-secondary/20">
+            <h3 className="font-bold text-xl text-foreground mb-2 text-center">
+              ¡Cuéntale a tus pacientes la alianza con Welli!
+            </h3>
+            <p className="text-muted-foreground text-center mb-6">
+              Estas son algunas piezas de ejemplo que se generan con tu link personalizado:
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {piezas.map((p, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + index * 0.08 }}
+                  className="rounded-xl overflow-hidden border-2 border-border bg-card shadow-md"
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    loading="lazy"
+                    className="w-full h-auto object-cover"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Drive Recursos Gráficos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          className="p-6 rounded-2xl bg-gradient-to-r from-welli-yellow/20 to-secondary/10 border-2 border-welli-yellow/30 mb-10"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="font-bold text-lg text-foreground">
-                ¿Quieres piezas como estas?
-              </h3>
-              <p className="text-muted-foreground">
-                Te ayudamos a diseñar tus redes con tu marca y Welli.
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-welli-yellow/30 flex items-center justify-center flex-shrink-0">
+                <FolderOpen className="w-6 h-6 text-foreground" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-foreground">Recursos gráficos de Welli</h3>
+                <p className="text-muted-foreground text-sm">
+                  Accede a los recursos gráficos de Welli para que grabes tus propios videos o diseñes piezas con tu equipo de Marketing.
+                </p>
+              </div>
             </div>
             <a
-              href="https://forms.gle/pg2UDJAqHSyhpmFM9"
+              href="https://drive.google.com/drive/folders/1EYnS0Rti0ylNW3twwbkKTkMz8W6GBcNt"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-welli whitespace-nowrap inline-flex items-center gap-2"
             >
-              <span>Diseña tus piezas</span>
+              <span>Acceder al Drive</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
@@ -131,7 +228,7 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 1, duration: 0.5 }}
           className="text-center"
         >
           <button
