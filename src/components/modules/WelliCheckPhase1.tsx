@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Smartphone, CheckCircle2, XCircle, ArrowRight, Sparkles, Link2 } from "lucide-react";
+import { Smartphone, CheckCircle2, XCircle, ArrowRight, Sparkles, Link2, Image as ImageIcon } from "lucide-react";
 import confetti from "canvas-confetti";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import welliCheckEjemplo1 from "@/assets/welli-check-ejemplo-1.png";
+import welliCheckEjemplo2 from "@/assets/welli-check-ejemplo-2.png";
+import welliCheckEjemplo3 from "@/assets/welli-check-ejemplo-3.png";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -211,10 +214,46 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
             </div>
           </div>
         </motion.div>
+
+        {/* Ejemplos de piezas personalizadas */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.6 }}
+          className="mb-12"
+        >
+          <div className="flex items-start gap-2 mb-2">
+            <ImageIcon className="w-5 h-5 text-welli-yellow mt-1 flex-shrink-0" />
+            <h3 className="font-bold text-lg">
+              Ejemplos de piezas personalizadas con Welli Check
+            </h3>
+          </div>
+          <p className="text-muted-foreground text-sm mb-6 ml-7">
+            Inspírate con estas piezas que puedes compartir con tus pacientes para invitarlos a iniciar su solicitud por WhatsApp.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { src: welliCheckEjemplo1, alt: "Recibe respuesta de tu financiación en segundos" },
+              { src: welliCheckEjemplo2, alt: "¿Dejaste tu tratamiento para después?" },
+              { src: welliCheckEjemplo3, alt: "Tu tratamiento no tiene que esperar" },
+            ].map((img, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 + idx * 0.1 }}
+                className="rounded-2xl overflow-hidden border-2 border-welli-yellow/40 bg-white shadow-md hover:shadow-lg transition-shadow"
+              >
+                <img src={img.src} alt={img.alt} className="w-full h-auto block" loading="lazy" />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
+          transition={{ delay: 0.75, duration: 0.5 }}
           className="text-center"
         >
           <button
