@@ -27,7 +27,7 @@ const youtubeShorts = [
     id: 3,
     videoId: "IcUWtYu2HyY",
     title: "Clínica Ejemplo #3",
-    description: "Contenido que conecta con los pacientes",
+    description: "Contenido que conecta con los pacientes de las clínicas.",
   },
   {
     id: 4,
