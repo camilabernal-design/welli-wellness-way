@@ -190,6 +190,18 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
                 </motion.div>
               ))}
             </div>
+            <div className="mt-6 flex justify-center">
+              <a
+                href="https://forms.gle/pg2UDJAqHSyhpmFM9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-welli inline-flex items-center gap-2"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Genera tus piezas personalizadas con Welli</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </motion.div>
 
