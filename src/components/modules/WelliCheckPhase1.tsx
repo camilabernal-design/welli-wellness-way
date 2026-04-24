@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Smartphone, CheckCircle2, XCircle, ArrowRight, Sparkles } from "lucide-react";
+import { Smartphone, CheckCircle2, XCircle, ArrowRight, Sparkles, Link2 } from "lucide-react";
 import confetti from "canvas-confetti";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
@@ -186,7 +186,31 @@ const WelliCheckPhase1 = ({ onComplete }: ModuleProps) => {
           )}
         </motion.div>
 
-        {/* CTA - Always enabled */}
+        {/* Loom video - Personalized link */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mb-12"
+        >
+          <div className="flex items-start gap-2 mb-4">
+            <Link2 className="w-5 h-5 text-secondary mt-1 flex-shrink-0" />
+            <h3 className="font-bold text-lg">
+              Cómo generar un link personalizado de Welli Check para medir el número de solicitudes que se hacen a través de tu clínica
+            </h3>
+          </div>
+          <div className="rounded-2xl overflow-hidden border-4 border-secondary shadow-lg">
+            <div className="relative w-full aspect-video bg-black">
+              <iframe
+                src="https://www.loom.com/embed/c42ca3f812f24ec195ac0c0d1e0265db"
+                title="Cómo generar un link personalizado de Welli Check"
+                allow="fullscreen"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
