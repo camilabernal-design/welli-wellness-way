@@ -105,11 +105,11 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="card-elevated p-3"
+              className="card-elevated p-3 flex flex-col"
             >
-              <div className="mb-2">
+              <div className="mb-2 min-h-[64px]">
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0">
                     <Play className="w-3 h-3 text-white" />
                   </div>
                   <h3 className="font-bold text-xs text-foreground truncate">{video.title}</h3>
