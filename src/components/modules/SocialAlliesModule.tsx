@@ -202,13 +202,6 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
-                    alt={p.alt}
-                    loading="lazy"
-                    className="w-full h-auto object-cover"
-                  />
-                </motion.div>
-              ))}
-            </div>
           </div>
         </motion.div>
 
