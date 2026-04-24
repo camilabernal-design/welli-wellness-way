@@ -116,13 +116,15 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
                 </div>
                 <p className="text-[11px] text-muted-foreground line-clamp-2">{video.description}</p>
               </div>
-              <YouTubeEmbed
-                videoId={video.videoId}
-                title={video.title}
-                isShort={true}
-                borderColor="secondary"
-                className="max-w-full"
-              />
+              <div className="rounded-xl overflow-hidden border-2 border-secondary shadow-md bg-black w-full" style={{ aspectRatio: "9 / 16" }}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.videoId}?rel=0`}
+                  title={video.title}
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full block"
+                />
+              </div>
             </motion.div>
           ))}
         </div>
