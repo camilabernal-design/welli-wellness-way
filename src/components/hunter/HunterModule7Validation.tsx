@@ -9,30 +9,30 @@ interface ModuleProps {
 
 const impactStats = [
   {
-    value: '+180,000',
-    label: 'Aplicaciones Procesadas',
-    sublabel: 'por más de $500 mil millones',
+    value: '+300.000',
+    label: 'Aplicaciones crediticias procesadas',
+    sublabel: 'por más de $500 mil millones de pesos',
     icon: TrendingUp,
     color: 'text-welli-yellow',
   },
   {
-    value: '+$60,000M',
+    value: 'COP $140.000 MM',
     label: 'Desembolsados',
-    sublabel: 'para +18,000 colombianos',
+    sublabel: 'para que más de 35 mil colombianos tengan acceso a la salud',
     icon: Banknote,
     color: 'text-welli-yellow',
   },
   {
-    value: '+1,800',
-    label: 'Aliados Médicos',
+    value: '+2.800',
+    label: 'Aliados médicos',
     sublabel: 'confían en nosotros',
     icon: Building2,
     color: 'text-welli-yellow',
   },
   {
-    value: '$300,000M',
-    label: 'Líneas de Fondeo',
-    sublabel: 'para expandir nuestra misión',
+    value: 'COP $300.000 MM',
+    label: 'En líneas de fondeo',
+    sublabel: 'para seguir expandiendo nuestra misión',
     icon: Users,
     color: 'text-welli-yellow',
   },
@@ -51,7 +51,7 @@ const HunterModule7Validation = ({ onComplete }: ModuleProps) => {
           📊 Resultados reales
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-indigo-950">
-          +1,800 clínicas ya confían en nosotros
+          +2.800 clínicas ya confían en nosotros
         </h1>
         <p className="text-xl text-indigo-800 max-w-2xl mx-auto">
           Nuestro impacto en los primeros dos años de operaciones
