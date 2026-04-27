@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone } from "lucide-react";
+import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone, Target, Video, MessageSquare, Camera, Send, Upload } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import pieza1 from "@/assets/welli-pieza-1.png";
 import pieza2 from "@/assets/welli-pieza-2.png";
@@ -37,14 +37,57 @@ const youtubeShorts = [
   },
 ];
 
-const checklistItems = [
-  "Graba en vertical (9:16) para Reels, TikTok y Shorts.",
-  "Buena iluminación: aprovecha la luz natural o usa un aro de luz.",
-  "Audio claro: graba en un lugar silencioso o usa micrófono.",
-  "Mensaje corto y directo: menos de 30 segundos funciona mejor.",
-  "Habla del beneficio para el paciente, no solo del producto.",
-  "Menciona Welli como una opción de financiación disponible en tu clínica.",
-  "Cierra con un llamado a la acción claro: ¡Pregunta por Welli!",
+const checklistSections = [
+  {
+    icon: Target,
+    title: "1. Objetivo del video",
+    items: [
+      "Visibilizar a nuestros médicos aliados y mostrar cómo los pacientes pueden financiar sus tratamientos con Welli.",
+      "El video se publicará en los canales digitales de Welli (puede ser en formato colaboración con la clínica).",
+    ],
+  },
+  {
+    icon: Video,
+    title: "2. Formato",
+    items: [
+      "Duración ideal: máximo 1 minuto y medio.",
+      "Formato vertical (9:16) para Reels, TikTok y Shorts.",
+    ],
+  },
+  {
+    icon: MessageSquare,
+    title: "3. ¿Qué decir? (preguntas guía)",
+    items: [
+      "¿Cuál es tu nombre, especialidad médica y trayectoria?",
+      "¿Qué es lo que más te apasiona de tu práctica?",
+      "¿Qué mito desmentirías sobre tu especialidad?",
+      "¿Cómo ha facilitado Welli el acceso de tus pacientes a tus tratamientos?",
+      "¿Qué ventajas has encontrado al ofrecer Welli como opción de financiamiento?",
+      "¿Recomendarías Welli a otros colegas? ¿Por qué?",
+      "¿Dónde está ubicado tu consultorio?",
+      "No es obligatorio responder todas: elige o propone las que mejor se adapten a ti.",
+    ],
+  },
+  {
+    icon: Camera,
+    title: "4. Calidad: video y audio",
+    items: [
+      "Estabilidad: sin temblores (usa trípode o estabilizador).",
+      "Iluminación: buena luz natural o aro de luz, sin sombras excesivas.",
+      "Audio claro y entendible, sin ruido de fondo (idealmente con micrófono externo).",
+      "Sin música añadida, sin textos o subtítulos incrustados.",
+      "Sin logos, efectos, transiciones ni marcas de agua de editores.",
+    ],
+  },
+  {
+    icon: Send,
+    title: "5. Envío y publicación",
+    items: [
+      "Envíanos el video por correo, WeTransfer, Google Drive o Dropbox (no por WhatsApp/Telegram, pierde calidad).",
+      "Welli se encarga de la edición y publicación final.",
+      "Solo haremos ajustes si afectan la claridad, duración o veracidad de la información sobre Welli.",
+    ],
+  },
 ];
 
 const piezas = [
@@ -136,29 +179,47 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
           transition={{ delay: 0.5 }}
           className="mb-10 p-6 rounded-2xl bg-card border-2 border-secondary/20"
         >
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-2">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <Megaphone className="w-6 h-6 text-secondary" />
             </div>
             <div>
-              <h3 className="font-bold text-xl text-foreground">Checklist: Cómo hacer un buen video</h3>
-              <p className="text-sm text-muted-foreground">Tips clave para que tu contenido conecte y convierta.</p>
+              <h3 className="font-bold text-xl text-foreground">Checklist de video — Alianzas con Welli</h3>
+              <p className="text-sm text-muted-foreground">Guía oficial con los puntos clave antes de grabar.</p>
             </div>
           </div>
-          <ul className="space-y-3">
-            {checklistItems.map((item, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.05 }}
-                className="flex items-start gap-3"
-              >
-                <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                <span className="text-foreground text-sm">{item}</span>
-              </motion.li>
-            ))}
-          </ul>
+          <p className="text-sm text-muted-foreground mb-6">
+            Gracias por participar en esta colaboración. Para que todo fluya sin contratiempos, ten en cuenta los siguientes puntos:
+          </p>
+          <div className="space-y-5">
+            {checklistSections.map((section, sIndex) => {
+              const Icon = section.icon;
+              return (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55 + sIndex * 0.08 }}
+                  className="rounded-xl border border-border bg-background/50 p-4"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-secondary/15 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-secondary" />
+                    </div>
+                    <h4 className="font-bold text-sm text-foreground">{section.title}</h4>
+                  </div>
+                  <ul className="space-y-2">
+                    {section.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
 
         {/* Cuéntale a tus pacientes la alianza con Welli! */}
