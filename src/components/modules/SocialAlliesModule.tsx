@@ -179,29 +179,47 @@ const SocialAlliesModule = ({ onComplete }: ModuleProps) => {
           transition={{ delay: 0.5 }}
           className="mb-10 p-6 rounded-2xl bg-card border-2 border-secondary/20"
         >
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-2">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <Megaphone className="w-6 h-6 text-secondary" />
             </div>
             <div>
-              <h3 className="font-bold text-xl text-foreground">Checklist: Cómo hacer un buen video</h3>
-              <p className="text-sm text-muted-foreground">Tips clave para que tu contenido conecte y convierta.</p>
+              <h3 className="font-bold text-xl text-foreground">Checklist de video — Alianzas con Welli</h3>
+              <p className="text-sm text-muted-foreground">Guía oficial con los puntos clave antes de grabar.</p>
             </div>
           </div>
-          <ul className="space-y-3">
-            {checklistItems.map((item, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.05 }}
-                className="flex items-start gap-3"
-              >
-                <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                <span className="text-foreground text-sm">{item}</span>
-              </motion.li>
-            ))}
-          </ul>
+          <p className="text-sm text-muted-foreground mb-6">
+            Gracias por participar en esta colaboración. Para que todo fluya sin contratiempos, ten en cuenta los siguientes puntos:
+          </p>
+          <div className="space-y-5">
+            {checklistSections.map((section, sIndex) => {
+              const Icon = section.icon;
+              return (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55 + sIndex * 0.08 }}
+                  className="rounded-xl border border-border bg-background/50 p-4"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-secondary/15 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-secondary" />
+                    </div>
+                    <h4 className="font-bold text-sm text-foreground">{section.title}</h4>
+                  </div>
+                  <ul className="space-y-2">
+                    {section.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
 
         {/* Cuéntale a tus pacientes la alianza con Welli! */}
