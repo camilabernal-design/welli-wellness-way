@@ -131,9 +131,9 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
           >
             {[
-              { value: '+180k', label: 'Aplicaciones' },
-              { value: '+1,800', label: 'Aliados Médicos' },
-              { value: '$50k M', label: 'Desembolsados' },
+              { value: '+300k', label: 'Aplicaciones' },
+              { value: '+2.800', label: 'Aliados Médicos' },
+              { value: '$140k M', label: 'Desembolsados' },
               { value: '3 min', label: 'Aprobación' },
             ].map((stat, i) => (
               <div key={i} className="bg-welli-yellow/20 rounded-xl p-4 border border-welli-yellow/40">
