@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone } from "lucide-react";
+import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone, Target, Video, MessageSquare, Camera, Send, Upload } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import pieza1 from "@/assets/welli-pieza-1.png";
 import pieza2 from "@/assets/welli-pieza-2.png";
