@@ -37,14 +37,57 @@ const youtubeShorts = [
   },
 ];
 
-const checklistItems = [
-  "Graba en vertical (9:16) para Reels, TikTok y Shorts.",
-  "Buena iluminación: aprovecha la luz natural o usa un aro de luz.",
-  "Audio claro: graba en un lugar silencioso o usa micrófono.",
-  "Mensaje corto y directo: menos de 30 segundos funciona mejor.",
-  "Habla del beneficio para el paciente, no solo del producto.",
-  "Menciona Welli como una opción de financiación disponible en tu clínica.",
-  "Cierra con un llamado a la acción claro: ¡Pregunta por Welli!",
+const checklistSections = [
+  {
+    icon: Target,
+    title: "1. Objetivo del video",
+    items: [
+      "Visibilizar a nuestros médicos aliados y mostrar cómo los pacientes pueden financiar sus tratamientos con Welli.",
+      "El video se publicará en los canales digitales de Welli (puede ser en formato colaboración con la clínica).",
+    ],
+  },
+  {
+    icon: Video,
+    title: "2. Formato",
+    items: [
+      "Duración ideal: máximo 1 minuto y medio.",
+      "Formato vertical (9:16) para Reels, TikTok y Shorts.",
+    ],
+  },
+  {
+    icon: MessageSquare,
+    title: "3. ¿Qué decir? (preguntas guía)",
+    items: [
+      "¿Cuál es tu nombre, especialidad médica y trayectoria?",
+      "¿Qué es lo que más te apasiona de tu práctica?",
+      "¿Qué mito desmentirías sobre tu especialidad?",
+      "¿Cómo ha facilitado Welli el acceso de tus pacientes a tus tratamientos?",
+      "¿Qué ventajas has encontrado al ofrecer Welli como opción de financiamiento?",
+      "¿Recomendarías Welli a otros colegas? ¿Por qué?",
+      "¿Dónde está ubicado tu consultorio?",
+      "No es obligatorio responder todas: elige o propone las que mejor se adapten a ti.",
+    ],
+  },
+  {
+    icon: Camera,
+    title: "4. Calidad: video y audio",
+    items: [
+      "Estabilidad: sin temblores (usa trípode o estabilizador).",
+      "Iluminación: buena luz natural o aro de luz, sin sombras excesivas.",
+      "Audio claro y entendible, sin ruido de fondo (idealmente con micrófono externo).",
+      "Sin música añadida, sin textos o subtítulos incrustados.",
+      "Sin logos, efectos, transiciones ni marcas de agua de editores.",
+    ],
+  },
+  {
+    icon: Send,
+    title: "5. Envío y publicación",
+    items: [
+      "Envíanos el video por correo, WeTransfer, Google Drive o Dropbox (no por WhatsApp/Telegram, pierde calidad).",
+      "Welli se encarga de la edición y publicación final.",
+      "Solo haremos ajustes si afectan la claridad, duración o veracidad de la información sobre Welli.",
+    ],
+  },
 ];
 
 const piezas = [
