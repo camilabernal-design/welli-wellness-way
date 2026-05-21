@@ -11,7 +11,7 @@ const comparisonData = [
   { feature: 'Tasa de Interés', welli: '20-25% E.A.', banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
   { feature: 'Tasa de Aprobación', welli: '~20-30%', banks: '~10%', fintech: '~10%', welliWins: true },
   { feature: 'Desembolso', welli: 'Al aliado en 72h', banks: 'Al paciente', fintech: 'Aliado 30+ días', welliWins: true },
-  { feature: 'Montos', welli: '$300k – $25M', banks: '$500k – $20M', fintech: '$200k – $10M', welliWins: true },
+  { feature: 'Montos', welli: '$300k – $30M', banks: '$500k – $20M', fintech: '$200k – $10M', welliWins: true },
   { feature: 'Cuotas', welli: '3-36 meses', banks: '6-48 meses', fintech: '3-24 meses', welliWins: false },
   { feature: 'Tiempo Aprobación', welli: '3 minutos', banks: '5+ días', fintech: 'Varía', welliWins: true },
   { feature: 'Papeleo', welli: 'No', banks: 'Sí', fintech: 'No', welliWins: true },
