@@ -135,9 +135,9 @@ const HunterModule2ValueProposition = ({ onComplete }: ModuleProps) => {
                   <CheckCircle2 className="w-6 h-6 text-welli-orange" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-indigo-950">Tasa ética</h4>
+                  <h4 className="font-bold text-indigo-950">Tasas competitivas</h4>
                   <p className="text-sm text-indigo-800">
-                    20-25% E.A. vs +40% de otras fintechs y tarjetas
+                    Desde 20% hasta 40% E.A. según el perfil de riesgo del paciente
                   </p>
                 </div>
               </div>
