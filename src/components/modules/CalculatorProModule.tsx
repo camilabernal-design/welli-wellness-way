@@ -99,7 +99,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
               value={[amount]}
               onValueChange={(value) => setAmount(value[0])}
               min={300000}
-              max={25000000}
+              max={30000000}
               step={100000}
               className="w-full"
             />
@@ -108,7 +108,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
               <span className="font-display font-bold text-2xl text-foreground">
                 {formatCurrency(amount)}
               </span>
-              <span>$25M</span>
+              <span>$30M</span>
             </div>
           </div>
 
