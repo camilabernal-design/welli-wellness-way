@@ -64,7 +64,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
                 value={[amount]}
                 onValueChange={(value) => setAmount(value[0])}
                 min={300000}
-                max={25000000}
+                max={30000000}
                 step={100000}
                 className="w-full"
               />
@@ -79,7 +79,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               >
                 {formatCurrency(amount)}
               </motion.span>
-              <span>$25M</span>
+              <span>$30M</span>
             </div>
           </div>
 

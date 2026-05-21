@@ -38,7 +38,7 @@ const PerfilamientoModule = ({ onComplete }: ModuleProps) => {
           </div>
           <h3 className="font-bold text-xl mb-2">Único requisito</h3>
           <p className="text-lg text-foreground">
-            El paciente debe tener entre <span className="font-bold text-foreground">18 y 69 años con 364 días</span>
+            El paciente debe tener entre <span className="font-bold text-foreground">18 y 75 años</span>
           </p>
         </motion.div>
 
