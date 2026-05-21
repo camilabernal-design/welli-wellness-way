@@ -32,10 +32,10 @@ const questions = [
   },
   {
     id: 4,
-    question: '¿Cuál es la tasa de interés aproximada de Welli vs otras fintechs?',
-    options: ['Son iguales', 'Welli: 20-25% vs Otras: 40-45%', 'Welli: 40% vs Otras: 20%', 'Welli no cobra interés'],
+    question: '¿En qué rango se mueve la tasa de interés de Welli?',
+    options: ['Fija en 25% E.A.', 'Entre 20% y 40% E.A. según perfil de riesgo', 'Siempre 40% E.A.', 'Welli no cobra interés'],
     correct: 1,
-    explanation: 'Welli tiene tasas éticas del 20-25% E.A., casi la mitad que otras fintechs (40-45%).',
+    explanation: 'Welli ajusta la tasa entre 20% y 40% E.A. según el perfil de riesgo del paciente.',
   },
   {
     id: 5,
