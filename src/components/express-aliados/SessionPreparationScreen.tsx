@@ -27,16 +27,14 @@ const SessionPreparationScreen = ({ onReady }: Props) => {
   const { setSessionData, allyName, allySpecialty, archetype } = useSession();
   const [name, setName] = useState(allyName);
   const [specialty, setSpecialty] = useState(allySpecialty);
-  const [profile, setProfile] = useState<Archetype | null>(archetype);
 
-  const canStart = name.trim() && specialty.trim() && profile;
+  const canStart = name.trim() && specialty.trim();
 
   const handleStart = () => {
     if (!canStart) return;
     setSessionData({
       allyName: name.trim(),
       allySpecialty: specialty.trim(),
-      archetype: profile,
       configured: true,
     });
     onReady();
