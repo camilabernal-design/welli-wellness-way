@@ -163,10 +163,17 @@ const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="bg-welli-yellow/10 rounded-2xl border-2 border-welli-yellow/40 p-6 md:p-8 mb-6">
               <p className="text-xs font-bold text-welli-yellow uppercase mb-2">Pregunta condicional</p>
-              <h2 className="font-display text-xl md:text-2xl font-bold text-indigo-950 mb-3">"{conditional.q}"</h2>
-              <div className="flex items-start gap-2 p-3 rounded-xl bg-white/60">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-indigo-950 mb-3">"¿Cuántos presupuestos se le han perdido en la última semana?"</h2>
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-white/60 mb-4">
                 <Lightbulb className="w-4 h-4 text-welli-yellow mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-indigo-800">{conditional.hint}</p>
+                <p className="text-sm text-indigo-800">Pregunta condicional — usa solo si el aliado ya mencionó dolor financiero.</p>
+              </div>
+
+              <div className="mt-4 p-4 rounded-xl bg-white border border-welli-yellow/30">
+                <p className="text-xs font-bold text-indigo-950/70 uppercase mb-2">Para aliados de perfil premium, reformula así:</p>
+                <p className="font-display text-lg font-bold text-indigo-950 italic">
+                  "¿Cuántos pacientes valoró el mes pasado que no terminaron tomando el tratamiento?"
+                </p>
               </div>
             </div>
             <div className="text-center">
