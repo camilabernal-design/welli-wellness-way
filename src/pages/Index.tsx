@@ -66,9 +66,12 @@ import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/
 import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
 import MaestriaEquipoModule9Certification from "@/components/maestria-equipo/MaestriaEquipoModule9Certification";
 
-// Express Aliados Modules (7)
+// Express Aliados Modules (8)
 import { SessionProvider } from "@/components/express-aliados/SessionContext";
+import SessionPreparationScreen from "@/components/express-aliados/SessionPreparationScreen";
+import SessionReadyScreen from "@/components/express-aliados/SessionReadyScreen";
 import ExpressAliadosModule1Welcome from "@/components/express-aliados/ExpressAliadosModule1Welcome";
+import ExpressAliadosModule2Discovery from "@/components/express-aliados/ExpressAliadosModule2Discovery";
 import ExpressAliadosModule2Impact from "@/components/express-aliados/ExpressAliadosModule2Impact";
 import ExpressAliadosModule3HowItWorks from "@/components/express-aliados/ExpressAliadosModule3HowItWorks";
 import ExpressAliadosModule4PatientResponses from "@/components/express-aliados/ExpressAliadosModule4PatientResponses";
@@ -76,12 +79,14 @@ import ExpressAliadosModule5Trust from "@/components/express-aliados/ExpressAlia
 import ExpressAliadosModule6FirstActivation from "@/components/express-aliados/ExpressAliadosModule6FirstActivation";
 import ExpressAliadosModule7NextSteps from "@/components/express-aliados/ExpressAliadosModule7NextSteps";
 
+type ExpressPhase = 'preparation' | 'ready' | 'presentation';
+
 const ROUTE_MODULES = {
   hunter: 10,
   farmer: 21,
   aliado: 5,
   'maestria-equipo': 11,
-  'express-aliados': 7,
+  'express-aliados': 8,
 };
 
 const Index = forwardRef<HTMLDivElement>((_, ref) => {
