@@ -1,5 +1,7 @@
 export type TrainingRoute = 'hub' | 'hunter' | 'farmer' | 'farmer-v2' | 'aliado';
 
+export type RouteCategory = 'equipo' | 'aliados';
+
 export interface RouteConfig {
   id: TrainingRoute;
   title: string;
@@ -7,6 +9,7 @@ export interface RouteConfig {
   icon: string;
   color: string;
   totalModules: number;
+  category?: RouteCategory;
 }
 
 export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> = {
@@ -17,6 +20,7 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '🎯',
     color: 'welli-orange',
     totalModules: 9,
+    category: 'aliados',
   },
   farmer: {
     id: 'farmer',
@@ -25,6 +29,7 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '🌱',
     color: 'secondary',
     totalModules: 22,
+    category: 'aliados',
   },
   'farmer-v2': {
     id: 'farmer-v2',
@@ -33,6 +38,7 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '⚡',
     color: 'secondary',
     totalModules: 9,
+    category: 'aliados',
   },
   aliado: {
     id: 'aliado',
@@ -41,5 +47,6 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '⚕️',
     color: 'welli-yellow',
     totalModules: 5,
+    category: 'aliados',
   },
 };
