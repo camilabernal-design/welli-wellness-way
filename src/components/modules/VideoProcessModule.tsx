@@ -12,6 +12,8 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
+  initialVideo?: string;
+  hideCTA?: boolean;
 }
 
 const videoOptions = [
@@ -44,8 +46,9 @@ const steps = [
   },
 ];
 
-const VideoProcessModule = ({ onComplete }: ModuleProps) => {
-  const [selectedVideo, setSelectedVideo] = useState('general');
+const VideoProcessModule = ({ onComplete, initialVideo = 'general', hideCTA = false }: ModuleProps) => {
+  const [selectedVideo, setSelectedVideo] = useState(initialVideo);
+
 
   const currentVideo = videoOptions.find(v => v.value === selectedVideo) || videoOptions[0];
 
@@ -204,20 +207,23 @@ const VideoProcessModule = ({ onComplete }: ModuleProps) => {
         </motion.div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="text-center"
-        >
-          <button
-            onClick={onComplete}
-            className="btn-welli group inline-flex items-center gap-3 text-lg"
+        {!hideCTA && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="text-center"
           >
-            <span>Continuar</span>
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </button>
-        </motion.div>
+            <button
+              onClick={onComplete}
+              className="btn-welli group inline-flex items-center gap-3 text-lg"
+            >
+              <span>Continuar</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </motion.div>
+        )}
+
       </div>
     </div>
   );
