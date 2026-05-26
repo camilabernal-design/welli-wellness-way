@@ -1,180 +1,279 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft, Smartphone, CheckCircle2, AlertTriangle, XCircle, MessageCircle, FileImage, Zap, Building2, Calendar, Users } from "lucide-react";
+import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight, Smartphone, Zap, Building2, MessageCircle, FileImage, Wallet, Clock, FileCheck,
+  CheckCircle2, AlertTriangle, RotateCcw, Calendar, Users,
+} from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import VideoProcessModule from "@/components/modules/VideoProcessModule";
+import { VIDEO_IDS } from "@/lib/videoIds";
+import { useSession } from "./SessionContext";
 
 interface Props { onComplete: () => void; }
 
-const subSections = [
-  { id: '3.1', title: 'Resumen en 3 pasos' },
-  { id: '3.2', title: 'Flujo de solicitud' },
-  { id: '3.3', title: 'Validación de identidad' },
-  { id: '3.4', title: 'Consulta de elegibilidad (Welli Check)' },
-  { id: '3.5', title: 'Portal del aliado' },
-  { id: '3.6', title: '¿Quién puede aplicar?' },
-];
+const ResumenTab = () => (
+  <div className="space-y-6">
+    <h2 className="font-display text-3xl font-bold text-indigo-950 text-center">Welli, en 3 pasos.</h2>
+    <div className="grid md:grid-cols-3 gap-6">
+      {[
+        { icon: Smartphone, n: 1, t: "Su paciente aplica desde el celular", d: "3 minutos" },
+        { icon: Zap, n: 2, t: "Aprobación en segundos", d: "30 segundos" },
+        { icon: Building2, n: 3, t: "Usted recibe el desembolso", d: "72 horas hábiles" },
+      ].map((s, i) => (
+        <motion.div
+          key={s.n}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.15 }}
+          className="rounded-3xl border-2 border-welli-yellow/40 bg-welli-yellow/10 p-8 text-center"
+        >
+          <div className="w-16 h-16 rounded-full bg-welli-yellow mx-auto mb-4 flex items-center justify-center">
+            <s.icon className="w-8 h-8 text-indigo-950" />
+          </div>
+          <p className="text-xs font-bold text-welli-yellow mb-1">PASO {s.n}</p>
+          <h3 className="font-display text-lg font-bold text-indigo-950 mb-2">{s.t}</h3>
+          <p className="text-sm text-indigo-800 font-bold">{s.d}</p>
+        </motion.div>
+      ))}
+    </div>
+    <p className="text-center text-indigo-800 italic">Eso es todo. Ahora le muestro cada paso por dentro.</p>
+  </div>
+);
 
-const renderSub = (idx: number) => {
-  switch (idx) {
-    case 0:
-      return (
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { icon: Smartphone, n: 1, t: 'Aplica en 3 min', d: 'Desde el celular del paciente.' },
-            { icon: Zap, n: 2, t: 'Aprobación en segundos', d: 'Respuesta inmediata sin papeles.' },
-            { icon: Building2, n: 3, t: 'Desembolso en 72h', d: 'Directo a la cuenta del aliado.' },
-          ].map((s) => (
-            <div key={s.n} className="rounded-3xl border-2 border-welli-yellow/40 bg-welli-yellow/10 p-8 text-center">
-              <div className="w-16 h-16 rounded-full bg-welli-yellow flex items-center justify-center mx-auto mb-4">
-                <s.icon className="w-8 h-8 text-indigo-950" />
-              </div>
-              <p className="text-xs font-bold text-welli-yellow mb-1">PASO {s.n}</p>
-              <h3 className="font-display text-xl font-bold text-indigo-950 mb-2">{s.t}</h3>
-              <p className="text-sm text-indigo-800">{s.d}</p>
-            </div>
-          ))}
-        </div>
-      );
-    case 1:
-      return (
-        <div className="text-center py-12">
-          <div className="aspect-video max-w-2xl mx-auto bg-indigo-950 rounded-2xl flex items-center justify-center mb-6">
-            <Smartphone className="w-20 h-20 text-welli-yellow" />
-          </div>
-          <p className="text-lg text-indigo-800">Video del proceso de solicitud completo, de 2 minutos.</p>
-          <p className="text-sm text-indigo-800/70 mt-2 italic">Sin interrupciones. Una sola pregunta al final.</p>
-        </div>
-      );
-    case 2:
-      return (
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            { icon: CheckCircle2, c: 'border-green-500/40 bg-green-50', tc: 'text-green-600', t: 'Aprobado', d: 'Validación inmediata. Continúa el flujo.' },
-            { icon: AlertTriangle, c: 'border-yellow-500/40 bg-yellow-50', tc: 'text-yellow-600', t: 'Requiere dato adicional', d: 'Falta un campo, completa y reintenta.' },
-            { icon: XCircle, c: 'border-destructive/40 bg-red-50', tc: 'text-destructive', t: 'Repetir fotos', d: 'Mejor luz, cédula completa, sin reflejos.' },
-          ].map((s, i) => (
-            <div key={i} className={`rounded-3xl border-2 ${s.c} p-6 text-center`}>
-              <s.icon className={`w-12 h-12 mx-auto mb-3 ${s.tc}`} />
-              <h3 className="font-bold text-indigo-950 mb-2">{s.t}</h3>
-              <p className="text-sm text-indigo-800">{s.d}</p>
-            </div>
-          ))}
-        </div>
-      );
-    case 3:
-      return (
-        <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            {[{ icon: MessageCircle, t: 'WhatsApp' }, { icon: FileImage, t: 'Foto de cédula' }, { icon: Zap, t: 'Resultado al instante' }].map((s, i) => (
-              <div key={i} className="rounded-2xl bg-welli-yellow/10 border-2 border-welli-yellow/40 p-6 text-center">
-                <s.icon className="w-10 h-10 mx-auto text-welli-yellow mb-2" />
-                <p className="font-bold text-indigo-950 text-sm">{s.t}</p>
-              </div>
-            ))}
-          </div>
-          <div className="bg-indigo-950 rounded-2xl p-6 text-center">
-            <p className="font-display text-xl text-welli-yellow">"Antes de hablar de dinero con su paciente, sepa si tiene un cupo aprobado. Sin fricción."</p>
-          </div>
-        </div>
-      );
-    case 4:
-      return (
-        <div>
-          <div className="grid md:grid-cols-2 gap-3 mb-4">
-            {[
-              { t: 'Pendiente de firma', d: 'El paciente debe firmar electrónicamente.' },
-              { t: 'Crédito tomado', d: 'Aquí solicitas el desembolso.' },
-              { t: 'Desembolsado', d: 'Plata en tu cuenta.' },
-              { t: 'Opción de desistir', d: 'Si el paciente no se trata, se libera.' },
-            ].map((s, i) => (
-              <div key={i} className="rounded-2xl border-2 border-welli-yellow/30 bg-white p-4 flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-welli-yellow flex items-center justify-center flex-shrink-0 font-bold text-indigo-950 text-sm">{i + 1}</div>
-                <div>
-                  <p className="font-bold text-indigo-950 text-sm">{s.t}</p>
-                  <p className="text-xs text-indigo-800">{s.d}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-2xl bg-welli-yellow/20 border-2 border-welli-yellow/40 p-4 flex items-center gap-3">
-            <Calendar className="w-6 h-6 text-welli-yellow flex-shrink-0" />
-            <p className="text-sm text-indigo-800"><strong>Días de desembolso:</strong> martes y jueves hábiles.</p>
-          </div>
-        </div>
-      );
-    case 5:
-      return (
-        <div className="max-w-2xl mx-auto">
-          <div className="rounded-3xl border-2 border-welli-yellow/40 bg-welli-yellow/10 p-8 mb-6">
-            <Users className="w-12 h-12 text-welli-yellow mb-4" />
-            <h3 className="font-display text-2xl font-bold text-indigo-950 mb-4">Criterios mínimos</h3>
-            <ul className="space-y-3">
-              <li className="flex gap-3 items-center"><CheckCircle2 className="w-5 h-5 text-welli-yellow" /><span className="text-indigo-800">Pacientes entre 18 y 75 años</span></li>
-              <li className="flex gap-3 items-center"><CheckCircle2 className="w-5 h-5 text-welli-yellow" /><span className="text-indigo-800">Sin reportes negativos en Data Crédito</span></li>
-              <li className="flex gap-3 items-center"><CheckCircle2 className="w-5 h-5 text-welli-yellow" /><span className="text-indigo-800">Mínimo 6 meses de continuidad laboral</span></li>
-            </ul>
-          </div>
-          <p className="text-sm text-indigo-800/70 italic text-center">Los detalles adicionales los revisamos en el día a día.</p>
-        </div>
-      );
-    default:
-      return null;
-  }
+const AplicacionTab = () => {
+  const { allySpecialty } = useSession();
+  const initialVideo = useMemo(() => {
+    const s = (allySpecialty || "").toLowerCase();
+    if (s.includes("dental") || s.includes("odonto")) return "dentalink";
+    if (s.includes("vet")) return "okvet";
+    return "general";
+  }, [allySpecialty]);
+  return <VideoProcessModule onComplete={() => {}} initialVideo={initialVideo} hideCTA />;
 };
 
-const ExpressAliadosModule3HowItWorks = ({ onComplete }: Props) => {
-  const [sub, setSub] = useState(0);
-  const isLast = sub === subSections.length - 1;
+const WelliCheckTab = () => {
+  const { archetype } = useSession();
+  const archetypeNote = archetype === "premium"
+    ? "Especialmente útil para usted, doctor. Su paciente consulta sin que usted tenga que iniciar la conversación de plata."
+    : archetype === "caidos"
+    ? "Útil sobre todo para los pacientes que se le iban sin tratarse."
+    : archetype === "sin-aliados"
+    ? "Una funcionalidad que probablemente no existe en su consulta hoy."
+    : null;
 
-  const next = () => {
-    if (isLast) onComplete();
-    else setSub(sub + 1);
-  };
+  return (
+    <div className="space-y-6">
+      <div className="text-center space-y-2">
+        <h2 className="font-display text-2xl md:text-3xl font-bold text-indigo-950">
+          Paso 2 — Welli Check: sepa antes de hablar
+        </h2>
+        <p className="text-indigo-800 italic">
+          La mayor herramienta para usted: consultar en 30 segundos si su paciente tiene cupo, sin generar fricción.
+        </p>
+      </div>
+
+      <YouTubeEmbed videoId={VIDEO_IDS.welliCheck} title="Cómo funciona Welli Check" borderColor="welli-yellow" />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {[
+          { icon: MessageCircle, t: "Entra por WhatsApp" },
+          { icon: FileImage, t: "Foto cédula + ocupación" },
+          { icon: Zap, t: "Resultado en segundos" },
+        ].map((s, i) => (
+          <div key={i} className="rounded-2xl bg-welli-yellow/10 border-2 border-welli-yellow/40 p-6 text-center">
+            <s.icon className="w-10 h-10 mx-auto text-welli-yellow mb-2" />
+            <p className="font-bold text-indigo-950 text-sm">{s.t}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-2xl bg-indigo-950 p-6 space-y-3">
+        <p className="text-welli-yellow font-bold text-sm tracking-widest">CÓMO USARLO CON SU PACIENTE</p>
+        <p className="text-white/85">Cuando entregue un presupuesto, dígale:</p>
+        <p className="font-display text-lg text-welli-yellow italic">
+          "Acá tenemos un link rápido por WhatsApp que en 30 segundos le dice si califica para financiación. ¿Lo intentamos?"
+        </p>
+        {archetypeNote && <p className="text-sm text-white/70 italic pt-2 border-t border-white/10">{archetypeNote}</p>}
+      </div>
+    </div>
+  );
+};
+
+const PortalTab = () => (
+  <div className="space-y-6">
+    <h2 className="font-display text-2xl md:text-3xl font-bold text-indigo-950 text-center">
+      Paso 3 — Su portal: donde usted opera
+    </h2>
+
+    <div className="grid md:grid-cols-2 gap-4">
+      {[
+        { icon: Clock, t: "Aprobado, pendiente firma", d: "El paciente firma cuando esté listo." },
+        { icon: CheckCircle2, t: "Crédito tomado pendiente", d: "Aquí usted pide el desembolso." },
+        { icon: Wallet, t: "Desembolsado", d: "La plata está en su cuenta." },
+        { icon: RotateCcw, t: "Desistir", d: "Si el paciente cambia de opinión en consulta." },
+      ].map((s, i) => (
+        <div key={i} className="rounded-2xl border-2 border-welli-yellow/30 bg-white p-4 flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-welli-yellow flex items-center justify-center flex-shrink-0">
+            <s.icon className="w-5 h-5 text-indigo-950" />
+          </div>
+          <div>
+            <p className="font-bold text-indigo-950">{s.t}</p>
+            <p className="text-sm text-indigo-800">{s.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="space-y-3">
+      <h3 className="font-display text-xl font-bold text-indigo-950 text-center">
+        Las 2 acciones que va a hacer todos los días
+      </h3>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-3">
+          <YouTubeEmbed videoId={VIDEO_IDS.disbursement} title="Cómo desembolsar" borderColor="welli-yellow" />
+          <div className="rounded-2xl border-2 border-welli-yellow/40 bg-welli-yellow/5 p-4 text-sm text-indigo-800">
+            <p className="font-bold text-indigo-950 mb-2">Pedir desembolso — 4 pasos</p>
+            <ol className="list-decimal list-inside space-y-1">
+              <li>Entra al portal</li>
+              <li>Busca el paciente en "Crédito tomado pendiente"</li>
+              <li>Solicita desembolso</li>
+              <li>Recibe en 72 horas hábiles</li>
+            </ol>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <YouTubeEmbed videoId={VIDEO_IDS.withdrawal} title="Cómo desistir" borderColor="welli-yellow" />
+          <div className="rounded-2xl border-2 border-welli-yellow/40 bg-welli-yellow/5 p-4 text-sm text-indigo-800">
+            <p className="font-bold text-indigo-950 mb-2">Desistir — 4 pasos</p>
+            <ol className="list-decimal list-inside space-y-1">
+              <li>Entra al portal</li>
+              <li>Busca el paciente</li>
+              <li>Opción "Desistir"</li>
+              <li>Confirma y se libera el cupo</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="rounded-2xl bg-welli-yellow/20 border-2 border-welli-yellow/40 p-5 flex items-center gap-3">
+      <Calendar className="w-6 h-6 text-welli-yellow flex-shrink-0" />
+      <p className="text-sm text-indigo-950">
+        <strong>Días de desembolso:</strong> Martes y Jueves · <strong>Tiempo:</strong> 72 horas hábiles
+      </p>
+    </div>
+
+    <div className="rounded-2xl bg-amber-50 border-2 border-amber-300 p-5 flex items-start gap-3">
+      <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+      <div className="text-sm text-amber-900">
+        <p className="font-bold mb-1">Importante sobre Desistir</p>
+        <p>
+          El "Desistir" se usa SOLO si el paciente cambia de opinión antes de que usted pida el desembolso. Después
+          del desembolso, ya no se puede revertir desde el portal — eso es otro proceso.
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+const QuienAplicaTab = () => (
+  <div className="space-y-6">
+    <h2 className="font-display text-2xl md:text-3xl font-bold text-indigo-950 text-center">
+      Una última cosa: ¿quién puede aplicar?
+    </h2>
+    <div className="grid md:grid-cols-3 gap-4">
+      {[
+        { icon: Users, t: "Entre 18 y 75 años" },
+        { icon: FileCheck, t: "Sin reportes negativos en Data Crédito" },
+        { icon: Building2, t: "6 meses de continuidad laboral" },
+      ].map((s, i) => (
+        <div key={i} className="rounded-2xl border-2 border-welli-yellow/40 bg-welli-yellow/10 p-6 text-center">
+          <s.icon className="w-12 h-12 mx-auto text-welli-yellow mb-3" />
+          <p className="font-bold text-indigo-950">{s.t}</p>
+        </div>
+      ))}
+    </div>
+
+    <div className="rounded-2xl bg-indigo-950 p-6 text-white/85 space-y-3">
+      <p className="font-bold text-welli-yellow">Esto son criterios mínimos.</p>
+      <p className="text-sm">
+        Hay más detalles (seguridad social, tipos de ocupación, historial) — pero ESOS los vemos en el día a día,
+        caso por caso.
+      </p>
+      <p className="text-sm">No necesita memorizar todo hoy.</p>
+    </div>
+
+    <div className="rounded-2xl border-2 border-welli-yellow/40 bg-welli-yellow/10 p-5">
+      <p className="font-bold text-indigo-950 mb-1">Si su paciente no califica:</p>
+      <p className="text-sm text-indigo-800">
+        <strong>Plan B →</strong> un familiar o pareja puede aplicar por él. Muchos tratamientos se cierran así.
+      </p>
+    </div>
+  </div>
+);
+
+const tabs = [
+  { id: "resumen", label: "Resumen", Component: ResumenTab },
+  { id: "aplicacion", label: "Aplicación", Component: AplicacionTab },
+  { id: "welli-check", label: "Welli Check", Component: WelliCheckTab },
+  { id: "portal", label: "Su Portal", Component: PortalTab },
+  { id: "quien-aplica", label: "¿Quién aplica?", Component: QuienAplicaTab },
+];
+
+const ExpressAliadosModule3HowItWorks = ({ onComplete }: Props) => {
+  const [active, setActive] = useState(tabs[0].id);
+  const isLast = active === tabs[tabs.length - 1].id;
 
   return (
     <div className="module-container">
       <div className="max-w-5xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-6">
-          <p className="text-xs font-bold text-welli-yellow tracking-widest mb-2">MÓDULO 3 · CÓMO FUNCIONA</p>
-          <h1 className="font-display text-3xl md:text-5xl font-bold text-indigo-950">
-            {subSections[sub].id} · {subSections[sub].title}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
+          <p className="text-xs font-bold text-welli-yellow tracking-widest mb-2">MÓDULO 3 · CÓMO FUNCIONA WELLI</p>
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-indigo-950">
+            Le muestro cómo funciona, por dentro.
           </h1>
         </motion.div>
 
-        <div className="flex justify-center gap-1 mb-8">
-          {subSections.map((_, i) => (
-            <div key={i} className={`h-1.5 w-10 rounded-full ${i <= sub ? 'bg-welli-yellow' : 'bg-welli-yellow/20'}`} />
+        <Tabs value={active} onValueChange={setActive} className="w-full">
+          <TabsList className="grid grid-cols-5 mb-8 h-auto bg-welli-yellow/10 p-1">
+            {tabs.map((t) => (
+              <TabsTrigger
+                key={t.id}
+                value={t.id}
+                className="text-xs md:text-sm data-[state=active]:bg-welli-yellow data-[state=active]:text-indigo-950 py-2"
+              >
+                {t.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {tabs.map(({ id, Component }) => (
+            <TabsContent key={id} value={id} className="mt-0">
+              <Component />
+            </TabsContent>
           ))}
-        </div>
+        </Tabs>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={sub}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="mb-10"
-          >
-            {renderSub(sub)}
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="flex justify-between items-center max-w-md mx-auto">
-          <button
-            onClick={() => setSub(Math.max(0, sub - 1))}
-            disabled={sub === 0}
-            className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold transition-all ${
-              sub === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-white border-2 border-welli-yellow/40 text-indigo-950 hover:bg-welli-yellow/10'
-            }`}
-          >
-            <ArrowLeft className="w-5 h-5" /> Anterior
-          </button>
-          <button
-            onClick={next}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 transition-all shadow-lg"
-          >
-            {isLast ? 'Continuar al siguiente módulo' : 'Siguiente'}
-            <ArrowRight className="w-5 h-5" />
-          </button>
+        <div className="flex justify-end mt-10">
+          {isLast ? (
+            <button
+              onClick={onComplete}
+              className="inline-flex items-center gap-3 text-lg px-8 py-4 rounded-2xl font-bold bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 transition-all shadow-xl hover:scale-105"
+            >
+              Veamos las conversaciones con sus pacientes <ArrowRight className="w-5 h-5" />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                const idx = tabs.findIndex((t) => t.id === active);
+                setActive(tabs[idx + 1].id);
+              }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 transition-all shadow-lg"
+            >
+              Siguiente <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </div>
       </div>
     </div>

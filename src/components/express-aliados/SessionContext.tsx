@@ -2,18 +2,29 @@ import { createContext, useContext, useState, useCallback, ReactNode } from "rea
 
 export type Archetype = 'caidos' | 'premium' | 'sin-aliados';
 
+export interface PainCalculation {
+  patientsPerMonth: number;
+  lossPercent: number;
+  averageTicket: number;
+  monthlyLoss: number;
+  annualLoss: number;
+}
+
 export interface ScheduledFollowup {
   date: string;
   time: string;
-  patientName: string;
+  patientName: string | null;
+  patientStatus: 'has-name' | 'will-review' | 'flexible';
 }
 
 export interface SessionData {
   allyName: string;
   allySpecialty: string;
   archetype: Archetype | null;
-  scheduledFollowup: ScheduledFollowup | null;
   configured: boolean;
+  sessionStartTime: number | null;
+  painCalculation: PainCalculation | null;
+  scheduledFollowup: ScheduledFollowup | null;
 }
 
 interface SessionContextType extends SessionData {
@@ -25,8 +36,10 @@ const DEFAULT: SessionData = {
   allyName: "",
   allySpecialty: "",
   archetype: null,
-  scheduledFollowup: null,
   configured: false,
+  sessionStartTime: null,
+  painCalculation: null,
+  scheduledFollowup: null,
 };
 
 const STORAGE_KEY = "express_aliados_session";
