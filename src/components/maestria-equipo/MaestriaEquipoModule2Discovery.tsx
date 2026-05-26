@@ -118,6 +118,29 @@ const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
                     </button>
                   ))}
                 </div>
+
+                {step === 1 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6 pt-5 border-t border-secondary/20"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Building2 className="w-4 h-4 text-secondary" />
+                      <p className="text-sm font-bold text-indigo-950">
+                        Si el aliado menciona uno de estos, su dolor probable es:
+                      </p>
+                    </div>
+                    <div className="grid sm:grid-cols-3 gap-3">
+                      {knownAllies.map((a) => (
+                        <div key={a.name} className="rounded-xl border border-secondary/30 bg-secondary/5 p-3">
+                          <p className="font-bold text-indigo-950 text-sm mb-1">{a.name}</p>
+                          <p className="text-xs text-indigo-800 italic">"{a.commonPain}"</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
             </AnimatePresence>
 
