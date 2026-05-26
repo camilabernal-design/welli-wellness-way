@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
-import { Target, Sprout, Stethoscope, ArrowRight } from "lucide-react";
+import { Target, Sprout, Stethoscope, ArrowRight, Zap } from "lucide-react";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { TrainingRoute } from "@/types/training";
 
@@ -20,6 +20,7 @@ const routes = [
     bgColor: 'bg-welli-yellow/20',
     duration: '~15 min',
     modules: 9,
+    badge: null as string | null,
   },
   {
     id: 'farmer' as TrainingRoute,
@@ -32,6 +33,20 @@ const routes = [
     bgColor: 'bg-secondary/10',
     duration: '~45 min',
     modules: 22,
+    badge: null as string | null,
+  },
+  {
+    id: 'farmer-v2' as TrainingRoute,
+    title: 'Clínica 2.0',
+    subtitle: 'Versión Piloto - Express',
+    description: 'Nueva estructura comercial: 25 min, indagación primero, activación cerrada. Piloto Mariana × Alexis.',
+    icon: Zap,
+    color: 'from-secondary to-welli-yellow',
+    borderColor: 'border-secondary',
+    bgColor: 'bg-secondary/20',
+    duration: '~25 min',
+    modules: 9,
+    badge: 'PILOTO',
   },
   {
     id: 'aliado' as TrainingRoute,
@@ -44,6 +59,7 @@ const routes = [
     bgColor: 'bg-welli-yellow/10',
     duration: '~10 min',
     modules: 5,
+    badge: null as string | null,
   },
 ];
 
@@ -80,7 +96,7 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
           </motion.div>
 
           {/* Route Cards */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {routes.map((route, index) => (
               <motion.div
                 key={route.id}
@@ -91,6 +107,11 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
                 onClick={() => onSelectRoute(route.id)}
                 className={`relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
               >
+                {route.badge && (
+                  <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-indigo-950 text-welli-yellow text-[10px] font-bold tracking-wider shadow-md">
+                    ✨ {route.badge}
+                  </div>
+                )}
                 {/* Card Header with Gradient */}
                 <div className={`bg-gradient-to-br ${route.color} p-6`}>
                   <route.icon className="w-12 h-12 mb-4 text-indigo-950" />

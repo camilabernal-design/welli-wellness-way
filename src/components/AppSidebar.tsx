@@ -109,12 +109,27 @@ const aliadoModules = [
   { id: 5, title: "Resumen Final", icon: CheckSquare },
 ];
 
+// Clínica 2.0 (Farmer v2) modules (9)
+const farmerV2Modules = [
+  { id: 1, title: "Bienvenida y Filosofía", icon: Sparkles },
+  { id: 2, title: "3 Preguntas de Indagación", icon: MessageSquare },
+  { id: 3, title: "3 Arquetipos de Doctor", icon: Users },
+  { id: 4, title: "Agenda como Solución", icon: Armchair },
+  { id: 5, title: "Cómo Funciona la Plataforma", icon: Monitor },
+  { id: 6, title: "Manejo de Objeciones", icon: ShieldQuestion },
+  { id: 7, title: "Cierre con Activación", icon: Target },
+  { id: 8, title: "Segunda Sesión Real", icon: PlayCircle },
+  { id: 9, title: "Certificación", icon: CheckSquare },
+];
+
 const getRouteConfig = (route: TrainingRoute) => {
   switch (route) {
     case 'hunter':
       return { title: 'Hunter', subtitle: 'Conquista Clínicas', color: 'welli-orange' };
     case 'farmer':
       return { title: 'Farmer / CS', subtitle: 'Maestría en Ventas', color: 'secondary' };
+    case 'farmer-v2':
+      return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary' };
     case 'aliado':
       return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow' };
     default:
@@ -249,6 +264,36 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
     </SidebarGroup>
   );
 
+  const renderFarmerV2Modules = () => (
+    <SidebarGroup>
+      <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+        <span className="w-5 h-5 rounded-full bg-secondary text-white flex items-center justify-center text-[10px] font-bold">⚡</span>
+        Clínica 2.0 · Piloto
+      </SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {farmerV2Modules.map((module) => {
+            const isActive = currentModule === module.id;
+            const isCompleted = currentModule > module.id;
+            return (
+              <SidebarMenuItem key={module.id}>
+                <SidebarMenuButton
+                  onClick={() => onModuleChange(module.id)}
+                  isActive={isActive}
+                  className={`group transition-all ${isCompleted ? "text-sidebar-foreground/80" : ""}`}
+                >
+                  <module.icon className={`w-4 h-4 ${isActive ? "text-secondary" : isCompleted ? "text-green-500" : ""}`} />
+                  <span className="truncate text-sm">{module.title}</span>
+                  {isActive && <ChevronRight className="ml-auto w-4 h-4 text-secondary" />}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
@@ -275,6 +320,7 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
       <SidebarContent className="px-2">
         {currentRoute === 'hunter' && renderHunterModules()}
         {currentRoute === 'farmer' && renderFarmerModules()}
+        {currentRoute === 'farmer-v2' && renderFarmerV2Modules()}
         {currentRoute === 'aliado' && renderAliadoModules()}
       </SidebarContent>
 
