@@ -207,12 +207,13 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const renderExpressAliadosModule = () => {
     switch (currentModule) {
       case 1: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
-      case 2: return <ExpressAliadosModule2Impact onComplete={handleModuleComplete} />;
-      case 3: return <ExpressAliadosModule3HowItWorks onComplete={handleModuleComplete} />;
-      case 4: return <ExpressAliadosModule4PatientResponses onComplete={handleModuleComplete} />;
-      case 5: return <ExpressAliadosModule5Trust onComplete={handleModuleComplete} />;
-      case 6: return <ExpressAliadosModule6FirstActivation onComplete={handleModuleComplete} />;
-      case 7: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
+      case 2: return <ExpressAliadosModule2Discovery onComplete={handleModuleComplete} />;
+      case 3: return <ExpressAliadosModule2Impact onComplete={handleModuleComplete} />;
+      case 4: return <ExpressAliadosModule3HowItWorks onComplete={handleModuleComplete} />;
+      case 5: return <ExpressAliadosModule4PatientResponses onComplete={handleModuleComplete} />;
+      case 6: return <ExpressAliadosModule5Trust onComplete={handleModuleComplete} />;
+      case 7: return <ExpressAliadosModule6FirstActivation onComplete={handleModuleComplete} />;
+      case 8: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
       default: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
     }
   };
