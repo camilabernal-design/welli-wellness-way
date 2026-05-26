@@ -246,7 +246,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 'maestria-equipo':
         return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 11 };
       case 'express-aliados':
-        return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 7 };
+        return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 8 };
       default:
         return { title: '', subtitle: '', color: 'primary', total: 1 };
     }
