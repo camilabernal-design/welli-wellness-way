@@ -172,11 +172,27 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
+  const renderFarmerV2Module = () => {
+    switch (currentModule) {
+      case 1: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
+      case 2: return <ClinicaV2Module2Discovery onComplete={handleModuleComplete} />;
+      case 3: return <ClinicaV2Module3Archetypes onComplete={handleModuleComplete} />;
+      case 4: return <ClinicaV2Module4Agenda onComplete={handleModuleComplete} />;
+      case 5: return <ClinicaV2Module5Platform onComplete={handleModuleComplete} />;
+      case 6: return <ClinicaV2Module6Objections onComplete={handleModuleComplete} />;
+      case 7: return <ClinicaV2Module7CloseActivation onComplete={handleModuleComplete} />;
+      case 8: return <ClinicaV2Module8SecondSession onComplete={handleModuleComplete} />;
+      case 9: return <ClinicaV2Module9Certification onComplete={handleGoToHub} />;
+      default: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
+    }
+  };
+
   const renderModule = () => {
     switch (currentRoute) {
       case 'hunter': return renderHunterModule();
       case 'aliado': return renderAliadoModule();
       case 'farmer': return renderFarmerModule();
+      case 'farmer-v2': return renderFarmerV2Module();
       default: return null;
     }
   };
@@ -192,6 +208,8 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
           color: currentModule <= 11 ? 'welli-yellow' : 'secondary',
           total: 21 
         };
+      case 'farmer-v2':
+        return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary', total: 9 };
       case 'aliado':
         return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow', total: 5 };
       default:
