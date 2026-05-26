@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
-import { Target, Sprout, Stethoscope, ArrowRight } from "lucide-react";
+import { Target, Sprout, Stethoscope, ArrowRight, Zap } from "lucide-react";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { TrainingRoute } from "@/types/training";
 
