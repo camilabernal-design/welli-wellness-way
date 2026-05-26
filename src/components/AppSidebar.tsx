@@ -109,30 +109,19 @@ const aliadoModules = [
   { id: 5, title: "Resumen Final", icon: CheckSquare },
 ];
 
-// Clínica 2.0 (Farmer v2) modules (9)
-const farmerV2Modules = [
-  { id: 1, title: "Bienvenida y Filosofía", icon: Sparkles },
-  { id: 2, title: "3 Preguntas de Indagación", icon: MessageSquare },
-  { id: 3, title: "3 Arquetipos de Doctor", icon: Users },
-  { id: 4, title: "Agenda como Solución", icon: Armchair },
-  { id: 5, title: "Cómo Funciona la Plataforma", icon: Monitor },
-  { id: 6, title: "Manejo de Objeciones", icon: ShieldQuestion },
-  { id: 7, title: "Cierre con Activación", icon: Target },
-  { id: 8, title: "Segunda Sesión Real", icon: PlayCircle },
-  { id: 9, title: "Certificación", icon: CheckSquare },
-];
-
-// Maestría Equipo modules (9)
+// Maestría Equipo modules (11)
 const maestriaEquipoModules = [
   { id: 1, title: "Fundamentos", icon: Brain },
   { id: 2, title: "3 Preguntas Diagnósticas", icon: MessageSquare },
   { id: 3, title: "3 Arquetipos", icon: Users },
   { id: 4, title: "Indagación Profunda", icon: ShieldQuestion },
-  { id: 5, title: "Estructura de Sesión", icon: LayoutDashboard },
-  { id: 6, title: "Respuestas Comunes", icon: MessageSquare },
-  { id: 7, title: "Activación Cerrada", icon: Target },
-  { id: 8, title: "Segunda Sesión", icon: PlayCircle },
-  { id: 9, title: "Certificación", icon: GraduationCap },
+  { id: 5, title: "Agenda por Arquetipo", icon: Armchair },
+  { id: 6, title: "Estructura de Sesión", icon: LayoutDashboard },
+  { id: 7, title: "Cómo Funciona la Plataforma", icon: Monitor },
+  { id: 8, title: "Respuestas Comunes", icon: MessageSquare },
+  { id: 9, title: "Activación Cerrada", icon: Target },
+  { id: 10, title: "Segunda Sesión", icon: PlayCircle },
+  { id: 11, title: "Certificación", icon: GraduationCap },
 ];
 
 // Express Aliados modules (7)
