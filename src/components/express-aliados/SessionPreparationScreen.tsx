@@ -1,42 +1,24 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock } from "lucide-react";
-import { useSession, Archetype } from "./SessionContext";
+import { useSession } from "./SessionContext";
 
 interface Props { onReady: () => void; }
 
-const archetypes: { id: Archetype; label: string; hint: string }[] = [
-  {
-    id: 'caidos',
-    label: 'Clínica con presupuestos caídos',
-    hint: 'Mencionó pacientes que no terminan el tratamiento o cartera con valoraciones no cobradas.',
-  },
-  {
-    id: 'premium',
-    label: 'Clínica premium',
-    hint: 'Reconocida en su nicho. Dice "mi consulta no tiene este problema". Pacientes admiran pero no preguntan por financiación.',
-  },
-  {
-    id: 'sin-aliados',
-    label: 'Clínica sin aliados financieros',
-    hint: 'No tiene experiencia previa con financiación. Llegó por evento o referido.',
-  },
-];
+
 
 const SessionPreparationScreen = ({ onReady }: Props) => {
   const { setSessionData, allyName, allySpecialty, archetype } = useSession();
   const [name, setName] = useState(allyName);
   const [specialty, setSpecialty] = useState(allySpecialty);
-  const [profile, setProfile] = useState<Archetype | null>(archetype);
 
-  const canStart = name.trim() && specialty.trim() && profile;
+  const canStart = name.trim() && specialty.trim();
 
   const handleStart = () => {
     if (!canStart) return;
     setSessionData({
       allyName: name.trim(),
       allySpecialty: specialty.trim(),
-      archetype: profile,
       configured: true,
     });
     onReady();
@@ -92,37 +74,6 @@ const SessionPreparationScreen = ({ onReady }: Props) => {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-bold text-indigo-950 mb-3">
-              Perfil identificado durante la indagación inicial
-            </label>
-            <div className="space-y-2">
-              {archetypes.map((a) => (
-                <button
-                  key={a.id}
-                  type="button"
-                  onClick={() => setProfile(a.id)}
-                  className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
-                    profile === a.id
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-slate-200 bg-white hover:border-slate-300'
-                  }`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      profile === a.id ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300'
-                    }`}>
-                      {profile === a.id && <div className="w-2 h-2 rounded-full bg-white" />}
-                    </div>
-                    <div>
-                      <p className="font-bold text-indigo-950 text-sm">{a.label}</p>
-                      <p className="text-xs text-slate-600 mt-1">{a.hint}</p>
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
 
           <button
             onClick={handleStart}
