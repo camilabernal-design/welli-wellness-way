@@ -93,16 +93,19 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
   const [currentRoute, setCurrentRoute] = useState<TrainingRoute>('hub');
   const [currentModule, setCurrentModule] = useState(1);
   const [hunterSelectedVideo, setHunterSelectedVideo] = useState('general');
+  const [expressPhase, setExpressPhase] = useState<ExpressPhase>('preparation');
 
   const handleSelectRoute = (route: TrainingRoute) => {
     setCurrentRoute(route);
     setCurrentModule(1);
+    if (route === 'express-aliados') setExpressPhase('preparation');
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleGoToHub = () => {
     setCurrentRoute('hub');
     setCurrentModule(1);
+    setExpressPhase('preparation');
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
