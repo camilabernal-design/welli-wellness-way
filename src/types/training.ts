@@ -2,7 +2,6 @@ export type TrainingRoute =
   | 'hub'
   | 'hunter'
   | 'farmer'
-  | 'farmer-v2'
   | 'aliado'
   | 'maestria-equipo'
   | 'express-aliados';
@@ -38,15 +37,6 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     totalModules: 22,
     category: 'aliados',
   },
-  'farmer-v2': {
-    id: 'farmer-v2',
-    title: 'Clínica 2.0',
-    subtitle: 'Versión Piloto - Express',
-    icon: '⚡',
-    color: 'secondary',
-    totalModules: 9,
-    category: 'aliados',
-  },
   aliado: {
     id: 'aliado',
     title: 'Aliado Médico',
@@ -62,7 +52,7 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     subtitle: 'Metodología comercial Welli',
     icon: '🧠',
     color: 'secondary',
-    totalModules: 9,
+    totalModules: 11,
     category: 'equipo',
   },
   'express-aliados': {

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MessageSquare, Lightbulb } from "lucide-react";
+import { ArrowRight, MessageSquare, Lightbulb, Building2 } from "lucide-react";
+
+const knownAllies = [
+  { name: "Existe Crédito", commonPain: "Desembolso lento" },
+  { name: "Medipay", commonPain: "Tasa alta, pero rápido" },
+  { name: "Sí Crédito", commonPain: "Burocrático" },
+];
 
 interface Props { onComplete: () => void; }
 
@@ -31,10 +37,6 @@ const questions = [
   },
 ];
 
-const conditional = {
-  q: "¿Cuántos presupuestos se le han perdido en la última semana?",
-  hint: "Pregunta condicional — usa solo si el aliado ya mencionó dolor financiero.",
-};
 
 const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
   const [step, setStep] = useState(0);
@@ -112,6 +114,29 @@ const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
                     </button>
                   ))}
                 </div>
+
+                {step === 1 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6 pt-5 border-t border-secondary/20"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Building2 className="w-4 h-4 text-secondary" />
+                      <p className="text-sm font-bold text-indigo-950">
+                        Si el aliado menciona uno de estos, su dolor probable es:
+                      </p>
+                    </div>
+                    <div className="grid sm:grid-cols-3 gap-3">
+                      {knownAllies.map((a) => (
+                        <div key={a.name} className="rounded-xl border border-secondary/30 bg-secondary/5 p-3">
+                          <p className="font-bold text-indigo-950 text-sm mb-1">{a.name}</p>
+                          <p className="text-xs text-indigo-800 italic">"{a.commonPain}"</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
             </AnimatePresence>
 
@@ -134,10 +159,17 @@ const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="bg-welli-yellow/10 rounded-2xl border-2 border-welli-yellow/40 p-6 md:p-8 mb-6">
               <p className="text-xs font-bold text-welli-yellow uppercase mb-2">Pregunta condicional</p>
-              <h2 className="font-display text-xl md:text-2xl font-bold text-indigo-950 mb-3">"{conditional.q}"</h2>
-              <div className="flex items-start gap-2 p-3 rounded-xl bg-white/60">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-indigo-950 mb-3">"¿Cuántos presupuestos se le han perdido en la última semana?"</h2>
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-white/60 mb-4">
                 <Lightbulb className="w-4 h-4 text-welli-yellow mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-indigo-800">{conditional.hint}</p>
+                <p className="text-sm text-indigo-800">Pregunta condicional — usa solo si el aliado ya mencionó dolor financiero.</p>
+              </div>
+
+              <div className="mt-4 p-4 rounded-xl bg-white border border-welli-yellow/30">
+                <p className="text-xs font-bold text-indigo-950/70 uppercase mb-2">Para aliados de perfil premium, reformula así:</p>
+                <p className="font-display text-lg font-bold text-indigo-950 italic">
+                  "¿Cuántos pacientes valoró el mes pasado que no terminaron tomando el tratamiento?"
+                </p>
               </div>
             </div>
             <div className="text-center">

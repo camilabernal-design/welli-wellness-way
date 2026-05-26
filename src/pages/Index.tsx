@@ -53,23 +53,14 @@ import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import FinalQuizModule from "@/components/modules/FinalQuizModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-// Clínica 2.0 (Farmer v2) Modules (9)
-import ClinicaV2Module1Welcome from "@/components/farmer-v2/ClinicaV2Module1Welcome";
-import ClinicaV2Module2Discovery from "@/components/farmer-v2/ClinicaV2Module2Discovery";
-import ClinicaV2Module3Archetypes from "@/components/farmer-v2/ClinicaV2Module3Archetypes";
-import ClinicaV2Module4Agenda from "@/components/farmer-v2/ClinicaV2Module4Agenda";
-import ClinicaV2Module5Platform from "@/components/farmer-v2/ClinicaV2Module5Platform";
-import ClinicaV2Module6Objections from "@/components/farmer-v2/ClinicaV2Module6Objections";
-import ClinicaV2Module7CloseActivation from "@/components/farmer-v2/ClinicaV2Module7CloseActivation";
-import ClinicaV2Module8SecondSession from "@/components/farmer-v2/ClinicaV2Module8SecondSession";
-import ClinicaV2Module9Certification from "@/components/farmer-v2/ClinicaV2Module9Certification";
-
-// Maestría Equipo Modules (9)
+// Maestría Equipo Modules (11)
 import MaestriaEquipoModule1Foundations from "@/components/maestria-equipo/MaestriaEquipoModule1Foundations";
 import MaestriaEquipoModule2Discovery from "@/components/maestria-equipo/MaestriaEquipoModule2Discovery";
 import MaestriaEquipoModule3Archetypes from "@/components/maestria-equipo/MaestriaEquipoModule3Archetypes";
 import MaestriaEquipoModule4DeepInquiry from "@/components/maestria-equipo/MaestriaEquipoModule4DeepInquiry";
+import MaestriaEquipoModule4bAgendaApproach from "@/components/maestria-equipo/MaestriaEquipoModule4bAgendaApproach";
 import MaestriaEquipoModule5SessionStructure from "@/components/maestria-equipo/MaestriaEquipoModule5SessionStructure";
+import MaestriaEquipoModule5bPlatform from "@/components/maestria-equipo/MaestriaEquipoModule5bPlatform";
 import MaestriaEquipoModule6CommonResponses from "@/components/maestria-equipo/MaestriaEquipoModule6CommonResponses";
 import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/MaestriaEquipoModule7ClosedActivation";
 import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
@@ -88,9 +79,8 @@ import ExpressAliadosModule7NextSteps from "@/components/express-aliados/Express
 const ROUTE_MODULES = {
   hunter: 10,
   farmer: 21,
-  'farmer-v2': 9,
   aliado: 5,
-  'maestria-equipo': 9,
+  'maestria-equipo': 11,
   'express-aliados': 7,
 };
 
@@ -189,32 +179,19 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  const renderFarmerV2Module = () => {
-    switch (currentModule) {
-      case 1: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
-      case 2: return <ClinicaV2Module2Discovery onComplete={handleModuleComplete} />;
-      case 3: return <ClinicaV2Module3Archetypes onComplete={handleModuleComplete} />;
-      case 4: return <ClinicaV2Module4Agenda onComplete={handleModuleComplete} />;
-      case 5: return <ClinicaV2Module5Platform onComplete={handleModuleComplete} />;
-      case 6: return <ClinicaV2Module6Objections onComplete={handleModuleComplete} />;
-      case 7: return <ClinicaV2Module7CloseActivation onComplete={handleModuleComplete} />;
-      case 8: return <ClinicaV2Module8SecondSession onComplete={handleModuleComplete} />;
-      case 9: return <ClinicaV2Module9Certification onComplete={handleGoToHub} />;
-      default: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
-    }
-  };
-
   const renderMaestriaEquipoModule = () => {
     switch (currentModule) {
       case 1: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
       case 2: return <MaestriaEquipoModule2Discovery onComplete={handleModuleComplete} />;
       case 3: return <MaestriaEquipoModule3Archetypes onComplete={handleModuleComplete} />;
       case 4: return <MaestriaEquipoModule4DeepInquiry onComplete={handleModuleComplete} />;
-      case 5: return <MaestriaEquipoModule5SessionStructure onComplete={handleModuleComplete} />;
-      case 6: return <MaestriaEquipoModule6CommonResponses onComplete={handleModuleComplete} />;
-      case 7: return <MaestriaEquipoModule7ClosedActivation onComplete={handleModuleComplete} />;
-      case 8: return <MaestriaEquipoModule8FollowUpSession onComplete={handleModuleComplete} />;
-      case 9: return <MaestriaEquipoModule9Certification onComplete={handleGoToHub} />;
+      case 5: return <MaestriaEquipoModule4bAgendaApproach onComplete={handleModuleComplete} />;
+      case 6: return <MaestriaEquipoModule5SessionStructure onComplete={handleModuleComplete} />;
+      case 7: return <MaestriaEquipoModule5bPlatform onComplete={handleModuleComplete} />;
+      case 8: return <MaestriaEquipoModule6CommonResponses onComplete={handleModuleComplete} />;
+      case 9: return <MaestriaEquipoModule7ClosedActivation onComplete={handleModuleComplete} />;
+      case 10: return <MaestriaEquipoModule8FollowUpSession onComplete={handleModuleComplete} />;
+      case 11: return <MaestriaEquipoModule9Certification onComplete={handleGoToHub} />;
       default: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
     }
   };
@@ -237,7 +214,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 'hunter': return renderHunterModule();
       case 'aliado': return renderAliadoModule();
       case 'farmer': return renderFarmerModule();
-      case 'farmer-v2': return renderFarmerV2Module();
+      
       case 'maestria-equipo': return renderMaestriaEquipoModule();
       case 'express-aliados': return renderExpressAliadosModule();
       default: return null;
@@ -255,12 +232,10 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
           color: currentModule <= 11 ? 'welli-yellow' : 'secondary',
           total: 21,
         };
-      case 'farmer-v2':
-        return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary', total: 9 };
       case 'aliado':
         return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow', total: 5 };
       case 'maestria-equipo':
-        return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 9 };
+        return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 11 };
       case 'express-aliados':
         return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 7 };
       default:

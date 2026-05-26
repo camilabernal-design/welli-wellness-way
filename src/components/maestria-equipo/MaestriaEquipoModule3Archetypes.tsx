@@ -12,6 +12,7 @@ const archetypes = [
     signals: ['Cartera con tratamientos no cobrados', 'Agenda con espacios vacíos', 'Menciona pacientes que se fueron sin tratarse'],
     pain: 'Financiero — está dejando ingresos sobre la mesa.',
     approach: 'Recuperación de agenda. Conversión de presupuestos perdidos. Habla de plata.',
+    opener: 'Doctor, lo que usted describe es agenda perdida. Welli fue diseñada exactamente para eso.',
   },
   {
     id: 'B',
@@ -20,6 +21,7 @@ const archetypes = [
     signals: ['Clínica reconocida y posicionada', 'Dice "yo no necesito esto"', 'Pacientes admiran al profesional'],
     pain: 'Social. El paciente no se atreve a hablar de dinero por respeto.',
     approach: 'Welli como herramienta discreta. El paciente la activa sin pedirle nada al doctor. El doctor no se vuelve vendedor.',
+    opener: 'Doctor, su paciente sí quiere tratarse con usted. Lo que no tiene es la confianza de decirle que le falta dinero. Welli resuelve eso sin que usted tenga que preguntar.',
   },
   {
     id: 'C',
@@ -28,6 +30,7 @@ const archetypes = [
     signals: ['Primera exposición al financiamiento', 'Curiosidad sin dolor articulado', 'Llegó por referido o evento'],
     pain: 'Latente. No conoce la pérdida.',
     approach: 'Crear conciencia del dolor antes de presentar la solución. Educa primero.',
+    opener: 'Doctor, antes de mostrarle cómo funciona: en clínicas como la suya, el 65% de pacientes que se van sin tratarse, se van por precio. No porque no lo necesiten.',
   },
 ];
 
@@ -95,6 +98,12 @@ const MaestriaEquipoModule3Archetypes = ({ onComplete }: Props) => {
                 <p className="text-xs font-bold text-secondary uppercase mb-2">Enfoque comercial</p>
                 <p className="text-sm text-indigo-800">{current.approach}</p>
               </div>
+            </div>
+
+            <div className="mt-4 rounded-xl bg-welli-yellow/10 border-2 border-welli-yellow/40 p-5">
+              <p className="text-xs font-bold text-welli-yellow uppercase mb-2">Frase de apertura sugerida</p>
+              <p className="text-base text-indigo-950 italic font-medium">"{current.opener}"</p>
+              <p className="text-[11px] text-indigo-800/70 mt-2">Memorízala. Es el primer impacto del arquetipo.</p>
             </div>
           </motion.div>
         </AnimatePresence>
