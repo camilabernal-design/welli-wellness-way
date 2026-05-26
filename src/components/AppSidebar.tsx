@@ -320,6 +320,7 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
       <SidebarContent className="px-2">
         {currentRoute === 'hunter' && renderHunterModules()}
         {currentRoute === 'farmer' && renderFarmerModules()}
+        {currentRoute === 'farmer-v2' && renderFarmerV2Modules()}
         {currentRoute === 'aliado' && renderAliadoModules()}
       </SidebarContent>
 
