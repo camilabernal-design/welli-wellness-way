@@ -1,4 +1,4 @@
-export type TrainingRoute = 'hub' | 'hunter' | 'farmer' | 'aliado';
+export type TrainingRoute = 'hub' | 'hunter' | 'farmer' | 'farmer-v2' | 'aliado';
 
 export interface RouteConfig {
   id: TrainingRoute;
@@ -25,6 +25,14 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '🌱',
     color: 'secondary',
     totalModules: 22,
+  },
+  'farmer-v2': {
+    id: 'farmer-v2',
+    title: 'Clínica 2.0',
+    subtitle: 'Versión Piloto - Express',
+    icon: '⚡',
+    color: 'secondary',
+    totalModules: 9,
   },
   aliado: {
     id: 'aliado',
