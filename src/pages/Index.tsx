@@ -64,11 +64,34 @@ import ClinicaV2Module7CloseActivation from "@/components/farmer-v2/ClinicaV2Mod
 import ClinicaV2Module8SecondSession from "@/components/farmer-v2/ClinicaV2Module8SecondSession";
 import ClinicaV2Module9Certification from "@/components/farmer-v2/ClinicaV2Module9Certification";
 
+// Maestría Equipo Modules (9)
+import MaestriaEquipoModule1Foundations from "@/components/maestria-equipo/MaestriaEquipoModule1Foundations";
+import MaestriaEquipoModule2Discovery from "@/components/maestria-equipo/MaestriaEquipoModule2Discovery";
+import MaestriaEquipoModule3Archetypes from "@/components/maestria-equipo/MaestriaEquipoModule3Archetypes";
+import MaestriaEquipoModule4DeepInquiry from "@/components/maestria-equipo/MaestriaEquipoModule4DeepInquiry";
+import MaestriaEquipoModule5SessionStructure from "@/components/maestria-equipo/MaestriaEquipoModule5SessionStructure";
+import MaestriaEquipoModule6CommonResponses from "@/components/maestria-equipo/MaestriaEquipoModule6CommonResponses";
+import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/MaestriaEquipoModule7ClosedActivation";
+import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
+import MaestriaEquipoModule9Certification from "@/components/maestria-equipo/MaestriaEquipoModule9Certification";
+
+// Express Aliados Modules (7)
+import { SessionProvider } from "@/components/express-aliados/SessionContext";
+import ExpressAliadosModule1Welcome from "@/components/express-aliados/ExpressAliadosModule1Welcome";
+import ExpressAliadosModule2Impact from "@/components/express-aliados/ExpressAliadosModule2Impact";
+import ExpressAliadosModule3HowItWorks from "@/components/express-aliados/ExpressAliadosModule3HowItWorks";
+import ExpressAliadosModule4PatientResponses from "@/components/express-aliados/ExpressAliadosModule4PatientResponses";
+import ExpressAliadosModule5Trust from "@/components/express-aliados/ExpressAliadosModule5Trust";
+import ExpressAliadosModule6FirstActivation from "@/components/express-aliados/ExpressAliadosModule6FirstActivation";
+import ExpressAliadosModule7NextSteps from "@/components/express-aliados/ExpressAliadosModule7NextSteps";
+
 const ROUTE_MODULES = {
   hunter: 10,
   farmer: 21,
   'farmer-v2': 9,
   aliado: 5,
+  'maestria-equipo': 9,
+  'express-aliados': 7,
 };
 
 const Index = forwardRef<HTMLDivElement>((_, ref) => {
@@ -108,12 +131,10 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  // Render Hub
   if (currentRoute === 'hub') {
     return <TrainingHub onSelectRoute={handleSelectRoute} />;
   }
 
-  // Render Hunter route
   const renderHunterModule = () => {
     switch (currentModule) {
       case 1: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
@@ -130,7 +151,6 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  // Render Aliado route
   const renderAliadoModule = () => {
     switch (currentModule) {
       case 1: return <AliadoModule1WelliCheck onComplete={handleModuleComplete} />;
@@ -142,10 +162,8 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  // Render Farmer/CS route
   const renderFarmerModule = () => {
     switch (currentModule) {
-      // Phase 1
       case 1: return <Phase1Welcome onComplete={handleModuleComplete} />;
       case 2: return <AgendaAllyModule onComplete={handleModuleComplete} />;
       case 3: return <CalculatorProModule onComplete={handleModuleComplete} />;
@@ -157,7 +175,6 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 9: return <PracticeSpaceModule onComplete={handleModuleComplete} />;
       case 10: return <Module4RolePlay onComplete={handleModuleComplete} />;
       case 11: return <Phase1Complete onComplete={handleModuleComplete} />;
-      // Phase 2
       case 12: return <Phase2Summary onComplete={handleModuleComplete} />;
       case 13: return <DisbursementWarningModule onComplete={handleModuleComplete} />;
       case 14: return <DesistimientoModule onComplete={handleModuleComplete} />;
@@ -187,12 +204,42 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
+  const renderMaestriaEquipoModule = () => {
+    switch (currentModule) {
+      case 1: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
+      case 2: return <MaestriaEquipoModule2Discovery onComplete={handleModuleComplete} />;
+      case 3: return <MaestriaEquipoModule3Archetypes onComplete={handleModuleComplete} />;
+      case 4: return <MaestriaEquipoModule4DeepInquiry onComplete={handleModuleComplete} />;
+      case 5: return <MaestriaEquipoModule5SessionStructure onComplete={handleModuleComplete} />;
+      case 6: return <MaestriaEquipoModule6CommonResponses onComplete={handleModuleComplete} />;
+      case 7: return <MaestriaEquipoModule7ClosedActivation onComplete={handleModuleComplete} />;
+      case 8: return <MaestriaEquipoModule8FollowUpSession onComplete={handleModuleComplete} />;
+      case 9: return <MaestriaEquipoModule9Certification onComplete={handleGoToHub} />;
+      default: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
+    }
+  };
+
+  const renderExpressAliadosModule = () => {
+    switch (currentModule) {
+      case 1: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
+      case 2: return <ExpressAliadosModule2Impact onComplete={handleModuleComplete} />;
+      case 3: return <ExpressAliadosModule3HowItWorks onComplete={handleModuleComplete} />;
+      case 4: return <ExpressAliadosModule4PatientResponses onComplete={handleModuleComplete} />;
+      case 5: return <ExpressAliadosModule5Trust onComplete={handleModuleComplete} />;
+      case 6: return <ExpressAliadosModule6FirstActivation onComplete={handleModuleComplete} />;
+      case 7: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
+      default: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
+    }
+  };
+
   const renderModule = () => {
     switch (currentRoute) {
       case 'hunter': return renderHunterModule();
       case 'aliado': return renderAliadoModule();
       case 'farmer': return renderFarmerModule();
       case 'farmer-v2': return renderFarmerV2Module();
+      case 'maestria-equipo': return renderMaestriaEquipoModule();
+      case 'express-aliados': return renderExpressAliadosModule();
       default: return null;
     }
   };
@@ -202,16 +249,20 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 'hunter':
         return { title: 'Hunter', subtitle: 'Conquista Clínicas', color: 'welli-orange', total: 10 };
       case 'farmer':
-        return { 
-          title: currentModule <= 11 ? 'Fase 1: Fundamentos' : 'Fase 2: Cierre', 
-          subtitle: 'Farmer / CS', 
+        return {
+          title: currentModule <= 11 ? 'Fase 1: Fundamentos' : 'Fase 2: Cierre',
+          subtitle: 'Farmer / CS',
           color: currentModule <= 11 ? 'welli-yellow' : 'secondary',
-          total: 21 
+          total: 21,
         };
       case 'farmer-v2':
         return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary', total: 9 };
       case 'aliado':
         return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow', total: 5 };
+      case 'maestria-equipo':
+        return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 9 };
+      case 'express-aliados':
+        return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 7 };
       default:
         return { title: '', subtitle: '', color: 'primary', total: 1 };
     }
@@ -219,21 +270,20 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
 
   const routeInfo = getRouteInfo();
 
-  return (
+  const content = (
     <SidebarProvider>
       <div ref={ref} className="min-h-screen flex w-full bg-background">
-        <AppSidebar 
-          currentModule={currentModule} 
+        <AppSidebar
+          currentModule={currentModule}
           onModuleChange={handleModuleChange}
           currentRoute={currentRoute}
           onGoToHub={handleGoToHub}
         />
-        
+
         <SidebarInset className="flex-1">
-          {/* Top Header Bar */}
           <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b border-border bg-background/95 backdrop-blur px-4 md:px-6">
             <SidebarTrigger className="md:hidden" />
-            
+
             <div className="flex items-center gap-3">
               <WelliLogoFull size="sm" />
               <div className="hidden md:block">
@@ -243,20 +293,18 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
 
             <div className="flex-1" />
 
-            {/* Route indicator */}
             <div className={`px-4 py-1.5 rounded-full text-sm font-medium ${
-              currentRoute === 'hunter' 
+              currentRoute === 'hunter'
                 ? "bg-welli-orange/20 text-foreground border border-welli-orange/50"
-                : currentRoute === 'aliado'
+                : currentRoute === 'aliado' || currentRoute === 'express-aliados'
                 ? "bg-welli-yellow/30 text-foreground border border-welli-yellow/50"
-                : currentModule <= 11 
-                ? "bg-welli-yellow/30 text-foreground border border-welli-yellow/50" 
+                : currentRoute === 'farmer' && currentModule <= 11
+                ? "bg-welli-yellow/30 text-foreground border border-welli-yellow/50"
                 : "bg-secondary/20 text-foreground border border-secondary/30"
             }`}>
               {routeInfo.title}
             </div>
 
-            {/* Progress */}
             <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
               <span className="font-medium text-foreground">{currentModule}</span>
               <span>/</span>
@@ -264,7 +312,6 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
             </div>
           </header>
 
-          {/* Floating Calculator Button (only for Farmer route) */}
           {currentRoute === 'farmer' && currentModule !== 3 && (
             <motion.button
               initial={{ scale: 0 }}
@@ -279,7 +326,6 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
             </motion.button>
           )}
 
-          {/* Main Content */}
           <main className="flex-1">
             <AnimatePresence mode="wait">
               <motion.div
@@ -294,7 +340,6 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
             </AnimatePresence>
           </main>
 
-          {/* Footer */}
           <footer className="py-6 border-t border-border">
             <div className="max-w-6xl mx-auto px-4 text-center">
               <p className="text-sm text-muted-foreground">
@@ -306,6 +351,12 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       </div>
     </SidebarProvider>
   );
+
+  if (currentRoute === 'express-aliados') {
+    return <SessionProvider>{content}</SessionProvider>;
+  }
+
+  return content;
 });
 
 Index.displayName = "Index";

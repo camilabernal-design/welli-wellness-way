@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
-import { Target, Sprout, Stethoscope, ArrowRight, Zap, Sparkles, GraduationCap } from "lucide-react";
+import { Target, Sprout, Stethoscope, ArrowRight, Zap, Sparkles, GraduationCap, Brain } from "lucide-react";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { TrainingRoute, RouteCategory } from "@/types/training";
 
@@ -80,6 +80,34 @@ const allRoutes: RouteCard[] = [
     duration: '~10 min',
     modules: 5,
     badge: null,
+    category: 'aliados',
+  },
+  {
+    id: 'maestria-equipo',
+    title: 'Maestría en Capacitación',
+    subtitle: 'Metodología comercial Welli',
+    description: 'Domina la nueva metodología: arquetipos de cliente, indagación efectiva, técnicas de cierre y manejo de conversación.',
+    icon: Brain,
+    color: 'from-secondary to-secondary/80',
+    borderColor: 'border-secondary',
+    bgColor: 'bg-secondary/10',
+    duration: '~25 min',
+    modules: 9,
+    badge: 'NUEVO',
+    category: 'equipo',
+  },
+  {
+    id: 'express-aliados',
+    title: 'Capacitación Express',
+    subtitle: 'Onboarding optimizado para aliados',
+    description: 'Versión de 25 minutos con orden optimizado: contexto del valor, funcionamiento, manejo de conversaciones con pacientes y activación.',
+    icon: Zap,
+    color: 'from-welli-yellow to-welli-yellow/80',
+    borderColor: 'border-welli-yellow',
+    bgColor: 'bg-welli-yellow/15',
+    duration: '~25 min',
+    modules: 7,
+    badge: 'NUEVO',
     category: 'aliados',
   },
 ];

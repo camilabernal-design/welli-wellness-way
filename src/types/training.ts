@@ -1,4 +1,11 @@
-export type TrainingRoute = 'hub' | 'hunter' | 'farmer' | 'farmer-v2' | 'aliado';
+export type TrainingRoute =
+  | 'hub'
+  | 'hunter'
+  | 'farmer'
+  | 'farmer-v2'
+  | 'aliado'
+  | 'maestria-equipo'
+  | 'express-aliados';
 
 export type RouteCategory = 'equipo' | 'aliados';
 
@@ -47,6 +54,24 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '⚕️',
     color: 'welli-yellow',
     totalModules: 5,
+    category: 'aliados',
+  },
+  'maestria-equipo': {
+    id: 'maestria-equipo',
+    title: 'Maestría en Capacitación',
+    subtitle: 'Metodología comercial Welli',
+    icon: '🧠',
+    color: 'secondary',
+    totalModules: 9,
+    category: 'equipo',
+  },
+  'express-aliados': {
+    id: 'express-aliados',
+    title: 'Capacitación Express',
+    subtitle: 'Onboarding optimizado para aliados',
+    icon: '⚡',
+    color: 'welli-yellow',
+    totalModules: 7,
     category: 'aliados',
   },
 };

@@ -122,6 +122,30 @@ const farmerV2Modules = [
   { id: 9, title: "Certificación", icon: CheckSquare },
 ];
 
+// Maestría Equipo modules (9)
+const maestriaEquipoModules = [
+  { id: 1, title: "Fundamentos", icon: Brain },
+  { id: 2, title: "3 Preguntas Diagnósticas", icon: MessageSquare },
+  { id: 3, title: "3 Arquetipos", icon: Users },
+  { id: 4, title: "Indagación Profunda", icon: ShieldQuestion },
+  { id: 5, title: "Estructura de Sesión", icon: LayoutDashboard },
+  { id: 6, title: "Respuestas Comunes", icon: MessageSquare },
+  { id: 7, title: "Activación Cerrada", icon: Target },
+  { id: 8, title: "Segunda Sesión", icon: PlayCircle },
+  { id: 9, title: "Certificación", icon: GraduationCap },
+];
+
+// Express Aliados modules (7)
+const expressAliadosModules = [
+  { id: 1, title: "Bienvenida", icon: Sparkles },
+  { id: 2, title: "Impacto en su Consulta", icon: TrendingUp },
+  { id: 3, title: "Cómo Funciona Welli", icon: Monitor },
+  { id: 4, title: "Respuestas de Pacientes", icon: MessageSquare },
+  { id: 5, title: "Garantías", icon: ShieldQuestion },
+  { id: 6, title: "Primera Activación", icon: Target },
+  { id: 7, title: "Próximos Pasos", icon: ChevronRight },
+];
+
 const getRouteConfig = (route: TrainingRoute) => {
   switch (route) {
     case 'hunter':
@@ -132,6 +156,10 @@ const getRouteConfig = (route: TrainingRoute) => {
       return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary' };
     case 'aliado':
       return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow' };
+    case 'maestria-equipo':
+      return { title: 'Maestría', subtitle: 'Metodología comercial', color: 'secondary' };
+    case 'express-aliados':
+      return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow' };
     default:
       return { title: 'Training Hub', subtitle: '', color: 'primary' };
   }
@@ -294,6 +322,36 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
     </SidebarGroup>
   );
 
+  const renderGenericRoute = (modules: { id: number; title: string; icon: typeof Home }[], label: string, accent: 'secondary' | 'welli-yellow', emoji: string) => (
+    <SidebarGroup>
+      <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+        <span className={`w-5 h-5 rounded-full ${accent === 'secondary' ? 'bg-secondary' : 'bg-welli-yellow'} text-white flex items-center justify-center text-[10px] font-bold`}>{emoji}</span>
+        {label}
+      </SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {modules.map((module) => {
+            const isActive = currentModule === module.id;
+            const isCompleted = currentModule > module.id;
+            return (
+              <SidebarMenuItem key={module.id}>
+                <SidebarMenuButton
+                  onClick={() => onModuleChange(module.id)}
+                  isActive={isActive}
+                  className={`group transition-all ${isCompleted ? "text-sidebar-foreground/80" : ""}`}
+                >
+                  <module.icon className={`w-4 h-4 ${isActive ? (accent === 'secondary' ? 'text-secondary' : 'text-welli-yellow') : isCompleted ? 'text-green-500' : ''}`} />
+                  <span className="truncate text-sm">{module.title}</span>
+                  {isActive && <ChevronRight className={`ml-auto w-4 h-4 ${accent === 'secondary' ? 'text-secondary' : 'text-welli-yellow'}`} />}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
@@ -322,7 +380,10 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
         {currentRoute === 'farmer' && renderFarmerModules()}
         {currentRoute === 'farmer-v2' && renderFarmerV2Modules()}
         {currentRoute === 'aliado' && renderAliadoModules()}
+        {currentRoute === 'maestria-equipo' && renderGenericRoute(maestriaEquipoModules, 'Maestría · Equipo Welli', 'secondary', '🧠')}
+        {currentRoute === 'express-aliados' && renderGenericRoute(expressAliadosModules, 'Capacitación Express', 'welli-yellow', '⚡')}
       </SidebarContent>
+
 
       <SidebarFooter className="p-4 border-t border-sidebar-border">
         <div className="text-center">
