@@ -53,23 +53,14 @@ import ModuleTeamRegistration from "@/components/ModuleTeamRegistration";
 import FinalQuizModule from "@/components/modules/FinalQuizModule";
 import FinalChecklist from "@/components/modules/FinalChecklist";
 
-// Clínica 2.0 (Farmer v2) Modules (9)
-import ClinicaV2Module1Welcome from "@/components/farmer-v2/ClinicaV2Module1Welcome";
-import ClinicaV2Module2Discovery from "@/components/farmer-v2/ClinicaV2Module2Discovery";
-import ClinicaV2Module3Archetypes from "@/components/farmer-v2/ClinicaV2Module3Archetypes";
-import ClinicaV2Module4Agenda from "@/components/farmer-v2/ClinicaV2Module4Agenda";
-import ClinicaV2Module5Platform from "@/components/farmer-v2/ClinicaV2Module5Platform";
-import ClinicaV2Module6Objections from "@/components/farmer-v2/ClinicaV2Module6Objections";
-import ClinicaV2Module7CloseActivation from "@/components/farmer-v2/ClinicaV2Module7CloseActivation";
-import ClinicaV2Module8SecondSession from "@/components/farmer-v2/ClinicaV2Module8SecondSession";
-import ClinicaV2Module9Certification from "@/components/farmer-v2/ClinicaV2Module9Certification";
-
-// Maestría Equipo Modules (9)
+// Maestría Equipo Modules (11)
 import MaestriaEquipoModule1Foundations from "@/components/maestria-equipo/MaestriaEquipoModule1Foundations";
 import MaestriaEquipoModule2Discovery from "@/components/maestria-equipo/MaestriaEquipoModule2Discovery";
 import MaestriaEquipoModule3Archetypes from "@/components/maestria-equipo/MaestriaEquipoModule3Archetypes";
 import MaestriaEquipoModule4DeepInquiry from "@/components/maestria-equipo/MaestriaEquipoModule4DeepInquiry";
+import MaestriaEquipoModule4bAgendaApproach from "@/components/maestria-equipo/MaestriaEquipoModule4bAgendaApproach";
 import MaestriaEquipoModule5SessionStructure from "@/components/maestria-equipo/MaestriaEquipoModule5SessionStructure";
+import MaestriaEquipoModule5bPlatform from "@/components/maestria-equipo/MaestriaEquipoModule5bPlatform";
 import MaestriaEquipoModule6CommonResponses from "@/components/maestria-equipo/MaestriaEquipoModule6CommonResponses";
 import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/MaestriaEquipoModule7ClosedActivation";
 import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
