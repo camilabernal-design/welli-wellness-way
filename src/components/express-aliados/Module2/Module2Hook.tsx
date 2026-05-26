@@ -26,7 +26,7 @@ const Module2Hook = ({ onNext }: Props) => {
           onClick={onNext}
           className="inline-flex items-center gap-3 text-lg px-10 py-5 rounded-2xl font-bold bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 transition-all shadow-xl hover:scale-105"
         >
-          Pensemos juntos <ArrowRight className="w-5 h-5" />
+          Veamos <ArrowRight className="w-5 h-5" />
         </button>
       </div>
     </motion.div>
