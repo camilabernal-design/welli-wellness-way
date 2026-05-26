@@ -179,32 +179,19 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
-  const renderFarmerV2Module = () => {
-    switch (currentModule) {
-      case 1: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
-      case 2: return <ClinicaV2Module2Discovery onComplete={handleModuleComplete} />;
-      case 3: return <ClinicaV2Module3Archetypes onComplete={handleModuleComplete} />;
-      case 4: return <ClinicaV2Module4Agenda onComplete={handleModuleComplete} />;
-      case 5: return <ClinicaV2Module5Platform onComplete={handleModuleComplete} />;
-      case 6: return <ClinicaV2Module6Objections onComplete={handleModuleComplete} />;
-      case 7: return <ClinicaV2Module7CloseActivation onComplete={handleModuleComplete} />;
-      case 8: return <ClinicaV2Module8SecondSession onComplete={handleModuleComplete} />;
-      case 9: return <ClinicaV2Module9Certification onComplete={handleGoToHub} />;
-      default: return <ClinicaV2Module1Welcome onComplete={handleModuleComplete} />;
-    }
-  };
-
   const renderMaestriaEquipoModule = () => {
     switch (currentModule) {
       case 1: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
       case 2: return <MaestriaEquipoModule2Discovery onComplete={handleModuleComplete} />;
       case 3: return <MaestriaEquipoModule3Archetypes onComplete={handleModuleComplete} />;
       case 4: return <MaestriaEquipoModule4DeepInquiry onComplete={handleModuleComplete} />;
-      case 5: return <MaestriaEquipoModule5SessionStructure onComplete={handleModuleComplete} />;
-      case 6: return <MaestriaEquipoModule6CommonResponses onComplete={handleModuleComplete} />;
-      case 7: return <MaestriaEquipoModule7ClosedActivation onComplete={handleModuleComplete} />;
-      case 8: return <MaestriaEquipoModule8FollowUpSession onComplete={handleModuleComplete} />;
-      case 9: return <MaestriaEquipoModule9Certification onComplete={handleGoToHub} />;
+      case 5: return <MaestriaEquipoModule4bAgendaApproach onComplete={handleModuleComplete} />;
+      case 6: return <MaestriaEquipoModule5SessionStructure onComplete={handleModuleComplete} />;
+      case 7: return <MaestriaEquipoModule5bPlatform onComplete={handleModuleComplete} />;
+      case 8: return <MaestriaEquipoModule6CommonResponses onComplete={handleModuleComplete} />;
+      case 9: return <MaestriaEquipoModule7ClosedActivation onComplete={handleModuleComplete} />;
+      case 10: return <MaestriaEquipoModule8FollowUpSession onComplete={handleModuleComplete} />;
+      case 11: return <MaestriaEquipoModule9Certification onComplete={handleGoToHub} />;
       default: return <MaestriaEquipoModule1Foundations onComplete={handleModuleComplete} />;
     }
   };
