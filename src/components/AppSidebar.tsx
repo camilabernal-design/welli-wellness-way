@@ -336,7 +336,7 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
       <SidebarContent className="px-2">
         {currentRoute === 'hunter' && renderHunterModules()}
         {currentRoute === 'farmer' && renderFarmerModules()}
-        {currentRoute === 'farmer-v2' && renderFarmerV2Modules()}
+        
         {currentRoute === 'aliado' && renderAliadoModules()}
         {currentRoute === 'maestria-equipo' && renderGenericRoute(maestriaEquipoModules, 'Maestría · Equipo Welli', 'secondary', '🧠')}
         {currentRoute === 'express-aliados' && renderGenericRoute(expressAliadosModules, 'Capacitación Express', 'welli-yellow', '⚡')}
