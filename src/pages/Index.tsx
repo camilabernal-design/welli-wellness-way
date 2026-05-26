@@ -214,7 +214,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 'hunter': return renderHunterModule();
       case 'aliado': return renderAliadoModule();
       case 'farmer': return renderFarmerModule();
-      case 'farmer-v2': return renderFarmerV2Module();
+      
       case 'maestria-equipo': return renderMaestriaEquipoModule();
       case 'express-aliados': return renderExpressAliadosModule();
       default: return null;
