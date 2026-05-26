@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { useSession } from "./SessionContext";
-import SessionSetupScreen from "./SessionSetupScreen";
 
 interface Props { onComplete: () => void; }
 
@@ -14,20 +12,16 @@ const promises = [
 ];
 
 const ExpressAliadosModule1Welcome = ({ onComplete }: Props) => {
-  const { configured, setSessionData } = useSession();
-  const [ready, setReady] = useState(configured);
-
-  if (!ready) return <SessionSetupScreen onReady={() => setReady(true)} />;
+  const { setSessionData, sessionStartTime } = useSession();
 
   const handleStart = () => {
-    setSessionData({ sessionStartTime: Date.now() });
+    if (!sessionStartTime) setSessionData({ sessionStartTime: Date.now() });
     onComplete();
   };
 
   return (
     <div className="module-container">
       <div className="max-w-4xl mx-auto text-center py-12 space-y-16">
-        {/* Momento 1 — Saludo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -37,15 +31,12 @@ const ExpressAliadosModule1Welcome = ({ onComplete }: Props) => {
           <div className="flex justify-center">
             <WelliLogoFull size="lg" />
           </div>
-          <p className="text-welli-yellow font-bold text-sm tracking-widest">
-            FINANCIA TU BIENESTAR
-          </p>
+          <p className="text-welli-yellow font-bold text-sm tracking-widest">FINANCIA TU BIENESTAR</p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-indigo-950">
             Bienvenido a Welli
           </h1>
         </motion.div>
 
-        {/* Momento 2 — Promesa */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,16 +63,13 @@ const ExpressAliadosModule1Welcome = ({ onComplete }: Props) => {
           </div>
         </motion.div>
 
-        {/* Momento 3 — Arranque */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 6, duration: 0.6 }}
           className="space-y-6"
         >
-          <p className="font-display text-3xl md:text-4xl font-bold text-indigo-950">
-            ¿Empezamos?
-          </p>
+          <p className="font-display text-3xl md:text-4xl font-bold text-indigo-950">¿Empezamos?</p>
           <button
             onClick={handleStart}
             className="group inline-flex items-center gap-3 text-xl px-10 py-5 rounded-2xl font-bold bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
