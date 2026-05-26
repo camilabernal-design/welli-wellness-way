@@ -96,7 +96,7 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
           </motion.div>
 
           {/* Route Cards */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {routes.map((route, index) => (
               <motion.div
                 key={route.id}
@@ -107,6 +107,11 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
                 onClick={() => onSelectRoute(route.id)}
                 className={`relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
               >
+                {route.badge && (
+                  <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-indigo-950 text-welli-yellow text-[10px] font-bold tracking-wider shadow-md">
+                    ✨ {route.badge}
+                  </div>
+                )}
                 {/* Card Header with Gradient */}
                 <div className={`bg-gradient-to-br ${route.color} p-6`}>
                   <route.icon className="w-12 h-12 mb-4 text-indigo-950" />
