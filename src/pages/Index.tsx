@@ -232,12 +232,10 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
           color: currentModule <= 11 ? 'welli-yellow' : 'secondary',
           total: 21,
         };
-      case 'farmer-v2':
-        return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary', total: 9 };
       case 'aliado':
         return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow', total: 5 };
       case 'maestria-equipo':
-        return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 9 };
+        return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 11 };
       case 'express-aliados':
         return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 7 };
       default:
