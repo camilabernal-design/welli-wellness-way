@@ -79,9 +79,8 @@ import ExpressAliadosModule7NextSteps from "@/components/express-aliados/Express
 const ROUTE_MODULES = {
   hunter: 10,
   farmer: 21,
-  'farmer-v2': 9,
   aliado: 5,
-  'maestria-equipo': 9,
+  'maestria-equipo': 11,
   'express-aliados': 7,
 };
 
