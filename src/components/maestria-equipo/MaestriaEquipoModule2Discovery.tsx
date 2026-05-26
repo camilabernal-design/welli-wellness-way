@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2 } from "lucide-react";
+import { ArrowRight, MessageSquare, Lightbulb, Building2 } from "lucide-react";
 
 const knownAllies = [
   { name: "Existe Crédito", commonPain: "Desembolso lento" },
   { name: "Medipay", commonPain: "Tasa alta, pero rápido" },
   { name: "Sí Crédito", commonPain: "Burocrático" },
 ];
-import { ArrowRight, MessageSquare, Lightbulb } from "lucide-react";
 
 interface Props { onComplete: () => void; }
 
