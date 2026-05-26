@@ -20,6 +20,7 @@ const routes = [
     bgColor: 'bg-welli-yellow/20',
     duration: '~15 min',
     modules: 9,
+    badge: null as string | null,
   },
   {
     id: 'farmer' as TrainingRoute,
@@ -32,6 +33,20 @@ const routes = [
     bgColor: 'bg-secondary/10',
     duration: '~45 min',
     modules: 22,
+    badge: null as string | null,
+  },
+  {
+    id: 'farmer-v2' as TrainingRoute,
+    title: 'Clínica 2.0',
+    subtitle: 'Versión Piloto - Express',
+    description: 'Nueva estructura comercial: 25 min, indagación primero, activación cerrada. Piloto Mariana × Alexis.',
+    icon: Zap,
+    color: 'from-secondary to-welli-yellow',
+    borderColor: 'border-secondary',
+    bgColor: 'bg-secondary/20',
+    duration: '~25 min',
+    modules: 9,
+    badge: 'PILOTO',
   },
   {
     id: 'aliado' as TrainingRoute,
@@ -44,6 +59,7 @@ const routes = [
     bgColor: 'bg-welli-yellow/10',
     duration: '~10 min',
     modules: 5,
+    badge: null as string | null,
   },
 ];
 
