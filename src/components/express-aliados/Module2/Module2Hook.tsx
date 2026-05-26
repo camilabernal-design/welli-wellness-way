@@ -16,12 +16,11 @@ const Module2Hook = ({ onNext }: Props) => {
     >
       <div className="max-w-3xl mx-auto text-center space-y-8">
         <h1 className="font-display text-4xl md:text-5xl font-bold text-indigo-950 leading-tight">
-          Antes de hablar de Welli, hablemos de su agenda.
+          Hablemos de su agenda.
         </h1>
         <p className="text-lg md:text-xl text-indigo-800 leading-relaxed italic">
-          "Doctor <span className="font-bold not-italic text-indigo-950">{name}</span>, le voy a hacer
-          dos preguntas que probablemente no se ha hecho de esta manera. No tienen respuesta correcta.
-          Solo necesito que piense un momento."
+          "Doctor <span className="font-bold not-italic text-indigo-950">{name}</span>, con lo que me
+          acaba de contar, le quiero mostrar algo que probablemente le va a sonar familiar."
         </p>
         <button
           onClick={onNext}
