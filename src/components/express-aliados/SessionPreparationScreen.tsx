@@ -1,27 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Lock } from "lucide-react";
-import { useSession, Archetype } from "./SessionContext";
+import { useSession } from "./SessionContext";
 
 interface Props { onReady: () => void; }
 
-const archetypes: { id: Archetype; label: string; hint: string }[] = [
-  {
-    id: 'caidos',
-    label: 'Clínica con presupuestos caídos',
-    hint: 'Mencionó pacientes que no terminan el tratamiento o cartera con valoraciones no cobradas.',
-  },
-  {
-    id: 'premium',
-    label: 'Clínica premium',
-    hint: 'Reconocida en su nicho. Dice "mi consulta no tiene este problema". Pacientes admiran pero no preguntan por financiación.',
-  },
-  {
-    id: 'sin-aliados',
-    label: 'Clínica sin aliados financieros',
-    hint: 'No tiene experiencia previa con financiación. Llegó por evento o referido.',
-  },
-];
+
 
 const SessionPreparationScreen = ({ onReady }: Props) => {
   const { setSessionData, allyName, allySpecialty, archetype } = useSession();
