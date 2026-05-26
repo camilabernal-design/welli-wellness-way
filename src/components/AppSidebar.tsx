@@ -128,6 +128,8 @@ const getRouteConfig = (route: TrainingRoute) => {
       return { title: 'Hunter', subtitle: 'Conquista Clínicas', color: 'welli-orange' };
     case 'farmer':
       return { title: 'Farmer / CS', subtitle: 'Maestría en Ventas', color: 'secondary' };
+    case 'farmer-v2':
+      return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary' };
     case 'aliado':
       return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow' };
     default:
