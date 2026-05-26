@@ -12,6 +12,8 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 interface ModuleProps {
   onComplete: () => void;
+  initialVideo?: string;
+  hideCTA?: boolean;
 }
 
 const videoOptions = [
@@ -44,8 +46,9 @@ const steps = [
   },
 ];
 
-const VideoProcessModule = ({ onComplete }: ModuleProps) => {
-  const [selectedVideo, setSelectedVideo] = useState('general');
+const VideoProcessModule = ({ onComplete, initialVideo = 'general', hideCTA = false }: ModuleProps) => {
+  const [selectedVideo, setSelectedVideo] = useState(initialVideo);
+
 
   const currentVideo = videoOptions.find(v => v.value === selectedVideo) || videoOptions[0];
 
