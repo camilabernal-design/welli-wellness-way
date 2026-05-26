@@ -156,6 +156,10 @@ const getRouteConfig = (route: TrainingRoute) => {
       return { title: 'Clínica 2.0', subtitle: 'Piloto Express', color: 'secondary' };
     case 'aliado':
       return { title: 'Aliado Médico', subtitle: 'Guía Rápida', color: 'welli-yellow' };
+    case 'maestria-equipo':
+      return { title: 'Maestría', subtitle: 'Metodología comercial', color: 'secondary' };
+    case 'express-aliados':
+      return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow' };
     default:
       return { title: 'Training Hub', subtitle: '', color: 'primary' };
   }
