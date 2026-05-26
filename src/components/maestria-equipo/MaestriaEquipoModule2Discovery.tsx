@@ -37,10 +37,6 @@ const questions = [
   },
 ];
 
-const conditional = {
-  q: "¿Cuántos presupuestos se le han perdido en la última semana?",
-  hint: "Pregunta condicional — usa solo si el aliado ya mencionó dolor financiero.",
-};
 
 const MaestriaEquipoModule2Discovery = ({ onComplete }: Props) => {
   const [step, setStep] = useState(0);
