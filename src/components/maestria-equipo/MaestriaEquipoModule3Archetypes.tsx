@@ -99,6 +99,12 @@ const MaestriaEquipoModule3Archetypes = ({ onComplete }: Props) => {
                 <p className="text-sm text-indigo-800">{current.approach}</p>
               </div>
             </div>
+
+            <div className="mt-4 rounded-xl bg-welli-yellow/10 border-2 border-welli-yellow/40 p-5">
+              <p className="text-xs font-bold text-welli-yellow uppercase mb-2">Frase de apertura sugerida</p>
+              <p className="text-base text-indigo-950 italic font-medium">"{current.opener}"</p>
+              <p className="text-[11px] text-indigo-800/70 mt-2">Memorízala. Es el primer impacto del arquetipo.</p>
+            </div>
           </motion.div>
         </AnimatePresence>
 
