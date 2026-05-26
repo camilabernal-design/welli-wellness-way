@@ -264,6 +264,36 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
     </SidebarGroup>
   );
 
+  const renderFarmerV2Modules = () => (
+    <SidebarGroup>
+      <SidebarGroupLabel className="text-indigo-950/70 flex items-center gap-2">
+        <span className="w-5 h-5 rounded-full bg-secondary text-white flex items-center justify-center text-[10px] font-bold">⚡</span>
+        Clínica 2.0 · Piloto
+      </SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {farmerV2Modules.map((module) => {
+            const isActive = currentModule === module.id;
+            const isCompleted = currentModule > module.id;
+            return (
+              <SidebarMenuItem key={module.id}>
+                <SidebarMenuButton
+                  onClick={() => onModuleChange(module.id)}
+                  isActive={isActive}
+                  className={`group transition-all ${isCompleted ? "text-sidebar-foreground/80" : ""}`}
+                >
+                  <module.icon className={`w-4 h-4 ${isActive ? "text-secondary" : isCompleted ? "text-green-500" : ""}`} />
+                  <span className="truncate text-sm">{module.title}</span>
+                  {isActive && <ChevronRight className="ml-auto w-4 h-4 text-secondary" />}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
