@@ -122,6 +122,30 @@ const farmerV2Modules = [
   { id: 9, title: "Certificación", icon: CheckSquare },
 ];
 
+// Maestría Equipo modules (9)
+const maestriaEquipoModules = [
+  { id: 1, title: "Fundamentos", icon: Brain },
+  { id: 2, title: "3 Preguntas Diagnósticas", icon: MessageSquare },
+  { id: 3, title: "3 Arquetipos", icon: Users },
+  { id: 4, title: "Indagación Profunda", icon: ShieldQuestion },
+  { id: 5, title: "Estructura de Sesión", icon: LayoutDashboard },
+  { id: 6, title: "Respuestas Comunes", icon: MessageSquare },
+  { id: 7, title: "Activación Cerrada", icon: Target },
+  { id: 8, title: "Segunda Sesión", icon: PlayCircle },
+  { id: 9, title: "Certificación", icon: GraduationCap },
+];
+
+// Express Aliados modules (7)
+const expressAliadosModules = [
+  { id: 1, title: "Bienvenida", icon: Sparkles },
+  { id: 2, title: "Impacto en su Consulta", icon: TrendingUp },
+  { id: 3, title: "Cómo Funciona Welli", icon: Monitor },
+  { id: 4, title: "Respuestas de Pacientes", icon: MessageSquare },
+  { id: 5, title: "Garantías", icon: ShieldQuestion },
+  { id: 6, title: "Primera Activación", icon: Target },
+  { id: 7, title: "Próximos Pasos", icon: ChevronRight },
+];
+
 const getRouteConfig = (route: TrainingRoute) => {
   switch (route) {
     case 'hunter':
