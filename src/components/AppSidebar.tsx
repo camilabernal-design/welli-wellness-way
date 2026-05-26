@@ -124,15 +124,16 @@ const maestriaEquipoModules = [
   { id: 11, title: "Certificación", icon: GraduationCap },
 ];
 
-// Express Aliados modules (7)
+// Express Aliados modules (8)
 const expressAliadosModules = [
   { id: 1, title: "Bienvenida", icon: Sparkles },
-  { id: 2, title: "Impacto en su Consulta", icon: TrendingUp },
-  { id: 3, title: "Cómo Funciona Welli", icon: Monitor },
-  { id: 4, title: "Respuestas de Pacientes", icon: MessageSquare },
-  { id: 5, title: "Garantías", icon: ShieldQuestion },
-  { id: 6, title: "Primera Activación", icon: Target },
-  { id: 7, title: "Próximos Pasos", icon: ChevronRight },
+  { id: 2, title: "Cuénteme de su consulta", icon: MessageSquare },
+  { id: 3, title: "Impacto en su agenda", icon: TrendingUp },
+  { id: 4, title: "Cómo funciona Welli", icon: Monitor },
+  { id: 5, title: "Lo que dirán sus pacientes", icon: MessageSquare },
+  { id: 6, title: "Garantías", icon: ShieldQuestion },
+  { id: 7, title: "Primera activación", icon: Target },
+  { id: 8, title: "Próximos pasos", icon: ChevronRight },
 ];
 
 const getRouteConfig = (route: TrainingRoute) => {

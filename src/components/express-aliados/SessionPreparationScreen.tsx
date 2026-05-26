@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Settings, Sparkles } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { useSession, Archetype } from "./SessionContext";
 
 interface Props { onReady: () => void; }
 
 const archetypes: { id: Archetype; label: string; hint: string }[] = [
-  { id: 'caidos', label: 'Clínica con presupuestos caídos', hint: 'Dolor financiero claro: agenda con espacios, pacientes que se fueron sin tratarse.' },
-  { id: 'premium', label: 'Clínica premium sin dolor visible', hint: 'Reconocida, dice "no necesito esto". Dolor social, paciente no pide.' },
-  { id: 'sin-aliados', label: 'Clínica sin aliados financieros previos', hint: 'Primera exposición al financiamiento. Curiosidad sin dolor articulado.' },
+  {
+    id: 'caidos',
+    label: 'Clínica con presupuestos caídos',
+    hint: 'Mencionó pacientes que no terminan el tratamiento o cartera con valoraciones no cobradas.',
+  },
+  {
+    id: 'premium',
+    label: 'Clínica premium',
+    hint: 'Reconocida en su nicho. Dice "mi consulta no tiene este problema". Pacientes admiran pero no preguntan por financiación.',
+  },
+  {
+    id: 'sin-aliados',
+    label: 'Clínica sin aliados financieros',
+    hint: 'No tiene experiencia previa con financiación. Llegó por evento o referido.',
+  },
 ];
 
-const SessionSetupScreen = ({ onReady }: Props) => {
+const SessionPreparationScreen = ({ onReady }: Props) => {
   const { setSessionData, allyName, allySpecialty, archetype } = useSession();
   const [name, setName] = useState(allyName);
   const [specialty, setSpecialty] = useState(allySpecialty);
@@ -31,26 +43,32 @@ const SessionSetupScreen = ({ onReady }: Props) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-welli-yellow/10 via-welli-yellow/5 to-white px-4 py-12">
+    <div className="min-h-screen bg-slate-100 px-4 py-8">
       <div className="max-w-2xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-welli-yellow/30 border border-welli-yellow/50 mb-4">
-            <Settings className="w-4 h-4 text-indigo-950" />
-            <span className="text-xs font-bold text-indigo-950">Configuración de la sesión</span>
+        {/* Header privado destacado */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl border-2 border-red-400 bg-red-50 p-5 mb-8 shadow-sm"
+        >
+          <div className="flex items-start gap-3">
+            <Lock className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-black tracking-widest text-red-700 mb-1">
+                PREPARACIÓN DE LA SESIÓN — NO COMPARTIR
+              </p>
+              <p className="text-sm text-red-900">
+                Configura los datos antes de iniciar la videollamada con el aliado.
+              </p>
+            </div>
           </div>
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-indigo-950 mb-3">
-            Antes de comenzar
-          </h1>
-          <p className="text-indigo-800">
-            Completa estos datos contigo y con el aliado para personalizar el contenido.
-          </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="bg-card rounded-2xl border-2 border-welli-yellow/40 p-6 md:p-8 shadow-lg space-y-6"
+          transition={{ delay: 0.1 }}
+          className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6"
         >
           <div>
             <label className="block text-sm font-bold text-indigo-950 mb-2">Nombre del aliado</label>
@@ -59,7 +77,7 @@ const SessionSetupScreen = ({ onReady }: Props) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Dra. María Pérez"
-              className="w-full px-4 py-3 rounded-xl border-2 border-welli-yellow/30 bg-white text-indigo-950 focus:outline-none focus:border-welli-yellow text-base"
+              className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-white text-indigo-950 focus:outline-none focus:border-indigo-400 text-base"
             />
           </div>
 
@@ -70,7 +88,7 @@ const SessionSetupScreen = ({ onReady }: Props) => {
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
               placeholder="Odontología estética"
-              className="w-full px-4 py-3 rounded-xl border-2 border-welli-yellow/30 bg-white text-indigo-950 focus:outline-none focus:border-welli-yellow text-base"
+              className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-white text-indigo-950 focus:outline-none focus:border-indigo-400 text-base"
             />
           </div>
 
@@ -86,19 +104,19 @@ const SessionSetupScreen = ({ onReady }: Props) => {
                   onClick={() => setProfile(a.id)}
                   className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                     profile === a.id
-                      ? 'border-welli-yellow bg-welli-yellow/20'
-                      : 'border-welli-yellow/20 bg-white hover:border-welli-yellow/40'
+                      ? 'border-indigo-500 bg-indigo-50'
+                      : 'border-slate-200 bg-white hover:border-slate-300'
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      profile === a.id ? 'border-welli-yellow bg-welli-yellow' : 'border-welli-yellow/40'
+                      profile === a.id ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300'
                     }`}>
-                      {profile === a.id && <div className="w-2 h-2 rounded-full bg-indigo-950" />}
+                      {profile === a.id && <div className="w-2 h-2 rounded-full bg-white" />}
                     </div>
                     <div>
                       <p className="font-bold text-indigo-950 text-sm">{a.label}</p>
-                      <p className="text-xs text-indigo-800 mt-1">{a.hint}</p>
+                      <p className="text-xs text-slate-600 mt-1">{a.hint}</p>
                     </div>
                   </div>
                 </button>
@@ -111,18 +129,22 @@ const SessionSetupScreen = ({ onReady }: Props) => {
             disabled={!canStart}
             className={`w-full inline-flex items-center justify-center gap-3 text-base px-6 py-4 rounded-xl font-bold transition-all ${
               canStart
-                ? 'bg-welli-yellow text-indigo-950 hover:bg-welli-yellow/90 shadow-lg hover:shadow-xl'
-                : 'bg-welli-yellow/30 text-indigo-950/50 cursor-not-allowed'
+                ? 'bg-indigo-950 text-white hover:bg-indigo-900 shadow-md'
+                : 'bg-slate-200 text-slate-400 cursor-not-allowed'
             }`}
           >
-            <Sparkles className="w-5 h-5" />
-            Iniciar sesión
+            ✓ Configuración lista — Continuar
             <ArrowRight className="w-5 h-5" />
           </button>
+
+          <p className="text-xs text-slate-500 text-center italic">
+            Esta es una pantalla privada. La pantalla siguiente le permitirá verificar que está listo
+            antes de compartir pantalla.
+          </p>
         </motion.div>
       </div>
     </div>
   );
 };
 
-export default SessionSetupScreen;
+export default SessionPreparationScreen;
