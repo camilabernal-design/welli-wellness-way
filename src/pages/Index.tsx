@@ -337,7 +337,20 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
   );
 
   if (currentRoute === 'express-aliados') {
-    return <SessionProvider>{content}</SessionProvider>;
+    return (
+      <SessionProvider>
+        {expressPhase === 'preparation' && (
+          <SessionPreparationScreen onReady={() => setExpressPhase('ready')} />
+        )}
+        {expressPhase === 'ready' && (
+          <SessionReadyScreen
+            onStart={() => setExpressPhase('presentation')}
+            onBack={() => setExpressPhase('preparation')}
+          />
+        )}
+        {expressPhase === 'presentation' && content}
+      </SessionProvider>
+    );
   }
 
   return content;
