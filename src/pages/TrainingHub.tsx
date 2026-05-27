@@ -164,50 +164,68 @@ const CategorySection = ({ title, subtitle, badge, accentColor, routes, onSelect
         </div>
       ) : (
         <div className={`grid md:grid-cols-2 ${routes.length >= 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-6`}>
-          {routes.map((route, index) => (
-            <motion.div
-              key={route.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              onClick={() => onSelectRoute(route.id)}
-              className={`relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
-            >
-              {/* Category badge top-right */}
-              <div className={`absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wider ${accent.bg} text-indigo-950 shadow-sm`}>
-                {badge}
-              </div>
-
-              {route.badge && (
-                <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-indigo-950 text-welli-yellow text-[10px] font-bold tracking-wider shadow-md">
-                  ✨ {route.badge}
-                </div>
-              )}
-
-              <div className={`bg-gradient-to-br ${route.color} p-6`}>
-                <route.icon className="w-12 h-12 mb-4 text-indigo-950" />
-                <h3 className="text-2xl font-bold text-indigo-950">{route.title}</h3>
-                <p className="text-indigo-800 font-medium">{route.subtitle}</p>
-              </div>
-
-              <div className="p-6">
-                <p className="text-indigo-800 mb-4">{route.description}</p>
-
-                <div className="flex items-center justify-between text-sm mb-4">
-                  <span className={`${route.bgColor} px-3 py-1 rounded-full font-medium text-indigo-950`}>
-                    {route.modules} módulos
-                  </span>
-                  <span className="text-indigo-800">{route.duration}</span>
+          {routes.map((route, index) => {
+            const cardInner = (
+              <>
+                <div className={`absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wider ${accent.bg} text-indigo-950 shadow-sm`}>
+                  {badge}
                 </div>
 
-                <div className="flex items-center justify-center gap-2 py-3 rounded-lg bg-welli-yellow text-indigo-950 font-bold group-hover:bg-welli-yellow/90 transition-all">
-                  Comenzar
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                {route.badge && (
+                  <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-indigo-950 text-welli-yellow text-[10px] font-bold tracking-wider shadow-md">
+                    ✨ {route.badge}
+                  </div>
+                )}
+
+                <div className={`bg-gradient-to-br ${route.color} p-6`}>
+                  <route.icon className="w-12 h-12 mb-4 text-indigo-950" />
+                  <h3 className="text-2xl font-bold text-indigo-950">{route.title}</h3>
+                  <p className="text-indigo-800 font-medium">{route.subtitle}</p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                <div className="p-6">
+                  <p className="text-indigo-800 mb-4">{route.description}</p>
+
+                  <div className="flex items-center justify-between text-sm mb-4">
+                    <span className={`${route.bgColor} px-3 py-1 rounded-full font-medium text-indigo-950`}>
+                      {route.modules} módulos
+                    </span>
+                    <span className="text-indigo-800">{route.duration}</span>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-2 py-3 rounded-lg bg-welli-yellow text-indigo-950 font-bold group-hover:bg-welli-yellow/90 transition-all">
+                    Comenzar
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </>
+            );
+
+            const cardClass = `relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 block`;
+
+            return (
+              <motion.div
+                key={route.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {route.externalPath ? (
+                  <Link to={route.externalPath} className={cardClass}>
+                    {cardInner}
+                  </Link>
+                ) : (
+                  <div
+                    onClick={() => onSelectRoute(route.id as TrainingRoute)}
+                    className={cardClass}
+                  >
+                    {cardInner}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       )}
     </section>
