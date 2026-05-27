@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Target, Sprout, Stethoscope, ArrowRight, Zap, Sparkles, GraduationCap, Brain } from "lucide-react";
+import { Target, Sprout, Stethoscope, ArrowRight, Zap, Sparkles, GraduationCap, Brain, Activity } from "lucide-react";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { TrainingRoute, RouteCategory } from "@/types/training";
 
