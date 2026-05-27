@@ -263,37 +263,6 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
               Selecciona tu perfil para comenzar.
             </p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-12"
-          >
-            <Link
-              to="/bariatrica-novo"
-              className="group block rounded-2xl border-2 border-indigo-950 bg-gradient-to-r from-indigo-950 to-indigo-900 p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
-            >
-              <div className="flex items-center gap-5">
-                <div className="bg-welli-yellow rounded-xl p-3 flex-shrink-0">
-                  <Activity className="w-8 h-8 text-indigo-950" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="px-2 py-0.5 rounded-full bg-welli-yellow text-indigo-950 text-[10px] font-bold tracking-wider">
-                      NUEVO · NOVO NORDISK
-                    </span>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white">
-                    Clínica Bariátrica · Welli + Novo Nordisk
-                  </h3>
-                  <p className="text-welli-yellow/90 text-sm md:text-base mt-1">
-                    Plataforma de capacitación presencial para clínicas bariátricas referidas
-                  </p>
-                </div>
-                <ArrowRight className="w-6 h-6 text-welli-yellow group-hover:translate-x-1 transition-transform flex-shrink-0" />
-              </div>
-            </Link>
-          </motion.div>
 
 
           <CategorySection
