@@ -866,10 +866,16 @@ const Sesion1 = () => {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center gap-6">
           <Link
+            to="/"
+            className="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-950"
+          >
+            <ArrowLeft className="h-4 w-4" /> Training Hub
+          </Link>
+          <Link
             to="/bariatrica-novo"
             className="flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-950"
           >
-            <ArrowLeft className="h-4 w-4" /> Inicio
+            Inicio
           </Link>
           <WelliLogoFull size="sm" />
           <div className="flex-1">
