@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import WelliLogoFull from "@/components/WelliLogoFull";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock } from "lucide-react";
 
 const Landing = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white flex flex-col">
+      <header className="px-6 py-4 border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-indigo-950 font-medium"
+          >
+            <ArrowLeft className="h-4 w-4" /> Volver al Training Hub
+          </Link>
+        </div>
+      </header>
       <main className="flex-1 flex flex-col items-center justify-center px-8 py-16">
         <div className="flex flex-col items-center mb-12">
           <WelliLogoFull size="lg" />
