@@ -98,6 +98,21 @@ const allRoutes: RouteCard[] = [
     badge: 'NUEVO',
     category: 'aliados',
   },
+  {
+    id: 'bariatrica-novo',
+    title: 'Clínica Bariátrica',
+    subtitle: 'Welli + Novo Nordisk',
+    description: 'Plataforma de capacitación presencial para clínicas bariátricas referidas por Novo Nordisk. Dos sesiones diseñadas para proyección en TV.',
+    icon: Activity,
+    color: 'from-welli-yellow to-welli-yellow/80',
+    borderColor: 'border-welli-yellow',
+    bgColor: 'bg-welli-yellow/15',
+    duration: '2 sesiones',
+    modules: 8,
+    badge: 'NOVO',
+    category: 'aliados',
+    externalPath: '/bariatrica-novo',
+  },
 ];
 
 const accentClasses: Record<AccentColor, { text: string; bg: string; border: string; line: string }> = {
