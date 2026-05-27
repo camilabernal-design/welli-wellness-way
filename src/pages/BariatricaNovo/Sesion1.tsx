@@ -87,14 +87,13 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
   const messages: Record<string, string> = {
     "1-3": "Está dejando ir muchísimo potencial. Vamos a ver cómo recuperarlo.",
     "4-6": "Está en el promedio del mercado. Vamos a ver cómo subir.",
-    "7-9": "Felicitaciones. Vamos a ver qué piezas finas le faltan.",
+    "7-9": "Buena base. Vamos a ver qué piezas finas le faltan.",
     "10": "Excelente. ¿Está midiendo solo los que firman, o también los que vienen a valoración?",
   };
 
   const handlePick = (v: string) => {
     setSelected(v);
     update({ pacientesQueFirman: v as any });
-    setTimeout(onNext, 4000);
   };
 
   return (
@@ -122,96 +121,29 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
           ))}
         </div>
         {selected && (
-          <HighlightBox className="max-w-3xl mx-auto">
-            <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed">{messages[selected]}</p>
-          </HighlightBox>
+          <>
+            <HighlightBox className="max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed">{messages[selected]}</p>
+            </HighlightBox>
+            <div className="max-w-3xl mx-auto text-left">
+              <TeamVoteOverlay doctorPick={selected} />
+            </div>
+          </>
         )}
-        {!selected && <NavigationButtons onBack={onBack} hideNext />}
+        <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!selected} />
       </div>
     </ScreenShell>
   );
 };
 
-// 1.3 Indagación
+// 1.3 Indagación interactiva
 const S03 = ({ onNext, onBack }: ScreenProps) => {
-  const { state, update } = useBariatricaState();
-  const [q1, setQ1] = useState(state.opcionesManejo ?? "");
-  const [q2, setQ2] = useState(state.usaFarmacos ?? "");
-  const [q3, setQ3] = useState(state.respuestaPacientes ?? "");
-  const ready = q1 && q2 && q3;
-
-  const Choice = ({
-    value,
-    current,
-    onClick,
-  }: {
-    value: string;
-    current: string;
-    onClick: (v: string) => void;
-  }) => (
-    <button
-      onClick={() => onClick(value)}
-      className={`text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
-        current === value
-          ? "bg-welli-yellow/30 border-welli-yellow text-indigo-950 font-semibold"
-          : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-      }`}
-    >
-      {value}
-    </button>
-  );
-
-  const handleNext = () => {
-    update({ opcionesManejo: q1, usaFarmacos: q2, respuestaPacientes: q3 });
-    onNext();
-  };
-
+  const [done, setDone] = useState(false);
   return (
     <ScreenShell>
       <H2>Cuéntenos cómo trabaja hoy</H2>
-      <div className="mt-12 space-y-10">
-        <div>
-          <p className="text-xl text-indigo-950 font-medium mb-4">
-            1. Más allá de cirugía, ¿qué opciones está usando para manejar pacientes con obesidad?
-          </p>
-          <div className="grid md:grid-cols-2 gap-3">
-            {[
-              "Solo cirugía",
-              "Cirugía + nutrición",
-              "Cirugía + farmacología + nutrición",
-              "No hago cirugía, solo manejo médico",
-            ].map((o) => (
-              <Choice key={o} value={o} current={q1} onClick={setQ1} />
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-xl text-indigo-950 font-medium mb-4">
-            2. ¿Ha trabajado con medicamentos como Wegovy, Ozempic o Saxenda?
-          </p>
-          <div className="grid md:grid-cols-2 gap-3">
-            {[
-              "Sí, los uso regularmente",
-              "Sí, ocasionalmente",
-              "Los conozco pero no los receto",
-              "Estoy empezando con ellos",
-            ].map((o) => (
-              <Choice key={o} value={o} current={q2} onClick={setQ2} />
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-xl text-indigo-950 font-medium mb-4">
-            3. ¿Cómo ha sido la respuesta de sus pacientes?
-          </p>
-          <div className="grid grid-cols-4 gap-3">
-            {["Muy buena", "Buena", "Mixta", "N/A"].map((o) => (
-              <Choice key={o} value={o} current={q3} onClick={setQ3} />
-            ))}
-          </div>
-        </div>
-      </div>
-      <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={!ready} />
+      <DiagnosticoIndagacion onComplete={() => setDone(true)} />
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
   );
 };
