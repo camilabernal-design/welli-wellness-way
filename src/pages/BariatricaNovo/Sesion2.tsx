@@ -15,6 +15,13 @@ import {
   SoftBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
+import PackSimulator from "@/components/BariatricaNovo/interactive/PackSimulator";
+import NextPatientForm from "@/components/BariatricaNovo/interactive/NextPatientForm";
+import ExcuseClassifier from "@/components/BariatricaNovo/interactive/ExcuseClassifier";
+import ConversationsQuiz from "@/components/BariatricaNovo/interactive/ConversationsQuiz";
+import WelliPitchBuilder from "@/components/BariatricaNovo/interactive/WelliPitchBuilder";
+import PlanBSimulation from "@/components/BariatricaNovo/interactive/PlanBSimulation";
+import CommitmentSealing from "@/components/BariatricaNovo/interactive/CommitmentSealing";
 
 type ScreenProps = {
   onNext: () => void;
@@ -239,94 +246,51 @@ const M4_4 = (p: ScreenProps) => (
   />
 );
 
-// 4.5
-const M4_5 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>La secuencia comercial correcta</H2>
-    <div className="mt-10 space-y-5">
-      {[
-        ["Contextualiza", `"De acuerdo a lo que evaluamos en su caso..."`],
-        ["Presenta las 3 opciones", "Brevemente. Sin entrar en detalle de cada una."],
-        ["Recomienda una", `"Yo, en su caso, le recomendaría el Pack [X] porque [razón clínica clara]."`],
-        ["Luego el precio.", "Y junto al precio, la cuota mensual."],
-      ].map(([t, d], i) => (
-        <SoftBox key={t}>
-          <div className="flex gap-5 items-start">
-            <div className="bg-welli-yellow text-indigo-950 rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl flex-shrink-0">
-              {i + 1}
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-indigo-950 uppercase tracking-wider">{t}</p>
-              <p className="text-lg text-slate-700 mt-2">{d}</p>
-            </div>
-          </div>
-        </SoftBox>
-      ))}
-    </div>
-    <HighlightBox className="mt-10">
-      <p className="text-2xl font-bold text-indigo-950 leading-relaxed">
-        Nunca presente las 3 sin recomendar. Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar".
-      </p>
-    </HighlightBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 4.5 Simulador de pack
+const M4_5 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>Practique: ¿cuál pack para cada paciente?</H2>
+      <div className="mt-8">
+        <PackSimulator onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
-// 4.6
-const M4_6 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>Piense en su próximo paciente real de esta semana</H2>
-    <Body className="mt-8 font-semibold text-indigo-950">¿Cuál pack le va a recomendar?</Body>
-    <ul className="mt-8 space-y-4 text-xl text-slate-700">
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Es candidato a cirugía? → Pack 1</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Es temprano sin cirugía? → Pack 2</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Tiene comorbilidades? → Pack 3</li>
-    </ul>
-    <Body className="mt-10">
-      Si el caso es mixto, recomiende el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
-    </Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 5" />
-  </ScreenShell>
-);
+// 4.6 Formulario de próximo paciente
+const M4_6 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>Piense en su próximo paciente real de esta semana</H2>
+      <div className="mt-8">
+        <NextPatientForm onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 5" nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 /* === MÓDULO 5 === */
 
-// 5.1
-const M5_1 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 5 — Conversaciones con su paciente</Eyebrow>
-    <Body className="mt-6">
-      Cuando un paciente objeta algo en su consulta, está diciendo una de dos cosas:
-    </Body>
-    <div className="mt-10 grid md:grid-cols-2 gap-6">
-      <SoftBox>
-        <Eyebrow>Excusa social</Eyebrow>
-        <p className="text-lg text-indigo-950 mt-3">Respuesta refleja, casi automática.</p>
-        <p className="text-sm text-slate-600 mt-2">Función: cerrar la conversación cómodamente.</p>
-        <div className="mt-4 space-y-1 text-indigo-950 italic">
-          <p>"Lo voy a pensar"</p>
-          <p>"Hablo con mi esposo"</p>
-          <p>"Déjame ver"</p>
-        </div>
-      </SoftBox>
-      <HighlightBox>
-        <Eyebrow>Razón real</Eyebrow>
-        <p className="text-lg text-indigo-950 mt-3">Preocupación verdadera.</p>
-        <p className="text-sm text-indigo-950/70 mt-2">Función: comunicar un obstáculo específico.</p>
-        <div className="mt-4 space-y-1 text-indigo-950 italic">
-          <p>"Perdí mi trabajo el mes pasado"</p>
-          <p>"Tengo otro tratamiento ya"</p>
-        </div>
-      </HighlightBox>
-    </div>
-    <Anchor>
-      <span className="block mt-10">
-        Si toma una excusa social como si fuera razón real, el paciente se va y no regresa. Si toma una razón real como si fuera excusa, el paciente se siente no escuchado.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 5.1 Clasificador excusa social vs razón real
+const M5_1 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>Módulo 5 — Conversaciones con su paciente</Eyebrow>
+      <H2>Clasifique: ¿excusa social o razón real?</H2>
+      <Body className="mt-4">Aparecen frases reales de pacientes. Decida cómo clasificaría cada una.</Body>
+      <div className="mt-8">
+        <ExcuseClassifier onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 5.2
 const M5_2 = ({ onNext, onBack }: ScreenProps) => (
@@ -448,52 +412,17 @@ const CONVS: Conversacion[] = [
   },
 ];
 
+// 5.3 Quiz de las 5 conversaciones
 const M5_3 = ({ onNext, onBack }: ScreenProps) => {
-  const [tab, setTab] = useState(0);
-  const c = CONVS[tab];
+  const [done, setDone] = useState(false);
   return (
     <ScreenShell>
       <Eyebrow>Las 5 conversaciones bariátricas</Eyebrow>
-      <H2>Una pregunta-llave para cada situación</H2>
-      <div className="mt-8 flex flex-wrap gap-2">
-        {CONVS.map((cv, i) => (
-          <button
-            key={i}
-            onClick={() => setTab(i)}
-            className={`px-4 py-2.5 rounded-full text-sm md:text-base border-2 transition-all ${
-              tab === i
-                ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
-                : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-            }`}
-          >
-            {cv.label}
-          </button>
-        ))}
+      <H2>Elija la mejor respuesta en cada caso</H2>
+      <div className="mt-8">
+        <ConversationsQuiz onComplete={() => setDone(true)} />
       </div>
-      <div className="mt-8 space-y-6">
-        <Body>{c.intro}</Body>
-        <HighlightBox>
-          <Eyebrow>Pregunta-llave</Eyebrow>
-          <p className="text-xl md:text-2xl italic text-indigo-950 mt-3 leading-relaxed">"{c.pregunta}"</p>
-        </HighlightBox>
-        {c.ramaSi.trigger && (
-          <SoftBox>
-            <p className="text-base font-semibold text-indigo-950">{c.ramaSi.trigger}</p>
-            {c.ramaSi.respuesta && (
-              <p className="text-lg italic text-indigo-950 mt-3">"{c.ramaSi.respuesta}"</p>
-            )}
-          </SoftBox>
-        )}
-        {c.ramaNo.trigger && (
-          <SoftBox>
-            <p className="text-base font-semibold text-indigo-950">{c.ramaNo.trigger}</p>
-            {c.ramaNo.respuesta && (
-              <p className="text-lg italic text-indigo-950 mt-3">{c.ramaNo.respuesta}</p>
-            )}
-          </SoftBox>
-        )}
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} />
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
   );
 };
@@ -583,36 +512,20 @@ const M6_1 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 6.2
-const M6_2 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>Cómo presentar Welli al paciente</H2>
-    <Body className="mt-6">
-      El momento ideal: inmediatamente después de comunicar la inversión total. En la misma respiración.
-    </Body>
-    <HighlightBox className="mt-8">
-      <Eyebrow>Ejemplo de frase completa</Eyebrow>
-      <p className="text-lg md:text-xl italic text-indigo-950 mt-4 leading-relaxed">
-        "Doctor [paciente], el plan completo, que incluye [componentes del pack], tiene una inversión de $X.
-        <br />
-        <br />
-        Por eso tenemos un sistema que probablemente le sirve: en cuotas fijas mensuales podría empezar esta semana, sin tener que tener todo el monto disponible.
-        <br />
-        <br />
-        Le puedo enviar un link por WhatsApp para que vea si le aprueban. Toma 30 segundos."
-      </p>
-    </HighlightBox>
-    <WarningBox className="mt-8">
-      <Eyebrow>Lo que NO se hace</Eyebrow>
-      <ul className="mt-4 space-y-3 text-lg text-indigo-950">
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>Dar el monto y dejar silencio. El paciente lo procesa solo, se asusta, busca salir.</li>
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>Ofrecer Welli como "si no tiene el dinero". Eso comunica que es para quien no puede.</li>
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>Presentar el crédito como concesión. Es herramienta profesional, no plan B.</li>
-      </ul>
-    </WarningBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 6.2 Constructor de frase Welli
+const M6_2 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>Arme su frase para presentar Welli</H2>
+      <Body className="mt-4">Elija una opción por bloque y vea cómo se construye una frase completa de presentación.</Body>
+      <div className="mt-8">
+        <WelliPitchBuilder onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 6.3
 const M6_3 = ({ onNext, onBack }: ScreenProps) => (
@@ -651,46 +564,21 @@ const M6_3 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 6.4
-const M6_4 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
-    <H2>Plan B: familiar como aplicante</H2>
-    <Body className="mt-8">
-      Aproximadamente 30-40% de los pacientes que aplican no se ajustan en primera instancia. Es normal. No es un fracaso. Es parte del proceso.
-    </Body>
-    <HighlightBox className="mt-10">
-      <Eyebrow>Los primeros 5 segundos</Eyebrow>
-      <p className="text-lg text-indigo-950 mt-3">Su frase exacta cuando llega la notificación negativa:</p>
-      <p className="text-xl md:text-2xl italic text-indigo-950 mt-4 font-medium">
-        "Veo que en este momento no se ajustó. Tenemos una opción muy buena para esto, déjeme contarle."
-      </p>
-    </HighlightBox>
-    <WarningBox className="mt-8">
-      <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Nunca diga:</p>
-      <ul className="mt-4 space-y-2 text-lg text-indigo-950">
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>"Le negaron" / "Lo rechazaron"</li>
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>"Uy..." (cualquier sonido de sorpresa)</li>
-        <li className="flex gap-4"><span className="text-red-500 text-2xl leading-none">▸</span>"No sé por qué no aplicó"</li>
-      </ul>
-    </WarningBox>
-    <div className="my-10 border-t border-slate-200" />
-    <H2>Plan B: alguien de su familia aplica</H2>
-    <HighlightBox className="mt-8">
-      <Eyebrow>Frase puente</Eyebrow>
-      <p className="text-lg md:text-xl italic text-indigo-950 mt-4 leading-relaxed">
-        "Es muy común que en una primera consulta el sistema no se ajuste por temas técnicos del momento. Por eso siempre tenemos Plan B: alguien de su familia cercana puede aplicar y respaldar el tratamiento. Su esposo, un hijo mayor, sus padres. Funciona muy bien.
-        <br />
-        <br />
-        ¿Quién de su familia podría aplicar?"
-      </p>
-    </HighlightBox>
-    <Body className="mt-8 font-semibold text-indigo-950">
-      Ejecútelo en el momento. Mientras el paciente está sentado frente a usted. El "después" pierde casos.
-    </Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 6.4 Simulación Plan B
+const M6_4 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
+      <H2>Practique el Plan B en una simulación</H2>
+      <Body className="mt-4">3 momentos ramificados. Elija cómo responde y vea la consecuencia.</Body>
+      <div className="mt-8">
+        <PlanBSimulation onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 6.5 — CON LOGO NOVO
 const M6_5 = ({ onNext, onBack }: ScreenProps) => (
@@ -872,27 +760,26 @@ const M7_3B = ({ onNext, onBack }: ScreenProps) => (
 
 /* === MÓDULO 8 === */
 
-// 8.1
-const M8_1 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 8 — Sus 3 compromisos</Eyebrow>
-    <H2>3 cosas concretas que cambian su consulta desde mañana:</H2>
-    <div className="mt-10 space-y-5">
-      {[
-        ["Compromiso 1", "Cotizar siempre en cuotas mensuales fijas desde el primer momento.", "Nunca dar solo el monto total."],
-        ["Compromiso 2", "Integrar manejo farmacológico en al menos 2 de sus 3 packs principales.", "Para generar recurrencia y adherencia."],
-        ["Compromiso 3", "Usar Welli Check con el 100% de los pacientes que no van a pagar de contado.", "Antes de presentar la inversión."],
-      ].map(([t, a, b], i) => (
-        <PracticeBox key={i}>
-          <Eyebrow>✓ {t}</Eyebrow>
-          <p className="text-2xl font-bold text-indigo-950 mt-3">{a}</p>
-          <p className="text-lg text-indigo-950/80 mt-2">{b}</p>
-        </PracticeBox>
-      ))}
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Firmar compromisos" />
-  </ScreenShell>
-);
+// 8.1 Compromisos con firma digital
+const M8_1 = ({ onNext, onBack }: ScreenProps) => {
+  const { update } = useBariatricaState();
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>Módulo 8 — Sus 3 compromisos</Eyebrow>
+      <H2>3 cosas concretas que cambian su consulta desde mañana</H2>
+      <div className="mt-8">
+        <CommitmentSealing
+          onComplete={(d) => {
+            update({ compromisoNombre: d.name, compromisoFecha: d.date });
+            setDone(true);
+          }}
+        />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar" nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 8.2 Firma
 const M8_2 = ({ onNext, onBack }: ScreenProps) => {
