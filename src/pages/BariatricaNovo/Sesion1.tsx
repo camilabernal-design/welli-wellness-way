@@ -165,39 +165,22 @@ const S04 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 1.5 Reframe central
-const S05 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="space-y-12 text-center">
-      <Anchor>
-        Los pacientes no se van por el precio.
-        <br />
-        <br />
-        Se van porque <span className="font-bold not-italic text-indigo-950">NO ENTENDIERON EL VALOR</span> de lo que usted les propuso.
-      </Anchor>
-      <div className="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
-        <SoftBox className="text-center">
-          <Eyebrow>Precio</Eyebrow>
-          <p className="text-4xl font-bold text-indigo-950 mt-4">$XX</p>
-          <p className="text-slate-500 mt-2">cifra</p>
-        </SoftBox>
-        <HighlightBox className="text-center">
-          <Eyebrow>Valor</Eyebrow>
-          <ul className="mt-4 space-y-1 text-xl text-indigo-950 font-medium">
-            <li>Resultado</li>
-            <li>Salud</li>
-            <li>Vida</li>
-            <li>Recurrencia</li>
-          </ul>
-        </HighlightBox>
+// 1.5 Reframe central — slider PRECIO vs VALOR
+const S05 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell center>
+      <div className="space-y-10 w-full">
+        <Anchor>
+          Los pacientes no se van por el precio. Se van porque{" "}
+          <span className="font-bold not-italic text-indigo-950">no entendieron el valor</span> de lo que usted les propuso.
+        </Anchor>
+        <ValuePerceptionSlider onComplete={() => setDone(true)} />
+        <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
       </div>
-      <Body className="max-w-3xl mx-auto">
-        Cuando el paciente sale con el monto en la cabeza pero sin entender el cambio profundo que va a vivir... ya perdió la decisión.
-      </Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} />
-    </div>
-  </ScreenShell>
-);
+    </ScreenShell>
+  );
+};
 
 // 1.6 Transición al Módulo 2
 const S06 = ({ onNext, onBack }: ScreenProps) => (
@@ -260,59 +243,35 @@ const S08 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 2.3 Estancamiento
-const S09 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H1>Y entonces...</H1>
-    <Body className="mt-6">Vinieron varios meses con muy poco o ningún movimiento.</Body>
-    <SoftBox className="mt-8">
-      <div className="grid grid-cols-5 gap-4 text-center">
-        {[
-          ["Mes 1", "1"],
-          ["Mes 2", "2"],
-          ["Mes 3", "0"],
-          ["Mes 4", "1"],
-          ["Mes 5", "0"],
-        ].map(([m, v]) => (
-          <div key={m}>
-            <p className="text-sm text-slate-500">{m}</p>
-            <p className="text-4xl font-bold text-indigo-950 mt-2">{v}</p>
-          </div>
-        ))}
+// 2.3 Estancamiento — gráfico animado
+const S09 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H1>Y entonces...</H1>
+      <Body className="mt-6">Vinieron varios meses con muy poco o ningún movimiento.</Body>
+      <div className="mt-8">
+        <MonthlyDeclineChart onComplete={() => setDone(true)} />
       </div>
-    </SoftBox>
-    <div className="mt-10 space-y-6">
-      <Body>Llegaron a pensar que tal vez Welli no era para su clínica.</Body>
-      <Body>Que tal vez sus pacientes "no eran de financiación".</Body>
-      <Body>Que tal vez su modelo de negocio era diferente.</Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
-// 2.4 Quiebre — 3 patrones
-const S10 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>El diagnóstico</Eyebrow>
-    <H2>Cuando finalmente revisaron qué estaba pasando honestamente, encontraron 3 patrones:</H2>
-    <ul className="mt-10 space-y-8">
-      {[
-        "El paciente entraba por un tratamiento específico y se iba con eso. Sin volver.",
-        "El ticket era alto cuando ocurría, pero no recurrente. Cobrar bien una vez no es cobrar bien muchas veces.",
-        "Muchos pacientes calificaban clínicamente para tratamiento, pero no podían pagar. Y se iban. Sin tratarse en ningún lado.",
-      ].map((t, i) => (
-        <li key={i} className="flex gap-5 text-xl text-slate-700 leading-relaxed">
-          <span className="text-welli-yellow text-3xl leading-none">▸</span>
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
-    <Anchor>
-      <span className="block mt-12">¿Alguno de estos tres patrones le suena?</span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 2.4 Tres patrones — checklist
+const S10 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>El diagnóstico</Eyebrow>
+      <H2>Cuando revisaron honestamente, encontraron 3 patrones.</H2>
+      <div className="mt-8">
+        <PatternsChecklist onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 2.5 La idea
 const S11 = ({ onNext, onBack }: ScreenProps) => (
@@ -433,32 +392,20 @@ const S14 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 2.9 Cifras
-const S15 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Los resultados</Eyebrow>
-    <H2>7 meses después de aplicar los 3 movimientos</H2>
-    <div className="mt-10 grid md:grid-cols-2 gap-6">
-      <SoftBox>
-        <Eyebrow>Antes (estancados)</Eyebrow>
-        <p className="text-4xl font-bold text-indigo-950 mt-4">1–2 créditos</p>
-        <p className="text-lg text-slate-600 mt-2">por sede / mes</p>
-      </SoftBox>
-      <HighlightBox>
-        <Eyebrow>Ahora (mayo 2026)</Eyebrow>
-        <p className="text-4xl font-bold text-indigo-950 mt-4">23+ créditos</p>
-        <p className="text-lg text-indigo-950/70 mt-2">en lo que va del mes</p>
-      </HighlightBox>
-    </div>
-    <HighlightBox className="mt-8 text-center">
-      <Eyebrow>Acumulado 7 meses</Eyebrow>
-      <p className="text-5xl md:text-6xl font-bold text-indigo-950 mt-4">192 créditos</p>
-      <p className="text-3xl text-indigo-950 font-semibold mt-3">$1.645 millones COP</p>
-      <p className="text-xl text-indigo-950/70 mt-2">Ticket promedio: $8.5M</p>
-    </HighlightBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 2.9 Cifras — contadores animados
+const S15 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>Los resultados</Eyebrow>
+      <H2>7 meses después de aplicar los 3 movimientos</H2>
+      <div className="mt-8">
+        <MetricsRevealed onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 2.10 Testimoniales
 const S16 = ({ onNext, onBack }: ScreenProps) => (
@@ -530,69 +477,37 @@ const S18 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
-// 3.2 Triángulo del valor
-const S19 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>El triángulo del valor</H2>
-    <p className="text-lg text-slate-500 mt-2 italic">
-      3 elementos que siempre deben estar en su conversación de cierre
-    </p>
-    <div className="mt-12 flex flex-col items-center gap-6">
-      <HighlightBox className="text-center w-full max-w-sm">
-        <Eyebrow>Resultado</Eyebrow>
-        <p className="text-2xl font-bold text-indigo-950 mt-2">qué va a vivir</p>
-      </HighlightBox>
-      <div className="grid grid-cols-2 gap-6 w-full max-w-3xl">
-        <HighlightBox className="text-center">
-          <Eyebrow>Tiempo</Eyebrow>
-          <p className="text-2xl font-bold text-indigo-950 mt-2">cuándo lo va a ver</p>
-        </HighlightBox>
-        <HighlightBox className="text-center">
-          <Eyebrow>Acompañamiento</Eyebrow>
-          <p className="text-2xl font-bold text-indigo-950 mt-2">no estará solo</p>
-        </HighlightBox>
+// 3.2 Triángulo del valor — diagnóstico interactivo
+const S19 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>El triángulo del valor</H2>
+      <p className="text-lg text-slate-500 mt-2 italic">
+        Califique del 1 al 10 qué tan fuerte comunica cada vértice hoy en su consulta.
+      </p>
+      <div className="mt-8">
+        <ValueTriangleDiagnostic onComplete={() => setDone(true)} />
       </div>
-    </div>
-    <Anchor>
-      <span className="block mt-12 text-center">
-        Si uno de los tres falta, el paciente no compra.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
-// 3.3 Aplicación en conversación real
-const S20 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>Cómo se ve en una conversación real</H2>
-    <Body className="mt-6">
-      Ejemplo: paciente con sobrepeso significativo, recomendación del doctor: pack integral con manejo farmacológico.
-    </Body>
-    <div className="mt-10 space-y-5">
-      {[
-        [
-          "Resultado",
-          "En 6 meses va a sentir que su ropa le queda diferente. Va a tener más energía. Sus exámenes van a empezar a mejorar.",
-        ],
-        [
-          "Tiempo",
-          "Los primeros cambios los va a sentir en las primeras 4-6 semanas. Los cambios visibles, hacia el mes 3. El resultado completo, a los 12 meses.",
-        ],
-        [
-          "Acompañamiento",
-          "No va a estar solo. Cada mes nos vemos para revisar cómo va, ajustar el tratamiento si es necesario, y estar pendientes de su progreso.",
-        ],
-      ].map(([t, d]) => (
-        <HighlightBox key={t}>
-          <Eyebrow>{t}</Eyebrow>
-          <p className="text-xl italic text-indigo-950 mt-3">"{d}"</p>
-        </HighlightBox>
-      ))}
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+// 3.3 Constructor de frase de cierre
+const S20 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>Arme su frase de cierre</H2>
+      <Body className="mt-4">Elija una opción por columna y vea cómo se construye una frase completa de cierre.</Body>
+      <div className="mt-8">
+        <ClosingPhraseBuilder onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
 
 // 3.4 Manejo farmacológico — CON LOGO NOVO
 const S21 = ({ onNext, onBack }: ScreenProps) => (

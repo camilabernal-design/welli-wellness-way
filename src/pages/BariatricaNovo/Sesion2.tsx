@@ -15,6 +15,13 @@ import {
   SoftBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
+import PackSimulator from "@/components/BariatricaNovo/interactive/PackSimulator";
+import NextPatientForm from "@/components/BariatricaNovo/interactive/NextPatientForm";
+import ExcuseClassifier from "@/components/BariatricaNovo/interactive/ExcuseClassifier";
+import ConversationsQuiz from "@/components/BariatricaNovo/interactive/ConversationsQuiz";
+import WelliPitchBuilder from "@/components/BariatricaNovo/interactive/WelliPitchBuilder";
+import PlanBSimulation from "@/components/BariatricaNovo/interactive/PlanBSimulation";
+import CommitmentSealing from "@/components/BariatricaNovo/interactive/CommitmentSealing";
 
 type ScreenProps = {
   onNext: () => void;
