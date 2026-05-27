@@ -13,6 +13,14 @@ import {
   SoftBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
+import TeamVoteOverlay from "@/components/BariatricaNovo/interactive/TeamVoteOverlay";
+import DiagnosticoIndagacion from "@/components/BariatricaNovo/interactive/DiagnosticoIndagacion";
+import ValuePerceptionSlider from "@/components/BariatricaNovo/interactive/ValuePerceptionSlider";
+import MonthlyDeclineChart from "@/components/BariatricaNovo/interactive/MonthlyDeclineChart";
+import PatternsChecklist from "@/components/BariatricaNovo/interactive/PatternsChecklist";
+import MetricsRevealed from "@/components/BariatricaNovo/interactive/MetricsRevealed";
+import ValueTriangleDiagnostic from "@/components/BariatricaNovo/interactive/ValueTriangleDiagnostic";
+import ClosingPhraseBuilder from "@/components/BariatricaNovo/interactive/ClosingPhraseBuilder";
 
 type ScreenProps = {
   onNext: () => void;
