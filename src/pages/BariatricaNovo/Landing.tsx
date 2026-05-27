@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import WelliLogoFull from "@/components/WelliLogoFull";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock } from "lucide-react";
 
 const Landing = () => {
   return (
