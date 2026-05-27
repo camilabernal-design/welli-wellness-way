@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,6 @@ import NavigationButtons from "@/components/BariatricaNovo/NavigationButtons";
 import ProgressBar from "@/components/BariatricaNovo/ProgressBar";
 import {
   HighlightBox,
-  WarningBox,
   SoftBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
