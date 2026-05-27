@@ -12,7 +12,7 @@ interface TrainingHubProps {
 type AccentColor = 'secondary' | 'welli-yellow';
 
 interface RouteCard {
-  id: TrainingRoute;
+  id: TrainingRoute | string;
   title: string;
   subtitle: string;
   description: string;
@@ -24,6 +24,7 @@ interface RouteCard {
   modules: number;
   badge?: string | null;
   category: RouteCategory;
+  externalPath?: string;
 }
 
 const allRoutes: RouteCard[] = [
