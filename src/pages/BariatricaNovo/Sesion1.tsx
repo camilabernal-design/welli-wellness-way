@@ -496,6 +496,13 @@ const S19 = ({ onNext, onBack }: ScreenProps) => {
       <div className="mt-8">
         <ValueTriangleDiagnostic onComplete={() => setDone(true)} />
       </div>
+      {done && (
+        <HighlightBox className="mt-8">
+          <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed italic text-center">
+            Si uno de los tres vértices falta, el paciente no compra.
+          </p>
+        </HighlightBox>
+      )}
       <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
   );
