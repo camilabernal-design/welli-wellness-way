@@ -37,6 +37,21 @@ export default function MetricsRevealed({ onComplete }: { onComplete: () => void
         </div>
       </SoftBox>
 
+      <div className="grid md:grid-cols-2 gap-4">
+        <SoftBox className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            Antes
+          </p>
+          <p className="text-lg font-semibold text-indigo-950 mt-1">Estancados</p>
+        </SoftBox>
+        <div className="rounded-xl border-2 border-welli-yellow bg-welli-yellow/20 p-4 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-indigo-950/70">
+            Ahora
+          </p>
+          <p className="text-lg font-semibold text-indigo-950 mt-1">Mayo 2026</p>
+        </div>
+      </div>
+
       <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
         Acumulado 7 meses
       </p>
