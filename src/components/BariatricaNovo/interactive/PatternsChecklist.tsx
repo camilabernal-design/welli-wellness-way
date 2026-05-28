@@ -69,6 +69,11 @@ export default function PatternsChecklist({
                 Patrón {p.n}
               </p>
               <p className="text-lg text-indigo-950 mt-1">{p.title}</p>
+              {p.coletilla && (
+                <p className="text-sm italic text-indigo-950/70 mt-2 leading-relaxed">
+                  {p.coletilla}
+                </p>
+              )}
             </div>
           </motion.button>
         );
