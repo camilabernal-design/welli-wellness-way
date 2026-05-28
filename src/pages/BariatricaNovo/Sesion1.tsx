@@ -176,6 +176,13 @@ const S05 = ({ onNext, onBack }: ScreenProps) => {
           <span className="font-bold not-italic text-indigo-950">no entendieron el valor</span> de lo que usted les propuso.
         </Anchor>
         <ValuePerceptionSlider onComplete={() => setDone(true)} />
+        {done && (
+          <HighlightBox className="max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed italic">
+              Cuando el paciente sale con el monto en la cabeza pero sin entender el cambio profundo que va a vivir... ya perdió la decisión.
+            </p>
+          </HighlightBox>
+        )}
         <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
       </div>
     </ScreenShell>
@@ -489,6 +496,13 @@ const S19 = ({ onNext, onBack }: ScreenProps) => {
       <div className="mt-8">
         <ValueTriangleDiagnostic onComplete={() => setDone(true)} />
       </div>
+      {done && (
+        <HighlightBox className="mt-8">
+          <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed italic text-center">
+            Si uno de los tres vértices falta, el paciente no compra.
+          </p>
+        </HighlightBox>
+      )}
       <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
   );
