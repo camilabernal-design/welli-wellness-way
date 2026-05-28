@@ -81,8 +81,16 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
                 <td className="p-4 font-medium text-indigo-950">{row.feature}</td>
                 <td className={`p-4 text-center font-semibold ${row.welliWins ? 'bg-green-50 text-green-700' : 'bg-welli-yellow/10 text-indigo-950'}`}>
                   <div className="flex items-center justify-center gap-2">
-                    {row.welliWins && <Check className="w-4 h-4 text-green-600" />}
-                    {row.welli}
+                    {row.welliWins && <Check className="w-4 h-4 text-green-600 shrink-0" />}
+                    {Array.isArray(row.welli) ? (
+                      <div className="flex flex-col gap-1 text-sm leading-tight">
+                        {row.welli.map((line, i) => (
+                          <span key={i}>{line}</span>
+                        ))}
+                      </div>
+                    ) : (
+                      row.welli
+                    )}
                   </div>
                 </td>
                 <td className="p-4 text-center text-indigo-800">{row.banks}</td>
