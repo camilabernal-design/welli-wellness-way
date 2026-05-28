@@ -579,8 +579,30 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
     <ScreenShell>
       <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
       <H2>Practique el Plan B en una simulación</H2>
-      <Body className="mt-4">3 momentos ramificados. Elija cómo responde y vea la consecuencia.</Body>
-      <div className="mt-8">
+
+      <div className="mt-8 space-y-6">
+        <div>
+          <Eyebrow>Lo que va a pasar</Eyebrow>
+          <Body className="mt-3">
+            Aproximadamente 30-40% de los pacientes que aplican no se ajustan en primera instancia. Es normal. NO es un fracaso. Es parte del proceso.
+          </Body>
+        </div>
+        <div>
+          <Eyebrow>Los primeros 5 segundos</Eyebrow>
+          <Body className="mt-3">
+            Su tono importa MÁS que las palabras. Tranquilo, profesional, como si dijera la hora.
+          </Body>
+        </div>
+        <WarningBox>
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Lo que NUNCA se hace</p>
+          <p className="text-xl text-indigo-950 mt-3">
+            Decir "uy", decir "le negaron", decir "no sé por qué".
+          </p>
+        </WarningBox>
+      </div>
+
+      <Body className="mt-10">3 momentos ramificados. Elija cómo responde y vea la consecuencia.</Body>
+      <div className="mt-6">
         <PlanBSimulation onComplete={() => setDone(true)} />
       </div>
       <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
