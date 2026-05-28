@@ -251,7 +251,15 @@ const M4_5 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Practique: ¿cuál pack para cada paciente?</H2>
+      <Eyebrow>La regla absoluta</Eyebrow>
+      <H1 >NUNCA presente las 3 opciones sin recomendar una.</H1>
+      <Body className="mt-6">
+        Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar" — que casi siempre significa "no me lo trato".
+      </Body>
+      <Body className="mt-4">
+        Si el caso es mixto, recomiende el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
+      </Body>
+      <H2 >Practique: ¿cuál pack para cada paciente?</H2>
       <div className="mt-8">
         <PackSimulator onComplete={() => setDone(true)} />
       </div>
