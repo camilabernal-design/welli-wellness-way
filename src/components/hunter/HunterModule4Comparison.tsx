@@ -8,7 +8,7 @@ interface ModuleProps {
 }
 
 const comparisonData = [
-  { feature: 'Tasa de Interés', welli: '20-40% E.A.', banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
+  { feature: 'Tasa de Interés', welli: ['20% E.A. créditos normales', 'Hasta 40% E.A. en créditos de bajos montos*'], banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
   { feature: 'Tasa de Aprobación', welli: '~20-30%', banks: '~10%', fintech: '~10%', welliWins: true },
   { feature: 'Desembolso', welli: 'Al aliado en 72h', banks: 'Al paciente', fintech: 'Aliado 30+ días', welliWins: true },
   { feature: 'Montos', welli: '$300k – $30M', banks: '$500k – $20M', fintech: '$200k – $10M', welliWins: true },
