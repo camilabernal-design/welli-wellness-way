@@ -7,9 +7,14 @@ const PATTERNS = [
   {
     n: 1,
     title: "El paciente entraba por un tratamiento específico y se iba sin volver.",
+    coletilla: "Sin volver. (Volver es la palabra que falta.)",
   },
-  { n: 2, title: "Ticket alto cuando ocurría pero no recurrente." },
-  { n: 3, title: "Muchos pacientes calificaban pero no podían pagar." },
+  {
+    n: 2,
+    title: "Ticket alto cuando ocurría pero no recurrente.",
+    coletilla: "El ticket era alto cuando ocurría, pero no recurrente. Cobrar bien una vez no es cobrar bien muchas veces.",
+  },
+  { n: 3, title: "Muchos pacientes calificaban pero no podían pagar.", coletilla: "" },
 ];
 
 function feedback(sel: number[]) {
