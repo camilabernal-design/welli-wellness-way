@@ -8,7 +8,7 @@ interface ModuleProps {
 }
 
 const comparisonData = [
-  { feature: 'Tasa de Interés', welli: '20-40% E.A.', banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
+  { feature: 'Tasa de Interés', welli: ['20% E.A. créditos normales', 'Hasta 40% E.A. en créditos de bajos montos*'], banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
   { feature: 'Tasa de Aprobación', welli: '~20-30%', banks: '~10%', fintech: '~10%', welliWins: true },
   { feature: 'Desembolso', welli: 'Al aliado en 72h', banks: 'Al paciente', fintech: 'Aliado 30+ días', welliWins: true },
   { feature: 'Montos', welli: '$300k – $30M', banks: '$500k – $20M', fintech: '$200k – $10M', welliWins: true },
@@ -81,8 +81,16 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
                 <td className="p-4 font-medium text-indigo-950">{row.feature}</td>
                 <td className={`p-4 text-center font-semibold ${row.welliWins ? 'bg-green-50 text-green-700' : 'bg-welli-yellow/10 text-indigo-950'}`}>
                   <div className="flex items-center justify-center gap-2">
-                    {row.welliWins && <Check className="w-4 h-4 text-green-600" />}
-                    {row.welli}
+                    {row.welliWins && <Check className="w-4 h-4 text-green-600 shrink-0" />}
+                    {Array.isArray(row.welli) ? (
+                      <div className="flex flex-col gap-1 text-sm leading-tight">
+                        {row.welli.map((line, i) => (
+                          <span key={i}>{line}</span>
+                        ))}
+                      </div>
+                    ) : (
+                      row.welli
+                    )}
                   </div>
                 </td>
                 <td className="p-4 text-center text-indigo-800">{row.banks}</td>
@@ -91,6 +99,9 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
             ))}
           </tbody>
         </table>
+        <p className="text-xs text-indigo-800/80 mt-3 italic leading-relaxed">
+          * Un crédito de bajo monto tiene una tasa diferencial de hasta el 2.84% M.V. o hasta 40% E.A., conforme a lo estipulado en el Decreto 222 de 2020. (Esta tasa puede variar dentro de los rangos establecidos por el decreto)
+        </p>
       </motion.div>
 
       {/* Key Takeaways */}
