@@ -99,6 +99,9 @@ const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
             ))}
           </tbody>
         </table>
+        <p className="text-xs text-indigo-800/80 mt-3 italic leading-relaxed">
+          * Un crédito de bajo monto tiene una tasa diferencial de hasta el 2.84% M.V. o hasta 40% E.A., conforme a lo estipulado en el Decreto 222 de 2020. (Esta tasa puede variar dentro de los rangos establecidos por el decreto)
+        </p>
       </motion.div>
 
       {/* Key Takeaways */}
