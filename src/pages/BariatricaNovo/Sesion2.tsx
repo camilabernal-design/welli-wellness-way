@@ -259,7 +259,7 @@ const M4_5 = ({ onNext, onBack }: ScreenProps) => {
       <Body className="mt-4">
         Si el caso es mixto, recomiende el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
       </Body>
-      <H2 >Practique: ¿cuál pack para cada paciente?</H2>
+      <div className="mt-12"><H2>Practique: ¿cuál pack para cada paciente?</H2></div>
       <div className="mt-8">
         <PackSimulator onComplete={() => setDone(true)} />
       </div>
