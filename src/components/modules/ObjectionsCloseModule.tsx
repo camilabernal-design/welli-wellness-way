@@ -36,7 +36,7 @@ const conversations = [
     preguntaLlave:
       "¿Ha tenido alguna mala experiencia con bancos o financieras antes?",
     accion:
-      'Casi siempre responde "Sí". Reframe: "Welli no es un banco. Es un crédito exclusivo de salud — sin fiador, sin papeleos, con tasa fija. La diferencia es que está regulado por el Banco de la República. Muchos pacientes que decían lo mismo cambian de opinión cuando lo escuchan."',
+      'Casi siempre responde "Sí". Reframe: "Welli no es un banco. Es un crédito exclusivo de salud — sin fiador, sin papeleos, con tasa fija. La diferencia es que está regulado por la SIC y por la tasa que estipula el Banco de la República. Muchos pacientes que decían lo mismo cambian de opinión cuando lo escuchan."',
   },
   {
     phrase: "Mi historial es malo",
