@@ -125,7 +125,7 @@ const maestriaEquipoModules = [
   { id: 11, title: "Certificación", icon: GraduationCap },
 ];
 
-// Express Aliados modules (8)
+// Express Aliados modules (9)
 const expressAliadosModules = [
   { id: 1, title: "Bienvenida", icon: Sparkles },
   { id: 2, title: "Cuénteme de su consulta", icon: MessageSquare },
@@ -134,7 +134,8 @@ const expressAliadosModules = [
   { id: 5, title: "Lo que dirán sus pacientes", icon: MessageSquare },
   { id: 6, title: "Garantías", icon: ShieldQuestion },
   { id: 7, title: "Primera activación", icon: Target },
-  { id: 8, title: "Próximos pasos", icon: ChevronRight },
+  { id: 8, title: "Welli Points", icon: Sparkles },
+  { id: 9, title: "Próximos pasos", icon: ChevronRight },
 ];
 
 const getRouteConfig = (route: TrainingRoute) => {
