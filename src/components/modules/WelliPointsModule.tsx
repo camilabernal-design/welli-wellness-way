@@ -258,7 +258,7 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
         <div className="flex justify-center pt-4">
           <button
             onClick={onComplete}
-            className="inline-flex items-center gap-2 bg-welli-orange text-white font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform shadow-lg"
+            className="inline-flex items-center gap-2 bg-welli-yellow text-indigo-950 font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform shadow-lg"
           >
             Continuar
             <ArrowRight className="w-5 h-5" />
