@@ -95,7 +95,7 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
         >
           <h3 className="text-2xl font-bold text-indigo-950 mb-6">Cómo funciona en 60 segundos</h3>
           <YouTubeEmbed
-            videoId="3zFKY4XZWpA"
+            videoId="Wz5MPJ6QG_M"
             title="Welli Points en acción"
             isShort
             borderColor="welli-yellow"
@@ -155,7 +155,7 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
             <div className="bg-welli-yellow/10 border border-welli-yellow/40 rounded-2xl p-5">
               <Target className="w-8 h-8 text-welli-orange mb-2" />
               <h4 className="font-bold text-indigo-950">Retos del mes</h4>
-              <p className="text-sm text-indigo-950/80 mt-1">"⚽ En la Jugada con Welli" — puntos extra durante el Mundial.</p>
+              <p className="text-sm text-indigo-950/80 mt-1">Algunos meses tendrás actividades especiales en donde participas para ganar puntos extra.</p>
             </div>
             <div className="bg-welli-yellow/10 border border-welli-yellow/40 rounded-2xl p-5">
               <DollarSign className="w-8 h-8 text-welli-orange mb-2" />
@@ -175,24 +175,6 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
               ))}
             </div>
           </div>
-        </motion.section>
-
-        {/* En la jugada */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-br from-welli-yellow/30 to-welli-orange/20 rounded-3xl p-8 border-2 border-welli-yellow"
-        >
-          <h3 className="text-2xl font-bold text-indigo-950 mb-3">⚽ En la Jugada con Welli</h3>
-          <p className="text-indigo-950 mb-4 font-medium">
-            ¡Durante el Mundial tu clínica también gana! Cumple tu reto antes de cada partido y entra a jugar.
-            Si clasificas:
-          </p>
-          <ul className="space-y-2 text-indigo-950">
-            <li className="flex items-center gap-2">⚽ <strong>+5 Welli Points</strong> por cada gol de Colombia</li>
-            <li className="flex items-center gap-2">🏆 <strong>+10 Welli Points</strong> por cada victoria</li>
-          </ul>
         </motion.section>
 
         {/* Niveles */}
@@ -236,7 +218,6 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
               "🎯 Tu reto del mes",
               "⚡ Concursos activos",
               "💰 Equivalente en pesos",
-              "⚽ Tu avance en En la Jugada",
             ].map((item) => (
               <div key={item} className="bg-white/10 rounded-xl px-4 py-3">{item}</div>
             ))}
