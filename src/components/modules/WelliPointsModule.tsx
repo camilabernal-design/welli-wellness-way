@@ -96,7 +96,7 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
         >
           <h3 className="text-2xl font-bold text-indigo-950 mb-6">Cómo funciona en 60 segundos</h3>
           <YouTubeEmbed
-            videoId="3zFKY4XZWpA"
+            videoId="Wz5MPJ6QG_M"
             title="Welli Points en acción"
             isShort
             borderColor="welli-yellow"
