@@ -67,7 +67,7 @@ import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/
 import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
 import MaestriaEquipoModule9Certification from "@/components/maestria-equipo/MaestriaEquipoModule9Certification";
 
-// Express Aliados Modules (8)
+// Express Aliados Modules (9)
 import { SessionProvider } from "@/components/express-aliados/SessionContext";
 import SessionPreparationScreen from "@/components/express-aliados/SessionPreparationScreen";
 import SessionReadyScreen from "@/components/express-aliados/SessionReadyScreen";
@@ -87,7 +87,7 @@ const ROUTE_MODULES = {
   farmer: 22,
   aliado: 5,
   'maestria-equipo': 11,
-  'express-aliados': 8,
+  'express-aliados': 9,
 };
 
 const Index = forwardRef<HTMLDivElement>((_, ref) => {
@@ -215,7 +215,8 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 5: return <ExpressAliadosModule4PatientResponses onComplete={handleModuleComplete} />;
       case 6: return <ExpressAliadosModule5Trust onComplete={handleModuleComplete} />;
       case 7: return <ExpressAliadosModule6FirstActivation onComplete={handleModuleComplete} />;
-      case 8: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
+      case 8: return <WelliPointsModule onComplete={handleModuleComplete} />;
+      case 9: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
       default: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
     }
   };
@@ -248,7 +249,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 'maestria-equipo':
         return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 11 };
       case 'express-aliados':
-        return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 8 };
+        return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 9 };
       default:
         return { title: '', subtitle: '', color: 'primary', total: 1 };
     }
