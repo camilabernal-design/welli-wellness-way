@@ -218,7 +218,6 @@ const WelliPointsModule = ({ onComplete }: ModuleProps) => {
               "🎯 Tu reto del mes",
               "⚡ Concursos activos",
               "💰 Equivalente en pesos",
-              "⚽ Tu avance en En la Jugada",
             ].map((item) => (
               <div key={item} className="bg-white/10 rounded-xl px-4 py-3">{item}</div>
             ))}
