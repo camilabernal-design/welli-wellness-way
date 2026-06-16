@@ -13,7 +13,6 @@ import {
   Gem,
   Target,
   DollarSign,
-  CalendarDays,
 } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 
