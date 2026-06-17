@@ -14,7 +14,7 @@ import HunterModule1WhatIsWelli from "@/components/hunter/HunterModule1WhatIsWel
 import HunterModule2ValueProposition from "@/components/hunter/HunterModule2ValueProposition";
 import HunterModule3AllianceVideos from "@/components/hunter/HunterModule3AllianceVideos";
 import HunterModule4Comparison from "@/components/hunter/HunterModule4Comparison";
-import HunterModule5TreasureMap from "@/components/hunter/HunterModule5TreasureMap";
+
 import HunterModule6Ecosystem from "@/components/hunter/HunterModule6Ecosystem";
 import HunterModule7Validation from "@/components/hunter/HunterModule7Validation";
 import HunterModule8Press from "@/components/hunter/HunterModule8Press";
