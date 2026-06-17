@@ -14,7 +14,7 @@ import HunterModule1WhatIsWelli from "@/components/hunter/HunterModule1WhatIsWel
 import HunterModule2ValueProposition from "@/components/hunter/HunterModule2ValueProposition";
 import HunterModule3AllianceVideos from "@/components/hunter/HunterModule3AllianceVideos";
 import HunterModule4Comparison from "@/components/hunter/HunterModule4Comparison";
-import HunterModule5TreasureMap from "@/components/hunter/HunterModule5TreasureMap";
+
 import HunterModule6Ecosystem from "@/components/hunter/HunterModule6Ecosystem";
 import HunterModule7Validation from "@/components/hunter/HunterModule7Validation";
 import HunterModule8Press from "@/components/hunter/HunterModule8Press";
@@ -139,7 +139,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 1: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
       case 2: return <HunterModule3AllianceVideos onComplete={handleModuleComplete} selectedVideo={hunterSelectedVideo} onVideoChange={setHunterSelectedVideo} />;
       case 3: return <HunterModule4Comparison onComplete={handleModuleComplete} />;
-      case 4: return <HunterModule5TreasureMap onComplete={handleModuleComplete} />;
+      case 4: return <WelliPointsModule onComplete={handleModuleComplete} />;
       case 5: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
       case 6: return <HunterModule7Validation onComplete={handleModuleComplete} />;
       case 7: return <HunterModule8Press onComplete={handleModuleComplete} />;
