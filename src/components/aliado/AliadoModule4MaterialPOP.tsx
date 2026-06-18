@@ -5,7 +5,8 @@ import { ArrowRight, Download, Image, FileText } from "lucide-react";
 
 // Import POP images
 import bolsaImg from "@/assets/pop/bolsa.png";
-import habladorImg from "@/assets/pop/hablador.png";
+import habladorAsset from "@/assets/habladordepliestirenoWELLI_2.asset.json";
+const habladorImg = habladorAsset.url;
 import rompetraficoImg from "@/assets/pop/rompetrafico.png";
 import saltarinImg from "@/assets/pop/saltarin.png";
 import stickerMesaImg from "@/assets/pop/sticker-mesa.png";
