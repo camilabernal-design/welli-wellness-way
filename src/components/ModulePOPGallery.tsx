@@ -14,7 +14,7 @@ const hablador = habladorAsset.url;
 import stickerVidrioAsset from "@/assets/StickerVidrio_Welli.png.asset.json";
 const stickerVidrio = stickerVidrioAsset.url;
 import pop2 from "@/assets/pop/pop2.jpeg";
-import pop3 from "@/assets/pop/pop3.jpeg.png";
+import pop3 from "@/assets/pop/pop3.jpeg";
 import pop4 from "@/assets/pop/pop4.jpeg";
 import pop5 from "@/assets/pop/pop5.jpeg";
 import pop6 from "@/assets/pop/pop6.jpeg";
@@ -29,7 +29,7 @@ const popItems = [
   { src: rompetrafico, alt: "Rompetrafico Welli", title: "Rompetrafico" },
   { src: saltarin, alt: "Saltarin Welli", title: "Saltarín" },
   { src: stickerMesa, alt: "Sticker de Mesa Welli", title: "Sticker de Mesa" },
-  { src: pop1, alt: "POP Welli 1", title: "Material POP" },
+  { src: stickerVidrio, alt: "Sticker de Vidrio Welli", title: "Sticker de Vidrio" },
 ];
 
 const clinicExamples = [
