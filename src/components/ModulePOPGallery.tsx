@@ -29,7 +29,7 @@ const popItems = [
   { src: hablador, alt: "Hablador Welli", title: "Hablador de Mesa" },
   { src: rompetrafico, alt: "Rompetrafico Welli", title: "Rompetrafico" },
   { src: saltarin, alt: "Saltarin Welli", title: "Saltarín" },
-  { src: stickerMesa, alt: "Sticker de Mesa Welli", title: "Sticker de Mesa" },
+  { src: volante, alt: "Volante Paciente Welli", title: "Volante" },
   { src: stickerVidrio, alt: "Sticker de Vidrio Welli", title: "Sticker de Vidrio" },
 ];
 
