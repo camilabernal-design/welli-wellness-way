@@ -419,7 +419,7 @@ const M5_3 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <Eyebrow>Las 5 conversaciones bariátricas</Eyebrow>
+      <Eyebrow>Las 5 conversaciones más comunes</Eyebrow>
       <H2>Elija la mejor respuesta en cada caso</H2>
       <div className="mt-8">
         <ConversationsQuiz onComplete={() => setDone(true)} />
