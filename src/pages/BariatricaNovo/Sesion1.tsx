@@ -103,7 +103,7 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
         <Body className="max-w-3xl mx-auto">
           De cada 10 pacientes que usted valora para manejo de obesidad...
           <br />
-          <span className="font-semibold text-indigo-950">¿Cuántos terminan tratándose con usted?</span>
+          <span className="font-semibold text-indigo-950">¿Cuántos terminan tratándose con usted o en su clínica?</span>
         </Body>
         <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
           {["1-3", "4-6", "7-9", "10"].map((v) => (
