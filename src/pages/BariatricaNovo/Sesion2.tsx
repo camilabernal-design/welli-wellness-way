@@ -128,7 +128,63 @@ const A2 = ({ onNext, onBack }: ScreenProps) => {
 
 /* === MÓDULO 4 === */
 
-// 4.1
+export const PACK_OPCIONES = [
+  "Cirugía bariátrica",
+  "Manejo médico con farmacológico",
+  "Nutrición",
+  "Seguimiento estructurado (más de 3 visitas)",
+  "Otros procedimientos (aparatología, mesoterapia, etc.)",
+];
+
+// 4.0 Indagación de packs de la clínica
+const M4_0 = ({ onNext, onBack }: ScreenProps) => {
+  const { state, update } = useBariatricaState();
+  const sel = state.packsClinica ?? [];
+  const toggle = (o: string) =>
+    update({
+      packsClinica: sel.includes(o) ? sel.filter((x) => x !== o) : [...sel, o],
+    });
+
+  return (
+    <ScreenShell>
+      <Eyebrow>Antes de hablar de packs</Eyebrow>
+      <H2>¿Qué tipos de packs ofrece hoy su clínica?</H2>
+      <Body className="mt-6">
+        No todas las clínicas ofrecen los mismos servicios. Antes de mostrarle nuestro modelo, cuéntenos:
+      </Body>
+      <div className="mt-8 space-y-3">
+        {PACK_OPCIONES.map((o) => {
+          const on = sel.includes(o);
+          return (
+            <button
+              key={o}
+              onClick={() => toggle(o)}
+              className={`w-full flex items-center gap-4 text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
+                on
+                  ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
+                  : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
+              }`}
+            >
+              <span
+                className={`w-6 h-6 rounded border-2 flex items-center justify-center text-sm ${
+                  on ? "border-indigo-950 bg-indigo-950 text-welli-yellow" : "border-slate-400"
+                }`}
+              >
+                {on ? "✓" : ""}
+              </span>
+              {o}
+            </button>
+          );
+        })}
+      </div>
+      <Body className="mt-8 italic text-slate-500">
+        Con esto adaptamos los packs que vamos a revisar enseguida.
+      </Body>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={sel.length === 0} />
+    </ScreenShell>
+  );
+};
+
 const M4_1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
     <Eyebrow>Módulo 4 — Sus 3 packs</Eyebrow>
