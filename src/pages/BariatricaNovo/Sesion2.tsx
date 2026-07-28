@@ -407,7 +407,7 @@ const M5_2 = ({ onNext, onBack }: ScreenProps) => (
       La llamamos "pregunta-llave" porque, como una llave, abre la verdadera razón detrás de la objeción.
     </Body>
     <Body className="mt-4">
-      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en pacientes bariátricos.
+      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en sus pacientes.
     </Body>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver las 5 conversaciones" />
   </ScreenShell>
