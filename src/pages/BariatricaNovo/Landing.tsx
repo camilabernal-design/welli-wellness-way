@@ -39,15 +39,16 @@ const Landing = () => {
             {
               to: "/bariatrica-novo/sesion-1",
               title: "Sesión 1",
-              subtitle: "Mentalidad y método",
-              duration: "55 min",
+              subtitle: "Corta consultiva",
+              duration: "~25 min",
             },
             {
               to: "/bariatrica-novo/sesion-2",
               title: "Sesión 2",
-              subtitle: "Aplicación en su consulta",
-              duration: "90–120 min",
+              subtitle: "Método completo",
+              duration: "~55 min",
             },
+
           ].map((c) => (
             <Link
               key={c.to}
