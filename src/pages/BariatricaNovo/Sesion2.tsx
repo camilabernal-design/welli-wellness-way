@@ -1423,7 +1423,7 @@ const Sesion2 = () => {
           </Link>
           <WelliLogoFull size="sm" />
           <div className="flex-1">
-            <ProgressBar current={idx + 1} total={total} label="Sesión 2 — Aplicación en su consulta" />
+            <ProgressBar current={idx + 1} total={total} label="Sesión 2 — Método completo" />
           </div>
         </div>
       </header>
