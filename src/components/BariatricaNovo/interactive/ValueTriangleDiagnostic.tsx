@@ -4,9 +4,24 @@ import { Slider } from "@/components/ui/slider";
 import { HighlightBox, SoftBox } from "@/components/BariatricaNovo/HighlightBox";
 
 const AXES = [
-  { key: "result", label: "RESULTADO", sub: "qué va a vivir" },
-  { key: "time", label: "TIEMPO", sub: "cuándo lo va a ver" },
-  { key: "accomp", label: "ACOMPAÑAMIENTO", sub: "no estará solo" },
+  {
+    key: "result",
+    label: "RESULTADO",
+    sub: "qué va a vivir",
+    novo: "Talking point Novo (Vive Ligero): [pendiente de confirmación]",
+  },
+  {
+    key: "time",
+    label: "TIEMPO",
+    sub: "cuándo lo va a ver",
+    novo: "Talking point Novo (Vive Ligero): [pendiente de confirmación]",
+  },
+  {
+    key: "accomp",
+    label: "ACOMPAÑAMIENTO",
+    sub: "no estará solo",
+    novo: "Talking point Novo (Vive Ligero): cada mes vuelve por su tratamiento farmacológico, y cada visita es un punto de seguimiento.",
+  },
 ] as const;
 
 type Scores = { result: number; time: number; accomp: number };
@@ -88,6 +103,7 @@ export default function ValueTriangleDiagnostic({
                 onValueChange={(x) => handleChange(a.key, x[0])}
                 className="mt-2"
               />
+              <p className="mt-2 text-sm text-slate-500 italic leading-snug">{a.novo}</p>
             </div>
           ))}
           <button

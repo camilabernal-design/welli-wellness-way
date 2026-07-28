@@ -11,6 +11,8 @@ export interface BariatricaState {
   compromisoNombre?: string;
   compromisoFecha?: string;
   seguimientoDia?: string;
+  packsClinica?: string[];
+  rolePlayPerfil?: string;
 }
 
 const KEY = "bariatrica-novo-state";

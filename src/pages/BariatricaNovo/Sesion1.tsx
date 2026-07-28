@@ -103,7 +103,7 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
         <Body className="max-w-3xl mx-auto">
           De cada 10 pacientes que usted valora para manejo de obesidad...
           <br />
-          <span className="font-semibold text-indigo-950">¿Cuántos terminan tratándose con usted?</span>
+          <span className="font-semibold text-indigo-950">¿Cuántos terminan tratándose con usted o en su clínica?</span>
         </Body>
         <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
           {["1-3", "4-6", "7-9", "10"].map((v) => (
@@ -156,7 +156,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => (
       <H1>
         Cuando un paciente sale de la consulta
         <br />
-        <span className="text-indigo-950">SIN agendar el tratamiento...</span>
+        <span className="text-indigo-950">SIN agendar el tratamiento (o sin comprar el paquete/servicio)...</span>
       </H1>
       <Anchor>¿Qué creen que pasó?</Anchor>
       <p className="text-slate-500 italic">Discusión libre durante 2-3 minutos</p>
@@ -336,13 +336,58 @@ const S12 = ({ onNext, onBack }: ScreenProps) => (
   </ScreenShell>
 );
 
+// 2.6A Contexto del paciente hoy — CON LOGO NOVO
+const S12A = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>Contexto de mercado</Eyebrow>
+    <H1>Un contexto que cambió todo</H1>
+    <Body className="mt-8">
+      Antes de contarle qué hizo esta clínica, mire un dato que probablemente ya está viviendo en su propia consulta:
+    </Body>
+    <div className="mt-10 grid md:grid-cols-3 gap-5">
+      {[
+        ["+490%", "búsquedas de \u201Cpérdida de peso\u201D en 3 años"],
+        ["×10", "búsquedas de \u201CSemaglutida\u201D en el último año"],
+        ["×10", "\u201Cbajar de peso\u201D entre las búsquedas de salud más frecuentes en Latam"],
+      ].map(([n, d]) => (
+        <HighlightBox key={d} className="text-center">
+          <p className="text-4xl md:text-5xl font-bold text-indigo-950">{n}</p>
+          <p className="text-base text-indigo-950 mt-3 leading-snug">{d}</p>
+        </HighlightBox>
+      ))}
+    </div>
+    <p className="text-2xl font-semibold text-indigo-950 mt-12">¿Qué buscan?</p>
+    <div className="mt-4 grid md:grid-cols-3 gap-5">
+      {[
+        ["66%", "una condición específica"],
+        ["55%", "un tratamiento o procedimiento"],
+        ["47%", "médicos y especialistas"],
+      ].map(([n, d]) => (
+        <SoftBox key={d} className="text-center">
+          <p className="text-3xl font-bold text-indigo-950">{n}</p>
+          <p className="text-base text-slate-600 mt-2">{d}</p>
+        </SoftBox>
+      ))}
+    </div>
+    <Anchor>
+      <span className="block mt-12 text-center">
+        Su paciente ya llegó a Google antes de llegar a su consulta.
+        <br />
+        La pregunta no es si ofrecer semaglutida. Es cómo capitalizar esa demanda.
+      </span>
+    </Anchor>
+    <p className="text-sm text-slate-400 mt-8 text-center">Fuente: programa Vive Ligero.</p>
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
 // 2.7 Movimiento 2 — CON LOGO NOVO
 const S13 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell withNovo>
     <Eyebrow>Movimiento 2</Eyebrow>
-    <H1>Integraron Wegovy / Saxenda</H1>
+    <H1>Integraron Wegovy</H1>
     <Body className="mt-8">
-      En la mayoría de sus paquetes incorporaron Wegovy o Saxenda — no como producto adicional, sino como parte estructural del tratamiento.
+      En la mayoría de sus paquetes incorporaron Wegovy — no como producto adicional, sino como parte estructural del tratamiento.
     </Body>
     <p className="text-2xl font-semibold text-indigo-950 mt-10">Lo que vieron:</p>
     <ul className="mt-4 space-y-5">
@@ -362,6 +407,35 @@ const S13 = ({ onNext, onBack }: ScreenProps) => (
         El paciente pasó de evento único a relación continua.
       </p>
     </HighlightBox>
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
+// 2.7A Wegovy como aliado del negocio — CON LOGO NOVO
+const S13A = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>Wegovy</Eyebrow>
+    <H1>Un aliado para su modelo de negocio</H1>
+    <div className="mt-10 grid md:grid-cols-3 gap-5">
+      {[
+        ["+40%", "aumento promedio del ticket al incluir Wegovy en el portafolio"],
+        ["×3", "mayor retención del paciente a la consulta cuando se incorpora Wegovy"],
+        ["70%", "de pacientes con sobrepeso u obesidad buscan una propuesta integral de pérdida de peso"],
+      ].map(([n, d]) => (
+        <HighlightBox key={d} className="text-center">
+          <p className="text-4xl md:text-5xl font-bold text-indigo-950">{n}</p>
+          <p className="text-base text-indigo-950 mt-3 leading-snug">{d}</p>
+        </HighlightBox>
+      ))}
+    </div>
+    <Anchor>
+      <span className="block mt-12 text-center">
+        No es solo un medicamento. Es una palanca comercial.
+        <br />
+        Y los pacientes ya lo están pidiendo.
+      </span>
+    </Anchor>
+    <p className="text-sm text-slate-400 mt-8 text-center">Fuente: programa Vive Ligero.</p>
     <NavigationButtons onBack={onBack} onNext={onNext} />
   </ScreenShell>
 );
@@ -488,7 +562,7 @@ const S18 = ({ onNext, onBack }: ScreenProps) => (
 const S19 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
-    <ScreenShell>
+    <ScreenShell withNovo>
       <H2>El triángulo del valor</H2>
       <p className="text-lg text-slate-500 mt-2 italic">
         Califique del 1 al 10 qué tan fuerte comunica cada vértice hoy en su consulta.
@@ -530,7 +604,7 @@ const S21 = ({ onNext, onBack }: ScreenProps) => (
     <H2>El manejo farmacológico: su mejor aliado de acompañamiento</H2>
     <Body className="mt-8">Lo que vimos en la clínica del caso:</Body>
     <Body className="mt-4">
-      Cuando el tratamiento incluye manejo farmacológico (medicamentos como los de Novo Nordisk: Wegovy, Ozempic, Saxenda), el paciente vuelve cada mes naturalmente.
+      Cuando el tratamiento incluye manejo farmacológico (Wegovy — semaglutida — de Novo Nordisk), el paciente vuelve cada mes naturalmente.
     </Body>
     <p className="text-2xl font-semibold text-indigo-950 mt-10">Cada visita es:</p>
     <ul className="mt-4 space-y-4">
@@ -704,7 +778,7 @@ const S24 = ({ onNext, onBack }: ScreenProps) => {
 
 /* ============ CONTROLADOR ============ */
 
-const SCREENS = [S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24];
+const SCREENS = [S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S12A, S13, S13A, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24];
 
 const Sesion1 = () => {
   const [idx, setIdx] = useState(0);

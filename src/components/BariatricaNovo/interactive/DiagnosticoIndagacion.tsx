@@ -6,42 +6,35 @@ type Profile = "pro-farmaco" | "neutro" | "esceptico" | "explorador";
 
 const Q = [
   {
-    title: "¿Qué opciones usa hoy para manejar obesidad?",
+    title:
+      "Más allá de cirugía, ¿qué opciones está usando para manejar pacientes con obesidad?",
     options: [
-      "Solo nutrición y ejercicio",
-      "Manejo médico (medicamentos)",
-      "Cirugía bariátrica",
-      "Combinación según el caso",
+      "Farmacoterapia",
+      "Cirugías",
+      "Aparatología",
+      "Combinación de las anteriores",
+      "No hago manejo de obesidad hoy",
     ],
   },
   {
-    title: "¿Ha trabajado con Wegovy, Ozempic, Saxenda?",
+    title: "¿Ha trabajado con Wegovy?",
     options: [
-      "Los uso regularmente",
-      "Los conozco pero no los receto mucho",
-      "Tengo dudas o reservas",
-      "Es nuevo para mí",
+      "Sí, lo uso regularmente",
+      "Sí, ocasionalmente",
+      "Lo conozco pero no lo receto",
+      "Estoy empezando con él",
     ],
   },
   {
     title: "¿Cómo ha sido la respuesta de sus pacientes?",
-    options: [
-      "Muy buena, alta adherencia",
-      "Mixta, depende del paciente",
-      "Difícil, abandonan rápido",
-      "No tengo suficiente experiencia",
-    ],
+    options: ["Muy buena", "Buena", "Mixta", "N/A"],
   },
 ];
 
 function profileOf(a2: string, a3: string): Profile {
-  if (a2 === "Es nuevo para mí") return "explorador";
-  if (
-    a2 === "Los conozco pero no los receto mucho" ||
-    a2 === "Tengo dudas o reservas"
-  )
-    return "esceptico";
-  if (a2 === "Los uso regularmente" && a3 === "Muy buena, alta adherencia")
+  if (a2 === "Estoy empezando con él") return "explorador";
+  if (a2 === "Lo conozco pero no lo receto") return "esceptico";
+  if (a2 === "Sí, lo uso regularmente" && a3 === "Muy buena")
     return "pro-farmaco";
   return "neutro";
 }

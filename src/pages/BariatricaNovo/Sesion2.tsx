@@ -128,7 +128,63 @@ const A2 = ({ onNext, onBack }: ScreenProps) => {
 
 /* === MÓDULO 4 === */
 
-// 4.1
+export const PACK_OPCIONES = [
+  "Cirugía bariátrica",
+  "Manejo médico con farmacológico",
+  "Nutrición",
+  "Seguimiento estructurado (más de 3 visitas)",
+  "Otros procedimientos (aparatología, mesoterapia, etc.)",
+];
+
+// 4.0 Indagación de packs de la clínica
+const M4_0 = ({ onNext, onBack }: ScreenProps) => {
+  const { state, update } = useBariatricaState();
+  const sel = state.packsClinica ?? [];
+  const toggle = (o: string) =>
+    update({
+      packsClinica: sel.includes(o) ? sel.filter((x) => x !== o) : [...sel, o],
+    });
+
+  return (
+    <ScreenShell>
+      <Eyebrow>Antes de hablar de packs</Eyebrow>
+      <H2>¿Qué tipos de packs ofrece hoy su clínica?</H2>
+      <Body className="mt-6">
+        No todas las clínicas ofrecen los mismos servicios. Antes de mostrarle nuestro modelo, cuéntenos:
+      </Body>
+      <div className="mt-8 space-y-3">
+        {PACK_OPCIONES.map((o) => {
+          const on = sel.includes(o);
+          return (
+            <button
+              key={o}
+              onClick={() => toggle(o)}
+              className={`w-full flex items-center gap-4 text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
+                on
+                  ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
+                  : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
+              }`}
+            >
+              <span
+                className={`w-6 h-6 rounded border-2 flex items-center justify-center text-sm ${
+                  on ? "border-indigo-950 bg-indigo-950 text-welli-yellow" : "border-slate-400"
+                }`}
+              >
+                {on ? "✓" : ""}
+              </span>
+              {o}
+            </button>
+          );
+        })}
+      </div>
+      <Body className="mt-8 italic text-slate-500">
+        Con esto adaptamos los packs que vamos a revisar enseguida.
+      </Body>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={sel.length === 0} />
+    </ScreenShell>
+  );
+};
+
 const M4_1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
     <Eyebrow>Módulo 4 — Sus 3 packs</Eyebrow>
@@ -170,41 +226,60 @@ const PackScreen = ({
   argumento,
   final,
   warning,
+  requiere,
   onNext,
   onBack,
-}: any) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Pack {num}</Eyebrow>
-    <H1>{title}</H1>
-    <HighlightBox className="mt-8">
-      <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
-    </HighlightBox>
-    <div className="mt-10">
-      <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
-      <Bullet items={paraQuien} />
-    </div>
-    <div className="mt-10">
-      <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
-      <SoftBox>
-        <p className="text-xl italic text-indigo-950">"{argumento}"</p>
-      </SoftBox>
-    </div>
-    {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
-    {warning && (
-      <WarningBox className="mt-8">
-        <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
-        <p className="text-xl text-indigo-950 mt-3">{warning}</p>
-      </WarningBox>
-    )}
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+}: any) => {
+  const { state } = useBariatricaState();
+  const sel = state.packsClinica ?? [];
+  const enPortafolio =
+    sel.length === 0 || (requiere as string[]).some((r) => sel.includes(r));
+
+  return (
+    <ScreenShell withNovo>
+      <Eyebrow>Pack {num}</Eyebrow>
+      <H1>{title}</H1>
+      {!enPortafolio && (
+        <WarningBox className="mt-6">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
+            Hoy no está en su portafolio
+          </p>
+          <p className="text-xl text-indigo-950 mt-3">
+            Vamos a ver si vale la pena sumar este pack a su oferta. Es una oportunidad de crecimiento, no un requisito.
+          </p>
+        </WarningBox>
+      )}
+      <HighlightBox className="mt-8">
+        <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
+      </HighlightBox>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
+        <Bullet items={paraQuien} />
+      </div>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
+        <SoftBox>
+          <p className="text-xl italic text-indigo-950">"{argumento}"</p>
+        </SoftBox>
+      </div>
+      {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
+      {warning && (
+        <WarningBox className="mt-8">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
+          <p className="text-xl text-indigo-950 mt-3">{warning}</p>
+        </WarningBox>
+      )}
+      <NavigationButtons onBack={onBack} onNext={onNext} />
+    </ScreenShell>
+  );
+};
 
 const M4_2 = (p: ScreenProps) => (
   <PackScreen
     {...p}
     num="1 · Quirúrgico"
     title="Pack quirúrgico"
+    requiere={["Cirugía bariátrica"]}
     composition="Cirugía + manejo farmacológico post-quirúrgico"
     paraQuien={[
       "Apto clínicamente para cirugía",
@@ -220,6 +295,11 @@ const M4_3 = (p: ScreenProps) => (
     {...p}
     num="2 · Preventivo"
     title="Pack preventivo"
+    requiere={[
+      "Manejo médico con farmacológico",
+      "Nutrición",
+      "Otros procedimientos (aparatología, mesoterapia, etc.)",
+    ]}
     composition="Manejo médico (nutrición + farmacológico) sin cirugía"
     paraQuien={[
       "No candidato a cirugía",
@@ -235,6 +315,7 @@ const M4_4 = (p: ScreenProps) => (
     {...p}
     num="3 · Metabólico Integral"
     title="Pack metabólico integral"
+    requiere={["Seguimiento estructurado (más de 3 visitas)"]}
     composition="Evaluación clínica completa + nutrición + manejo farmacológico + seguimiento estructurado"
     paraQuien={[
       "Con comorbilidades asociadas al peso",
@@ -326,7 +407,7 @@ const M5_2 = ({ onNext, onBack }: ScreenProps) => (
       La llamamos "pregunta-llave" porque, como una llave, abre la verdadera razón detrás de la objeción.
     </Body>
     <Body className="mt-4">
-      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en pacientes bariátricos.
+      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en sus pacientes.
     </Body>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver las 5 conversaciones" />
   </ScreenShell>
@@ -338,7 +419,7 @@ const M5_3 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <Eyebrow>Las 5 conversaciones bariátricas</Eyebrow>
+      <Eyebrow>Las 5 conversaciones más comunes</Eyebrow>
       <H2>Elija la mejor respuesta en cada caso</H2>
       <div className="mt-8">
         <ConversationsQuiz onComplete={() => setDone(true)} />
@@ -535,19 +616,18 @@ const M6_5 = ({ onNext, onBack }: ScreenProps) => (
       <div className="grid grid-cols-2 gap-8">
         <div>
           <Eyebrow>Comisión estándar Welli</Eyebrow>
-          <p className="text-5xl font-bold text-indigo-950 mt-4">5%</p>
+          <p className="text-5xl font-bold text-indigo-950 mt-4">6%</p>
         </div>
         <div>
           <Eyebrow>Su comisión preferencial</Eyebrow>
           <p className="text-5xl font-bold text-indigo-950 mt-4">4%</p>
         </div>
       </div>
-      <p className="text-lg text-indigo-950 mt-6 font-semibold">Beneficio por la alianza con Novo</p>
+      <p className="text-lg text-indigo-950 mt-6 font-semibold">
+        Beneficio directo por la alianza con Novo Nordisk Colombia.
+      </p>
     </HighlightBox>
-    <Body className="mt-10">1 punto porcentual sobre cada desembolso.</Body>
-    <Body className="mt-4 font-semibold text-indigo-950">
-      En $1.000 millones desembolsados al año, son $10 millones adicionales para su clínica.
-    </Body>
+    <Body className="mt-10">2 puntos porcentuales sobre cada desembolso.</Body>
     <Body className="mt-4">Esta condición se mantiene mientras la clínica esté activa en el programa.</Body>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 7" />
   </ScreenShell>
@@ -648,33 +728,69 @@ const M7_3A = ({ onNext, onBack }: ScreenProps) => (
 );
 
 // 7.2B
-const M7_2B = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Rama B · Role play</Eyebrow>
-    <H2>Preparación del role play</H2>
-    <Body className="mt-8">Welli va a actuar como un paciente bariátrico real.</Body>
-    <HighlightBox className="mt-8">
-      <Eyebrow>El perfil que Welli interpreta</Eyebrow>
-      <div className="mt-4 space-y-2 text-lg text-indigo-950">
-        <p><span className="font-semibold">Nombre:</span> María (45 años)</p>
-        <p><span className="font-semibold">Motivo:</span> viene por sobrepeso significativo</p>
-        <p><span className="font-semibold">IMC:</span> 36</p>
-        <p><span className="font-semibold">Comorbilidades:</span> prediabetes</p>
-        <p><span className="font-semibold">Trabajo:</span> profesional independiente</p>
-        <p><span className="font-semibold">Antecedentes:</span> ha intentado dietas varias veces sin éxito</p>
+const PERFILES = [
+  {
+    nombre: "Diana",
+    datos: ["31 años", "IMC 31 kg/m²", "Sin ninguna condición de salud relevante"],
+    contexto: "[Personalidad y contexto — pendiente de confirmación de Novo]",
+  },
+  {
+    nombre: "Paola",
+    datos: ["34 años", "IMC 28 kg/m²"],
+    contexto: "[Contexto — pendiente de confirmación de Novo]",
+  },
+  {
+    nombre: "Tatiana",
+    datos: ["27 años", "IMC ~29 kg/m² (por confirmar con Novo)"],
+    contexto: "[Contexto — pendiente de confirmación de Novo]",
+  },
+];
+
+const M7_2B = ({ onNext, onBack }: ScreenProps) => {
+  const { state, update } = useBariatricaState();
+  const sel = state.rolePlayPerfil ?? "";
+  return (
+    <ScreenShell>
+      <Eyebrow>Rama B · Role play</Eyebrow>
+      <H2>Preparación del role play</H2>
+      <Body className="mt-8">
+        Welli va a actuar como uno de estos 3 pacientes del programa Vive Ligero.
+      </Body>
+      <Body className="mt-2 font-semibold text-indigo-950">Elija con cuál quiere practicar:</Body>
+      <div className="mt-8 grid md:grid-cols-3 gap-5">
+        {PERFILES.map((p) => {
+          const on = sel === p.nombre;
+          return (
+            <button
+              key={p.nombre}
+              onClick={() => update({ rolePlayPerfil: p.nombre })}
+              className={`text-left rounded-2xl border-2 p-6 transition-all ${
+                on
+                  ? "bg-welli-yellow border-welli-yellow"
+                  : "bg-white border-slate-300 hover:border-welli-yellow"
+              }`}
+            >
+              <p className="text-2xl font-bold text-indigo-950 uppercase tracking-wide">{p.nombre}</p>
+              <ul className="mt-4 space-y-1 text-base text-indigo-950">
+                {p.datos.map((d) => (
+                  <li key={d}>· {d}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm italic text-indigo-950/70">{p.contexto}</p>
+            </button>
+          );
+        })}
       </div>
-      <p className="text-lg text-indigo-950 mt-5">
-        <span className="font-semibold">Personalidad:</span> amable pero escéptica. Tendencia a decir "lo voy a pensar" cuando le presentan precios.
-      </p>
-    </HighlightBox>
-    <div className="mt-10 space-y-4">
-      <Body>Usted lleva la consulta como real.</Body>
-      <Body>Welli responde como respondería este paciente.</Body>
-      <Body>En cualquier momento puede pausar y preguntar algo "fuera de personaje".</Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar role play" />
-  </ScreenShell>
-);
+      <div className="mt-10 space-y-4">
+        <Body>Al seleccionar un perfil, Welli entra en personaje según ese perfil.</Body>
+        <Body>Usted lleva la consulta como real.</Body>
+        <Body>En cualquier momento puede pausar y preguntar algo "fuera de personaje".</Body>
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar role play" nextDisabled={!sel} />
+    </ScreenShell>
+  );
+};
+
 
 // 7.3B
 const M7_3B = ({ onNext, onBack }: ScreenProps) => (
@@ -849,7 +965,7 @@ const M8_3 = ({ onBack }: ScreenProps) => {
 
 const LINEAR_BEFORE_BRANCH = [
   A1, A2,
-  M4_1, M4_2, M4_3, M4_4, M4_5, M4_6,
+  M4_0, M4_1, M4_2, M4_3, M4_4, M4_5, M4_6,
   M5_1, M5_2, M5_3, M5_4, M5_5,
   M6_1, M6_2, M6_3, M6_4, M6_5,
   M7_1,
