@@ -226,41 +226,60 @@ const PackScreen = ({
   argumento,
   final,
   warning,
+  requiere,
   onNext,
   onBack,
-}: any) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Pack {num}</Eyebrow>
-    <H1>{title}</H1>
-    <HighlightBox className="mt-8">
-      <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
-    </HighlightBox>
-    <div className="mt-10">
-      <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
-      <Bullet items={paraQuien} />
-    </div>
-    <div className="mt-10">
-      <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
-      <SoftBox>
-        <p className="text-xl italic text-indigo-950">"{argumento}"</p>
-      </SoftBox>
-    </div>
-    {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
-    {warning && (
-      <WarningBox className="mt-8">
-        <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
-        <p className="text-xl text-indigo-950 mt-3">{warning}</p>
-      </WarningBox>
-    )}
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
+}: any) => {
+  const { state } = useBariatricaState();
+  const sel = state.packsClinica ?? [];
+  const enPortafolio =
+    sel.length === 0 || (requiere as string[]).some((r) => sel.includes(r));
+
+  return (
+    <ScreenShell withNovo>
+      <Eyebrow>Pack {num}</Eyebrow>
+      <H1>{title}</H1>
+      {!enPortafolio && (
+        <WarningBox className="mt-6">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
+            Hoy no está en su portafolio
+          </p>
+          <p className="text-xl text-indigo-950 mt-3">
+            Vamos a ver si vale la pena sumar este pack a su oferta. Es una oportunidad de crecimiento, no un requisito.
+          </p>
+        </WarningBox>
+      )}
+      <HighlightBox className="mt-8">
+        <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
+      </HighlightBox>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
+        <Bullet items={paraQuien} />
+      </div>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
+        <SoftBox>
+          <p className="text-xl italic text-indigo-950">"{argumento}"</p>
+        </SoftBox>
+      </div>
+      {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
+      {warning && (
+        <WarningBox className="mt-8">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
+          <p className="text-xl text-indigo-950 mt-3">{warning}</p>
+        </WarningBox>
+      )}
+      <NavigationButtons onBack={onBack} onNext={onNext} />
+    </ScreenShell>
+  );
+};
 
 const M4_2 = (p: ScreenProps) => (
   <PackScreen
     {...p}
     num="1 · Quirúrgico"
     title="Pack quirúrgico"
+    requiere={["Cirugía bariátrica"]}
     composition="Cirugía + manejo farmacológico post-quirúrgico"
     paraQuien={[
       "Apto clínicamente para cirugía",
@@ -276,6 +295,11 @@ const M4_3 = (p: ScreenProps) => (
     {...p}
     num="2 · Preventivo"
     title="Pack preventivo"
+    requiere={[
+      "Manejo médico con farmacológico",
+      "Nutrición",
+      "Otros procedimientos (aparatología, mesoterapia, etc.)",
+    ]}
     composition="Manejo médico (nutrición + farmacológico) sin cirugía"
     paraQuien={[
       "No candidato a cirugía",
@@ -291,6 +315,7 @@ const M4_4 = (p: ScreenProps) => (
     {...p}
     num="3 · Metabólico Integral"
     title="Pack metabólico integral"
+    requiere={["Seguimiento estructurado (más de 3 visitas)"]}
     composition="Evaluación clínica completa + nutrición + manejo farmacológico + seguimiento estructurado"
     paraQuien={[
       "Con comorbilidades asociadas al peso",
