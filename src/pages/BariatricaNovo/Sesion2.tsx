@@ -965,7 +965,7 @@ const M8_3 = ({ onBack }: ScreenProps) => {
 
 const LINEAR_BEFORE_BRANCH = [
   A1, A2,
-  M4_1, M4_2, M4_3, M4_4, M4_5, M4_6,
+  M4_0, M4_1, M4_2, M4_3, M4_4, M4_5, M4_6,
   M5_1, M5_2, M5_3, M5_4, M5_5,
   M6_1, M6_2, M6_3, M6_4, M6_5,
   M7_1,
