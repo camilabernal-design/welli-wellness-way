@@ -562,7 +562,7 @@ const S18 = ({ onNext, onBack }: ScreenProps) => (
 const S19 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
-    <ScreenShell>
+    <ScreenShell withNovo>
       <H2>El triángulo del valor</H2>
       <p className="text-lg text-slate-500 mt-2 italic">
         Califique del 1 al 10 qué tan fuerte comunica cada vértice hoy en su consulta.
