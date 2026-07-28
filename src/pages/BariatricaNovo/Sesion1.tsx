@@ -604,7 +604,7 @@ const S21 = ({ onNext, onBack }: ScreenProps) => (
     <H2>El manejo farmacológico: su mejor aliado de acompañamiento</H2>
     <Body className="mt-8">Lo que vimos en la clínica del caso:</Body>
     <Body className="mt-4">
-      Cuando el tratamiento incluye manejo farmacológico (medicamentos como los de Novo Nordisk: Wegovy, Ozempic, Saxenda), el paciente vuelve cada mes naturalmente.
+      Cuando el tratamiento incluye manejo farmacológico (Wegovy — semaglutida — de Novo Nordisk), el paciente vuelve cada mes naturalmente.
     </Body>
     <p className="text-2xl font-semibold text-indigo-950 mt-10">Cada visita es:</p>
     <ul className="mt-4 space-y-4">
