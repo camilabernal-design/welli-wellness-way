@@ -728,33 +728,69 @@ const M7_3A = ({ onNext, onBack }: ScreenProps) => (
 );
 
 // 7.2B
-const M7_2B = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Rama B · Role play</Eyebrow>
-    <H2>Preparación del role play</H2>
-    <Body className="mt-8">Welli va a actuar como un paciente bariátrico real.</Body>
-    <HighlightBox className="mt-8">
-      <Eyebrow>El perfil que Welli interpreta</Eyebrow>
-      <div className="mt-4 space-y-2 text-lg text-indigo-950">
-        <p><span className="font-semibold">Nombre:</span> María (45 años)</p>
-        <p><span className="font-semibold">Motivo:</span> viene por sobrepeso significativo</p>
-        <p><span className="font-semibold">IMC:</span> 36</p>
-        <p><span className="font-semibold">Comorbilidades:</span> prediabetes</p>
-        <p><span className="font-semibold">Trabajo:</span> profesional independiente</p>
-        <p><span className="font-semibold">Antecedentes:</span> ha intentado dietas varias veces sin éxito</p>
+const PERFILES = [
+  {
+    nombre: "Diana",
+    datos: ["31 años", "IMC 31 kg/m²", "Sin ninguna condición de salud relevante"],
+    contexto: "[Personalidad y contexto — pendiente de confirmación de Novo]",
+  },
+  {
+    nombre: "Paola",
+    datos: ["34 años", "IMC 28 kg/m²"],
+    contexto: "[Contexto — pendiente de confirmación de Novo]",
+  },
+  {
+    nombre: "Tatiana",
+    datos: ["27 años", "IMC ~29 kg/m² (por confirmar con Novo)"],
+    contexto: "[Contexto — pendiente de confirmación de Novo]",
+  },
+];
+
+const M7_2B = ({ onNext, onBack }: ScreenProps) => {
+  const { state, update } = useBariatricaState();
+  const sel = state.rolePlayPerfil ?? "";
+  return (
+    <ScreenShell>
+      <Eyebrow>Rama B · Role play</Eyebrow>
+      <H2>Preparación del role play</H2>
+      <Body className="mt-8">
+        Welli va a actuar como uno de estos 3 pacientes del programa Vive Ligero.
+      </Body>
+      <Body className="mt-2 font-semibold text-indigo-950">Elija con cuál quiere practicar:</Body>
+      <div className="mt-8 grid md:grid-cols-3 gap-5">
+        {PERFILES.map((p) => {
+          const on = sel === p.nombre;
+          return (
+            <button
+              key={p.nombre}
+              onClick={() => update({ rolePlayPerfil: p.nombre })}
+              className={`text-left rounded-2xl border-2 p-6 transition-all ${
+                on
+                  ? "bg-welli-yellow border-welli-yellow"
+                  : "bg-white border-slate-300 hover:border-welli-yellow"
+              }`}
+            >
+              <p className="text-2xl font-bold text-indigo-950 uppercase tracking-wide">{p.nombre}</p>
+              <ul className="mt-4 space-y-1 text-base text-indigo-950">
+                {p.datos.map((d) => (
+                  <li key={d}>· {d}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm italic text-indigo-950/70">{p.contexto}</p>
+            </button>
+          );
+        })}
       </div>
-      <p className="text-lg text-indigo-950 mt-5">
-        <span className="font-semibold">Personalidad:</span> amable pero escéptica. Tendencia a decir "lo voy a pensar" cuando le presentan precios.
-      </p>
-    </HighlightBox>
-    <div className="mt-10 space-y-4">
-      <Body>Usted lleva la consulta como real.</Body>
-      <Body>Welli responde como respondería este paciente.</Body>
-      <Body>En cualquier momento puede pausar y preguntar algo "fuera de personaje".</Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar role play" />
-  </ScreenShell>
-);
+      <div className="mt-10 space-y-4">
+        <Body>Al seleccionar un perfil, Welli entra en personaje según ese perfil.</Body>
+        <Body>Usted lleva la consulta como real.</Body>
+        <Body>En cualquier momento puede pausar y preguntar algo "fuera de personaje".</Body>
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar role play" nextDisabled={!sel} />
+    </ScreenShell>
+  );
+};
+
 
 // 7.3B
 const M7_3B = ({ onNext, onBack }: ScreenProps) => (
