@@ -156,7 +156,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => (
       <H1>
         Cuando un paciente sale de la consulta
         <br />
-        <span className="text-indigo-950">SIN agendar el tratamiento...</span>
+        <span className="text-indigo-950">SIN agendar el tratamiento (o sin comprar el paquete/servicio)...</span>
       </H1>
       <Anchor>¿Qué creen que pasó?</Anchor>
       <p className="text-slate-500 italic">Discusión libre durante 2-3 minutos</p>
