@@ -616,19 +616,18 @@ const M6_5 = ({ onNext, onBack }: ScreenProps) => (
       <div className="grid grid-cols-2 gap-8">
         <div>
           <Eyebrow>Comisión estándar Welli</Eyebrow>
-          <p className="text-5xl font-bold text-indigo-950 mt-4">5%</p>
+          <p className="text-5xl font-bold text-indigo-950 mt-4">6%</p>
         </div>
         <div>
           <Eyebrow>Su comisión preferencial</Eyebrow>
           <p className="text-5xl font-bold text-indigo-950 mt-4">4%</p>
         </div>
       </div>
-      <p className="text-lg text-indigo-950 mt-6 font-semibold">Beneficio por la alianza con Novo</p>
+      <p className="text-lg text-indigo-950 mt-6 font-semibold">
+        Beneficio directo por la alianza con Novo Nordisk Colombia.
+      </p>
     </HighlightBox>
-    <Body className="mt-10">1 punto porcentual sobre cada desembolso.</Body>
-    <Body className="mt-4 font-semibold text-indigo-950">
-      En $1.000 millones desembolsados al año, son $10 millones adicionales para su clínica.
-    </Body>
+    <Body className="mt-10">2 puntos porcentuales sobre cada desembolso.</Body>
     <Body className="mt-4">Esta condición se mantiene mientras la clínica esté activa en el programa.</Body>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 7" />
   </ScreenShell>
