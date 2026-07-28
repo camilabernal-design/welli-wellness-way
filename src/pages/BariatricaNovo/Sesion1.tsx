@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import WelliLogoFull from "@/components/WelliLogoFull";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 import ScreenShell from "@/components/BariatricaNovo/ScreenShell";
 import NavigationButtons from "@/components/BariatricaNovo/NavigationButtons";
 import ProgressBar from "@/components/BariatricaNovo/ProgressBar";
 import {
   HighlightBox,
   SoftBox,
+  WarningBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
 import TeamVoteOverlay from "@/components/BariatricaNovo/interactive/TeamVoteOverlay";
-import DiagnosticoIndagacion from "@/components/BariatricaNovo/interactive/DiagnosticoIndagacion";
 import ValuePerceptionSlider from "@/components/BariatricaNovo/interactive/ValuePerceptionSlider";
+import WelliPitchBuilder from "@/components/BariatricaNovo/interactive/WelliPitchBuilder";
+import SimuladorCuota from "@/components/BariatricaNovo/interactive/SimuladorCuota";
+import PlanBSimulation from "@/components/BariatricaNovo/interactive/PlanBSimulation";
+import MapaCuatroSedes from "@/components/BariatricaNovo/interactive/MapaCuatroSedes";
 import MonthlyDeclineChart from "@/components/BariatricaNovo/interactive/MonthlyDeclineChart";
-import PatternsChecklist from "@/components/BariatricaNovo/interactive/PatternsChecklist";
+import TimelineTresMovimientos from "@/components/BariatricaNovo/interactive/TimelineTresMovimientos";
 import MetricsRevealed from "@/components/BariatricaNovo/interactive/MetricsRevealed";
-import ValueTriangleDiagnostic from "@/components/BariatricaNovo/interactive/ValueTriangleDiagnostic";
-import ClosingPhraseBuilder from "@/components/BariatricaNovo/interactive/ClosingPhraseBuilder";
+import CommitmentSealing from "@/components/BariatricaNovo/interactive/CommitmentSealing";
 
 type ScreenProps = {
   onNext: () => void;
@@ -42,48 +46,87 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
     {children}
   </p>
 );
-const Body = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <p className={`text-xl md:text-2xl text-slate-700 leading-relaxed ${className}`}>{children}</p>
+const Body = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <p className={`text-xl md:text-2xl text-slate-700 leading-relaxed ${className}`}>
+    {children}
+  </p>
 );
 const Anchor = ({ children }: { children: React.ReactNode }) => (
   <p className="text-2xl md:text-3xl italic text-indigo-950 leading-relaxed font-medium">
     {children}
   </p>
 );
+const Bullet = ({ items }: { items: string[] }) => (
+  <ul className="space-y-4">
+    {items.map((t) => (
+      <li key={t} className="flex gap-4 text-xl text-slate-700 leading-relaxed">
+        <span className="text-welli-yellow text-3xl leading-none">▸</span>
+        <span>{t}</span>
+      </li>
+    ))}
+  </ul>
+);
 
 /* ============ PANTALLAS ============ */
 
-// 1.1 Bienvenida
-const S01 = ({ onNext }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="flex flex-col items-center text-center gap-10">
-      <WelliLogoFull size="lg" />
-      <div className="space-y-6">
-        <H1>
-          Clínica de Alta Conversión
-          <br />y Adherencia
-        </H1>
-        <Body className="max-w-3xl mx-auto">
-          Una sesión diseñada para entender qué está pasando con sus pacientes y ver qué están haciendo las clínicas que más están creciendo.
-        </Body>
+// S01 · La silla vacía
+const S01 = ({ onNext }: ScreenProps) => {
+  const stagger = (i: number) => ({
+    initial: { opacity: 0, y: 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay: i * 0.2, duration: 0.5 },
+  });
+  return (
+    <ScreenShell center>
+      <div className="flex flex-col items-center text-center gap-8">
+        <motion.svg
+          {...stagger(0)}
+          viewBox="0 0 200 140"
+          className="w-56 md:w-72 text-slate-300"
+        >
+          <rect x="20" y="118" width="160" height="3" fill="currentColor" />
+          <rect x="72" y="40" width="56" height="52" rx="6" fill="none" stroke="currentColor" strokeWidth="3" />
+          <rect x="70" y="88" width="60" height="8" rx="4" fill="none" stroke="currentColor" strokeWidth="3" />
+          <line x1="78" y1="96" x2="72" y2="118" stroke="currentColor" strokeWidth="3" />
+          <line x1="122" y1="96" x2="128" y2="118" stroke="currentColor" strokeWidth="3" />
+        </motion.svg>
+        <motion.div {...stagger(1)}>
+          <WelliLogoFull size="lg" />
+        </motion.div>
+        <motion.div {...stagger(2)} className="space-y-6">
+          <H1>La silla vacía</H1>
+          <Anchor>
+            ¿Cuántos pacientes salieron hoy diciendo: «Lo voy a pensar»?
+          </Anchor>
+          <Body className="max-w-3xl mx-auto">
+            Hoy vamos a ver cómo dejar de perderlos.
+          </Body>
+        </motion.div>
+        <motion.div {...stagger(3)}>
+          <Button
+            onClick={onNext}
+            className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 text-xl font-semibold h-16 px-12"
+          >
+            Descubrir el costo del silencio
+          </Button>
+        </motion.div>
       </div>
-      <div className="text-slate-500 text-sm">
-        En colaboración con <span className="font-bold text-indigo-950">Novo Nordisk Colombia</span>
-      </div>
-      <Button
-        onClick={onNext}
-        className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 text-xl font-semibold h-16 px-12"
-      >
-        Empezar la sesión
-      </Button>
-    </div>
-  </ScreenShell>
-);
+    </ScreenShell>
+  );
+};
 
-// 1.2 La pregunta honesta
+// S02 · La pregunta honesta
 const S02 = ({ onNext, onBack }: ScreenProps) => {
   const { state, update } = useBariatricaState();
-  const [selected, setSelected] = useState<string | null>(state.pacientesQueFirman ?? null);
+  const [selected, setSelected] = useState<string | null>(
+    state.pacientesQueFirman ?? null,
+  );
   const messages: Record<string, string> = {
     "1-3": "Está dejando ir muchísimo potencial. Vamos a ver cómo recuperarlo.",
     "4-6": "Está en el promedio del mercado. Vamos a ver cómo subir.",
@@ -93,7 +136,7 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
 
   const handlePick = (v: string) => {
     setSelected(v);
-    update({ pacientesQueFirman: v as any });
+    update({ pacientesQueFirman: v as never });
   };
 
   return (
@@ -103,7 +146,9 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
         <Body className="max-w-3xl mx-auto">
           De cada 10 pacientes que usted valora para manejo de obesidad...
           <br />
-          <span className="font-semibold text-indigo-950">¿Cuántos terminan tratándose con usted o en su clínica?</span>
+          <span className="font-semibold text-indigo-950">
+            ¿Cuántos terminan tratándose con usted o en su clínica?
+          </span>
         </Body>
         <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
           {["1-3", "4-6", "7-9", "10"].map((v) => (
@@ -123,7 +168,9 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
         {selected && (
           <>
             <HighlightBox className="max-w-3xl mx-auto">
-              <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed">{messages[selected]}</p>
+              <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed">
+                {messages[selected]}
+              </p>
             </HighlightBox>
             <div className="max-w-3xl mx-auto text-left">
               <TeamVoteOverlay doctorPick={selected} />
@@ -136,444 +183,24 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
   );
 };
 
-// 1.3 Indagación interactiva
+// S03 · Reality check
 const S03 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Cuéntenos cómo trabaja hoy</H2>
-      <DiagnosticoIndagacion onComplete={() => setDone(true)} />
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
-// 1.4 Conversación con su equipo
-const S04 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="text-center space-y-10">
-      <Eyebrow>Pregunta para todos en la sala</Eyebrow>
-      <H1>
-        Cuando un paciente sale de la consulta
-        <br />
-        <span className="text-indigo-950">SIN agendar el tratamiento (o sin comprar el paquete/servicio)...</span>
-      </H1>
-      <Anchor>¿Qué creen que pasó?</Anchor>
-      <p className="text-slate-500 italic">Discusión libre durante 2-3 minutos</p>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar cuando estén listos" />
-    </div>
-  </ScreenShell>
-);
-
-// 1.5 Reframe central — slider PRECIO vs VALOR
-const S05 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell center>
-      <div className="space-y-10 w-full">
-        <Anchor>
-          Los pacientes no se van por el precio. Se van porque{" "}
-          <span className="font-bold not-italic text-indigo-950">no entendieron el valor</span> de lo que usted les propuso.
-        </Anchor>
+      <Eyebrow>Reality check</Eyebrow>
+      <H1>Los pacientes no se van por el precio.</H1>
+      <p className="text-3xl md:text-4xl font-bold text-[#5B3FD1] tracking-tight mt-6 leading-tight">
+        Se van porque no entendieron el valor de lo que usted les propuso.
+      </p>
+      <div className="mt-10">
         <ValuePerceptionSlider onComplete={() => setDone(true)} />
-        {done && (
-          <HighlightBox className="max-w-3xl mx-auto">
-            <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed italic">
-              Cuando el paciente sale con el monto en la cabeza pero sin entender el cambio profundo que va a vivir... ya perdió la decisión.
-            </p>
-          </HighlightBox>
-        )}
-        <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-      </div>
-    </ScreenShell>
-  );
-};
-
-// 1.6 Transición al Módulo 2
-const S06 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="space-y-8 text-center">
-      <Body className="max-w-3xl mx-auto leading-loose">
-        Le voy a contar algo que hemos visto en una clínica aliada de Welli.
-        <br />
-        <br />
-        Una clínica con 4 sedes en Colombia.
-        <br />
-        <br />
-        Hace 7 meses estaba donde probablemente usted está hoy.
-        <br />
-        <br />
-        Lo que descubrieron cambió completamente su consulta y sus resultados.
-        <br />
-        <br />
-        <span className="font-semibold text-indigo-950">Vale la pena que lo conozca.</span>
-      </Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 2" />
-    </div>
-  </ScreenShell>
-);
-
-// 2.1 Quiénes son
-const S07 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 2</Eyebrow>
-    <H1>Una clínica aliada</H1>
-    <HighlightBox className="mt-10 text-center">
-      <p className="text-5xl md:text-6xl font-bold text-indigo-950">4 sedes</p>
-      <p className="text-2xl text-indigo-950 mt-3">en Colombia</p>
-    </HighlightBox>
-    <div className="mt-10 space-y-6">
-      <Body>Cirujanos bariátricos + manejo médico de obesidad.</Body>
-      <Body>Profesionales sólidos. Buena reputación clínica. Pacientes satisfechos.</Body>
-      <Body className="font-semibold text-indigo-950">
-        Pero algo no estaba terminando de funcionar comercialmente.
-      </Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.2 Inicio tímido
-const S08 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>El inicio</Eyebrow>
-    <H2 >Cuando empezaron con Welli, los números eran modestos:</H2>
-    <HighlightBox className="mt-10 text-center">
-      <p className="text-5xl font-bold text-indigo-950">1–2 créditos</p>
-      <p className="text-2xl text-indigo-950 mt-3">por sede al mes</p>
-    </HighlightBox>
-    <div className="mt-10 space-y-4">
-      <Body>4-8 créditos totales mensuales en la red.</Body>
-      <Body>Un comienzo razonable. Pero claramente debajo de su potencial.</Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.3 Estancamiento — gráfico animado
-const S09 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <H1>Y entonces...</H1>
-      <Body className="mt-6">Vinieron varios meses con muy poco o ningún movimiento.</Body>
-      <div className="mt-8">
-        <MonthlyDeclineChart onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
-// 2.4 Tres patrones — checklist
-const S10 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <Eyebrow>El diagnóstico</Eyebrow>
-      <H2>Cuando revisaron honestamente, encontraron 3 patrones.</H2>
-      <div className="mt-8">
-        <PatternsChecklist onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
-// 2.5 La idea
-const S11 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="space-y-10 text-center">
-      <Eyebrow>El descubrimiento</Eyebrow>
-      <Anchor>
-        El problema no era clínico.
-        <br />
-        <br />
-        Ellos hacían un trabajo médico excelente. La cirugía era buena. El criterio clínico era sólido.
-      </Anchor>
-      <HighlightBox className="max-w-3xl mx-auto">
-        <p className="text-2xl md:text-3xl text-indigo-950 font-semibold">
-          El problema era cómo presentaban el tratamiento al paciente.
-        </p>
-      </HighlightBox>
-      <Body>Cambiaron 3 cosas concretas. Y todo cambió en los siguientes 7 meses.</Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los 3 movimientos" />
-    </div>
-  </ScreenShell>
-);
-
-// 2.6 Movimiento 1
-const S12 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Movimiento 1</Eyebrow>
-    <H1>Paquetizaron en niveles</H1>
-    <Body className="mt-8">
-      En vez de vender procedimientos sueltos (cirugía, consulta, nutrición, farmacología por separado), crearon 3 paquetes integrales:
-    </Body>
-    <div className="mt-8 space-y-5">
-      {[
-        ["Pack quirúrgico", "Para pacientes candidatos a cirugía"],
-        ["Pack preventivo", "Para manejo médico sin cirugía"],
-        ["Pack metabólico integral", "Para pacientes con comorbilidades"],
-      ].map(([t, d]) => (
-        <div key={t} className="flex gap-5 items-start">
-          <span className="text-welli-yellow text-3xl leading-none">▸</span>
-          <div>
-            <p className="text-2xl font-bold text-indigo-950">{t}</p>
-            <p className="text-lg text-slate-600">{d}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-    <HighlightBox className="mt-10">
-      <p className="text-xl text-indigo-950">
-        El precio de cada componente individual no cambió.
-        <br />
-        <span className="font-bold">Solo cambió la forma de presentarlo.</span>
-      </p>
-    </HighlightBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.6A Contexto del paciente hoy — CON LOGO NOVO
-const S12A = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Contexto de mercado</Eyebrow>
-    <H1>Un contexto que cambió todo</H1>
-    <Body className="mt-8">
-      Antes de contarle qué hizo esta clínica, mire un dato que probablemente ya está viviendo en su propia consulta:
-    </Body>
-    <div className="mt-10 grid md:grid-cols-3 gap-5">
-      {[
-        ["+490%", "búsquedas de \u201Cpérdida de peso\u201D en 3 años"],
-        ["×10", "búsquedas de \u201CSemaglutida\u201D en el último año"],
-        ["×10", "\u201Cbajar de peso\u201D entre las búsquedas de salud más frecuentes en Latam"],
-      ].map(([n, d]) => (
-        <HighlightBox key={d} className="text-center">
-          <p className="text-4xl md:text-5xl font-bold text-indigo-950">{n}</p>
-          <p className="text-base text-indigo-950 mt-3 leading-snug">{d}</p>
-        </HighlightBox>
-      ))}
-    </div>
-    <p className="text-2xl font-semibold text-indigo-950 mt-12">¿Qué buscan?</p>
-    <div className="mt-4 grid md:grid-cols-3 gap-5">
-      {[
-        ["66%", "una condición específica"],
-        ["55%", "un tratamiento o procedimiento"],
-        ["47%", "médicos y especialistas"],
-      ].map(([n, d]) => (
-        <SoftBox key={d} className="text-center">
-          <p className="text-3xl font-bold text-indigo-950">{n}</p>
-          <p className="text-base text-slate-600 mt-2">{d}</p>
-        </SoftBox>
-      ))}
-    </div>
-    <Anchor>
-      <span className="block mt-12 text-center">
-        Su paciente ya llegó a Google antes de llegar a su consulta.
-        <br />
-        La pregunta no es si ofrecer semaglutida. Es cómo capitalizar esa demanda.
-      </span>
-    </Anchor>
-    <p className="text-sm text-slate-400 mt-8 text-center">Fuente: programa Vive Ligero.</p>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.7 Movimiento 2 — CON LOGO NOVO
-const S13 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Movimiento 2</Eyebrow>
-    <H1>Integraron Wegovy</H1>
-    <Body className="mt-8">
-      En la mayoría de sus paquetes incorporaron Wegovy — no como producto adicional, sino como parte estructural del tratamiento.
-    </Body>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">Lo que vieron:</p>
-    <ul className="mt-4 space-y-5">
-      {[
-        "El paciente vuelve mes a mes por su tratamiento farmacológico.",
-        "Cada visita es un punto de seguimiento, confianza y potencial nuevo cierre.",
-        "Mayor adherencia, menor abandono, mejores resultados sostenibles a 12+ meses.",
-      ].map((t, i) => (
-        <li key={i} className="flex gap-4 text-xl text-slate-700">
-          <span className="text-welli-yellow text-3xl leading-none">▸</span>
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
-    <HighlightBox className="mt-10">
-      <p className="text-2xl text-indigo-950 font-semibold">
-        El paciente pasó de evento único a relación continua.
-      </p>
-    </HighlightBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.7A Wegovy como aliado del negocio — CON LOGO NOVO
-const S13A = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Wegovy</Eyebrow>
-    <H1>Un aliado para su modelo de negocio</H1>
-    <div className="mt-10 grid md:grid-cols-3 gap-5">
-      {[
-        ["+40%", "aumento promedio del ticket al incluir Wegovy en el portafolio"],
-        ["×3", "mayor retención del paciente a la consulta cuando se incorpora Wegovy"],
-        ["70%", "de pacientes con sobrepeso u obesidad buscan una propuesta integral de pérdida de peso"],
-      ].map(([n, d]) => (
-        <HighlightBox key={d} className="text-center">
-          <p className="text-4xl md:text-5xl font-bold text-indigo-950">{n}</p>
-          <p className="text-base text-indigo-950 mt-3 leading-snug">{d}</p>
-        </HighlightBox>
-      ))}
-    </div>
-    <Anchor>
-      <span className="block mt-12 text-center">
-        No es solo un medicamento. Es una palanca comercial.
-        <br />
-        Y los pacientes ya lo están pidiendo.
-      </span>
-    </Anchor>
-    <p className="text-sm text-slate-400 mt-8 text-center">Fuente: programa Vive Ligero.</p>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.8 Movimiento 3
-const S14 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Movimiento 3</Eyebrow>
-    <H1>Welli como herramienta de cierre</H1>
-    <div className="mt-8 space-y-6">
-      <Body>
-        Antes: cuando el paciente decía "no tengo el dinero" o "lo voy a pensar", se perdía.
-      </Body>
-      <Body>
-        Después: ofrecen Welli en CADA conversación, no solo cuando el paciente pregunta.
-      </Body>
-    </div>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">Cambio clave en el lenguaje:</p>
-    <div className="mt-6 grid md:grid-cols-2 gap-6">
-      <SoftBox>
-        <Eyebrow>Antes</Eyebrow>
-        <p className="text-xl text-indigo-950 mt-4 italic">"El tratamiento cuesta $X."</p>
-      </SoftBox>
-      <HighlightBox>
-        <Eyebrow>Después</Eyebrow>
-        <p className="text-xl text-indigo-950 mt-4 italic">
-          "El tratamiento cuesta $X, y se puede pagar en cuotas fijas mensuales de $Y. ¿Vemos si aplica?"
-        </p>
-      </HighlightBox>
-    </div>
-    <Body className="mt-10 font-semibold text-indigo-950">
-      La conversación de plata dejó de ser una barrera. Se convirtió en un puente.
-    </Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los resultados" />
-  </ScreenShell>
-);
-
-// 2.9 Cifras — contadores animados
-const S15 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <Eyebrow>Los resultados</Eyebrow>
-      <H2>7 meses después de aplicar los 3 movimientos</H2>
-      <div className="mt-8">
-        <MetricsRevealed onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
-// 2.10 Testimoniales
-const S16 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <H2>Pero las cifras son solo la superficie</H2>
-    <Body className="mt-6">
-      Detrás de cada uno de esos 192 créditos hay un paciente que está viviendo una transformación.
-    </Body>
-    <div className="mt-10 space-y-6">
-      {[1, 2, 3].map((i) => (
-        <SoftBox key={i}>
-          <p className="text-xl italic text-indigo-950">"[Frase del paciente — placeholder]"</p>
-          <div className="mt-4 text-base text-slate-600 space-y-1">
-            <p>Paciente, [edad], [contexto breve]</p>
-            <p>Tratamiento: [pack / Wegovy / cirugía]</p>
-            <p>Financiado con Welli, [duración]</p>
-          </div>
-        </SoftBox>
-      ))}
-    </div>
-    <Anchor>
-      <span className="block mt-12 text-center">
-        Cada paciente que vuelve sonriendo es la verdadera medida del éxito.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 2.11 La pregunta para el doctor
-const S17 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="text-center space-y-10">
-      <Anchor>
-        Si esos mismos 3 movimientos funcionaran en su consulta...
-      </Anchor>
-      <H1>¿Qué cambiaría para usted?</H1>
-      <p className="text-slate-500 italic">Discusión libre durante 1-2 minutos.</p>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 3" />
-    </div>
-  </ScreenShell>
-);
-
-// 3.1 Dos trabajos distintos
-const S18 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 3 — Construcción de valor</Eyebrow>
-    <H2>En cada consulta, el doctor hace dos trabajos al tiempo:</H2>
-    <div className="mt-10 grid md:grid-cols-2 gap-6">
-      <SoftBox className="text-center">
-        <Eyebrow>Cuidar al paciente</Eyebrow>
-        <p className="text-2xl font-bold text-indigo-950 mt-4">Su trabajo clínico</p>
-      </SoftBox>
-      <HighlightBox className="text-center">
-        <Eyebrow>Comunicar el valor</Eyebrow>
-        <p className="text-2xl font-bold text-indigo-950 mt-4">Su trabajo comercial</p>
-      </HighlightBox>
-    </div>
-    <div className="mt-10 space-y-6">
-      <Body>El primero, usted lo domina. El segundo es donde podemos sumar.</Body>
-      <Body>
-        Welli no es asesor médico. No vamos a hablar de qué recetar ni cuándo. Eso lo decide usted.
-      </Body>
-      <Body className="font-semibold text-indigo-950">
-        Vamos a hablar de cómo presentar su decisión clínica para que el paciente la entienda y la acepte.
-      </Body>
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 3.2 Triángulo del valor — diagnóstico interactivo
-const S19 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell withNovo>
-      <H2>El triángulo del valor</H2>
-      <p className="text-lg text-slate-500 mt-2 italic">
-        Califique del 1 al 10 qué tan fuerte comunica cada vértice hoy en su consulta.
-      </p>
-      <div className="mt-8">
-        <ValueTriangleDiagnostic onComplete={() => setDone(true)} />
       </div>
       {done && (
-        <HighlightBox className="mt-8">
-          <p className="text-xl md:text-2xl text-indigo-950 leading-relaxed italic text-center">
-            Si uno de los tres vértices falta, el paciente no compra.
+        <HighlightBox className="mt-10">
+          <p className="text-xl md:text-2xl italic text-indigo-950 leading-relaxed">
+            "Cuando el paciente sale con el monto en la cabeza pero sin entender
+            el cambio profundo que va a vivir... ya perdió la decisión."
           </p>
         </HighlightBox>
       )}
@@ -582,146 +209,270 @@ const S19 = ({ onNext, onBack }: ScreenProps) => {
   );
 };
 
-// 3.3 Constructor de frase de cierre
-const S20 = ({ onNext, onBack }: ScreenProps) => {
+// S04 · Así funciona Welli + Welli Check + comisión 4% [Novo]
+const S04 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell withNovo>
+      <H1>Así funciona Welli</H1>
+      <Body className="mt-6">3 cosas que su clínica necesita saber desde hoy.</Body>
+
+      {/* Bloque A */}
+      <div className="mt-12">
+        <Eyebrow>Bloque A · ¿Qué es Welli? (90 segundos)</Eyebrow>
+        <div className="mt-4 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 aspect-video flex items-center justify-center">
+          <p className="text-lg text-slate-500">Video pendiente de producción</p>
+        </div>
+        <div className="mt-6">
+          <Bullet
+            items={[
+              "Financiamos tratamientos con cuota fija mensual",
+              "Aprobación en 30 segundos por WhatsApp",
+              "Desembolso al aliado en 24-48h",
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Bloque B */}
+      <div className="mt-14">
+        <Eyebrow>Bloque B · Welli Check en 30 segundos</Eyebrow>
+        <SoftBox className="mt-4">
+          <div className="flex gap-5">
+            <div className="w-12 h-12 rounded-xl bg-welli-yellow flex items-center justify-center shrink-0">
+              <MessageCircle className="h-6 w-6 text-indigo-950" />
+            </div>
+            <div>
+              <p className="text-xl text-indigo-950 leading-relaxed">
+                Pre-aprobación instantánea por WhatsApp, sin afectar historial
+                crediticio. Envíe el link al paciente, y en 30 segundos sabe si
+                califica.
+              </p>
+              <p className="mt-4 text-lg font-semibold text-indigo-950 underline underline-offset-4">
+                Ver Welli Check en acción
+              </p>
+            </div>
+          </div>
+        </SoftBox>
+      </div>
+
+      {/* Bloque C */}
+      <div className="mt-14">
+        <Eyebrow>Bloque C · Su comisión preferencial</Eyebrow>
+        <HighlightBox className="mt-4">
+          <div className="grid grid-cols-2 gap-8 text-center">
+            <div>
+              <p className="text-sm uppercase tracking-wider text-slate-500">
+                Comisión estándar Welli
+              </p>
+              <p className="text-4xl font-bold text-slate-400 line-through mt-3">6%</p>
+            </div>
+            <div>
+              <p className="text-sm uppercase tracking-wider text-indigo-950">
+                Su comisión preferencial
+              </p>
+              <p className="text-6xl font-bold text-indigo-950 mt-2">4%</p>
+            </div>
+          </div>
+          <p className="text-lg text-indigo-950 mt-8 leading-relaxed">
+            Por convenio con Novo Nordisk, su comisión Welli es preferencial. Se
+            aplica automáticamente en cada crédito bajo el código Vive Ligero.
+          </p>
+        </HighlightBox>
+      </div>
+
+      <div className="mt-14">
+        <H2>Practique cómo presentarlo</H2>
+        <div className="mt-6">
+          <WelliPitchBuilder onComplete={() => setDone(true)} />
+        </div>
+      </div>
+
+      <NavigationButtons
+        onBack={onBack}
+        onNext={onNext}
+        nextLabel="Ver el simulador"
+        nextDisabled={!done}
+      />
+    </ScreenShell>
+  );
+};
+
+// S05 · Simulador
+const S05 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Arme su frase de cierre</H2>
-      <Body className="mt-4">Elija una opción por columna y vea cómo se construye una frase completa de cierre.</Body>
-      <div className="mt-8">
-        <ClosingPhraseBuilder onComplete={() => setDone(true)} />
+      <Eyebrow>El traductor de salud</Eyebrow>
+      <H1>La cuota fija de bienestar</H1>
+      <Body className="mt-6">
+        El paciente no compra un tratamiento. Compra la posibilidad de pagarlo
+        cómodo.
+      </Body>
+      <div className="mt-10">
+        <SimuladorCuota onComplete={() => setDone(true)} />
       </div>
       <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
   );
 };
 
-// 3.4 Manejo farmacológico — CON LOGO NOVO
-const S21 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Acompañamiento</Eyebrow>
-    <H2>El manejo farmacológico: su mejor aliado de acompañamiento</H2>
-    <Body className="mt-8">Lo que vimos en la clínica del caso:</Body>
-    <Body className="mt-4">
-      Cuando el tratamiento incluye manejo farmacológico (Wegovy — semaglutida — de Novo Nordisk), el paciente vuelve cada mes naturalmente.
-    </Body>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">Cada visita es:</p>
-    <ul className="mt-4 space-y-4">
-      {[
-        "Punto de seguimiento",
-        "Momento de ajuste",
-        "Oportunidad para sumar otro elemento al pack",
-        "Construcción de relación a largo plazo",
-      ].map((t) => (
-        <li key={t} className="flex gap-4 text-xl text-slate-700">
-          <span className="text-welli-yellow text-3xl leading-none">▸</span>
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
-    <Body className="mt-10">
-      No vamos a opinar sobre qué medicamento usar ni cuándo. Eso es decisión suya.
-    </Body>
-    <Body className="mt-4 font-semibold text-indigo-950">
-      Pero comercialmente, integrar el manejo farmacológico en sus paquetes cambia un "paciente que llegó una vez" por un "paciente que está con usted los próximos 12 meses".
-    </Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// 3.5 Regla del módulo
-const S22 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="space-y-10 text-center">
-      <Eyebrow>La regla del módulo</Eyebrow>
-      <HighlightBox className="max-w-3xl mx-auto">
-        <p className="text-5xl md:text-6xl font-bold text-indigo-950 leading-tight">
-          Usted explica.
-          <br />
-          Welli organiza.
-        </p>
-        <p className="text-xl text-indigo-950 mt-8 leading-relaxed">
-          Su trabajo clínico es de usted.
-          <br />
-          La estructura comercial es lo que venimos a aportar.
-        </p>
-      </HighlightBox>
-      <Body className="max-w-3xl mx-auto">
-        En el siguiente módulo veremos cómo organizar todo esto en 3 paquetes concretos que cierran solos.
+// S06 · Plan B
+const S06 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
+      <H2>Plan B: familiar como aplicante</H2>
+      <Body className="mt-6">
+        Entre 30-40% de los pacientes no aprueba en primera. Pero ese no es el
+        final.
       </Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al cierre de Sesión 1" />
-    </div>
-  </ScreenShell>
-);
-
-// C1.1 Reflexión semana
-const S23 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Cierre de Sesión 1 — Para los próximos 7 días</Eyebrow>
-    <H2>Un solo compromiso para esta semana. No operativo. De observación.</H2>
-    <HighlightBox className="mt-10">
-      <p className="text-xl text-indigo-950 leading-relaxed">
-        Cuando un paciente salga de su consulta SIN agendar tratamiento, tome 30 segundos antes de pasar al siguiente y anote:
-      </p>
-      <div className="mt-6 space-y-4">
-        <p className="text-2xl font-semibold text-indigo-950">¿Qué dijo exactamente?</p>
-        <p className="text-2xl font-semibold text-indigo-950">
-          ¿Fue una excusa social o una razón real?
+      <WarningBox className="mt-8">
+        <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
+          Lo que NUNCA se dice
         </p>
+        <p className="text-xl text-indigo-950 mt-3">
+          "uy", "le negaron", "no sé por qué".
+        </p>
+      </WarningBox>
+      <div className="mt-10">
+        <PlanBSimulation onComplete={() => setDone(true)} />
       </div>
-      <p className="text-lg text-indigo-950/70 mt-6 italic">
-        Una línea por paciente. Eso es todo.
-      </p>
-    </HighlightBox>
-    <Body className="mt-10">
-      En la Sesión 2 vamos a revisar esos casos juntos. Y para cada uno, vamos a ver:
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
+
+// S07 · El caso · quiénes son
+const S07 = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell>
+    <Eyebrow>Un caso real</Eyebrow>
+    <H1>Le voy a contar una clínica aliada</H1>
+    <Body className="mt-6">
+      4 sedes en Colombia · cirugía bariátrica + manejo médico de obesidad.
     </Body>
-    <ul className="mt-6 space-y-4">
-      {[
-        "Qué pack le habría correspondido",
-        "Qué pregunta-llave habría destrabado la conversación",
-        "Cómo se habría podido cerrar",
-      ].map((t) => (
-        <li key={t} className="flex gap-4 text-xl text-slate-700">
-          <span className="text-welli-yellow text-3xl leading-none">▸</span>
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="mt-10">
+      <MapaCuatroSedes />
+    </div>
+    <Body className="mt-10">
+      Profesionales sólidos. Buena reputación. Pero algo no estaba terminando de
+      funcionar comercialmente.
+    </Body>
     <NavigationButtons onBack={onBack} onNext={onNext} />
   </ScreenShell>
 );
 
-// C1.2 Próxima sesión + cierre humano
-const S24 = ({ onNext, onBack }: ScreenProps) => {
+// S08 · El estancamiento
+const S08 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H1>Los primeros meses</H1>
+      <Body className="mt-6">
+        Cuando empezaron con Welli, los números eran modestos.
+      </Body>
+      <div className="mt-10">
+        <MonthlyDeclineChart onComplete={() => setDone(true)} />
+      </div>
+      {done && (
+        <Anchor>
+          <span className="block mt-10 text-center">
+            Llegaron a pensar que Welli no era para su clínica.
+          </span>
+        </Anchor>
+      )}
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
+
+// S09 · Los 3 movimientos [Novo]
+const S09 = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>El descubrimiento</Eyebrow>
+    <H1>Y entonces cambiaron 3 cosas.</H1>
+    <TimelineTresMovimientos />
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
+// S10 · Las cifras
+const S10 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>7 meses después</Eyebrow>
+      <H2>Los resultados</H2>
+      <div className="mt-10">
+        <MetricsRevealed
+          onComplete={() => {
+            setDone(true);
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+          }}
+        />
+      </div>
+      {done && (
+        <Anchor>
+          <span className="block mt-10 text-center">
+            Esto es lo que hicimos con ellos. Ahora hablemos de usted.
+          </span>
+        </Anchor>
+      )}
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
+
+// S11 · Compromiso + puente a Sesión 2
+const S11 = ({ onBack }: ScreenProps) => {
   const navigate = useNavigate();
   const { state, update } = useBariatricaState();
+  const [done, setDone] = useState(false);
   const [fecha, setFecha] = useState(state.fechaSesion2 ?? "");
-  const [formato, setFormato] = useState(state.formatoSesion2 ?? "");
+  const [dia, setDia] = useState(state.seguimientoDia ?? "");
 
-  const handleClose = () => {
-    update({ fechaSesion2: fecha, formatoSesion2: formato });
+  const close = () => {
+    update({ fechaSesion2: fecha, seguimientoDia: dia });
     navigate("/bariatrica-novo");
   };
 
   return (
     <ScreenShell>
-      <Eyebrow>Sesión 2 — Su práctica en aplicación</Eyebrow>
-      <H2>En 7-10 días nos vemos otra vez.</H2>
-      <Body className="mt-6">Vamos a aterrizar todo en su consulta real:</Body>
-      <ul className="mt-6 space-y-3 text-xl text-slate-700">
-        {["Sus 3 packs específicos", "Cómo conversar con su paciente", "Cómo usar Welli operativamente", "Su comisión preferencial 4%"].map((t) => (
-          <li key={t} className="flex gap-4">
-            <span className="text-welli-yellow text-3xl leading-none">▸</span>
-            <span>{t}</span>
-          </li>
-        ))}
-      </ul>
-      <HighlightBox className="mt-10 space-y-6">
+      <Eyebrow>Para los próximos 7 días</Eyebrow>
+      <H2>Un solo compromiso</H2>
+      <Body className="mt-6">No operativo. De observación.</Body>
+      <HighlightBox className="mt-8">
+        <p className="text-xl text-indigo-950 leading-relaxed">
+          Cuando un paciente salga de su consulta SIN agendar tratamiento (o sin
+          comprar el paquete/servicio), tome 30 segundos y anote:
+        </p>
+        <div className="mt-6 space-y-3">
+          <p className="text-2xl font-semibold text-indigo-950">
+            · ¿Qué dijo exactamente?
+          </p>
+          <p className="text-2xl font-semibold text-indigo-950">
+            · ¿Fue una excusa social o una razón real?
+          </p>
+        </div>
+        <p className="text-lg text-indigo-950/70 mt-6 italic">
+          Una línea por paciente. Eso es todo.
+        </p>
+      </HighlightBox>
+
+      <div className="mt-12">
+        <CommitmentSealing
+          onComplete={(d) => {
+            update({ compromisoNombre: d.name, compromisoFecha: d.date });
+            setDone(true);
+          }}
+        />
+      </div>
+
+      <HighlightBox className="mt-12 space-y-6">
         <div>
           <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
-            Fecha Sesión 2
+            Fecha de la Sesión 2
           </label>
           <Input
             type="datetime-local"
@@ -731,42 +482,37 @@ const S24 = ({ onNext, onBack }: ScreenProps) => {
           />
         </div>
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-950 mb-3">
-            Formato preferido
-          </p>
-          <div className="space-y-2">
-            {[
-              "Con un paciente real de su agenda",
-              "Con un role play guiado por Welli",
-              "Lo decidimos a último momento",
-            ].map((o) => (
-              <button
-                key={o}
-                onClick={() => setFormato(o)}
-                className={`w-full text-left px-5 py-3 rounded-lg border-2 text-lg transition-all ${
-                  formato === o
-                    ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
-                    : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-                }`}
-              >
-                {o}
-              </button>
-            ))}
-          </div>
+          <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
+            Día preferido para seguimiento por WhatsApp
+          </label>
+          <Input
+            value={dia}
+            onChange={(e) => setDia(e.target.value)}
+            placeholder="día de la semana preferido"
+            className="h-14 text-lg bg-white"
+          />
         </div>
       </HighlightBox>
+
       <Anchor>
         <span className="block mt-10 text-center">
-          Gracias por su tiempo, Doctor. Nos vemos pronto.
+          Gracias por su tiempo, Doctor. Nos vemos en la Sesión 2.
         </span>
       </Anchor>
+
       <div className="flex items-center justify-between mt-12 gap-4">
-        <Button variant="ghost" size="lg" onClick={onBack} className="text-indigo-950 text-lg h-14 px-6">
+        <Button
+          variant="ghost"
+          size="lg"
+          onClick={onBack}
+          className="text-indigo-950 text-lg h-14 px-6"
+        >
           Atrás
         </Button>
         <Button
           size="lg"
-          onClick={handleClose}
+          onClick={close}
+          disabled={!done}
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 text-lg font-semibold h-14 px-10"
         >
           Cerrar sesión
@@ -778,7 +524,7 @@ const S24 = ({ onNext, onBack }: ScreenProps) => {
 
 /* ============ CONTROLADOR ============ */
 
-const SCREENS = [S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S12A, S13, S13A, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24];
+const SCREENS = [S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11];
 
 const Sesion1 = () => {
   const [idx, setIdx] = useState(0);
@@ -795,6 +541,7 @@ const Sesion1 = () => {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement) return;
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") back();
     };
@@ -822,7 +569,11 @@ const Sesion1 = () => {
           </Link>
           <WelliLogoFull size="sm" />
           <div className="flex-1">
-            <ProgressBar current={idx + 1} total={total} label="Sesión 1 — Mentalidad y método" />
+            <ProgressBar
+              current={idx + 1}
+              total={total}
+              label="Sesión 1 — Corta consultiva"
+            />
           </div>
         </div>
       </header>
