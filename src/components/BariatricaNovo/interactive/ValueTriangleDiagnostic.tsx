@@ -103,6 +103,7 @@ export default function ValueTriangleDiagnostic({
                 onValueChange={(x) => handleChange(a.key, x[0])}
                 className="mt-2"
               />
+              <p className="mt-2 text-sm text-slate-500 italic leading-snug">{a.novo}</p>
             </div>
           ))}
           <button
