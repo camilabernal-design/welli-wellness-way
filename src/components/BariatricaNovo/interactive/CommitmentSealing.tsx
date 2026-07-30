@@ -48,7 +48,7 @@ export default function CommitmentSealing({
   return (
     <div className="space-y-5">
       <p className="text-lg text-slate-700">
-        Toque cada compromiso para activarlo.
+        Toca cada compromiso para activarlo.
       </p>
       {COMMITMENTS.map((c) => {
         const on = accepted.includes(c.n);
@@ -88,7 +88,7 @@ export default function CommitmentSealing({
         {allAccepted && !sealed && (
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
             <HighlightBox className="space-y-4">
-              <p className="text-2xl font-bold text-indigo-950">Firme su compromiso</p>
+              <p className="text-2xl font-bold text-indigo-950">Firma tu compromiso</p>
               <div>
                 <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950">
                   Nombre completo

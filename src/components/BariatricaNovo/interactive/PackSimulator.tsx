@@ -106,10 +106,10 @@ export default function PackSimulator({ onComplete }: { onComplete: () => void }
           Resumen
         </p>
         <p className="text-3xl font-bold text-indigo-950 mt-3">
-          Acertó {correctCount} de {PATIENTS.length}
+          Acertaste {correctCount} de {PATIENTS.length}
         </p>
         <p className="text-lg text-indigo-950 mt-4 leading-relaxed">
-          Los packs no son fórmula — son guía. Su criterio clínico siempre decide.
+          Los packs no son fórmula — son guía. Tu criterio clínico siempre decide.
         </p>
       </HighlightBox>
     );
@@ -134,7 +134,7 @@ export default function PackSimulator({ onComplete }: { onComplete: () => void }
       {!choice && (
         <div>
           <p className="text-xl font-semibold text-indigo-950 mb-3">
-            ¿Cuál pack le recomienda?
+            ¿Cuál pack le recomiendas?
           </p>
           <div className="grid md:grid-cols-3 gap-3">
             {[

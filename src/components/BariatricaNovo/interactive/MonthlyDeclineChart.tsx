@@ -81,7 +81,7 @@ export default function MonthlyDeclineChart({
       {showThoughts && !answer && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <p className="text-xl font-semibold text-indigo-950 mb-4">
-            ¿Alguno de estos pensamientos le suena familiar?
+            ¿Alguno de estos pensamientos te suena familiar?
           </p>
           <div className="flex gap-3 flex-wrap">
             <button
@@ -107,7 +107,7 @@ export default function MonthlyDeclineChart({
               <p className="text-lg text-indigo-950">
                 {answer === "yes"
                   ? "Es exactamente lo que ellos pensaron. Veamos qué descubrieron."
-                  : "Mejor para usted. Igual vale la pena ver el método."}
+                  : "Mejor para ti. Igual vale la pena ver el método."}
               </p>
             </HighlightBox>
           </motion.div>

@@ -11,7 +11,7 @@ const MOMENTS: Moment[] = [
   {
     title: "Momento 1 — Apertura",
     situation:
-      "Acaba de recibir la notificación: el Welli Check de su paciente NO se aprobó. El paciente está sentado frente a usted, esperando su respuesta.",
+      "Acabas de recibir la notificación: el Welli Check de su paciente NO se aprobó. El paciente está sentado frente a ti, esperando tu respuesta.",
     options: [
       {
         label: "Ay, le negaron el crédito, no sé por qué.",
@@ -108,7 +108,7 @@ export default function PlanBSimulation({ onComplete }: { onComplete: () => void
   if (step >= MOMENTS.length)
     return (
       <HighlightBox>
-        <p className="text-2xl font-bold text-indigo-950">Manejó bien el Plan B.</p>
+        <p className="text-2xl font-bold text-indigo-950">Manejaste bien el Plan B.</p>
         <p className="text-lg text-indigo-950 mt-3">
           La clave fue: tono profesional, ofrecer alternativa concreta en el momento, no
           enviar al paciente a 'volver después'.

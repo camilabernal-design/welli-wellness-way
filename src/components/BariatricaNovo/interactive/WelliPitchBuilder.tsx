@@ -75,7 +75,7 @@ export default function WelliPitchBuilder({
       {ready && (
         <HighlightBox>
           <p className="text-sm font-semibold text-indigo-950 uppercase tracking-wider mb-3">
-            Su frase
+            Tu frase
           </p>
           <p className="text-xl italic text-indigo-950 leading-relaxed">"{phrase}"</p>
           <button

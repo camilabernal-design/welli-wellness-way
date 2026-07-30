@@ -20,7 +20,7 @@ const CONVS: Conv[] = [
     options: [
       { label: "Listo doctora, cuando lo decida vuelve.", correct: false, why: "Pierde al paciente. No exploró qué hay detrás del 'pensar'." },
       { label: "Antes de que se vaya: ¿hay algo del plan con lo que no esté del todo de acuerdo?", correct: true, why: "Pregunta-llave que abre la verdadera razón sin presionar." },
-      { label: "Mire que esto no se piensa, hay que decidir ya.", correct: false, why: "Presión que cierra al paciente y desgasta su autoridad." },
+      { label: "Mire que esto no se piensa, hay que decidir ya.", correct: false, why: "Presión que cierra al paciente y desgasta tu autoridad." },
     ],
     ramaSi: {
       trigger: `Si responde "No, todo bien, solo lo voy a pensar" → es excusa social. Razón real = plata.`,
@@ -114,12 +114,12 @@ export default function ConversationsQuiz({ onComplete }: { onComplete: () => vo
       </p>
       <SoftBox>
         <p className="text-sm text-slate-500 uppercase tracking-wider">
-          Su paciente dice
+          Tu paciente dice
         </p>
         <p className="text-2xl italic text-indigo-950 mt-3">"{c.patient}"</p>
       </SoftBox>
 
-      <p className="text-xl font-semibold text-indigo-950">¿Qué le responde?</p>
+      <p className="text-xl font-semibold text-indigo-950">¿Qué le respondes?</p>
       <div className="space-y-3">
         {c.options.map((o, idx) => {
           const isPicked = picked === idx;

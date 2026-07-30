@@ -63,7 +63,7 @@ const A1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell center>
     <div className="text-center space-y-10">
       <WelliLogoFull size="lg" />
-      <Eyebrow>Sesión 2 — Su práctica en aplicación</Eyebrow>
+      <Eyebrow>Sesión 2 — Tu práctica en aplicación</Eyebrow>
       <H1>Bienvenido de vuelta, Doctor.</H1>
       <Body className="max-w-3xl mx-auto">La semana pasada vimos:</Body>
       <div className="max-w-2xl mx-auto text-left">
@@ -75,7 +75,7 @@ const A1 = ({ onNext, onBack }: ScreenProps) => (
           ]}
         />
       </div>
-      <Anchor>Hoy aterrizamos todo en su consulta.</Anchor>
+      <Anchor>Hoy aterrizamos todo en tu consulta.</Anchor>
       <NavigationButtons onBack={onBack} onNext={onNext} />
     </div>
   </ScreenShell>
@@ -97,14 +97,14 @@ const A2 = ({ onNext, onBack }: ScreenProps) => {
   };
   return (
     <ScreenShell>
-      <H2>¿Cómo le fue esta semana observando?</H2>
+      <H2>¿Cómo te fue esta semana observando?</H2>
       <Body className="mt-8">El compromiso fue:</Body>
       <HighlightBox className="mt-4">
         <p className="text-xl italic text-indigo-950">
           "Cuando un paciente salga sin agendar tratamiento, anote qué dijo y si fue excusa social o razón real."
         </p>
       </HighlightBox>
-      <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Pudo hacerlo?</p>
+      <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Pudiste hacerlo?</p>
       <div className="mt-6 space-y-3">
         {opts.map((o) => (
           <button
@@ -120,7 +120,7 @@ const A2 = ({ onNext, onBack }: ScreenProps) => {
           </button>
         ))}
       </div>
-      <Body className="mt-10 italic">Sea cual sea su respuesta, hoy seguimos.</Body>
+      <Body className="mt-10 italic">Sea cual sea tu respuesta, hoy seguimos.</Body>
       <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 4" />
     </ScreenShell>
   );
@@ -148,9 +148,9 @@ const M4_0 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>Antes de hablar de packs</Eyebrow>
-      <H2>¿Qué tipos de packs ofrece hoy su clínica?</H2>
+      <H2>¿Qué tipos de packs ofreces hoy en tu clínica?</H2>
       <Body className="mt-6">
-        No todas las clínicas ofrecen los mismos servicios. Antes de mostrarle nuestro modelo, cuéntenos:
+        No todas las clínicas ofrecen los mismos servicios. Antes de mostrarte nuestro modelo, cuéntanos:
       </Body>
       <div className="mt-8 space-y-3">
         {PACK_OPCIONES.map((o) => {
@@ -187,7 +187,7 @@ const M4_0 = ({ onNext, onBack }: ScreenProps) => {
 
 const M4_1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
-    <Eyebrow>Módulo 4 — Sus 3 packs</Eyebrow>
+    <Eyebrow>Módulo 4 — Tus 3 packs</Eyebrow>
     <H2>¿Por qué vender programas y no procedimientos sueltos?</H2>
     <div className="mt-10 grid md:grid-cols-2 gap-6">
       <SoftBox>
@@ -211,7 +211,7 @@ const M4_1 = ({ onNext, onBack }: ScreenProps) => (
     </div>
     <Anchor>
       <span className="block mt-10 text-center">
-        Recuerde: el precio de cada componente individual no cambia. Solo cambia la forma de presentarlo.
+        Recuerda: el precio de cada componente individual no cambia. Solo cambia la forma de presentarlo.
       </span>
     </Anchor>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los 3 packs" />
@@ -242,10 +242,10 @@ const PackScreen = ({
       {!enPortafolio && (
         <WarningBox className="mt-6">
           <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
-            Hoy no está en su portafolio
+            Hoy no está en tu portafolio
           </p>
           <p className="text-xl text-indigo-950 mt-3">
-            Vamos a ver si vale la pena sumar este pack a su oferta. Es una oportunidad de crecimiento, no un requisito.
+            Vamos a ver si vale la pena sumar este pack a tu oferta. Es una oportunidad de crecimiento, no un requisito.
           </p>
         </WarningBox>
       )}
@@ -333,14 +333,14 @@ const M4_5 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>La regla absoluta</Eyebrow>
-      <H1 >NUNCA presente las 3 opciones sin recomendar una.</H1>
+      <H1 >NUNCA presentes las 3 opciones sin recomendar una.</H1>
       <Body className="mt-6">
         Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar" — que casi siempre significa "no me lo trato".
       </Body>
       <Body className="mt-4">
-        Si el caso es mixto, recomiende el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
+        Si el caso es mixto, recomienda el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
       </Body>
-      <div className="mt-12"><H2>Practique: ¿cuál pack para cada paciente?</H2></div>
+      <div className="mt-12"><H2>Practica: ¿cuál pack para cada paciente?</H2></div>
       <div className="mt-8">
         <PackSimulator onComplete={() => setDone(true)} />
       </div>
@@ -354,7 +354,7 @@ const M4_6 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Piense en su próximo paciente real de esta semana</H2>
+      <H2>Piensa en tu próximo paciente real de esta semana</H2>
       <div className="mt-8">
         <NextPatientForm onComplete={() => setDone(true)} />
       </div>
@@ -370,8 +370,8 @@ const M5_1 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <Eyebrow>Módulo 5 — Conversaciones con su paciente</Eyebrow>
-      <H2>Clasifique: ¿excusa social o razón real?</H2>
+      <Eyebrow>Módulo 5 — Conversaciones con tu paciente</Eyebrow>
+      <H2>Clasifica: ¿excusa social o razón real?</H2>
       <Body className="mt-4">Aparecen frases reales de pacientes. Decida cómo clasificaría cada una.</Body>
       <div className="mt-8">
         <ExcuseClassifier onComplete={() => setDone(true)} />
@@ -407,7 +407,7 @@ const M5_2 = ({ onNext, onBack }: ScreenProps) => (
       La llamamos "pregunta-llave" porque, como una llave, abre la verdadera razón detrás de la objeción.
     </Body>
     <Body className="mt-4">
-      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en sus pacientes.
+      Cada objeción tiene su propia pregunta-llave. Veamos las 5 más comunes en tus pacientes.
     </Body>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver las 5 conversaciones" />
   </ScreenShell>
@@ -420,7 +420,7 @@ const M5_3 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>Las 5 conversaciones más comunes</Eyebrow>
-      <H2>Elija la mejor respuesta en cada caso</H2>
+      <H2>Elige la mejor respuesta en cada caso</H2>
       <div className="mt-8">
         <ConversationsQuiz onComplete={() => setDone(true)} />
       </div>
@@ -436,7 +436,7 @@ const M5_4 = ({ onNext, onBack }: ScreenProps) => (
       <Eyebrow>La regla absoluta</Eyebrow>
       <HighlightBox className="max-w-3xl mx-auto">
         <p className="text-4xl md:text-5xl font-bold text-indigo-950 leading-tight">
-          Nunca acepte un "no" sin haber hecho UNA pregunta más.
+          Nunca aceptes un "no" sin haber hecho UNA pregunta más.
         </p>
       </HighlightBox>
       <Body className="max-w-3xl mx-auto">
@@ -444,7 +444,7 @@ const M5_4 = ({ onNext, onBack }: ScreenProps) => (
       </Body>
       <Body className="max-w-3xl mx-auto">La pregunta-llave es esa "pregunta más".</Body>
       <Body className="max-w-3xl mx-auto font-semibold text-indigo-950">
-        Si después de la pregunta-llave el paciente sigue diciendo no, respete su decisión. Pero nunca acepte el primer "no" sin antes haber explorado qué hay detrás.
+        Si después de la pregunta-llave el paciente sigue diciendo no, respeta su decisión. Pero nunca aceptes el primer "no" sin antes haber explorado qué hay detrás.
       </Body>
       <NavigationButtons onBack={onBack} onNext={onNext} />
     </div>
@@ -455,7 +455,7 @@ const M5_4 = ({ onNext, onBack }: ScreenProps) => (
 const M5_5 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell center>
     <div className="space-y-8 text-center">
-      <Body>Ya tiene los packs. Ya sabe cómo conversar con su paciente.</Body>
+      <Body>Ya tienes los packs. Ya sabes cómo conversar con tu paciente.</Body>
       <Body className="font-semibold text-indigo-950">
         Falta ver la herramienta concreta que hace todo esto viable comercialmente.
       </Body>
@@ -466,7 +466,7 @@ const M5_5 = ({ onNext, onBack }: ScreenProps) => (
             "Cuota fija de bienestar",
             "Welli Check en 30 segundos",
             "Qué hacer cuando no se aprueba",
-            "Su comisión preferencial 4% (Novo)",
+            "Tu comisión preferencial 4% (Novo)",
           ]}
         />
       </div>
@@ -480,10 +480,10 @@ const M5_5 = ({ onNext, onBack }: ScreenProps) => (
 // 6.1
 const M6_1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
-    <Eyebrow>Módulo 6 — Welli en su práctica</Eyebrow>
+    <Eyebrow>Módulo 6 — Welli en tu práctica</Eyebrow>
     <H2>La cuota fija de bienestar</H2>
     <Body className="mt-8">
-      El concepto que cambia la conversación de plata con sus pacientes:
+      El concepto que cambia la conversación de plata con tus pacientes:
     </Body>
     <HighlightBox className="mt-8 text-center">
       <p className="text-4xl md:text-5xl font-bold text-indigo-950 leading-tight">
@@ -519,8 +519,8 @@ const M6_2 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Arme su frase para presentar Welli</H2>
-      <Body className="mt-4">Elija una opción por bloque y vea cómo se construye una frase completa de presentación.</Body>
+      <H2>Arma tu frase para presentar Welli</H2>
+      <Body className="mt-4">Elige una opción por bloque y ve cómo se construye una frase completa de presentación.</Body>
       <div className="mt-8">
         <WelliPitchBuilder onComplete={() => setDone(true)} />
       </div>
@@ -538,18 +538,18 @@ const M6_3 = ({ onNext, onBack }: ScreenProps) => (
     <Body className="mt-3">
       Una pre-aprobación rápida que el paciente hace desde su celular por WhatsApp. Solo necesita cédula y datos básicos. El sistema le dice si tiene cupo aprobado, y por cuánto.
     </Body>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Por qué cambia su consulta?</p>
+    <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Por qué cambia tu consulta?</p>
     <div className="mt-6 grid md:grid-cols-2 gap-6">
       <SoftBox>
         <Eyebrow>Antes</Eyebrow>
         <p className="text-lg text-indigo-950 mt-3">
-          Tiene la conversación completa sin saber si el paciente puede pagar. Si al final no aplica, perdió 45 min de valoración.
+          Tienes la conversación completa sin saber si el paciente puede pagar. Si al final no aplica, perdiste 45 min de valoración.
         </p>
       </SoftBox>
       <HighlightBox>
         <Eyebrow>Después</Eyebrow>
         <p className="text-lg text-indigo-950 mt-3">
-          Sabe desde el inicio si el paciente tiene cupo. Si lo tiene, la conversación se enfoca en valor. Si no lo tiene, sabe que necesita Plan B.
+          Sabes desde el inicio si el paciente tiene cupo. Si lo tiene, la conversación se enfoca en valor. Si no lo tiene, sabes que necesitas Plan B.
         </p>
       </HighlightBox>
     </div>
@@ -572,7 +572,7 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
-      <H2>Practique el Plan B en una simulación</H2>
+      <H2>Practica el Plan B en una simulación</H2>
 
       <div className="mt-8 space-y-6">
         <div>
@@ -584,7 +584,7 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
         <div>
           <Eyebrow>Los primeros 5 segundos</Eyebrow>
           <Body className="mt-3">
-            Su tono importa MÁS que las palabras. Tranquilo, profesional, como si dijera la hora.
+            Tu tono importa MÁS que las palabras. Tranquilo, profesional, como si dijera la hora.
           </Body>
         </div>
         <WarningBox>
@@ -595,7 +595,7 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
         </WarningBox>
       </div>
 
-      <Body className="mt-10">3 momentos ramificados. Elija cómo responde y vea la consecuencia.</Body>
+      <Body className="mt-10">3 momentos ramificados. Elige cómo respondes y ve la consecuencia.</Body>
       <div className="mt-6">
         <PlanBSimulation onComplete={() => setDone(true)} />
       </div>
@@ -607,10 +607,10 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
 // 6.5 — CON LOGO NOVO
 const M6_5 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell withNovo>
-    <Eyebrow>Su comisión preferencial</Eyebrow>
+    <Eyebrow>Tu comisión preferencial</Eyebrow>
     <H2>Por la alianza con Novo Nordisk</H2>
     <Body className="mt-8">
-      Por entrar a este programa a través del convenio con Novo Nordisk, su comisión Welli es preferencial:
+      Por entrar a este programa a través del convenio con Novo Nordisk, tu comisión Welli es preferencial:
     </Body>
     <HighlightBox className="mt-10 text-center">
       <div className="grid grid-cols-2 gap-8">
@@ -619,7 +619,7 @@ const M6_5 = ({ onNext, onBack }: ScreenProps) => (
           <p className="text-5xl font-bold text-indigo-950 mt-4">6%</p>
         </div>
         <div>
-          <Eyebrow>Su comisión preferencial</Eyebrow>
+          <Eyebrow>Tu comisión preferencial</Eyebrow>
           <p className="text-5xl font-bold text-indigo-950 mt-4">4%</p>
         </div>
       </div>
@@ -641,7 +641,7 @@ const M7_1 = ({ onNext, onBack, setBranch }: ScreenProps) => (
     <div className="text-center space-y-10">
       <Eyebrow>Módulo 7 — Aplicación práctica en vivo</Eyebrow>
       <H1>Hasta ahora vimos el método. Ahora lo aplicamos.</H1>
-      <Body>Usted ya decidió cómo prefiere esta práctica:</Body>
+      <Body>Tú ya decidiste cómo prefieres esta práctica:</Body>
       <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
         <button
           onClick={() => {
@@ -663,7 +663,7 @@ const M7_1 = ({ onNext, onBack, setBranch }: ScreenProps) => (
         </button>
       </div>
       <Body className="max-w-3xl mx-auto">
-        Ambos caminos tienen el mismo objetivo: que usted vea funcionar el método con sus propios ojos y manos.
+        Ambos caminos tienen el mismo objetivo: que tú veas funcionar el método con tus propios ojos y manos.
       </Body>
       {onBack && (
         <div className="flex justify-start">
@@ -683,9 +683,9 @@ const M7_2A = ({ onNext, onBack }: ScreenProps) => (
     <H2>Briefing: paciente real en vivo</H2>
     <Body className="mt-8">Antes de que llegue, alineemos:</Body>
     <ul className="mt-6 space-y-4 text-xl text-slate-700">
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué sabe del paciente? (edad, motivo de consulta, antecedentes)</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué pack inicial está considerando?</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Hay algo que le preocupe especialmente en esta consulta?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué sabes del paciente? (edad, motivo de consulta, antecedentes)</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué pack inicial estás considerando?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Hay algo que te preocupe especialmente en esta consulta?</li>
     </ul>
     <div className="my-10 border-t border-slate-200" />
     <HighlightBox>
@@ -706,7 +706,7 @@ const M7_3A = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
     <Eyebrow>Rama A · Paciente real</Eyebrow>
     <H2>Cuando llegue el paciente</H2>
-    <Body className="mt-8">Su presentación de Welli al paciente:</Body>
+    <Body className="mt-8">Tu presentación de Welli al paciente:</Body>
     <HighlightBox className="mt-6">
       <Eyebrow>Frase sugerida</Eyebrow>
       <p className="text-lg md:text-xl italic text-indigo-950 mt-4 leading-relaxed">
@@ -719,9 +719,9 @@ const M7_3A = ({ onNext, onBack }: ScreenProps) => (
     <div className="my-10 border-t border-slate-200" />
     <p className="text-2xl font-semibold text-indigo-950">Después de presentar a Welli:</p>
     <ul className="mt-6 space-y-4 text-xl text-slate-700">
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>Lleve la consulta normal.</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>Lleva la consulta normal.</li>
       <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>Welli toma notas en silencio.</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>En el momento de presentar inversión, active Welli Check.</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>En el momento de presentar inversión, activa Welli Check.</li>
     </ul>
     <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar la consulta" />
   </ScreenShell>
@@ -756,7 +756,7 @@ const M7_2B = ({ onNext, onBack }: ScreenProps) => {
       <Body className="mt-8">
         Welli va a actuar como uno de estos 3 pacientes del programa Vive Ligero.
       </Body>
-      <Body className="mt-2 font-semibold text-indigo-950">Elija con cuál quiere practicar:</Body>
+      <Body className="mt-2 font-semibold text-indigo-950">Elige con cuál quieres practicar:</Body>
       <div className="mt-8 grid md:grid-cols-3 gap-5">
         {PERFILES.map((p) => {
           const on = sel === p.nombre;
@@ -783,8 +783,8 @@ const M7_2B = ({ onNext, onBack }: ScreenProps) => {
       </div>
       <div className="mt-10 space-y-4">
         <Body>Al seleccionar un perfil, Welli entra en personaje según ese perfil.</Body>
-        <Body>Usted lleva la consulta como real.</Body>
-        <Body>En cualquier momento puede pausar y preguntar algo "fuera de personaje".</Body>
+        <Body>Tú llevas la consulta como real.</Body>
+        <Body>En cualquier momento puedes pausar y preguntar algo "fuera de personaje".</Body>
       </div>
       <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Empezar role play" nextDisabled={!sel} />
     </ScreenShell>
@@ -799,10 +799,10 @@ const M7_3B = ({ onNext, onBack }: ScreenProps) => (
     <H2>Debrief del role play</H2>
     <Body className="mt-8">Análisis honesto de lo que acabamos de ver:</Body>
     <ul className="mt-6 space-y-4 text-xl text-slate-700">
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué sintió que hizo bien?</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿En qué momento se sintió incómodo?</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Identificó alguna excusa social vs razón real?</li>
-      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Hubo un momento donde sintió que "perdí al paciente"? ¿Cuál?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Qué sentiste que hiciste bien?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿En qué momento te sentiste incómodo?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Identificaste alguna excusa social vs razón real?</li>
+      <li className="flex gap-4"><span className="text-welli-yellow text-3xl leading-none">▸</span>¿Hubo un momento donde sentiste que "perdí al paciente"? ¿Cuál?</li>
     </ul>
     <div className="my-10 border-t border-slate-200" />
     <SoftBox>
@@ -825,8 +825,8 @@ const M8_1 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <Eyebrow>Módulo 8 — Sus 3 compromisos</Eyebrow>
-      <H2>3 cosas concretas que cambian su consulta desde mañana</H2>
+      <Eyebrow>Módulo 8 — Tus 3 compromisos</Eyebrow>
+      <H2>3 cosas concretas que cambian tu consulta desde mañana</H2>
       <div className="mt-8">
         <CommitmentSealing
           onComplete={(d) => {
@@ -856,7 +856,7 @@ const M8_2 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>Firma de compromiso</Eyebrow>
-      <H2>Su compromiso personal</H2>
+      <H2>Tu compromiso personal</H2>
       <HighlightBox className="mt-10 space-y-6">
         <div className="text-xl text-indigo-950 leading-relaxed">
           Yo,{" "}
@@ -905,16 +905,16 @@ const M8_3 = ({ onBack }: ScreenProps) => {
 
   return (
     <ScreenShell>
-      <Eyebrow>Sus próximos pasos</Eyebrow>
+      <Eyebrow>Tus próximos pasos</Eyebrow>
       <H2>Acompañamiento</H2>
       <ul className="mt-10 space-y-6 text-xl text-slate-700">
         <li>
           <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">Esta semana</p>
-          <p className="mt-2">Implementa los 3 compromisos con sus próximos pacientes.</p>
+          <p className="mt-2">Implementa los 3 compromisos con tus próximos pacientes.</p>
         </li>
         <li>
           <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">Próximas 4 semanas</p>
-          <p className="mt-2">Welli hace seguimiento semanal por WhatsApp y revisa métricas con usted.</p>
+          <p className="mt-2">Welli hace seguimiento semanal por WhatsApp y revisa métricas contigo.</p>
         </li>
         <li>
           <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">Siguientes 2 meses</p>
@@ -934,7 +934,7 @@ const M8_3 = ({ onBack }: ScreenProps) => {
       </HighlightBox>
       <Anchor>
         <span className="block mt-10 text-center">
-          Gracias por su tiempo, Doctor. Empezamos a transformar su consulta desde mañana.
+          Gracias por tu tiempo, Doctor. Empezamos a transformar tu consulta desde mañana.
         </span>
       </Anchor>
       <div className="flex items-center justify-between mt-12 gap-4">
@@ -999,7 +999,7 @@ const L1 = ({ onNext, onBack }: ScreenProps) => {
         </div>
         <div className="max-w-3xl mx-auto">
           <p className="text-2xl font-semibold text-indigo-950">
-            ¿Cómo le fue observando esta semana?
+            ¿Cómo te fue observando esta semana?
           </p>
           <div className="mt-6 space-y-3">
             {opts.map((o) => (
@@ -1035,7 +1035,7 @@ const L1 = ({ onNext, onBack }: ScreenProps) => {
 const L2 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell withNovo>
     <Eyebrow>Mercado · Vive Ligero</Eyebrow>
-    <H1>Sus pacientes ya buscan semaglutida antes de llegar a consulta</H1>
+    <H1>Tus pacientes ya buscan semaglutida antes de llegar a consulta</H1>
     <div className="mt-10 grid md:grid-cols-3 gap-6">
       <Stat value="+490%" label="Búsquedas de 'pérdida de peso' en 3 años (Colombia/Latam)" />
       <Stat value="×10" label="Búsquedas de 'Semaglutida' en el último año" />
@@ -1058,7 +1058,7 @@ const L2 = ({ onNext, onBack }: ScreenProps) => (
     </p>
     <Anchor>
       <span className="block mt-10 text-center">
-        Su paciente ya llegó a Google antes de llegar a su consulta.
+        Tu paciente ya llegó a Google antes de llegar a tu consulta.
       </span>
     </Anchor>
     <NavigationButtons onBack={onBack} onNext={onNext} />
@@ -1089,7 +1089,7 @@ const L3 = ({ onNext, onBack }: ScreenProps) => (
 const L4 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell withNovo>
     <Eyebrow>Acompañamiento</Eyebrow>
-    <H2>El manejo farmacológico: su mejor aliado de acompañamiento</H2>
+    <H2>El manejo farmacológico: tu mejor aliado de acompañamiento</H2>
     <Body className="mt-8">
       Cuando el tratamiento incluye manejo farmacológico (Wegovy — semaglutida —
       de Novo Nordisk), el paciente vuelve cada mes naturalmente. Cada visita es:
@@ -1134,8 +1134,8 @@ const L10 = ({ onNext, onBack }: ScreenProps) => (
     <H2>Cómo recomendar el pack correcto</H2>
     <div className="mt-10 space-y-5">
       {[
-        ["1", "CONTEXTUALIZA", "Resuma lo que entendió del caso del paciente antes de proponer nada."],
-        ["2", "PRESENTA LAS OPCIONES", "Solo las que aplican al portafolio de su clínica."],
+        ["1", "CONTEXTUALIZA", "Resume lo que entendiste del caso del paciente antes de proponer nada."],
+        ["2", "PRESENTA LAS OPCIONES", "Solo las que aplican al portafolio de tu clínica."],
         ["3", "RECOMIENDA UNA", "Con criterio clínico y en voz alta: 'en su caso, yo iría por…'."],
         ["4", "LUEGO EL PRECIO", "Siempre traducido a cuota mensual fija."],
       ].map(([n, t, d]) => (
@@ -1152,7 +1152,7 @@ const L10 = ({ onNext, onBack }: ScreenProps) => (
     </div>
     <HighlightBox className="mt-12">
       <p className="text-2xl md:text-3xl font-bold text-indigo-950 leading-tight">
-        NUNCA presente las opciones sin recomendar. Eso le pasa la decisión al
+        NUNCA presentes las opciones sin recomendar. Eso le pasa la decisión al
         paciente.
       </p>
     </HighlightBox>
@@ -1165,7 +1165,7 @@ const L11 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
   return (
     <ScreenShell>
-      <H2>Piense en su próximo paciente real de esta semana</H2>
+      <H2>Piensa en tu próximo paciente real de esta semana</H2>
       <div className="mt-10">
         <PackSimulator onComplete={() => setDone(true)} />
       </div>
@@ -1218,7 +1218,7 @@ const L16 = ({ onNext, onBack }: ScreenProps) => (
 const L20 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
     <Eyebrow>Módulo 8 · Cierre</Eyebrow>
-    <H2>Sus 3 compromisos</H2>
+    <H2>Tus 3 compromisos</H2>
     <div className="mt-10 grid md:grid-cols-3 gap-6">
       {[
         "Cotizar SIEMPRE en cuotas fijas mensuales",
@@ -1256,7 +1256,7 @@ const L21 = ({ onBack }: ScreenProps) => {
   return (
     <ScreenShell>
       <Eyebrow>Firma de compromiso</Eyebrow>
-      <H2>Su compromiso personal</H2>
+      <H2>Tu compromiso personal</H2>
       <HighlightBox className="mt-10 space-y-6">
         <div className="text-xl text-indigo-950 leading-relaxed">
           Yo,{" "}
@@ -1298,14 +1298,14 @@ const L21 = ({ onBack }: ScreenProps) => {
       </div>
 
       <div className="mt-14">
-        <Eyebrow>Sus próximos pasos</Eyebrow>
+        <Eyebrow>Tus próximos pasos</Eyebrow>
         <ul className="mt-6 space-y-6 text-xl text-slate-700">
           <li>
             <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">
               Próximas 4 semanas
             </p>
             <p className="mt-2">
-              Welli hace seguimiento semanal por WhatsApp y revisa métricas con usted.
+              Welli hace seguimiento semanal por WhatsApp y revisa métricas contigo.
             </p>
           </li>
           <li>

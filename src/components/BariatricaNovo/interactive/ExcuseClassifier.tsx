@@ -20,7 +20,7 @@ const PHRASES: Phrase[] = [
   {
     text: "No tengo la plata para empezar este mes",
     type: "real",
-    feedback: "Razón real específica. El paciente le está diciendo el obstáculo directamente.",
+    feedback: "Razón real específica. El paciente te está diciendo el obstáculo directamente.",
     llave: "Si pudiera pagarlo en cuota fija mensual de $X, ¿lo empezaría hoy?",
   },
   {
@@ -94,10 +94,10 @@ export default function ExcuseClassifier({ onComplete }: { onComplete: () => voi
     return (
       <HighlightBox>
         <p className="text-3xl font-bold text-indigo-950">
-          Acertó {score} de {list.length}
+          Acertaste {score} de {list.length}
         </p>
         <p className="text-lg text-indigo-950 mt-3">
-          La clave no es el porcentaje — es que ahora tiene un marco para preguntar
+          La clave no es el porcentaje — es que ahora tienes un marco para preguntar
           siempre antes de aceptar el primer "no".
         </p>
       </HighlightBox>
