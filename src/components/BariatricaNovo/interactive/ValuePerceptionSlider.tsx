@@ -57,7 +57,7 @@ export default function ValuePerceptionSlider({
           <span>VALOR</span>
         </div>
         <p className="text-center text-slate-600 mt-4">
-          Su paciente ahora está percibiendo:{" "}
+          Tu paciente ahora está percibiendo:{" "}
           <span className="font-semibold text-indigo-950">PRECIO {precio}%</span>{" "}
           ·{" "}
           <span className="font-semibold text-indigo-950">VALOR {valor}%</span>

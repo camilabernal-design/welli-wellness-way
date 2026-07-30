@@ -17,8 +17,8 @@ export default function TeamVoteOverlay({ doctorPick }: { doctorPick: string }) 
     >
       <SoftBox>
         <p className="text-lg text-indigo-950 leading-relaxed">
-          Si tiene equipo en la sala, pídales que voten también — ven cosas que usted
-          no ve desde su silla.
+          Si tienes equipo en la sala, pídeles que voten también — ven cosas que tú
+          no ves desde tu silla.
         </p>
         <div className="mt-6 grid grid-cols-4 gap-3">
           {RANGES.map((r) => (
@@ -62,9 +62,9 @@ export default function TeamVoteOverlay({ doctorPick }: { doctorPick: string }) 
       {votes.length >= 2 && (
         <HighlightBox className="mt-4">
           <p className="text-indigo-950">
-            Su percepción: <span className="font-bold">{doctorPick}</span>. Su equipo
+            Tu percepción: <span className="font-bold">{doctorPick}</span>. Tu equipo
             ya registró {votes.length} voto{votes.length === 1 ? "" : "s"}. Si hay
-            diferencia con su percepción, vale explorar por qué.
+            diferencia con tu percepción, vale explorar por qué.
           </p>
         </HighlightBox>
       )}

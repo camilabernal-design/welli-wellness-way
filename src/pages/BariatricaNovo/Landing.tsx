@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft, Clock } from "lucide-react";
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-background to-white flex flex-col">
       <header className="px-6 py-4 border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-6xl mx-auto">
           <Link

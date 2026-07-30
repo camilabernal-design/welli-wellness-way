@@ -7,7 +7,7 @@ type Profile = "pro-farmaco" | "neutro" | "esceptico" | "explorador";
 const Q = [
   {
     title:
-      "Más allá de cirugía, ¿qué opciones está usando para manejar pacientes con obesidad?",
+      "Más allá de cirugía, ¿qué opciones estás usando para manejar pacientes con obesidad?",
     options: [
       "Farmacoterapia",
       "Cirugías",
@@ -26,7 +26,7 @@ const Q = [
     ],
   },
   {
-    title: "¿Cómo ha sido la respuesta de sus pacientes?",
+    title: "¿Cómo ha sido la respuesta de tus pacientes?",
     options: ["Muy buena", "Buena", "Mixta", "N/A"],
   },
 ];
@@ -42,19 +42,19 @@ function profileOf(a2: string, a3: string): Profile {
 const LABELS: Record<Profile, { title: string; desc: string }> = {
   "pro-farmaco": {
     title: "PRO-fármaco",
-    desc: "Maneja con confianza el componente farmacológico. Hoy refinamos cómo lo articula con el paquete completo.",
+    desc: "Manejas con confianza el componente farmacológico. Hoy refinamos cómo lo articulas con el paquete completo.",
   },
   neutro: {
     title: "NEUTRO",
-    desc: "Tiene experiencia mixta. Hoy ajustamos cómo presentar el manejo farmacológico para que se vea como parte del programa, no como añadido.",
+    desc: "Tienes experiencia mixta. Hoy ajustamos cómo presentar el manejo farmacológico para que se vea como parte del programa, no como añadido.",
   },
   esceptico: {
     title: "ESCÉPTICO",
-    desc: "Tiene reservas legítimas. Hoy enfocamos cómo posicionar el medicamento como herramienta de adherencia, no como protagonista.",
+    desc: "Tienes reservas legítimas. Hoy enfocamos cómo posicionar el medicamento como herramienta de adherencia, no como protagonista.",
   },
   explorador: {
     title: "EXPLORADOR",
-    desc: "Está empezando. Hoy le damos el marco completo para integrarlo desde el día uno.",
+    desc: "Estás empezando. Hoy te damos el marco completo para integrarlo desde el día uno.",
   },
 };
 
@@ -88,7 +88,7 @@ export default function DiagnosticoIndagacion({
       >
         <HighlightBox className="bg-secondary/10 border-secondary">
           <p className="text-sm font-semibold uppercase tracking-wider text-secondary">
-            Su perfil
+            Tu perfil
           </p>
           <p className="text-3xl font-bold text-indigo-950 mt-2">{meta.title}</p>
           <p className="text-lg text-indigo-950 mt-4 leading-relaxed">{meta.desc}</p>

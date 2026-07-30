@@ -47,7 +47,7 @@ function profile(s: Scores) {
     };
   return {
     title: `Fuerte en: ${labelMap[max[0]]}`,
-    body: `A reforzar: ${low.map((k) => labelMap[k]).join(", ") || "ninguno"}. El 60% de doctores tiene este mismo patrón. Es lo que vamos a corregir en su próxima consulta.`,
+    body: `A reforzar: ${low.map((k) => labelMap[k]).join(", ") || "ninguno"}. El 60% de doctores tiene este mismo patrón. Es lo que vamos a corregir en tu próxima consulta.`,
   };
 }
 
@@ -153,7 +153,7 @@ export default function ValueTriangleDiagnostic({
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <HighlightBox>
             <p className="text-sm font-semibold uppercase tracking-wider text-indigo-950">
-              Su perfil
+              Tu perfil
             </p>
             <p className="text-2xl font-bold text-indigo-950 mt-2">{meta.title}</p>
             <p className="text-lg text-indigo-950 mt-3 leading-relaxed">{meta.body}</p>

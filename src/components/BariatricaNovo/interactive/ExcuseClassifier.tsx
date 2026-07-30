@@ -20,14 +20,14 @@ const PHRASES: Phrase[] = [
   {
     text: "No tengo la plata para empezar este mes",
     type: "real",
-    feedback: "Razón real específica. El paciente le está diciendo el obstáculo directamente.",
+    feedback: "Razón real específica. El paciente te está diciendo el obstáculo directamente.",
     llave: "Si pudiera pagarlo en cuota fija mensual de $X, ¿lo empezaría hoy?",
   },
   {
     text: "Voy a hablarlo con mi esposo",
     type: "social",
     feedback: "Excusa social en el 80% de los casos.",
-    llave: "Por supuesto. Si su esposo está de acuerdo mañana, ¿usted ya está decidida a empezar?",
+    llave: "Por supuesto. Si tu esposo está de acuerdo mañana, ¿ya estás decidida a empezar?",
   },
   {
     text: "Mi médico de cabecera me dijo que primero intente solo con dieta",
@@ -38,7 +38,7 @@ const PHRASES: Phrase[] = [
     text: "Está muy caro",
     type: "social",
     feedback: "Casi siempre excusa social. La razón real es 'no veo el valor'.",
-    llave: "¿Qué tendría que incluir el tratamiento para que la inversión tenga sentido para usted?",
+    llave: "¿Qué tendría que incluir el tratamiento para que la inversión tenga sentido para ti?",
   },
   {
     text: "Tengo miedo de los efectos secundarios del medicamento",
@@ -94,10 +94,10 @@ export default function ExcuseClassifier({ onComplete }: { onComplete: () => voi
     return (
       <HighlightBox>
         <p className="text-3xl font-bold text-indigo-950">
-          Acertó {score} de {list.length}
+          Acertaste {score} de {list.length}
         </p>
         <p className="text-lg text-indigo-950 mt-3">
-          La clave no es el porcentaje — es que ahora tiene un marco para preguntar
+          La clave no es el porcentaje — es que ahora tienes un marco para preguntar
           siempre antes de aceptar el primer "no".
         </p>
       </HighlightBox>

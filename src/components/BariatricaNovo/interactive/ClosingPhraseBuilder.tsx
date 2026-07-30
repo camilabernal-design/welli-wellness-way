@@ -81,7 +81,7 @@ export default function ClosingPhraseBuilder({
       {ready && (
         <HighlightBox>
           <p className="text-sm font-semibold uppercase tracking-wider text-indigo-950 mb-3">
-            Su frase de cierre
+            Tu frase de cierre
           </p>
           <p className="text-xl italic text-indigo-950 leading-relaxed">"{phrase}"</p>
           <div className="flex gap-3 mt-5 flex-wrap">
