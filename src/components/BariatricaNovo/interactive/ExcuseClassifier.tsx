@@ -27,7 +27,7 @@ const PHRASES: Phrase[] = [
     text: "Voy a hablarlo con mi esposo",
     type: "social",
     feedback: "Excusa social en el 80% de los casos.",
-    llave: "Por supuesto. Si su esposo está de acuerdo mañana, ¿usted ya está decidida a empezar?",
+    llave: "Por supuesto. Si tu esposo está de acuerdo mañana, ¿ya estás decidida a empezar?",
   },
   {
     text: "Mi médico de cabecera me dijo que primero intente solo con dieta",
@@ -38,7 +38,7 @@ const PHRASES: Phrase[] = [
     text: "Está muy caro",
     type: "social",
     feedback: "Casi siempre excusa social. La razón real es 'no veo el valor'.",
-    llave: "¿Qué tendría que incluir el tratamiento para que la inversión tenga sentido para usted?",
+    llave: "¿Qué tendría que incluir el tratamiento para que la inversión tenga sentido para ti?",
   },
   {
     text: "Tengo miedo de los efectos secundarios del medicamento",

@@ -45,7 +45,7 @@ const MOMENTS: Moment[] = [
       },
       {
         label:
-          "¿Tiene algún familiar cercano que pueda firmar con usted? A veces funciona mejor desde otro perfil.",
+          "¿Tienes algún familiar cercano que pueda firmar contigo? A veces funciona mejor desde otro perfil.",
         outcome: "good",
         feedback:
           "Ofrece alternativa concreta en el momento. Mantiene la conversación abierta sin presionar.",

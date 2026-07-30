@@ -52,12 +52,12 @@ const CONVS: Conv[] = [
     patient: "Voy a hablarlo con mi esposo y le aviso.",
     options: [
       { label: "Perfecto, esperamos su llamada.", correct: false, why: "Se pierde el momento. Pocos pacientes vuelven con el dato concreto." },
-      { label: "Por supuesto. Si su esposo está de acuerdo mañana, ¿usted ya está decidida a empezar?", correct: true, why: "Distingue si la objeción es real o social, sin presionar." },
-      { label: "¿Por qué no decide usted sola?", correct: false, why: "Confronta la dinámica familiar — desgasta confianza." },
+      { label: "Por supuesto. Si tu esposo está de acuerdo mañana, ¿ya estás decidida a empezar?", correct: true, why: "Distingue si la objeción es real o social, sin presionar." },
+      { label: "¿Por qué no decides tú sola?", correct: false, why: "Confronta la dinámica familiar — desgasta confianza." },
     ],
     ramaSi: {
       trigger: `Si responde "Pues seguro me apoya" → la decisión es realmente suya. Es excusa.`,
-      respuesta: "Entonces avancemos con la pre-aprobación de Welli ahora. Usted habla con su pareja después con el dato concreto de la cuota mensual, que es más útil que solo el monto total.",
+      respuesta: "Entonces avancemos con la pre-aprobación de Welli ahora. Hablas con tu pareja después con el dato concreto de la cuota mensual, que es más útil que solo el monto total.",
     },
     ramaNo: {
       trigger: `Si responde "No estoy seguro, él decide los temas grandes" → sí necesita consultar.`,
@@ -87,7 +87,7 @@ const CONVS: Conv[] = [
     ],
     ramaSi: {
       trigger: `Esta pregunta lleva al paciente a imaginar el riesgo de tratamiento sin seguimiento. Casi siempre responde algo como "pues no sé, dejarlo".`,
-      respuesta: "Exacto. Y eso es lo que pasa con el 60% de pacientes que toman el medicamento sin seguimiento — abandonan a los 3 meses sin resultados visibles. El programa completo no es un extra, es lo que asegura que el medicamento funcione. Con Welli usted lo paga todo en cuotas sin que le pese.",
+      respuesta: "Exacto. Y eso es lo que pasa con el 60% de pacientes que toman el medicamento sin seguimiento — abandonan a los 3 meses sin resultados visibles. El programa completo no es un extra, es lo que asegura que el medicamento funcione. Con Welli lo pagas todo en cuotas sin que te pese.",
     },
   },
 ];
