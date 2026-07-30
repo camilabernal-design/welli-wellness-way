@@ -417,10 +417,20 @@ const S10 = ({ onNext, onBack }: ScreenProps) => {
           }}
         />
       </div>
+      <div className="mt-12">
+        <Eyebrow>Detrás de las cifras hay personas</Eyebrow>
+        <div className="mt-4">
+          <YouTubeEmbed
+            videoId="z6OIR8S3MM4"
+            title="Testimonio de cirugía bariátrica"
+            borderColor="welli-yellow"
+          />
+        </div>
+      </div>
       {done && (
         <Anchor>
           <span className="block mt-10 text-center">
-            Esto es lo que hicimos con ellos. Ahora hablemos de usted.
+            Esto es lo que hicimos con ellos. Ahora hablemos de ti.
           </span>
         </Anchor>
       )}
