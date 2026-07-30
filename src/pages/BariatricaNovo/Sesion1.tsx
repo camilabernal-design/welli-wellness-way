@@ -129,10 +129,10 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
     state.pacientesQueFirman ?? null,
   );
   const messages: Record<string, string> = {
-    "1-3": "Está dejando ir muchísimo potencial. Vamos a ver cómo recuperarlo.",
-    "4-6": "Está en el promedio del mercado. Vamos a ver cómo subir.",
+    "1-3": "Estás dejando ir muchísimo potencial. Vamos a ver cómo recuperarlo.",
+    "4-6": "Estás en el promedio del mercado. Vamos a ver cómo subir.",
     "7-9": "Buena base. Vamos a ver qué piezas finas le faltan.",
-    "10": "Excelente. ¿Está midiendo solo los que firman, o también los que vienen a valoración?",
+    "10": "Excelente. ¿Estás midiendo solo los que firman, o también los que vienen a valoración?",
   };
 
   const handlePick = (v: string) => {
@@ -145,10 +145,10 @@ const S02 = ({ onNext, onBack }: ScreenProps) => {
       <div className="text-center space-y-10">
         <H2>Antes de empezar, una pregunta honesta:</H2>
         <Body className="max-w-3xl mx-auto">
-          De cada 10 pacientes que usted valora para manejo de obesidad...
+          De cada 10 pacientes que valoras para manejo de obesidad...
           <br />
           <span className="font-semibold text-indigo-950">
-            ¿Cuántos terminan tratándose con usted o en su clínica?
+            ¿Cuántos terminan tratándose contigo o en tu clínica?
           </span>
         </Body>
         <div className="grid grid-cols-4 gap-4 max-w-3xl mx-auto">
@@ -191,8 +191,8 @@ const S03 = ({ onNext, onBack }: ScreenProps) => {
     <ScreenShell>
       <Eyebrow>Reality check</Eyebrow>
       <H1>Los pacientes no se van por el precio.</H1>
-      <p className="text-3xl md:text-4xl font-bold text-[#5B3FD1] tracking-tight mt-6 leading-tight">
-        Se van porque no entendieron el valor de lo que usted les propuso.
+      <p className="text-3xl md:text-4xl font-bold text-[hsl(var(--secondary))] tracking-tight mt-6 leading-tight">
+        Se van porque no entendieron el valor de lo que les propusiste.
       </p>
       <div className="mt-10">
         <ValuePerceptionSlider onComplete={() => setDone(true)} />
@@ -216,7 +216,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
   return (
     <ScreenShell withNovo>
       <H1>Así funciona Welli</H1>
-      <Body className="mt-6">3 cosas que su clínica necesita saber desde hoy.</Body>
+      <Body className="mt-6">3 cosas que tu clínica necesita saber desde hoy.</Body>
 
       {/* Bloque A */}
       <div className="mt-12">
@@ -250,7 +250,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
             <div>
               <p className="text-xl text-indigo-950 leading-relaxed">
                 Pre-aprobación instantánea por WhatsApp, sin afectar historial
-                crediticio. Envíe el link al paciente, y en 30 segundos sabe si
+                crediticio. Envía el link al paciente y en 30 segundos sabes si
                 califica.
               </p>
               <p className="mt-4 text-lg font-semibold text-indigo-950 underline underline-offset-4">
@@ -263,7 +263,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
 
       {/* Bloque C */}
       <div className="mt-14">
-        <Eyebrow>Bloque C · Su comisión preferencial</Eyebrow>
+        <Eyebrow>Bloque C · Tu comisión preferencial</Eyebrow>
         <HighlightBox className="mt-4">
           <div className="grid grid-cols-2 gap-8 text-center">
             <div>
@@ -274,20 +274,20 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
             </div>
             <div>
               <p className="text-sm uppercase tracking-wider text-indigo-950">
-                Su comisión preferencial
+                Tu comisión preferencial
               </p>
               <p className="text-6xl font-bold text-indigo-950 mt-2">4%</p>
             </div>
           </div>
           <p className="text-lg text-indigo-950 mt-8 leading-relaxed">
-            Por convenio con Novo Nordisk, su comisión Welli es preferencial. Se
+            Por convenio con Novo Nordisk, tu comisión Welli es preferencial. Se
             aplica automáticamente en cada crédito bajo el código Vive Ligero.
           </p>
         </HighlightBox>
       </div>
 
       <div className="mt-14">
-        <H2>Practique cómo presentarlo</H2>
+        <H2>Practica cómo presentarlo</H2>
         <div className="mt-6">
           <WelliPitchBuilder onComplete={() => setDone(true)} />
         </div>
@@ -459,8 +459,8 @@ const S11 = ({ onBack }: ScreenProps) => {
       <Body className="mt-6">No operativo. De observación.</Body>
       <HighlightBox className="mt-8">
         <p className="text-xl text-indigo-950 leading-relaxed">
-          Cuando un paciente salga de su consulta SIN agendar tratamiento (o sin
-          comprar el paquete/servicio), tome 30 segundos y anote:
+          Cuando un paciente salga de tu consulta SIN agendar tratamiento (o sin
+          comprar el paquete/servicio), toma 30 segundos y anota:
         </p>
         <div className="mt-6 space-y-3">
           <p className="text-2xl font-semibold text-indigo-950">
@@ -511,7 +511,7 @@ const S11 = ({ onBack }: ScreenProps) => {
 
       <Anchor>
         <span className="block mt-10 text-center">
-          Gracias por su tiempo, Doctor. Nos vemos en la Sesión 2.
+          Gracias por tu tiempo, Doctor. Nos vemos en la Sesión 2.
         </span>
       </Anchor>
 
