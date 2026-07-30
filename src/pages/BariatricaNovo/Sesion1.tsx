@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import WelliLogoFull from "@/components/WelliLogoFull";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import ScreenShell from "@/components/BariatricaNovo/ScreenShell";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import NavigationButtons from "@/components/BariatricaNovo/NavigationButtons";
 import ProgressBar from "@/components/BariatricaNovo/ProgressBar";
 import {
@@ -220,8 +221,12 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
       {/* Bloque A */}
       <div className="mt-12">
         <Eyebrow>Bloque A · ¿Qué es Welli? (90 segundos)</Eyebrow>
-        <div className="mt-4 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 aspect-video flex items-center justify-center">
-          <p className="text-lg text-slate-500">Video pendiente de producción</p>
+        <div className="mt-4">
+          <YouTubeEmbed
+            videoId="McEsh-llDss"
+            title="¿Qué es Welli?"
+            borderColor="welli-yellow"
+          />
         </div>
         <div className="mt-6">
           <Bullet
