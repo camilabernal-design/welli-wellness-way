@@ -47,6 +47,7 @@ import DisbursementWarningModule from "@/components/modules/DisbursementWarningM
 import SocialAlliesModule from "@/components/modules/SocialAlliesModule";
 import TestimonialsModule from "@/components/modules/TestimonialsModule";
 import WelliPointsModule from "@/components/modules/WelliPointsModule";
+import WelliCuponesModule from "@/components/modules/WelliCuponesModule";
 import ModuleReferrals from "@/components/ModuleReferrals";
 import ModulePOPGallery from "@/components/ModulePOPGallery";
 import DesistimientoModule from "@/components/modules/DesistimientoModule";
@@ -84,7 +85,7 @@ type ExpressPhase = 'preparation' | 'ready' | 'presentation';
 
 const ROUTE_MODULES = {
   hunter: 10,
-  farmer: 22,
+  farmer: 23,
   aliado: 5,
   'maestria-equipo': 11,
   'express-aliados': 9,
@@ -180,11 +181,12 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 15: return <SocialAlliesModule onComplete={handleModuleComplete} />;
       case 16: return <TestimonialsModule onComplete={handleModuleComplete} />;
       case 17: return <WelliPointsModule onComplete={handleModuleComplete} />;
-      case 18: return <ModuleReferrals onComplete={handleModuleComplete} />;
-      case 19: return <ModulePOPGallery onComplete={handleModuleComplete} />;
-      case 20: return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
-      case 21: return <FinalQuizModule onComplete={handleModuleComplete} />;
-      case 22: return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
+      case 18: return <WelliCuponesModule onComplete={handleModuleComplete} />;
+      case 19: return <ModuleReferrals onComplete={handleModuleComplete} />;
+      case 20: return <ModulePOPGallery onComplete={handleModuleComplete} />;
+      case 21: return <ModuleTeamRegistration onComplete={handleModuleComplete} />;
+      case 22: return <FinalQuizModule onComplete={handleModuleComplete} />;
+      case 23: return <FinalChecklist onComplete={() => setCurrentModule(1)} />;
       default: return <Phase1Welcome onComplete={handleModuleComplete} />;
     }
   };

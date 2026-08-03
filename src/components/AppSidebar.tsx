@@ -20,6 +20,7 @@ import {
   Zap,
   TrendingUp,
   Sparkles,
+  Ticket,
   Home,
   Lightbulb,
   Users,
@@ -86,7 +87,7 @@ const farmerPhase1Modules = [
   { id: 11, title: "Fin Fase 1", icon: GraduationCap },
 ];
 
-// Farmer/CS modules - Phase 2 (11)
+// Farmer/CS modules - Phase 2 (12)
 const farmerPhase2Modules = [
   { id: 12, title: "Bienvenida Maestría", icon: Sparkles },
   { id: 13, title: "Desembolso Completo", icon: DollarSign },
@@ -94,11 +95,12 @@ const farmerPhase2Modules = [
   { id: 15, title: "Aliados en Redes", icon: Instagram },
   { id: 16, title: "Testimonios", icon: Video },
   { id: 17, title: "Welli Points", icon: Sparkles },
-  { id: 18, title: "Referidos", icon: Gift },
-  { id: 19, title: "Material POP", icon: Image },
-  { id: 20, title: "Registro Clínica", icon: Building2 },
-  { id: 21, title: "Quiz Final", icon: CheckSquare },
-  { id: 22, title: "Checklist del Éxito", icon: CheckSquare },
+  { id: 18, title: "Welli Cupones", icon: Ticket },
+  { id: 19, title: "Referidos", icon: Gift },
+  { id: 20, title: "Material POP", icon: Image },
+  { id: 21, title: "Registro Clínica", icon: Building2 },
+  { id: 22, title: "Quiz Final", icon: CheckSquare },
+  { id: 23, title: "Checklist del Éxito", icon: CheckSquare },
 ];
 
 // Aliado modules (5)
