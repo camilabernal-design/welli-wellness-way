@@ -34,7 +34,7 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     subtitle: 'Maestría en Ventas',
     icon: '🌱',
     color: 'secondary',
-    totalModules: 22,
+    totalModules: 23,
     category: 'aliados',
   },
   aliado: {
