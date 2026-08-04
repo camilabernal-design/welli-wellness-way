@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Check } from "lucide-react";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import welliCharacterStanding from "@/assets/welli-character-standing.png";
+import { ArrowRight, Check, Building2, Trophy, Ticket, ShieldCheck, Headset } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
+  onGoToFarmerModule?: (moduleId: number) => void;
 }
+
 
 const comparisonData = [
   { feature: 'Tasa de Interés', welli: ['20% E.A. créditos normales', 'Hasta 40% E.A. en créditos de bajos montos*'], banks: '25% E.A.', fintech: '40-45%+ E.A.', welliWins: true },
@@ -18,7 +22,7 @@ const comparisonData = [
   { feature: 'Riesgo para Clínica', welli: '0%', banks: 'Variable', fintech: 'Variable', welliWins: true },
 ];
 
-const HunterModule4Comparison = ({ onComplete }: ModuleProps) => {
+const HunterModule4Comparison = ({ onComplete, onGoToFarmerModule }: ModuleProps) => {
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-8">
       {/* Header */}
