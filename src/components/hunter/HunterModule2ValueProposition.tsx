@@ -1,16 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
-import welliCharacterStanding from "@/assets/welli-character-standing.png";
-import { ArrowRight, Building2, User, TrendingUp, Shield, Zap, Wallet, Clock, CheckCircle2, Banknote, Trophy, Ticket, ShieldCheck, Headset } from "lucide-react";
+import { ArrowRight, Building2, User, TrendingUp, Shield, Zap, Wallet, Clock, CheckCircle2, Banknote } from "lucide-react";
 
 interface ModuleProps {
   onComplete: () => void;
-  onGoToFarmerModule?: (moduleId: number) => void;
 }
 
-const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: ModuleProps) => {
+
+const HunterModule2ValueProposition = ({ onComplete }: ModuleProps) => {
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-8">
       {/* Header */}
@@ -188,139 +186,6 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
           </div>
         </div>
       </motion.div>
-
-      {/* Por qué WELLI es diferente */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.45 }}
-        className="space-y-6"
-      >
-        <div className="text-center space-y-2">
-          <h2 className="text-3xl md:text-4xl font-bold text-indigo-950">
-            Por qué WELLI es diferente
-          </h2>
-          <p className="text-indigo-800">
-            No solo financiamos: te damos herramientas y acompañamiento para vender más.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Welli Points */}
-          <Card className="border-2 border-welli-yellow/60">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                  <Trophy className="w-5 h-5 text-indigo-950" />
-                </div>
-                <h3 className="text-xl font-bold text-indigo-950">Welli Points</h3>
-              </div>
-              <p className="text-sm text-indigo-800">
-                Programa de lealtad que premia a tu equipo: cada aplicación y cada desembolso suma
-                puntos que se convierten en bonos y beneficios para la clínica.
-              </p>
-              <YouTubeEmbed
-                videoId="Wz5MPJ6QG_M"
-                title="Welli Points: cómo funciona en 60 segundos"
-                borderColor="welli-yellow"
-              />
-              <Button
-                onClick={() => onGoToFarmerModule?.(17)}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
-              >
-                Más información
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Welli Cupones */}
-          <Card className="border-2 border-welli-yellow/60">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                  <Ticket className="w-5 h-5 text-indigo-950" />
-                </div>
-                <h3 className="text-xl font-bold text-indigo-950">Welli Cupones</h3>
-              </div>
-              <p className="text-sm text-indigo-800">
-                Desde tu portal creas cupones con tasa preferencial, incluso 0% de interés, para
-                armar campañas y hacer que la cuota le quede viable a tu paciente.
-              </p>
-              <YouTubeEmbed
-                videoId="deJKMlfQX1U"
-                title="Welli Cupones: cómo crear un cupón"
-                borderColor="welli-yellow"
-              />
-              <Button
-                onClick={() => onGoToFarmerModule?.(18)}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
-              >
-                Más información
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Welli Check */}
-          <Card className="border-2 border-welli-yellow/60">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5 text-indigo-950" />
-                </div>
-                <h3 className="text-xl font-bold text-indigo-950">Welli Check</h3>
-              </div>
-              <p className="text-sm text-indigo-800">
-                Valida en segundos y sin afectar el historial si tu paciente tiene cupo aprobado,
-                para que sepas de entrada con cuánto cuenta y cierres el tratamiento más rápido.
-              </p>
-              <YouTubeEmbed
-                videoId="EN7ao47-Is8"
-                title="Welli Check: cómo funciona"
-                borderColor="welli-yellow"
-              />
-              <Button
-                onClick={() => onGoToFarmerModule?.(8)}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
-              >
-                Más información
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Clínica de ventas */}
-          <Card className="border-2 border-secondary/50 bg-indigo-950 overflow-hidden">
-            <CardContent className="p-6 space-y-4 h-full flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                    <Headset className="w-5 h-5 text-indigo-950" />
-                  </div>
-                  <div className="w-11 h-11 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-welli-yellow" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-welli-yellow">Clínica de ventas con Customer Success</h3>
-                <p className="text-sm text-white/85">
-                  Recibirás una clínica de ventas con nuestro equipo de Customer Success, donde te
-                  acompañarán hasta que hagas tu primer desembolso y profundizarán cómo WELLI puede
-                  hacer crecer tu clínica e iniciar más tratamientos.
-                </p>
-              </div>
-              <div className="flex justify-center">
-                <img
-                  src={welliCharacterStanding}
-                  alt="Muñeco de WELLI"
-                  className="h-32 w-auto object-contain drop-shadow-lg"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </motion.section>
-
 
       {/* CTA */}
       <motion.div
