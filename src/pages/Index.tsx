@@ -84,7 +84,7 @@ import ExpressAliadosModule7NextSteps from "@/components/express-aliados/Express
 type ExpressPhase = 'preparation' | 'ready' | 'presentation';
 
 const ROUTE_MODULES = {
-  hunter: 10,
+  hunter: 9,
   farmer: 23,
   aliado: 5,
   'maestria-equipo': 11,
@@ -124,6 +124,12 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const goToFarmerModule = (moduleId: number) => {
+    setCurrentRoute('farmer');
+    setCurrentModule(moduleId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const goToCalculator = () => {
     if (currentRoute === 'farmer') {
       setCurrentModule(3);
@@ -140,13 +146,12 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 1: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
       case 2: return <HunterModule3AllianceVideos onComplete={handleModuleComplete} selectedVideo={hunterSelectedVideo} onVideoChange={setHunterSelectedVideo} />;
       case 3: return <HunterModule4Comparison onComplete={handleModuleComplete} />;
-      case 4: return <WelliPointsModule onComplete={handleModuleComplete} />;
-      case 5: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
-      case 6: return <HunterModule7Validation onComplete={handleModuleComplete} />;
-      case 7: return <HunterModule8Press onComplete={handleModuleComplete} />;
-      case 8: return <HunterModule2ValueProposition onComplete={handleModuleComplete} />;
-      case 9: return <HunterModule9Quiz onComplete={handleModuleComplete} />;
-      case 10: return <HunterModule10NextSteps onComplete={handleGoToHub} />;
+      case 4: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
+      case 5: return <HunterModule7Validation onComplete={handleModuleComplete} />;
+      case 6: return <HunterModule8Press onComplete={handleModuleComplete} />;
+      case 7: return <HunterModule2ValueProposition onComplete={handleModuleComplete} onGoToFarmerModule={goToFarmerModule} />;
+      case 8: return <HunterModule9Quiz onComplete={handleModuleComplete} />;
+      case 9: return <HunterModule10NextSteps onComplete={handleGoToHub} />;
       default: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
     }
   };
