@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import welliCharacterStanding from "@/assets/welli-character-standing.png";
 import { ArrowRight, Building2, User, TrendingUp, Shield, Zap, Wallet, Clock, CheckCircle2, Banknote, Trophy, Ticket, ShieldCheck, Headset } from "lucide-react";
 
 interface ModuleProps {
