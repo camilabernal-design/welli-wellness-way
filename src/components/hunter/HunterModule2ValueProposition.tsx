@@ -291,22 +291,31 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
           </Card>
 
           {/* Clínica de ventas */}
-          <Card className="border-2 border-secondary/50 bg-indigo-950">
-            <CardContent className="p-6 space-y-4 h-full flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                  <Headset className="w-5 h-5 text-indigo-950" />
+          <Card className="border-2 border-secondary/50 bg-indigo-950 overflow-hidden">
+            <CardContent className="p-6 space-y-4 h-full flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
+                    <Headset className="w-5 h-5 text-indigo-950" />
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-welli-yellow" />
+                  </div>
                 </div>
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-welli-yellow" />
-                </div>
+                <h3 className="text-xl font-bold text-welli-yellow">Clínica de ventas con Customer Success</h3>
+                <p className="text-sm text-white/85">
+                  Recibirás una clínica de ventas con nuestro equipo de Customer Success, donde te
+                  acompañarán hasta que hagas tu primer desembolso y profundizarán cómo WELLI puede
+                  hacer crecer tu clínica e iniciar más tratamientos.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-welli-yellow">Clínica de ventas con Customer Success</h3>
-              <p className="text-sm text-white/85">
-                Recibirás una clínica de ventas con nuestro equipo de Customer Success, donde te
-                acompañarán hasta que hagas tu primer desembolso y profundizarán cómo WELLI puede
-                hacer crecer tu clínica e iniciar más tratamientos.
-              </p>
+              <div className="flex justify-center">
+                <img
+                  src={welliCharacterStanding}
+                  alt="Muñeco de WELLI"
+                  className="h-32 w-auto object-contain drop-shadow-lg"
+                />
+              </div>
             </CardContent>
           </Card>
         </div>
