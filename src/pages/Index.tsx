@@ -145,11 +145,11 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     switch (currentModule) {
       case 1: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
       case 2: return <HunterModule3AllianceVideos onComplete={handleModuleComplete} selectedVideo={hunterSelectedVideo} onVideoChange={setHunterSelectedVideo} />;
-      case 3: return <HunterModule4Comparison onComplete={handleModuleComplete} />;
+      case 3: return <HunterModule4Comparison onComplete={handleModuleComplete} onGoToFarmerModule={goToFarmerModule} />;
       case 4: return <HunterModule6Ecosystem onComplete={handleModuleComplete} />;
       case 5: return <HunterModule7Validation onComplete={handleModuleComplete} />;
       case 6: return <HunterModule8Press onComplete={handleModuleComplete} />;
-      case 7: return <HunterModule2ValueProposition onComplete={handleModuleComplete} onGoToFarmerModule={goToFarmerModule} />;
+      case 7: return <HunterModule2ValueProposition onComplete={handleModuleComplete} />;
       case 8: return <HunterModule9Quiz onComplete={handleModuleComplete} />;
       case 9: return <HunterModule10NextSteps onComplete={handleGoToHub} />;
       default: return <HunterModule1WhatIsWelli onComplete={handleModuleComplete} />;
