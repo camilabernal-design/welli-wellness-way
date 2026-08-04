@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import welliCharacterStanding from "@/assets/welli-character-standing.png";
 import { ArrowRight, Building2, User, TrendingUp, Shield, Zap, Wallet, Clock, CheckCircle2, Banknote, Trophy, Ticket, ShieldCheck, Headset } from "lucide-react";
 
 interface ModuleProps {
@@ -69,8 +70,8 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-welli-orange/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-6 h-6 text-welli-orange" />
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-bold text-indigo-950">Liquidez inmediata</h4>
@@ -133,8 +134,8 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-welli-orange/20 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-welli-orange" />
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-bold text-indigo-950">Tasas competitivas</h4>
@@ -225,7 +226,7 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               />
               <Button
                 onClick={() => onGoToFarmerModule?.(17)}
-                className="w-full bg-welli-orange hover:bg-welli-orange/90 text-white font-bold gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
               >
                 Más información
                 <ArrowRight className="w-4 h-4" />
@@ -253,7 +254,7 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               />
               <Button
                 onClick={() => onGoToFarmerModule?.(18)}
-                className="w-full bg-welli-orange hover:bg-welli-orange/90 text-white font-bold gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
               >
                 Más información
                 <ArrowRight className="w-4 h-4" />
@@ -281,7 +282,7 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               />
               <Button
                 onClick={() => onGoToFarmerModule?.(8)}
-                className="w-full bg-welli-orange hover:bg-welli-orange/90 text-white font-bold gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
               >
                 Más información
                 <ArrowRight className="w-4 h-4" />
@@ -290,22 +291,31 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
           </Card>
 
           {/* Clínica de ventas */}
-          <Card className="border-2 border-secondary/50 bg-indigo-950">
-            <CardContent className="p-6 space-y-4 h-full flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
-                  <Headset className="w-5 h-5 text-indigo-950" />
+          <Card className="border-2 border-secondary/50 bg-indigo-950 overflow-hidden">
+            <CardContent className="p-6 space-y-4 h-full flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-welli-yellow flex items-center justify-center">
+                    <Headset className="w-5 h-5 text-indigo-950" />
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-welli-yellow" />
+                  </div>
                 </div>
-                <div className="w-11 h-11 rounded-xl bg-welli-yellow/20 flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-welli-yellow" />
-                </div>
+                <h3 className="text-xl font-bold text-welli-yellow">Clínica de ventas con Customer Success</h3>
+                <p className="text-sm text-white/85">
+                  Recibirás una clínica de ventas con nuestro equipo de Customer Success, donde te
+                  acompañarán hasta que hagas tu primer desembolso y profundizarán cómo WELLI puede
+                  hacer crecer tu clínica e iniciar más tratamientos.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-welli-yellow">Clínica de ventas con Customer Success</h3>
-              <p className="text-sm text-white/85">
-                Recibirás una clínica de ventas con nuestro equipo de Customer Success, donde te
-                acompañarán hasta que hagas tu primer desembolso y profundizarán cómo WELLI puede
-                hacer crecer tu clínica e iniciar más tratamientos.
-              </p>
+              <div className="flex justify-center">
+                <img
+                  src={welliCharacterStanding}
+                  alt="Muñeco de WELLI"
+                  className="h-32 w-auto object-contain drop-shadow-lg"
+                />
+              </div>
             </CardContent>
           </Card>
         </div>
