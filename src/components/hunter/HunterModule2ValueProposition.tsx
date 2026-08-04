@@ -282,7 +282,7 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               />
               <Button
                 onClick={() => onGoToFarmerModule?.(8)}
-                className="w-full bg-welli-orange hover:bg-welli-orange/90 text-white font-bold gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold gap-2 mt-2"
               >
                 Más información
                 <ArrowRight className="w-4 h-4" />
