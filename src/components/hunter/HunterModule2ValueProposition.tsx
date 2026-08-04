@@ -134,8 +134,8 @@ const HunterModule2ValueProposition = ({ onComplete, onGoToFarmerModule }: Modul
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-welli-orange/20 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-welli-orange" />
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-bold text-indigo-950">Tasas competitivas</h4>
