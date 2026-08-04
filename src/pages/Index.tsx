@@ -68,6 +68,26 @@ import MaestriaEquipoModule7ClosedActivation from "@/components/maestria-equipo/
 import MaestriaEquipoModule8FollowUpSession from "@/components/maestria-equipo/MaestriaEquipoModule8FollowUpSession";
 import MaestriaEquipoModule9Certification from "@/components/maestria-equipo/MaestriaEquipoModule9Certification";
 
+// Equipos Médicos Modules (18)
+import EquiposModule1Vision from "@/components/equipos-medicos/EquiposModule1Vision";
+import EquiposModule2Problema from "@/components/equipos-medicos/EquiposModule2Problema";
+import EquiposModule3Solucion from "@/components/equipos-medicos/EquiposModule3Solucion";
+import EquiposModule4Ventajas from "@/components/equipos-medicos/EquiposModule4Ventajas";
+import EquiposModule5Alianza from "@/components/equipos-medicos/EquiposModule5Alianza";
+import EquiposModule6Respaldo from "@/components/equipos-medicos/EquiposModule6Respaldo";
+import EquiposModule7Ecosistema from "@/components/equipos-medicos/EquiposModule7Ecosistema";
+import EquiposModule8CierreFase1 from "@/components/equipos-medicos/EquiposModule8CierreFase1";
+import EquiposModule9BienvenidaComercial from "@/components/equipos-medicos/EquiposModule9BienvenidaComercial";
+import EquiposModule10Pitch from "@/components/equipos-medicos/EquiposModule10Pitch";
+import EquiposModule11Perfilamiento from "@/components/equipos-medicos/EquiposModule11Perfilamiento";
+import EquiposModule12SimuladorCuota from "@/components/equipos-medicos/EquiposModule12SimuladorCuota";
+import EquiposModule13CalculadoraROI from "@/components/equipos-medicos/EquiposModule13CalculadoraROI";
+import EquiposModule14Proceso from "@/components/equipos-medicos/EquiposModule14Proceso";
+import EquiposModule15Conversaciones from "@/components/equipos-medicos/EquiposModule15Conversaciones";
+import EquiposModule16Casos from "@/components/equipos-medicos/EquiposModule16Casos";
+import EquiposModule17Herramientas from "@/components/equipos-medicos/EquiposModule17Herramientas";
+import EquiposModule18Certificacion from "@/components/equipos-medicos/EquiposModule18Certificacion";
+
 // Express Aliados Modules (9)
 import { SessionProvider } from "@/components/express-aliados/SessionContext";
 import SessionPreparationScreen from "@/components/express-aliados/SessionPreparationScreen";
@@ -89,6 +109,7 @@ const ROUTE_MODULES = {
   aliado: 5,
   'maestria-equipo': 11,
   'express-aliados': 9,
+  'equipos-medicos': 18,
 };
 
 const Index = forwardRef<HTMLDivElement>((_, ref) => {
@@ -228,6 +249,30 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
     }
   };
 
+  const renderEquiposMedicosModule = () => {
+    switch (currentModule) {
+      case 1: return <EquiposModule1Vision onComplete={handleModuleComplete} />;
+      case 2: return <EquiposModule2Problema onComplete={handleModuleComplete} />;
+      case 3: return <EquiposModule3Solucion onComplete={handleModuleComplete} />;
+      case 4: return <EquiposModule4Ventajas onComplete={handleModuleComplete} />;
+      case 5: return <EquiposModule5Alianza onComplete={handleModuleComplete} />;
+      case 6: return <EquiposModule6Respaldo onComplete={handleModuleComplete} />;
+      case 7: return <EquiposModule7Ecosistema onComplete={handleModuleComplete} />;
+      case 8: return <EquiposModule8CierreFase1 onComplete={handleModuleComplete} />;
+      case 9: return <EquiposModule9BienvenidaComercial onComplete={handleModuleComplete} />;
+      case 10: return <EquiposModule10Pitch onComplete={handleModuleComplete} />;
+      case 11: return <EquiposModule11Perfilamiento onComplete={handleModuleComplete} />;
+      case 12: return <EquiposModule12SimuladorCuota onComplete={handleModuleComplete} />;
+      case 13: return <EquiposModule13CalculadoraROI onComplete={handleModuleComplete} />;
+      case 14: return <EquiposModule14Proceso onComplete={handleModuleComplete} />;
+      case 15: return <EquiposModule15Conversaciones onComplete={handleModuleComplete} />;
+      case 16: return <EquiposModule16Casos onComplete={handleModuleComplete} />;
+      case 17: return <EquiposModule17Herramientas onComplete={handleModuleComplete} />;
+      case 18: return <EquiposModule18Certificacion onComplete={handleGoToHub} />;
+      default: return <EquiposModule1Vision onComplete={handleModuleComplete} />;
+    }
+  };
+
   const renderModule = () => {
     switch (currentRoute) {
       case 'hunter': return renderHunterModule();
@@ -236,6 +281,7 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       
       case 'maestria-equipo': return renderMaestriaEquipoModule();
       case 'express-aliados': return renderExpressAliadosModule();
+      case 'equipos-medicos': return renderEquiposMedicosModule();
       default: return null;
     }
   };
@@ -257,6 +303,13 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
         return { title: 'Maestría en Capacitación', subtitle: 'Metodología comercial', color: 'secondary', total: 11 };
       case 'express-aliados':
         return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow', total: 9 };
+      case 'equipos-medicos':
+        return {
+          title: currentModule <= 8 ? 'Fase 1: Nivel directivo' : 'Fase 2: Fuerza comercial',
+          subtitle: 'Equipos Médicos',
+          color: currentModule <= 8 ? 'secondary' : 'welli-yellow',
+          total: 18,
+        };
       default:
         return { title: '', subtitle: '', color: 'primary', total: 1 };
     }

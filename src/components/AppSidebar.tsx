@@ -32,7 +32,9 @@ import {
   Stethoscope,
   Heart,
   Download,
-  DollarSign
+  DollarSign,
+  AlertTriangle,
+  Handshake
 } from "lucide-react";
 import {
   Sidebar,
@@ -139,6 +141,31 @@ const expressAliadosModules = [
   { id: 9, title: "Próximos pasos", icon: ChevronRight },
 ];
 
+// Equipos Médicos modules (18)
+const equiposMedicosFase1 = [
+  { id: 1, title: "Bienvenida y visión", icon: Lightbulb },
+  { id: 2, title: "El problema del mercado", icon: AlertTriangle },
+  { id: 3, title: "Cómo funciona el crédito", icon: Zap },
+  { id: 4, title: "Ventajas para tu compañía", icon: TrendingUp },
+  { id: 5, title: "Modelo de la alianza", icon: Handshake },
+  { id: 6, title: "Quién está detrás", icon: ShieldQuestion },
+  { id: 7, title: "Ecosistema digital", icon: Monitor },
+  { id: 8, title: "Ruta de vinculación", icon: CheckSquare },
+];
+
+const equiposMedicosFase2 = [
+  { id: 9, title: "Vender con WELLI", icon: Sparkles },
+  { id: 10, title: "WELLI en 2 minutos", icon: MessageSquare },
+  { id: 11, title: "Semáforo de perfilamiento", icon: Target },
+  { id: 12, title: "Simulador de cuota", icon: Calculator },
+  { id: 13, title: "Calculadora de retorno", icon: BarChart3 },
+  { id: 14, title: "Proceso paso a paso", icon: FileText },
+  { id: 15, title: "Conversaciones difíciles", icon: MessageSquare },
+  { id: 16, title: "Casos de éxito", icon: Video },
+  { id: 17, title: "Herramientas de campo", icon: Download },
+  { id: 18, title: "Quiz y certificación", icon: GraduationCap },
+];
+
 const getRouteConfig = (route: TrainingRoute) => {
   switch (route) {
     case 'hunter':
@@ -151,6 +178,8 @@ const getRouteConfig = (route: TrainingRoute) => {
       return { title: 'Maestría', subtitle: 'Metodología comercial', color: 'secondary' };
     case 'express-aliados':
       return { title: 'Capacitación Express', subtitle: 'Onboarding aliado', color: 'welli-yellow' };
+    case 'equipos-medicos':
+      return { title: 'Equipos Médicos', subtitle: 'Distribuidores de tecnología', color: 'secondary' };
     default:
       return { title: 'Training Hub', subtitle: '', color: 'primary' };
   }
@@ -344,6 +373,12 @@ const AppSidebar = ({ currentModule, onModuleChange, currentRoute, onGoToHub }: 
         {currentRoute === 'aliado' && renderAliadoModules()}
         {currentRoute === 'maestria-equipo' && renderGenericRoute(maestriaEquipoModules, 'Maestría · Equipo Welli', 'secondary', '🧠')}
         {currentRoute === 'express-aliados' && renderGenericRoute(expressAliadosModules, 'Capacitación Express', 'welli-yellow', '⚡')}
+        {currentRoute === 'equipos-medicos' && (
+          <>
+            {renderGenericRoute(equiposMedicosFase1, 'Fase 1 · Nivel directivo', 'secondary', '🩻')}
+            {renderGenericRoute(equiposMedicosFase2, 'Fase 2 · Fuerza comercial', 'welli-yellow', '⚙️')}
+          </>
+        )}
       </SidebarContent>
 
 

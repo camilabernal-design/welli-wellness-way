@@ -4,7 +4,8 @@ export type TrainingRoute =
   | 'farmer'
   | 'aliado'
   | 'maestria-equipo'
-  | 'express-aliados';
+  | 'express-aliados'
+  | 'equipos-medicos';
 
 export type RouteCategory = 'equipo' | 'aliados';
 
@@ -62,6 +63,15 @@ export const ROUTE_CONFIGS: Record<Exclude<TrainingRoute, 'hub'>, RouteConfig> =
     icon: '⚡',
     color: 'welli-yellow',
     totalModules: 7,
+    category: 'aliados',
+  },
+  'equipos-medicos': {
+    id: 'equipos-medicos',
+    title: 'Equipos Médicos',
+    subtitle: 'Distribuidores de tecnología médica',
+    icon: '🩻',
+    color: 'secondary',
+    totalModules: 18,
     category: 'aliados',
   },
 };
