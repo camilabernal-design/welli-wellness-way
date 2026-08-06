@@ -123,7 +123,67 @@ const TestimonialsModule = ({ onComplete }: ModuleProps) => {
               />
             </motion.div>
           ))}
-        </div>
+        {/* Patient Testimonials */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55 }}
+          className="mb-10"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-foreground mb-2">
+              Testimonios de pacientes
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Escucha a quienes ya viven la experiencia Welli.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                id: "p1",
+                videoId: "d0WHG9uVopo",
+                title: "Experiencia de paciente",
+                description: "Una historia real de transformación con Welli",
+              },
+              {
+                id: "p2",
+                videoId: "-5wJB2kcDGY",
+                title: "Experiencia de paciente",
+                description: "Lo que un paciente destaca de su tratamiento",
+              },
+            ].map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + index * 0.15 }}
+                className="card-elevated p-6"
+              >
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-full bg-welli-yellow/20 flex items-center justify-center">
+                      <Play className="w-5 h-5 text-welli-yellow" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-foreground">{testimonial.title}</h4>
+                      <p className="text-sm text-muted-foreground">{testimonial.description}</p>
+                    </div>
+                  </div>
+                </div>
+                <YouTubeEmbed
+                  videoId={testimonial.videoId}
+                  title={testimonial.title}
+                  isShort={true}
+                  borderColor="welli-yellow"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+
 
         {/* Trust Banner */}
         <motion.div
