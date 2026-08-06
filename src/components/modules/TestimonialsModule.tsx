@@ -8,12 +8,6 @@ interface ModuleProps {
 
 const testimonials = [
   {
-    id: 0,
-    videoId: "z6OIR8S3MM4",
-    title: "Testimonio de Cirugía Bariátrica",
-    description: "Resultados reales de un paciente que transformó su vida",
-  },
-  {
     id: 1,
     videoId: "TTkV4EBML5E",
     title: "Testimonio de Especialista",
@@ -55,7 +49,7 @@ const TestimonialsModule = ({ onComplete }: ModuleProps) => {
             <span className="text-sm font-bold">Prueba Social</span>
           </div>
           <h2 className="section-title">Lo que dicen los especialistas</h2>
-          <p className="section-subtitle max-w-2xl mx-auto mt-4">
+        <p className="section-subtitle max-w-2xl mx-auto mt-4">
             Escucha directamente de doctores que ya trabajan con Welli.
             <span className="font-medium text-foreground"> Experiencias reales, resultados reales.</span>
           </p>
@@ -74,6 +68,30 @@ const TestimonialsModule = ({ onComplete }: ModuleProps) => {
               className="w-8 h-8 text-welli-yellow fill-welli-yellow"
             />
           ))}
+        </motion.div>
+
+        {/* Featured horizontal testimonial */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="card-elevated p-6 mb-10"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-welli-yellow/20 flex items-center justify-center">
+              <Play className="w-5 h-5 text-welli-yellow" />
+            </div>
+            <div>
+              <h3 className="font-bold text-foreground">Testimonio de Cirugía Bariátrica</h3>
+              <p className="text-sm text-muted-foreground">Una historia real de transformación con Welli</p>
+            </div>
+          </div>
+          <YouTubeEmbed
+            videoId="z6OIR8S3MM4"
+            title="Testimonio de Cirugía Bariátrica"
+            isShort={false}
+            borderColor="welli-yellow"
+          />
         </motion.div>
 
         {/* Testimonials Grid */}
