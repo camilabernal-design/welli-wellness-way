@@ -123,6 +123,8 @@ const TestimonialsModule = ({ onComplete }: ModuleProps) => {
               />
             </motion.div>
           ))}
+        </div>
+
         {/* Patient Testimonials */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
