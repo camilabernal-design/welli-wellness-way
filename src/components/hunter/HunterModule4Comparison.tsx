@@ -279,7 +279,30 @@ const HunterModule4Comparison = ({ onComplete, onGoToFarmerModule }: ModuleProps
         </div>
       </motion.section>
 
+      {/* Testimonio del paciente */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="bg-welli-yellow/10 border-2 border-welli-yellow rounded-xl p-6 space-y-4"
+      >
+        <div className="text-center space-y-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-indigo-950">
+            Lo que dice un paciente real
+          </h3>
+          <p className="text-indigo-800">
+            Así le cambió la vida a alguien que decidió financiar su tratamiento con Welli.
+          </p>
+        </div>
+        <YouTubeEmbed
+          videoId="z6OIR8S3MM4"
+          title="Testimonio de paciente Welli"
+          borderColor="welli-yellow"
+        />
+      </motion.div>
+
       {/* CTA */}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
