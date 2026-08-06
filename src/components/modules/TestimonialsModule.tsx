@@ -8,6 +8,12 @@ interface ModuleProps {
 
 const testimonials = [
   {
+    id: 0,
+    videoId: "z6OIR8S3MM4",
+    title: "Testimonio de Cirugía Bariátrica",
+    description: "Resultados reales de un paciente que transformó su vida",
+  },
+  {
     id: 1,
     videoId: "TTkV4EBML5E",
     title: "Testimonio de Especialista",
