@@ -44,6 +44,9 @@ const HunterModule1WhatIsWelli = ({ onComplete }: ModuleProps) => {
       </motion.div>
 
       {/* Sin Welli vs Con Welli */}
+      <h2 className="text-2xl font-bold text-indigo-950 text-center">
+        El antes y el después con Welli
+      </h2>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

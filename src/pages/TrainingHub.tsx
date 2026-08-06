@@ -257,7 +257,7 @@ const TrainingHub = forwardRef<HTMLDivElement, TrainingHubProps>(
           <div className="max-w-6xl mx-auto flex items-center justify-center gap-4">
             <WelliLogoFull size="lg" />
             <div className="hidden md:block">
-              <h1 className="font-bold text-xl text-indigo-950">Training Hub</h1>
+              <span className="block font-bold text-xl text-indigo-950">Training Hub</span>
               <p className="text-xs text-welli-yellow font-medium">Centro de Entrenamiento</p>
             </div>
           </div>

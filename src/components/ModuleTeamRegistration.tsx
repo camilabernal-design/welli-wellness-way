@@ -233,6 +233,9 @@ const ModuleTeamRegistration = ({ onComplete }: ModuleProps) => {
 
                     {!isSubmitted && (
                       <button
+                        type="button"
+                        aria-label="Eliminar integrante"
+                        title="Eliminar integrante"
                         onClick={() =>
                           removeMember(role.key, member.id)
                         }
