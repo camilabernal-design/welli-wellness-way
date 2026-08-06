@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Seo from "./components/Seo";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BariatricaLanding from "./pages/BariatricaNovo/Landing";
