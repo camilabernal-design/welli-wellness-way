@@ -35,6 +35,9 @@ const AliadoModule1WelliCheck = ({ onComplete }: ModuleProps) => {
       </motion.div>
 
       {/* Steps */}
+      <h2 className="text-2xl font-bold text-foreground text-center">
+        Los 4 pasos del Welli Check
+      </h2>
       <div className="grid md:grid-cols-2 gap-6">
         {steps.map((item, index) => (
           <motion.div
