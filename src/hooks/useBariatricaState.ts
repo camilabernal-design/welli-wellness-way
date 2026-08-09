@@ -12,6 +12,7 @@ export interface BariatricaState {
   compromisoFecha?: string;
   seguimientoDia?: string;
   packsClinica?: string[];
+  packsOfrecidos?: string[];
   rolePlayPerfil?: string;
 }
 

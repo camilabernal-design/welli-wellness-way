@@ -82,13 +82,13 @@ const TestimonialsModule = ({ onComplete }: ModuleProps) => {
               <Play className="w-5 h-5 text-welli-yellow" />
             </div>
             <div>
-              <h3 className="font-bold text-foreground">Testimonio de Cirugía Bariátrica</h3>
+              <h3 className="font-bold text-foreground">Testimonio de Programa para pérdida de peso</h3>
               <p className="text-sm text-muted-foreground">Una historia real de transformación con Welli</p>
             </div>
           </div>
           <YouTubeEmbed
             videoId="z6OIR8S3MM4"
-            title="Testimonio de Cirugía Bariátrica"
+            title="Testimonio de Programa para pérdida de peso"
             isShort={false}
             borderColor="welli-yellow"
           />

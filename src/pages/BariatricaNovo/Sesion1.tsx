@@ -328,7 +328,7 @@ const S07 = ({ onNext, onBack }: ScreenProps) => (
     <Eyebrow>Un caso real</Eyebrow>
     <H1>Le voy a contar una clínica aliada</H1>
     <Body className="mt-6">
-      4 sedes en Colombia · cirugía bariátrica + manejo médico de obesidad.
+      4 sedes en Colombia · programa para pérdida de peso + manejo médico de obesidad.
     </Body>
     <div className="mt-10">
       <MapaCuatroSedes />
@@ -395,7 +395,7 @@ const S10 = ({ onNext, onBack }: ScreenProps) => {
         <div className="mt-4">
           <YouTubeEmbed
             videoId="z6OIR8S3MM4"
-            title="Testimonio de cirugía bariátrica"
+            title="Testimonio de programa para pérdida de peso"
             borderColor="welli-yellow"
           />
         </div>
@@ -413,7 +413,7 @@ const S10 = ({ onNext, onBack }: ScreenProps) => {
 };
 
 export const PACK_OPCIONES = [
-  "Cirugía bariátrica",
+  "Programa para pérdida de peso",
   "Manejo médico con farmacológico",
   "Nutrición",
   "Seguimiento estructurado (más de 3 visitas)",
@@ -514,7 +514,7 @@ const M4_2 = (p: ScreenProps) => (
     {...p}
     num="1 · Quirúrgico"
     title="Pack quirúrgico"
-    requiere={["Cirugía bariátrica"]}
+    requiere={["Programa para pérdida de peso"]}
     composition="Cirugía + manejo farmacológico post-quirúrgico"
     paraQuien={[
       "Apto clínicamente para cirugía",
