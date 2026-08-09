@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import WelliLogoFull from "@/components/WelliLogoFull";
@@ -15,8 +15,6 @@ import {
   SoftBox,
 } from "@/components/BariatricaNovo/HighlightBox";
 import { useBariatricaState } from "@/hooks/useBariatricaState";
-import PackSimulator from "@/components/BariatricaNovo/interactive/PackSimulator";
-import NextPatientForm from "@/components/BariatricaNovo/interactive/NextPatientForm";
 import ExcuseClassifier from "@/components/BariatricaNovo/interactive/ExcuseClassifier";
 import ConversationsQuiz from "@/components/BariatricaNovo/interactive/ConversationsQuiz";
 import WelliPitchBuilder from "@/components/BariatricaNovo/interactive/WelliPitchBuilder";
@@ -80,288 +78,6 @@ const A1 = ({ onNext, onBack }: ScreenProps) => (
     </div>
   </ScreenShell>
 );
-
-// 2.0.2
-const A2 = ({ onNext, onBack }: ScreenProps) => {
-  const { state, update } = useBariatricaState();
-  const [val, setVal] = useState(state.reconexionSesion2 ?? "");
-  const opts = [
-    "Sí, tengo varios casos",
-    "Sí, pero pocos",
-    "Lo intenté pero no logré",
-    "No tuve tiempo",
-  ];
-  const handle = (o: string) => {
-    setVal(o);
-    update({ reconexionSesion2: o });
-  };
-  return (
-    <ScreenShell>
-      <H2>¿Cómo te fue esta semana observando?</H2>
-      <Body className="mt-8">El compromiso fue:</Body>
-      <HighlightBox className="mt-4">
-        <p className="text-xl italic text-indigo-950">
-          "Cuando un paciente salga sin agendar tratamiento, anote qué dijo y si fue excusa social o razón real."
-        </p>
-      </HighlightBox>
-      <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Pudiste hacerlo?</p>
-      <div className="mt-6 space-y-3">
-        {opts.map((o) => (
-          <button
-            key={o}
-            onClick={() => handle(o)}
-            className={`w-full text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
-              val === o
-                ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
-                : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-            }`}
-          >
-            {o}
-          </button>
-        ))}
-      </div>
-      <Body className="mt-10 italic">Sea cual sea tu respuesta, hoy seguimos.</Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 4" />
-    </ScreenShell>
-  );
-};
-
-/* === MÓDULO 4 === */
-
-export const PACK_OPCIONES = [
-  "Cirugía bariátrica",
-  "Manejo médico con farmacológico",
-  "Nutrición",
-  "Seguimiento estructurado (más de 3 visitas)",
-  "Otros procedimientos (aparatología, mesoterapia, etc.)",
-];
-
-// 4.0 Indagación de packs de la clínica
-const M4_0 = ({ onNext, onBack }: ScreenProps) => {
-  const { state, update } = useBariatricaState();
-  const sel = state.packsClinica ?? [];
-  const toggle = (o: string) =>
-    update({
-      packsClinica: sel.includes(o) ? sel.filter((x) => x !== o) : [...sel, o],
-    });
-
-  return (
-    <ScreenShell>
-      <Eyebrow>Antes de hablar de packs</Eyebrow>
-      <H2>¿Qué tipos de packs ofreces hoy en tu clínica?</H2>
-      <Body className="mt-6">
-        No todas las clínicas ofrecen los mismos servicios. Antes de mostrarte nuestro modelo, cuéntanos:
-      </Body>
-      <div className="mt-8 space-y-3">
-        {PACK_OPCIONES.map((o) => {
-          const on = sel.includes(o);
-          return (
-            <button
-              key={o}
-              onClick={() => toggle(o)}
-              className={`w-full flex items-center gap-4 text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
-                on
-                  ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
-                  : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-              }`}
-            >
-              <span
-                className={`w-6 h-6 rounded border-2 flex items-center justify-center text-sm ${
-                  on ? "border-indigo-950 bg-indigo-950 text-welli-yellow" : "border-slate-400"
-                }`}
-              >
-                {on ? "✓" : ""}
-              </span>
-              {o}
-            </button>
-          );
-        })}
-      </div>
-      <Body className="mt-8 italic text-slate-500">
-        Con esto adaptamos los packs que vamos a revisar enseguida.
-      </Body>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={sel.length === 0} />
-    </ScreenShell>
-  );
-};
-
-const M4_1 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 4 — Tus 3 packs</Eyebrow>
-    <H2>¿Por qué vender programas y no procedimientos sueltos?</H2>
-    <div className="mt-10 grid md:grid-cols-2 gap-6">
-      <SoftBox>
-        <Eyebrow>Procedimiento suelto</Eyebrow>
-        <ul className="mt-4 space-y-2 text-lg text-indigo-950">
-          <li>Percibe: <span className="font-bold">costo</span></li>
-          <li>Compromiso: bajo</li>
-          <li>Recurrencia: nula</li>
-          <li>Abandono: frecuente</li>
-        </ul>
-      </SoftBox>
-      <HighlightBox>
-        <Eyebrow>Programa integral</Eyebrow>
-        <ul className="mt-4 space-y-2 text-lg text-indigo-950">
-          <li>Percibe: <span className="font-bold">valor</span></li>
-          <li>Compromiso: alto</li>
-          <li>Recurrencia: alta</li>
-          <li>Abandono: bajo</li>
-        </ul>
-      </HighlightBox>
-    </div>
-    <Anchor>
-      <span className="block mt-10 text-center">
-        Recuerda: el precio de cada componente individual no cambia. Solo cambia la forma de presentarlo.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los 3 packs" />
-  </ScreenShell>
-);
-
-const PackScreen = ({
-  num,
-  title,
-  composition,
-  paraQuien,
-  argumento,
-  final,
-  warning,
-  requiere,
-  onNext,
-  onBack,
-}: any) => {
-  const { state } = useBariatricaState();
-  const sel = state.packsClinica ?? [];
-  const enPortafolio =
-    sel.length === 0 || (requiere as string[]).some((r) => sel.includes(r));
-
-  return (
-    <ScreenShell withNovo>
-      <Eyebrow>Pack {num}</Eyebrow>
-      <H1>{title}</H1>
-      {!enPortafolio && (
-        <WarningBox className="mt-6">
-          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
-            Hoy no está en tu portafolio
-          </p>
-          <p className="text-xl text-indigo-950 mt-3">
-            Vamos a ver si vale la pena sumar este pack a tu oferta. Es una oportunidad de crecimiento, no un requisito.
-          </p>
-        </WarningBox>
-      )}
-      <HighlightBox className="mt-8">
-        <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
-      </HighlightBox>
-      <div className="mt-10">
-        <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
-        <Bullet items={paraQuien} />
-      </div>
-      <div className="mt-10">
-        <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
-        <SoftBox>
-          <p className="text-xl italic text-indigo-950">"{argumento}"</p>
-        </SoftBox>
-      </div>
-      {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
-      {warning && (
-        <WarningBox className="mt-8">
-          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
-          <p className="text-xl text-indigo-950 mt-3">{warning}</p>
-        </WarningBox>
-      )}
-      <NavigationButtons onBack={onBack} onNext={onNext} />
-    </ScreenShell>
-  );
-};
-
-const M4_2 = (p: ScreenProps) => (
-  <PackScreen
-    {...p}
-    num="1 · Quirúrgico"
-    title="Pack quirúrgico"
-    requiere={["Cirugía bariátrica"]}
-    composition="Cirugía + manejo farmacológico post-quirúrgico"
-    paraQuien={[
-      "Apto clínicamente para cirugía",
-      "Con riesgo de recuperación de peso",
-      "Que busca resultado sostenido a largo plazo",
-    ]}
-    argumento="Uno de los mayores riesgos después de una cirugía es recuperar el peso. Por eso lo manejamos como programa completo, no como cirugía suelta."
-    final={`No es "cirugía más algo". Es "resultado sostenido".`}
-  />
-);
-const M4_3 = (p: ScreenProps) => (
-  <PackScreen
-    {...p}
-    num="2 · Preventivo"
-    title="Pack preventivo"
-    requiere={[
-      "Manejo médico con farmacológico",
-      "Nutrición",
-      "Otros procedimientos (aparatología, mesoterapia, etc.)",
-    ]}
-    composition="Manejo médico (nutrición + farmacológico) sin cirugía"
-    paraQuien={[
-      "No candidato a cirugía",
-      "Etapa temprana de manejo",
-      "Busca resultados sin intervención invasiva",
-    ]}
-    argumento={`Esta no es una opción "más barata". Es la decisión inteligente cuando su caso no necesita un procedimiento mayor. Estamos cuidando su salud sin exponerlo a riesgos innecesarios.`}
-    warning={`Que el paciente lo perciba como "el descuento". Posicionarlo siempre como elección acertada.`}
-  />
-);
-const M4_4 = (p: ScreenProps) => (
-  <PackScreen
-    {...p}
-    num="3 · Metabólico Integral"
-    title="Pack metabólico integral"
-    requiere={["Seguimiento estructurado (más de 3 visitas)"]}
-    composition="Evaluación clínica completa + nutrición + manejo farmacológico + seguimiento estructurado"
-    paraQuien={[
-      "Con comorbilidades asociadas al peso",
-      "Que busca salud integral, no solo bajar",
-      "Que valora seguimiento profesional cercano",
-    ]}
-    argumento="Vamos más allá del peso. Estamos trabajando su salud integral, con seguimiento mes a mes, ajustando el tratamiento según su evolución real."
-    final="Este pack es el que mejor adherencia genera. El paciente entiende que su salud completa está en juego, no solo el peso. Y vuelve."
-  />
-);
-
-// 4.5 Simulador de pack
-const M4_5 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <Eyebrow>La regla absoluta</Eyebrow>
-      <H1 >NUNCA presentes las 3 opciones sin recomendar una.</H1>
-      <Body className="mt-6">
-        Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar" — que casi siempre significa "no me lo trato".
-      </Body>
-      <Body className="mt-4">
-        Si el caso es mixto, recomienda el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
-      </Body>
-      <div className="mt-12"><H2>Practica: ¿cuál pack para cada paciente?</H2></div>
-      <div className="mt-8">
-        <PackSimulator onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
-// 4.6 Formulario de próximo paciente
-const M4_6 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <H2>Piensa en tu próximo paciente real de esta semana</H2>
-      <div className="mt-8">
-        <NextPatientForm onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 5" nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
 
 /* === MÓDULO 5 === */
 
@@ -452,29 +168,6 @@ const M5_4 = ({ onNext, onBack }: ScreenProps) => (
 );
 
 // 5.5 Transición
-const M5_5 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell center>
-    <div className="space-y-8 text-center">
-      <Body>Ya tienes los packs. Ya sabes cómo conversar con tu paciente.</Body>
-      <Body className="font-semibold text-indigo-950">
-        Falta ver la herramienta concreta que hace todo esto viable comercialmente.
-      </Body>
-      <Body>Veamos cómo Welli encaja en su consulta:</Body>
-      <div className="max-w-xl mx-auto text-left">
-        <Bullet
-          items={[
-            "Cuota fija de bienestar",
-            "Welli Check en 30 segundos",
-            "Qué hacer cuando no se aprueba",
-            "Tu comisión preferencial 4% (Novo)",
-          ]}
-        />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 6" />
-    </div>
-  </ScreenShell>
-);
-
 /* === MÓDULO 6 === */
 
 // 6.1
@@ -529,43 +222,6 @@ const M6_2 = ({ onNext, onBack }: ScreenProps) => {
   );
 };
 
-// 6.3
-const M6_3 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Welli Check</Eyebrow>
-    <H2>La consulta de 30 segundos</H2>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Qué es?</p>
-    <Body className="mt-3">
-      Una pre-aprobación rápida que el paciente hace desde su celular por WhatsApp. Solo necesita cédula y datos básicos. El sistema le dice si tiene cupo aprobado, y por cuánto.
-    </Body>
-    <p className="text-2xl font-semibold text-indigo-950 mt-10">¿Por qué cambia tu consulta?</p>
-    <div className="mt-6 grid md:grid-cols-2 gap-6">
-      <SoftBox>
-        <Eyebrow>Antes</Eyebrow>
-        <p className="text-lg text-indigo-950 mt-3">
-          Tienes la conversación completa sin saber si el paciente puede pagar. Si al final no aplica, perdiste 45 min de valoración.
-        </p>
-      </SoftBox>
-      <HighlightBox>
-        <Eyebrow>Después</Eyebrow>
-        <p className="text-lg text-indigo-950 mt-3">
-          Sabes desde el inicio si el paciente tiene cupo. Si lo tiene, la conversación se enfoca en valor. Si no lo tiene, sabes que necesitas Plan B.
-        </p>
-      </HighlightBox>
-    </div>
-    <HighlightBox className="mt-10">
-      <Eyebrow>Frase para presentárselo al paciente</Eyebrow>
-      <p className="text-lg md:text-xl italic text-indigo-950 mt-4 leading-relaxed">
-        "Tenemos una herramienta que en 30 segundos le dice si califica, sin afectar su historial crediticio. Le envío el link por WhatsApp ahora, lo hace mientras yo termino con esta paciente, y cuando salga le confirmamos. Así no le pierdo el tiempo si no aplica."
-      </p>
-    </HighlightBox>
-    <Body className="mt-6">
-      La última frase es clave: <span className="font-semibold text-indigo-950">"no le pierdo el tiempo"</span>. Comunica respeto profesional.
-    </Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
 // 6.4 Simulación Plan B
 const M6_4 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
@@ -603,35 +259,6 @@ const M6_4 = ({ onNext, onBack }: ScreenProps) => {
     </ScreenShell>
   );
 };
-
-// 6.5 — CON LOGO NOVO
-const M6_5 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Tu comisión preferencial</Eyebrow>
-    <H2>Por la alianza con Novo Nordisk</H2>
-    <Body className="mt-8">
-      Por entrar a este programa a través del convenio con Novo Nordisk, tu comisión Welli es preferencial:
-    </Body>
-    <HighlightBox className="mt-10 text-center">
-      <div className="grid grid-cols-2 gap-8">
-        <div>
-          <Eyebrow>Comisión estándar Welli</Eyebrow>
-          <p className="text-5xl font-bold text-indigo-950 mt-4">6%</p>
-        </div>
-        <div>
-          <Eyebrow>Tu comisión preferencial</Eyebrow>
-          <p className="text-5xl font-bold text-indigo-950 mt-4">4%</p>
-        </div>
-      </div>
-      <p className="text-lg text-indigo-950 mt-6 font-semibold">
-        Beneficio directo por la alianza con Novo Nordisk Colombia.
-      </p>
-    </HighlightBox>
-    <Body className="mt-10">2 puntos porcentuales sobre cada desembolso.</Body>
-    <Body className="mt-4">Esta condición se mantiene mientras la clínica esté activa en el programa.</Body>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 7" />
-  </ScreenShell>
-);
 
 /* === MÓDULO 7 === */
 
@@ -953,426 +580,52 @@ const M8_3 = ({ onBack }: ScreenProps) => {
   );
 };
 
-/* === PANTALLAS NUEVAS DEL REDISEÑO (L1–L21) === */
+/* === WELLI CHECK VIABILIDAD === */
 
-const Stat = ({ value, label }: { value: string; label: string }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="rounded-2xl border-2 border-slate-200 bg-white p-8 text-center"
-  >
-    <p className="text-5xl md:text-6xl font-bold text-indigo-950">{value}</p>
-    <p className="text-lg text-slate-700 mt-4 leading-relaxed">{label}</p>
-  </motion.div>
-);
-
-// L1 · Bienvenida y reconexión
-const L1 = ({ onNext, onBack }: ScreenProps) => {
-  const { state, update } = useBariatricaState();
-  const [val, setVal] = useState(state.reconexionSesion2 ?? "");
-  const opts = [
-    "Sí, tengo varios casos",
-    "Sí, pero pocos",
-    "Lo intenté pero no logré",
-    "No tuve tiempo",
-  ];
-  return (
-    <ScreenShell center>
-      <div className="text-center space-y-10">
-        <WelliLogoFull size="lg" />
-        <H1>Bienvenido de vuelta, Doctor</H1>
-        <Body className="max-w-3xl mx-auto">
-          La semana pasada vimos cómo funciona Welli y un caso. Hoy aterrizamos el
-          método completo.
-        </Body>
-        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto text-left">
-          {[
-            "Los pacientes se pierden por valor, no por precio",
-            "La cuota fija de bienestar cambia la conversación de plata",
-            "Una clínica de 4 sedes pasó del estancamiento a $1.645M en 7 meses",
-          ].map((t) => (
-            <SoftBox key={t} className="p-6">
-              <p className="text-lg text-indigo-950 leading-relaxed">{t}</p>
-            </SoftBox>
-          ))}
-        </div>
-        <div className="max-w-3xl mx-auto">
-          <p className="text-2xl font-semibold text-indigo-950">
-            ¿Cómo te fue observando esta semana?
-          </p>
-          <div className="mt-6 space-y-3">
-            {opts.map((o) => (
-              <button
-                key={o}
-                onClick={() => {
-                  setVal(o);
-                  update({ reconexionSesion2: o });
-                }}
-                className={`w-full text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
-                  val === o
-                    ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
-                    : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
-                }`}
-              >
-                {o}
-              </button>
-            ))}
-          </div>
-        </div>
-        <NavigationButtons
-          onBack={onBack}
-          onNext={onNext}
-          nextLabel="Empezar la Sesión Larga"
-          nextDisabled={!val}
-        />
-      </div>
-    </ScreenShell>
-  );
-};
-
-// L2 · Mercado Vive Ligero [Novo]
-const L2 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Mercado · Vive Ligero</Eyebrow>
-    <H1>Tus pacientes ya buscan semaglutida antes de llegar a consulta</H1>
-    <div className="mt-10 grid md:grid-cols-3 gap-6">
-      <Stat value="+490%" label="Búsquedas de 'pérdida de peso' en 3 años (Colombia/Latam)" />
-      <Stat value="×10" label="Búsquedas de 'Semaglutida' en el último año" />
-      <Stat value="×10" label="'Bajar de peso' entre las top búsquedas de salud en Latam" />
-    </div>
-    <div className="mt-12">
-      <H2>¿Qué buscan?</H2>
-      <div className="mt-6">
-        <Bullet
-          items={[
-            "66% información sobre su condición específica",
-            "55% tratamientos o procedimientos médicos",
-            "47% información sobre médicos y especialistas",
-          ]}
-        />
-      </div>
-    </div>
-    <p className="mt-8 text-sm italic text-slate-500">
-      Fuente: Vive Ligero · Weight Management Clinics Program · Novo Nordisk
-    </p>
-    <Anchor>
-      <span className="block mt-10 text-center">
-        Tu paciente ya llegó a Google antes de llegar a tu consulta.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// L3 · Wegovy aliado del negocio [Novo]
-const L3 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Wegovy · Un aliado</Eyebrow>
-    <H1>No es solo un medicamento. Es una palanca comercial.</H1>
-    <div className="mt-10 grid md:grid-cols-3 gap-6">
-      <Stat value="+40%" label="Aumento promedio del ticket al incluir Wegovy" />
-      <Stat value="×3" label="Mayor retención del paciente al incorporar Wegovy" />
-      <Stat value="70%" label="De pacientes con sobrepeso u obesidad buscan una propuesta integral" />
-    </div>
-    <Anchor>
-      <span className="block mt-12 text-center">
-        Los pacientes ya lo están pidiendo. La pregunta no es si ofrecerlo — es
-        cómo capitalizarlo.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// L4 · Farmacológico como acompañamiento [Novo]
-const L4 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell withNovo>
-    <Eyebrow>Acompañamiento</Eyebrow>
-    <H2>El manejo farmacológico: tu mejor aliado de acompañamiento</H2>
-    <Body className="mt-8">
-      Cuando el tratamiento incluye manejo farmacológico (Wegovy — semaglutida —
-      de Novo Nordisk), el paciente vuelve cada mes naturalmente. Cada visita es:
+const WelliCheckViabilidad = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell>
+    <Eyebrow>Welli Check para viabilidad</Eyebrow>
+    <H2>Antes de presentar la inversión, valida viabilidad en 30 segundos</H2>
+    <Body className="mt-6">
+      Welli Check no es solo una herramienta de cierre. Es una herramienta de{" "}
+      <span className="font-semibold text-indigo-950">calificación temprana</span>.
     </Body>
-    <div className="mt-6">
-      <Bullet
-        items={[
-          "Punto de seguimiento",
-          "Momento de ajuste",
-          "Oportunidad de sumar otro elemento al pack",
-          "Construcción de relación a largo plazo",
-        ]}
-      />
-    </div>
-    <div className="mt-12 grid md:grid-cols-2 gap-6">
+    <div className="mt-10 grid md:grid-cols-2 gap-6">
       <SoftBox>
-        <Eyebrow>Antes</Eyebrow>
-        <p className="text-xl text-indigo-950 mt-3">
-          Paciente que llegó una vez → 1 visita
+        <Eyebrow>Sin Welli Check</Eyebrow>
+        <p className="text-lg text-indigo-950 mt-3">
+          Tienes la conversación completa. Presentas el precio. El paciente dice "no puedo". Perdiste 45 minutos.
         </p>
       </SoftBox>
       <HighlightBox>
-        <Eyebrow>Después, con Wegovy</Eyebrow>
-        <p className="text-xl text-indigo-950 mt-3">
-          Paciente durante 12+ meses → 12+ visitas
+        <Eyebrow>Con Welli Check al inicio</Eyebrow>
+        <p className="text-lg text-indigo-950 mt-3">
+          En 30 segundos sabes si el paciente tiene cupo. Enfocas la conversación en valor, no en si puede pagar.
         </p>
       </HighlightBox>
     </div>
-    <Anchor>
-      <span className="block mt-10 text-center">
-        El farmacológico convierte visita única en relación.
-      </span>
-    </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} />
-  </ScreenShell>
-);
-
-// L10 · Secuencia comercial correcta
-const L10 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>La secuencia</Eyebrow>
-    <H2>Cómo recomendar el pack correcto</H2>
-    <div className="mt-10 space-y-5">
-      {[
-        ["1", "CONTEXTUALIZA", "Resume lo que entendiste del caso del paciente antes de proponer nada."],
-        ["2", "PRESENTA LAS OPCIONES", "Solo las que aplican al portafolio de tu clínica."],
-        ["3", "RECOMIENDA UNA", "Con criterio clínico y en voz alta: 'en su caso, yo iría por…'."],
-        ["4", "LUEGO EL PRECIO", "Siempre traducido a cuota mensual fija."],
-      ].map(([n, t, d]) => (
-        <div key={n} className="flex gap-6 items-start">
-          <div className="w-12 h-12 rounded-full bg-welli-yellow flex items-center justify-center text-xl font-bold text-indigo-950 shrink-0">
-            {n}
-          </div>
-          <div>
-            <p className="text-2xl font-bold text-indigo-950">{t}</p>
-            <p className="text-lg text-slate-700 mt-1">{d}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-    <HighlightBox className="mt-12">
-      <p className="text-2xl md:text-3xl font-bold text-indigo-950 leading-tight">
-        NUNCA presentes las opciones sin recomendar. Eso le pasa la decisión al
-        paciente.
+    <HighlightBox className="mt-10">
+      <Eyebrow>Frase para introducirlo al paciente</Eyebrow>
+      <p className="text-lg italic text-indigo-950 mt-3 leading-relaxed">
+        "Antes de mostrarle el plan, tengo una herramienta que en 30 segundos le dice si le aprobamos. Sin afectar su historial. Le envío el link ahora y cuando termine la evaluación clínica ya sabemos por dónde va."
       </p>
     </HighlightBox>
     <NavigationButtons onBack={onBack} onNext={onNext} />
   </ScreenShell>
 );
-
-// L11 · Su próximo paciente
-const L11 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <H2>Piensa en tu próximo paciente real de esta semana</H2>
-      <div className="mt-10">
-        <PackSimulator onComplete={() => setDone(true)} />
-      </div>
-      <div className="mt-12">
-        <NextPatientForm onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons
-        onBack={onBack}
-        onNext={onNext}
-        nextLabel="Continuar al Módulo 5"
-        nextDisabled={!done}
-      />
-    </ScreenShell>
-  );
-};
-
-// L16 · Welli como herramienta de cierre
-const L16 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 6 · Welli como cierre</Eyebrow>
-    <H2>Cómo y en qué etapa presentar Welli al paciente</H2>
-    <Body className="mt-8">
-      El momento ideal: justo después de comunicar la inversión total, en la
-      misma respiración. Sin pausa, sin bajar la voz, sin pedir permiso.
-    </Body>
-    <HighlightBox className="mt-8">
-      <Eyebrow>Frase modelo</Eyebrow>
-      <p className="text-lg md:text-xl italic text-indigo-950 mt-4 leading-relaxed">
-        "El programa completo son $8.500.000. Y esto se puede manejar en una
-        cuota fija mensual desde alrededor de $450.000, sin afectar su historial.
-        En 30 segundos le confirmamos si califica, le mando el link por WhatsApp
-        ahora mismo."
-      </p>
-    </HighlightBox>
-    <WarningBox className="mt-8">
-      <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
-        Lo que NO se hace
-      </p>
-      <ul className="mt-4 space-y-2 text-lg text-indigo-950">
-        <li>· Decir el precio y quedarse callado esperando reacción.</li>
-        <li>· Hablar de "crédito", "deuda" o "financiera".</li>
-        <li>· Ofrecer Welli solo cuando el paciente dice que no puede pagar.</li>
-      </ul>
-    </WarningBox>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 7" />
-  </ScreenShell>
-);
-
-// L20 · Los 3 compromisos
-const L20 = ({ onNext, onBack }: ScreenProps) => (
-  <ScreenShell>
-    <Eyebrow>Módulo 8 · Cierre</Eyebrow>
-    <H2>Tus 3 compromisos</H2>
-    <div className="mt-10 grid md:grid-cols-3 gap-6">
-      {[
-        "Cotizar SIEMPRE en cuotas fijas mensuales",
-        "Farmacológico en al menos 2 de 3 packs",
-        "Welli Check en el 100% de pacientes no-contado",
-      ].map((t, i) => (
-        <PracticeBox key={t} className="p-8">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
-            Compromiso {i + 1}
-          </p>
-          <p className="text-2xl font-bold text-indigo-950 mt-4 leading-snug">{t}</p>
-        </PracticeBox>
-      ))}
-    </div>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Firmar compromiso" />
-  </ScreenShell>
-);
-
-// L21 · Firma + próximos pasos
-const L21 = ({ onBack }: ScreenProps) => {
-  const navigate = useNavigate();
-  const { state, update } = useBariatricaState();
-  const [nombre, setNombre] = useState(state.compromisoNombre ?? "");
-  const [fecha, setFecha] = useState(state.compromisoFecha ?? "");
-  const [firma, setFirma] = useState("");
-  const [dia, setDia] = useState(state.seguimientoDia ?? "");
-  const [sealed, setSealed] = useState(false);
-  const ready = !!nombre && !!fecha;
-
-  const close = () => {
-    update({ compromisoNombre: nombre, compromisoFecha: fecha, seguimientoDia: dia });
-    navigate("/bariatrica-novo");
-  };
-
-  return (
-    <ScreenShell>
-      <Eyebrow>Firma de compromiso</Eyebrow>
-      <H2>Tu compromiso personal</H2>
-      <HighlightBox className="mt-10 space-y-6">
-        <div className="text-xl text-indigo-950 leading-relaxed">
-          Yo,{" "}
-          <Input
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            placeholder="nombre del doctor"
-            className="inline-block w-auto min-w-[280px] h-12 text-lg bg-white mx-2"
-          />
-          , me comprometo a aplicar estos 3 compromisos en mi consulta a partir de{" "}
-          <Input
-            type="date"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
-            className="inline-block w-auto h-12 text-lg bg-white mx-2"
-          />
-          .
-        </div>
-        <div>
-          <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
-            Firma
-          </label>
-          <Input
-            value={firma}
-            onChange={(e) => setFirma(e.target.value)}
-            placeholder="Firma (texto)"
-            className="h-14 text-lg bg-white italic"
-          />
-        </div>
-      </HighlightBox>
-
-      <div className="mt-12">
-        <CommitmentSealing
-          onComplete={(d) => {
-            update({ compromisoNombre: d.name, compromisoFecha: d.date });
-            setSealed(true);
-          }}
-        />
-      </div>
-
-      <div className="mt-14">
-        <Eyebrow>Tus próximos pasos</Eyebrow>
-        <ul className="mt-6 space-y-6 text-xl text-slate-700">
-          <li>
-            <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">
-              Próximas 4 semanas
-            </p>
-            <p className="mt-2">
-              Welli hace seguimiento semanal por WhatsApp y revisa métricas contigo.
-            </p>
-          </li>
-          <li>
-            <p className="font-semibold text-indigo-950 uppercase tracking-wider text-base">
-              Siguientes 2 meses
-            </p>
-            <p className="mt-2">
-              Acompañamiento mensual presencial con métricas y ajustes según resultados.
-            </p>
-          </li>
-        </ul>
-        <HighlightBox className="mt-8">
-          <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
-            Día preferido para el seguimiento por WhatsApp
-          </label>
-          <Input
-            value={dia}
-            onChange={(e) => setDia(e.target.value)}
-            placeholder="día de la semana preferido"
-            className="h-14 text-lg bg-white"
-          />
-        </HighlightBox>
-      </div>
-
-      <Anchor>
-        <span className="block mt-10 text-center">
-          Gracias por su tiempo, Doctor. Empezamos a transformar su consulta desde
-          mañana.
-        </span>
-      </Anchor>
-
-      <div className="flex items-center justify-between mt-12 gap-4">
-        <Button
-          variant="ghost"
-          size="lg"
-          onClick={onBack}
-          className="text-indigo-950 text-lg h-14 px-6"
-        >
-          Atrás
-        </Button>
-        <Button
-          size="lg"
-          onClick={close}
-          disabled={!ready && !sealed}
-          className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 text-lg font-semibold h-14 px-10"
-        >
-          Cerrar sesión
-        </Button>
-      </div>
-    </ScreenShell>
-  );
-};
 
 /* === CONTROLADOR === */
 
 const LINEAR_BEFORE_BRANCH = [
-  L1, L2, L3, L4,
-  M4_0, M4_1, M4_2, M4_3, M4_4,
-  L10, L11,
+  A1,
   M5_1, M5_2, M5_3, M5_4,
-  L16,
+  M6_1, M6_2, M6_4,
+  WelliCheckViabilidad,
   M7_1,
 ];
 const BRANCH_A = [M7_2A, M7_3A];
 const BRANCH_B = [M7_2B, M7_3B];
-const MODULO_8 = [L20, L21];
-
+const MODULO_8 = [M8_1, M8_2, M8_3];
 
 const Sesion2 = () => {
   const [idx, setIdx] = useState(0);
@@ -1423,7 +676,7 @@ const Sesion2 = () => {
           </Link>
           <WelliLogoFull size="sm" />
           <div className="flex-1">
-            <ProgressBar current={idx + 1} total={total} label="Sesión 2 — Método completo" />
+            <ProgressBar current={idx + 1} total={total} label="Sesión 2 — Aplicación y objeciones" />
           </div>
         </div>
       </header>
