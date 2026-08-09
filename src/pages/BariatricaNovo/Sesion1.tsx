@@ -20,12 +20,12 @@ import TeamVoteOverlay from "@/components/BariatricaNovo/interactive/TeamVoteOve
 import ValuePerceptionSlider from "@/components/BariatricaNovo/interactive/ValuePerceptionSlider";
 import WelliPitchBuilder from "@/components/BariatricaNovo/interactive/WelliPitchBuilder";
 import SimuladorCuota from "@/components/BariatricaNovo/interactive/SimuladorCuota";
-import PlanBSimulation from "@/components/BariatricaNovo/interactive/PlanBSimulation";
 import MapaCuatroSedes from "@/components/BariatricaNovo/interactive/MapaCuatroSedes";
 import MonthlyDeclineChart from "@/components/BariatricaNovo/interactive/MonthlyDeclineChart";
 import TimelineTresMovimientos from "@/components/BariatricaNovo/interactive/TimelineTresMovimientos";
 import MetricsRevealed from "@/components/BariatricaNovo/interactive/MetricsRevealed";
-import CommitmentSealing from "@/components/BariatricaNovo/interactive/CommitmentSealing";
+import PackSimulator from "@/components/BariatricaNovo/interactive/PackSimulator";
+import NextPatientForm from "@/components/BariatricaNovo/interactive/NextPatientForm";
 
 type ScreenProps = {
   onNext: () => void;
@@ -322,33 +322,6 @@ const S05 = ({ onNext, onBack }: ScreenProps) => {
   );
 };
 
-// S06 · Plan B
-const S06 = ({ onNext, onBack }: ScreenProps) => {
-  const [done, setDone] = useState(false);
-  return (
-    <ScreenShell>
-      <Eyebrow>Cuando el crédito no se aprueba</Eyebrow>
-      <H2>Plan B: familiar como aplicante</H2>
-      <Body className="mt-6">
-        Entre 30-40% de los pacientes no aprueba en primera. Pero ese no es el
-        final.
-      </Body>
-      <WarningBox className="mt-8">
-        <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
-          Lo que NUNCA se dice
-        </p>
-        <p className="text-xl text-indigo-950 mt-3">
-          "uy", "le negaron", "no sé por qué".
-        </p>
-      </WarningBox>
-      <div className="mt-10">
-        <PlanBSimulation onComplete={() => setDone(true)} />
-      </div>
-      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
-    </ScreenShell>
-  );
-};
-
 // S07 · El caso · quiénes son
 const S07 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
@@ -439,55 +412,361 @@ const S10 = ({ onNext, onBack }: ScreenProps) => {
   );
 };
 
-// S11 · Compromiso + puente a Sesión 2
-const S11 = ({ onBack }: ScreenProps) => {
+export const PACK_OPCIONES = [
+  "Cirugía bariátrica",
+  "Manejo médico con farmacológico",
+  "Nutrición",
+  "Seguimiento estructurado (más de 3 visitas)",
+  "Otros procedimientos (aparatología, mesoterapia, etc.)",
+];
+
+const M4_1 = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell>
+    <Eyebrow>Módulo 4 — Tus 3 packs</Eyebrow>
+    <H2>¿Por qué vender programas y no procedimientos sueltos?</H2>
+    <div className="mt-10 grid md:grid-cols-2 gap-6">
+      <SoftBox>
+        <Eyebrow>Procedimiento suelto</Eyebrow>
+        <ul className="mt-4 space-y-2 text-lg text-indigo-950">
+          <li>Percibe: <span className="font-bold">costo</span></li>
+          <li>Compromiso: bajo</li>
+          <li>Recurrencia: nula</li>
+          <li>Abandono: frecuente</li>
+        </ul>
+      </SoftBox>
+      <HighlightBox>
+        <Eyebrow>Programa integral</Eyebrow>
+        <ul className="mt-4 space-y-2 text-lg text-indigo-950">
+          <li>Percibe: <span className="font-bold">valor</span></li>
+          <li>Compromiso: alto</li>
+          <li>Recurrencia: alta</li>
+          <li>Abandono: bajo</li>
+        </ul>
+      </HighlightBox>
+    </div>
+    <Anchor>
+      <span className="block mt-10 text-center">
+        Recuerda: el precio de cada componente individual no cambia. Solo cambia la forma de presentarlo.
+      </span>
+    </Anchor>
+    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los 3 packs" />
+  </ScreenShell>
+);
+
+const PackScreen = ({
+  num,
+  title,
+  composition,
+  paraQuien,
+  argumento,
+  final,
+  warning,
+  requiere,
+  onNext,
+  onBack,
+}: any) => {
+  const { state } = useBariatricaState();
+  const sel = state.packsClinica ?? [];
+  const enPortafolio =
+    sel.length === 0 || (requiere as string[]).some((r) => sel.includes(r));
+
+  return (
+    <ScreenShell withNovo>
+      <Eyebrow>Pack {num}</Eyebrow>
+      <H1>{title}</H1>
+      {!enPortafolio && (
+        <WarningBox className="mt-6">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">
+            Hoy no está en tu portafolio
+          </p>
+          <p className="text-xl text-indigo-950 mt-3">
+            Vamos a ver si vale la pena sumar este pack a tu oferta. Es una oportunidad de crecimiento, no un requisito.
+          </p>
+        </WarningBox>
+      )}
+      <HighlightBox className="mt-8">
+        <p className="text-2xl font-semibold text-indigo-950">{composition}</p>
+      </HighlightBox>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">¿Para qué paciente?</p>
+        <Bullet items={paraQuien} />
+      </div>
+      <div className="mt-10">
+        <p className="text-xl font-semibold text-indigo-950 mb-4">El argumento comercial</p>
+        <SoftBox>
+          <p className="text-xl italic text-indigo-950">"{argumento}"</p>
+        </SoftBox>
+      </div>
+      {final && <Anchor><span className="block mt-10 text-center">{final}</span></Anchor>}
+      {warning && (
+        <WarningBox className="mt-8">
+          <p className="text-lg font-semibold text-indigo-950 uppercase tracking-wider">Riesgo a evitar:</p>
+          <p className="text-xl text-indigo-950 mt-3">{warning}</p>
+        </WarningBox>
+      )}
+      <NavigationButtons onBack={onBack} onNext={onNext} />
+    </ScreenShell>
+  );
+};
+
+const M4_2 = (p: ScreenProps) => (
+  <PackScreen
+    {...p}
+    num="1 · Quirúrgico"
+    title="Pack quirúrgico"
+    requiere={["Cirugía bariátrica"]}
+    composition="Cirugía + manejo farmacológico post-quirúrgico"
+    paraQuien={[
+      "Apto clínicamente para cirugía",
+      "Con riesgo de recuperación de peso",
+      "Que busca resultado sostenido a largo plazo",
+    ]}
+    argumento="Uno de los mayores riesgos después de una cirugía es recuperar el peso. Por eso lo manejamos como programa completo, no como cirugía suelta."
+    final={`No es "cirugía más algo". Es "resultado sostenido".`}
+  />
+);
+const M4_3 = (p: ScreenProps) => (
+  <PackScreen
+    {...p}
+    num="2 · Preventivo"
+    title="Pack preventivo"
+    requiere={[
+      "Manejo médico con farmacológico",
+      "Nutrición",
+      "Otros procedimientos (aparatología, mesoterapia, etc.)",
+    ]}
+    composition="Manejo médico (nutrición + farmacológico) sin cirugía"
+    paraQuien={[
+      "No candidato a cirugía",
+      "Etapa temprana de manejo",
+      "Busca resultados sin intervención invasiva",
+    ]}
+    argumento={`Esta no es una opción "más barata". Es la decisión inteligente cuando su caso no necesita un procedimiento mayor. Estamos cuidando su salud sin exponerlo a riesgos innecesarios.`}
+    warning={`Que el paciente lo perciba como "el descuento". Posicionarlo siempre como elección acertada.`}
+  />
+);
+const M4_4 = (p: ScreenProps) => (
+  <PackScreen
+    {...p}
+    num="3 · Metabólico Integral"
+    title="Pack metabólico integral"
+    requiere={["Seguimiento estructurado (más de 3 visitas)"]}
+    composition="Evaluación clínica completa + nutrición + manejo farmacológico + seguimiento estructurado"
+    paraQuien={[
+      "Con comorbilidades asociadas al peso",
+      "Que busca salud integral, no solo bajar",
+      "Que valora seguimiento profesional cercano",
+    ]}
+    argumento="Vamos más allá del peso. Estamos trabajando su salud integral, con seguimiento mes a mes, ajustando el tratamiento según su evolución real."
+    final="Este pack es el que mejor adherencia genera. El paciente entiende que su salud completa está en juego, no solo el peso. Y vuelve."
+  />
+);
+
+// 4.5 Simulador de pack
+const M4_5 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <Eyebrow>La regla absoluta</Eyebrow>
+      <H1 >NUNCA presentes las 3 opciones sin recomendar una.</H1>
+      <Body className="mt-6">
+        Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar" — que casi siempre significa "no me lo trato".
+      </Body>
+      <Body className="mt-4">
+        Si el caso es mixto, recomienda el más integral. La sobre-recomendación inteligente es preferible a la sub-recomendación tímida.
+      </Body>
+      <div className="mt-12"><H2>Practica: ¿cuál pack para cada paciente?</H2></div>
+      <div className="mt-8">
+        <PackSimulator onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
+
+// 4.6 Formulario de próximo paciente
+const M4_6 = ({ onNext, onBack }: ScreenProps) => {
+  const [done, setDone] = useState(false);
+  return (
+    <ScreenShell>
+      <H2>Piensa en tu próximo paciente real de esta semana</H2>
+      <div className="mt-8">
+        <NextPatientForm onComplete={() => setDone(true)} />
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 5" nextDisabled={!done} />
+    </ScreenShell>
+  );
+};
+
+
+/* ============ PANTALLAS NUEVAS ============ */
+
+const QueEsWelli = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>Qué es Welli</Eyebrow>
+    <H1>Welli en 90 segundos</H1>
+    <div className="mt-8 space-y-4">
+      <Body>Financiamos tratamientos con cuota fija mensual.</Body>
+      <Body>Aprobación en 30 segundos por WhatsApp, sin afectar historial crediticio.</Body>
+      <Body>Desembolso al aliado en 24-48 horas.</Body>
+    </div>
+    <div className="mt-12 grid md:grid-cols-2 gap-6">
+      <HighlightBox>
+        <Eyebrow>Welli Check</Eyebrow>
+        <p className="text-xl text-indigo-950 mt-3">
+          Pre-aprobación en 30 segundos por WhatsApp. El paciente sabe si califica antes de que termines la consulta.
+        </p>
+      </HighlightBox>
+      <HighlightBox>
+        <Eyebrow>Tu comisión preferencial 4%</Eyebrow>
+        <p className="text-xl text-indigo-950 mt-3">
+          Estándar Welli 6% → 4% por convenio Novo. Se aplica automáticamente con el código Vive Ligero.
+        </p>
+      </HighlightBox>
+    </div>
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
+const MercadoViveLigero = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>Mercado · Vive Ligero</Eyebrow>
+    <H1>Tus pacientes ya buscan semaglutida antes de llegar a consulta</H1>
+    <div className="mt-10 grid md:grid-cols-3 gap-6">
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">+490%</p>
+        <p className="text-lg text-indigo-950 mt-3">Búsquedas «pérdida de peso» en 3 años (Colombia/Latam)</p>
+      </HighlightBox>
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">×10</p>
+        <p className="text-lg text-indigo-950 mt-3">Búsquedas de «Semaglutida» en el último año</p>
+      </HighlightBox>
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">×10</p>
+        <p className="text-lg text-indigo-950 mt-3">«Bajar de peso» top búsquedas de salud en Latam</p>
+      </HighlightBox>
+    </div>
+    <div className="mt-10">
+      <Eyebrow>¿Qué buscan?</Eyebrow>
+      <div className="mt-4 space-y-2 text-lg text-slate-700">
+        <p>66% · información sobre una condición específica</p>
+        <p>55% · tratamientos o procedimientos médicos</p>
+        <p>47% · información sobre médicos y especialistas</p>
+      </div>
+    </div>
+    <p className="mt-8 text-sm italic text-slate-500">
+      Fuente: Vive Ligero™ · Weight Management Clinics Program · Novo Nordisk
+    </p>
+    <Anchor>
+      <span className="block mt-8 text-center">Tu paciente ya llegó a Google antes de llegar a tu consulta.</span>
+    </Anchor>
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
+const WegovyAliado = ({ onNext, onBack }: ScreenProps) => (
+  <ScreenShell withNovo>
+    <Eyebrow>Wegovy · aliado del negocio</Eyebrow>
+    <H1>No es solo un medicamento. Es una palanca comercial.</H1>
+    <div className="mt-10 grid md:grid-cols-3 gap-6">
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">+40%</p>
+        <p className="text-lg text-indigo-950 mt-3">Aumento promedio del ticket al incluir Wegovy</p>
+      </HighlightBox>
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">×3</p>
+        <p className="text-lg text-indigo-950 mt-3">Mayor retención del paciente a la consulta</p>
+      </HighlightBox>
+      <HighlightBox className="text-center">
+        <p className="text-5xl font-bold text-indigo-950">70%</p>
+        <p className="text-lg text-indigo-950 mt-3">Pacientes con sobrepeso u obesidad buscan propuesta integral</p>
+      </HighlightBox>
+    </div>
+    <Anchor>
+      <span className="block mt-8 text-center">
+        Los pacientes ya lo están pidiendo. La pregunta es cómo capitalizarlo.
+      </span>
+    </Anchor>
+    <NavigationButtons onBack={onBack} onNext={onNext} />
+  </ScreenShell>
+);
+
+const IndagacionPacks = ({ onNext, onBack }: ScreenProps) => {
+  const { state, update } = useBariatricaState();
+  const [selected, setSelected] = useState<string[]>(
+    state.packsOfrecidos ?? state.packsClinica ?? [],
+  );
+
+  const toggle = (o: string) => {
+    const next = selected.includes(o) ? selected.filter((x) => x !== o) : [...selected, o];
+    setSelected(next);
+    update({ packsOfrecidos: next, packsClinica: next });
+  };
+
+  return (
+    <ScreenShell>
+      <Eyebrow>Antes de hablar de packs</Eyebrow>
+      <H2>¿Qué tipos de packs ofreces hoy en tu clínica?</H2>
+      <Body className="mt-4">Te vamos a mostrar solo los que aplican a tu modelo.</Body>
+      <div className="mt-8 space-y-3">
+        {PACK_OPCIONES.map((o) => (
+          <button
+            key={o}
+            onClick={() => toggle(o)}
+            className={`w-full text-left px-6 py-4 rounded-xl border-2 text-lg transition-all ${
+              selected.includes(o)
+                ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
+                : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
+            }`}
+          >
+            {selected.includes(o) ? "✓ " : ""}
+            {o}
+          </button>
+        ))}
+      </div>
+      <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={selected.length === 0} />
+    </ScreenShell>
+  );
+};
+
+const CompromisoPuente = ({ onBack }: ScreenProps) => {
   const navigate = useNavigate();
   const { state, update } = useBariatricaState();
-  const [done, setDone] = useState(false);
   const [fecha, setFecha] = useState(state.fechaSesion2 ?? "");
-  const [dia, setDia] = useState(state.seguimientoDia ?? "");
+  const [formato, setFormato] = useState(state.formatoSesion2 ?? "");
 
-  const close = () => {
-    update({ fechaSesion2: fecha, seguimientoDia: dia });
+  const handleClose = () => {
+    update({ fechaSesion2: fecha, formatoSesion2: formato });
     navigate("/bariatrica-novo");
   };
 
   return (
     <ScreenShell>
       <Eyebrow>Para los próximos 7 días</Eyebrow>
-      <H2>Un solo compromiso</H2>
-      <Body className="mt-6">No operativo. De observación.</Body>
+      <H2>Un solo compromiso: observar</H2>
       <HighlightBox className="mt-8">
         <p className="text-xl text-indigo-950 leading-relaxed">
-          Cuando un paciente salga de tu consulta SIN agendar tratamiento (o sin
-          comprar el paquete/servicio), toma 30 segundos y anota:
+          Cuando un paciente salga de tu consulta SIN agendar tratamiento (o sin comprar el paquete/servicio),
+          toma 30 segundos y anota:
         </p>
-        <div className="mt-6 space-y-3">
-          <p className="text-2xl font-semibold text-indigo-950">
-            · ¿Qué dijo exactamente?
-          </p>
-          <p className="text-2xl font-semibold text-indigo-950">
-            · ¿Fue una excusa social o una razón real?
-          </p>
+        <div className="mt-4 space-y-3">
+          <p className="text-xl font-semibold text-indigo-950">¿Qué dijo exactamente?</p>
+          <p className="text-xl font-semibold text-indigo-950">¿Fue excusa social o razón real?</p>
         </div>
-        <p className="text-lg text-indigo-950/70 mt-6 italic">
-          Una línea por paciente. Eso es todo.
-        </p>
+        <p className="mt-6 text-lg italic text-indigo-950/70">Una línea por paciente. Eso es todo.</p>
       </HighlightBox>
 
-      <div className="mt-12">
-        <CommitmentSealing
-          onComplete={(d) => {
-            update({ compromisoNombre: d.name, compromisoFecha: d.date });
-            setDone(true);
-          }}
-        />
-      </div>
+      <Body className="mt-10">En la Sesión 2 aterrizamos el método con esos casos reales:</Body>
+      <ul className="mt-4 space-y-3 text-lg text-slate-700">
+        <li>· Qué pregunta-llave habría destrabado la conversación</li>
+        <li>· Cómo se habría podido cerrar</li>
+        <li>· Tu comisión 4% aplicada en cada caso</li>
+      </ul>
 
-      <HighlightBox className="mt-12 space-y-6">
+      <HighlightBox className="mt-10 space-y-6">
         <div>
           <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
-            Fecha de la Sesión 2
+            Fecha Sesión 2
           </label>
           <Input
             type="datetime-local"
@@ -497,40 +776,41 @@ const S11 = ({ onBack }: ScreenProps) => {
           />
         </div>
         <div>
-          <label className="text-sm font-semibold uppercase tracking-wider text-indigo-950 block mb-2">
-            Día preferido para seguimiento por WhatsApp
-          </label>
-          <Input
-            value={dia}
-            onChange={(e) => setDia(e.target.value)}
-            placeholder="día de la semana preferido"
-            className="h-14 text-lg bg-white"
-          />
+          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-950 mb-3">
+            Formato preferido
+          </p>
+          <div className="space-y-2">
+            {[
+              "Con un paciente real de tu agenda",
+              "Con un role play guiado por Welli",
+              "Lo decidimos a último momento",
+            ].map((o) => (
+              <button
+                key={o}
+                onClick={() => setFormato(o)}
+                className={`w-full text-left px-5 py-3 rounded-lg border-2 text-lg transition-all ${
+                  formato === o
+                    ? "bg-welli-yellow border-welli-yellow text-indigo-950 font-semibold"
+                    : "bg-white border-slate-300 text-indigo-950 hover:border-welli-yellow"
+                }`}
+              >
+                {o}
+              </button>
+            ))}
+          </div>
         </div>
       </HighlightBox>
 
-      <Anchor>
-        <span className="block mt-10 text-center">
-          Gracias por tu tiempo, Doctor. Nos vemos en la Sesión 2.
-        </span>
-      </Anchor>
-
       <div className="flex items-center justify-between mt-12 gap-4">
-        <Button
-          variant="ghost"
-          size="lg"
-          onClick={onBack}
-          className="text-indigo-950 text-lg h-14 px-6"
-        >
+        <Button variant="ghost" size="lg" onClick={onBack} className="text-indigo-950 text-lg h-14 px-6">
           Atrás
         </Button>
         <Button
           size="lg"
-          onClick={close}
-          disabled={!done}
+          onClick={handleClose}
           className="bg-welli-yellow hover:bg-welli-yellow/90 text-indigo-950 text-lg font-semibold h-14 px-10"
         >
-          Cerrar sesión
+          Cerrar Sesión 1
         </Button>
       </div>
     </ScreenShell>
@@ -539,7 +819,28 @@ const S11 = ({ onBack }: ScreenProps) => {
 
 /* ============ CONTROLADOR ============ */
 
-const SCREENS = [S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11];
+const SCREENS = [
+  S01,
+  S02,
+  S03,
+  QueEsWelli,
+  S04,
+  MercadoViveLigero,
+  WegovyAliado,
+  S05,
+  S07,
+  S08,
+  S09,
+  S10,
+  IndagacionPacks,
+  M4_1,
+  M4_2,
+  M4_3,
+  M4_4,
+  M4_5,
+  M4_6,
+  CompromisoPuente,
+];
 
 const Sesion1 = () => {
   const [idx, setIdx] = useState(0);
@@ -587,7 +888,7 @@ const Sesion1 = () => {
             <ProgressBar
               current={idx + 1}
               total={total}
-              label="Sesión 1 — Corta consultiva"
+              label="Sesión 1 — Método consultivo"
             />
           </div>
         </div>
