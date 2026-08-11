@@ -197,10 +197,10 @@ const CategorySection = ({ title, subtitle, badge, accentColor, routes, onSelect
                   <p className="text-indigo-800 font-medium">{route.subtitle}</p>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <p className="text-indigo-800 mb-4">{route.description}</p>
 
-                  <div className="flex items-center justify-between text-sm mb-4">
+                  <div className="flex items-center justify-between text-sm mb-4 mt-auto">
                     <span className={`${route.bgColor} px-3 py-1 rounded-full font-medium text-indigo-950`}>
                       {route.modules} módulos
                     </span>
@@ -215,7 +215,7 @@ const CategorySection = ({ title, subtitle, badge, accentColor, routes, onSelect
               </>
             );
 
-            const cardClass = `relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 block`;
+            const cardClass = `relative cursor-pointer group rounded-2xl border-2 ${route.borderColor} bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full`;
 
             return (
               <motion.div
@@ -224,6 +224,7 @@ const CategorySection = ({ title, subtitle, badge, accentColor, routes, onSelect
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
+                className="h-full"
               >
                 {route.externalPath ? (
                   <Link to={route.externalPath} className={cardClass}>
