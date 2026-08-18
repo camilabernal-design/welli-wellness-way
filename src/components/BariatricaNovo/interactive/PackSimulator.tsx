@@ -12,7 +12,7 @@ type Patient = {
   whyOthers: { pack: 1 | 2 | 3; why: string }[];
 };
 
-const PATIENTS: Patient[] = [
+const ALL_PATIENTS: Patient[] = [
   {
     name: "María, 52 años",
     age: 52,
@@ -77,7 +77,19 @@ const PATIENTS: Patient[] = [
   },
 ];
 
-export default function PackSimulator({ onComplete }: { onComplete: () => void }) {
+export default function PackSimulator({
+  onComplete,
+  allowSurgical = true,
+}: {
+  onComplete: () => void;
+  allowSurgical?: boolean;
+}) {
+  const PATIENTS = allowSurgical
+    ? ALL_PATIENTS
+    : ALL_PATIENTS.filter((p) => p.correct !== 1).map((p) => ({
+        ...p,
+        whyOthers: p.whyOthers.filter((w) => w.pack !== 1),
+      }));
   const [idx, setIdx] = useState(0);
   const [choice, setChoice] = useState<1 | 2 | 3 | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
@@ -136,9 +148,9 @@ export default function PackSimulator({ onComplete }: { onComplete: () => void }
           <p className="text-xl font-semibold text-indigo-950 mb-3">
             ¿Cuál pack le recomiendas?
           </p>
-          <div className="grid md:grid-cols-3 gap-3">
+          <div className={`grid gap-3 ${allowSurgical ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
             {[
-              { n: 1, label: "Pack 1: Quirúrgico" },
+              ...(allowSurgical ? [{ n: 1, label: "Pack 1: Quirúrgico" }] : []),
               { n: 2, label: "Pack 2: Preventivo" },
               { n: 3, label: "Pack 3: Metabólico Integral" },
             ].map((o) => (

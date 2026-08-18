@@ -20,8 +20,14 @@ const REASONS = [
   "Otro",
 ];
 
-function suggest(bmi: number, comorb: string[]) {
-  if (bmi >= 40) return { pack: 1, why: "IMC ≥ 40 — candidato quirúrgico." };
+function suggest(bmi: number, comorb: string[], allowSurgical: boolean) {
+  if (bmi >= 40 && allowSurgical)
+    return { pack: 1, why: "IMC ≥ 40 — candidato quirúrgico." };
+  if (bmi >= 40)
+    return {
+      pack: 3,
+      why: "IMC ≥ 40 — manejo metabólico integral con seguimiento estructurado.",
+    };
   if (bmi < 30)
     return {
       pack: 0,
@@ -36,7 +42,13 @@ function suggest(bmi: number, comorb: string[]) {
   return { pack: 2, why: `IMC ${bmi} sin comorbilidades — Pack preventivo.` };
 }
 
-export default function NextPatientForm({ onComplete }: { onComplete: () => void }) {
+export default function NextPatientForm({
+  onComplete,
+  allowSurgical = true,
+}: {
+  onComplete: () => void;
+  allowSurgical?: boolean;
+}) {
   const [age, setAge] = useState("");
   const [bmi, setBmi] = useState("");
   const [com, setCom] = useState<string[]>([]);
@@ -48,7 +60,7 @@ export default function NextPatientForm({ onComplete }: { onComplete: () => void
     setCom((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]));
 
   const submit = () => {
-    const r = suggest(parseFloat(bmi), com);
+    const r = suggest(parseFloat(bmi), com, allowSurgical);
     setResult(r);
     onComplete();
   };
