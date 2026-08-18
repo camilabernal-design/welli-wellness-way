@@ -219,12 +219,32 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
       <Body className="mt-6">3 cosas que tu clínica necesita saber desde hoy.</Body>
 
       {/* Bloque A */}
-      <div className="mt-12">
+      <div className="mt-12 space-y-10">
         <Eyebrow>Bloque A · ¿Qué es Welli? (90 segundos)</Eyebrow>
         <div className="mt-4">
           <YouTubeEmbed
             videoId="McEsh-llDss"
             title="¿Qué es Welli?"
+            borderColor="welli-yellow"
+          />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-indigo-950 mb-3">
+            Cómo se hace una aplicación
+          </h3>
+          <YouTubeEmbed
+            videoId="KMSnZu0pimU"
+            title="Cómo se hace una aplicación en Welli"
+            borderColor="welli-yellow"
+          />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-indigo-950 mb-3">
+            Cómo funciona Welli Check
+          </h3>
+          <YouTubeEmbed
+            videoId="EN7ao47-Is8"
+            title="Cómo funciona Welli Check"
             borderColor="welli-yellow"
           />
         </div>
