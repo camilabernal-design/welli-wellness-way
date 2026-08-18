@@ -422,7 +422,7 @@ export const PACK_OPCIONES = [
 
 const M4_1 = ({ onNext, onBack }: ScreenProps) => (
   <ScreenShell>
-    <Eyebrow>Módulo 4 — Tus 3 packs</Eyebrow>
+    <Eyebrow>Módulo 4 — Tus packs</Eyebrow>
     <H2>¿Por qué vender programas y no procedimientos sueltos?</H2>
     <div className="mt-10 grid md:grid-cols-2 gap-6">
       <SoftBox>
@@ -449,7 +449,7 @@ const M4_1 = ({ onNext, onBack }: ScreenProps) => (
         Recuerda: el precio de cada componente individual no cambia. Solo cambia la forma de presentarlo.
       </span>
     </Anchor>
-    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los 3 packs" />
+    <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Ver los packs" />
   </ScreenShell>
 );
 
