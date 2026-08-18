@@ -1,46 +1,92 @@
 import { motion } from "framer-motion";
 
-// Coordenadas aproximadas sobre el viewBox del mapa
-const PINES = [
-  { x: 148, y: 196 },
-  { x: 158, y: 188 },
-  { x: 140, y: 205 },
-  { x: 118, y: 218 },
+const W = 400;
+const H = 520;
+
+// Silueta aproximada de Colombia
+const COLOMBIA =
+  "M300 38 C316 44 330 58 328 74 C326 90 306 96 288 100 C262 106 236 104 214 96 C196 90 178 100 162 114 C148 126 136 142 126 160 C118 174 122 188 116 198 C110 208 98 210 92 202 C86 194 78 196 74 208 C68 226 66 248 62 272 C58 298 66 322 74 346 C82 370 94 396 106 424 C114 444 118 462 126 472 C136 484 156 480 172 478 C186 476 194 492 206 500 C220 509 240 508 254 496 C268 484 282 470 296 456 C312 440 330 424 340 402 C350 380 352 354 348 330 C344 306 334 286 324 268 C314 250 300 238 298 224 C296 208 310 198 314 184 C318 168 308 152 300 136 C292 120 288 100 292 80 C294 64 292 48 300 38 Z";
+
+const SEDES = [
+  { x: 196, y: 112, name: "Barranquilla" },
+  { x: 158, y: 268, name: "Medellín" },
+  { x: 214, y: 318, name: "Bogotá" },
+  { x: 132, y: 362, name: "Cali" },
 ];
 
 export default function MapaCuatroSedes() {
   return (
     <div className="flex flex-col items-center">
-      <div className="relative">
-        <svg viewBox="60 60 200 320" className="w-[280px] md:w-[340px]">
-          <path
-            d="M150 70 C185 78 205 100 214 128 C224 158 250 168 248 192 C246 214 224 220 218 240 C212 262 224 282 210 300 C196 318 176 312 166 330 C158 346 162 366 148 372 C132 378 124 358 116 342 C108 324 92 316 88 296 C84 274 100 258 96 238 C92 216 74 206 78 184 C82 160 106 152 118 130 C130 108 128 80 150 70 Z"
-            fill="hsl(var(--muted))"
-            stroke="#CBD5E1"
-            strokeWidth="2"
+      <div className="relative w-[300px] md:w-[380px]">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
+          <defs>
+            <linearGradient id="mapaCol" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="hsl(var(--muted))" />
+              <stop offset="100%" stopColor="hsl(var(--muted))" stopOpacity="0.6" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d={COLOMBIA}
+            fill="url(#mapaCol)"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          />
+          <motion.path
+            d={COLOMBIA}
+            fill="none"
+            stroke="#312E81"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.6, ease: "easeInOut" }}
           />
         </svg>
-        {PINES.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: [0, 1.2, 1], opacity: 1 }}
-            transition={{ delay: i * 0.4, duration: 0.5, ease: "easeOut" }}
+
+        {SEDES.map((s, i) => (
+          <div
+            key={s.name}
             className="absolute"
-            style={{
-              left: `${((p.x - 60) / 200) * 100}%`,
-              top: `${((p.y - 60) / 320) * 100}%`,
-              transform: "translate(-50%, -100%)",
-            }}
+            style={{ left: `${(s.x / W) * 100}%`, top: `${(s.y / H) * 100}%` }}
           >
-            <div className="w-5 h-5 rounded-full bg-welli-yellow border-2 border-indigo-950 shadow-md" />
-          </motion.div>
+            <motion.div
+              initial={{ scale: 0, y: -18, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              transition={{
+                delay: 1.4 + i * 0.35,
+                type: "spring",
+                stiffness: 320,
+                damping: 16,
+              }}
+              className="relative -translate-x-1/2 -translate-y-full flex flex-col items-center"
+            >
+              <div className="flex items-center gap-1.5 rounded-full bg-white border border-indigo-950/15 shadow-sm px-2.5 py-1 mb-1">
+                <span className="text-[11px] md:text-xs font-semibold text-indigo-950 whitespace-nowrap">
+                  {s.name}
+                </span>
+              </div>
+              <span className="relative flex h-4 w-4">
+                <motion.span
+                  className="absolute inline-flex h-full w-full rounded-full bg-welli-yellow"
+                  animate={{ scale: [1, 2.2], opacity: [0.6, 0] }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    delay: 1.6 + i * 0.35,
+                  }}
+                />
+                <span className="relative inline-flex h-4 w-4 rounded-full bg-welli-yellow border-2 border-indigo-950" />
+              </span>
+            </motion.div>
+          </div>
         ))}
       </div>
+
       <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.9 }}
         className="mt-6 text-lg text-slate-600 text-center"
       >
         4 sedes activas en Colombia
