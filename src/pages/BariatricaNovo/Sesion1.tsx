@@ -819,15 +819,15 @@ const CompromisoPuente = ({ onBack }: ScreenProps) => {
 
 /* ============ CONTROLADOR ============ */
 
-const SCREENS = [
+const BASE_SCREENS = [
   S01,
   S02,
   S03,
   QueEsWelli,
   S04,
+  S05,
   MercadoViveLigero,
   WegovyAliado,
-  S05,
   S07,
   S08,
   S09,
@@ -842,8 +842,17 @@ const SCREENS = [
   CompromisoPuente,
 ];
 
+export const OPCION_QUIRURGICA = "Programa para pérdida de peso";
+
 const Sesion1 = () => {
   const [idx, setIdx] = useState(0);
+  const { state } = useBariatricaState();
+  const allowSurgical = (state.packsOfrecidos ?? state.packsClinica ?? []).includes(
+    OPCION_QUIRURGICA,
+  );
+  const SCREENS = allowSurgical
+    ? BASE_SCREENS
+    : BASE_SCREENS.filter((s) => s !== M4_2);
   const total = SCREENS.length;
 
   const next = () => {
