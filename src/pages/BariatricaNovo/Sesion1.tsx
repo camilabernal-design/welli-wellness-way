@@ -565,10 +565,14 @@ const M4_4 = (p: ScreenProps) => (
 // 4.5 Simulador de pack
 const M4_5 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
+  const { state } = useBariatricaState();
+  const allowSurgical = (state.packsOfrecidos ?? state.packsClinica ?? []).includes(
+    "Programa para pérdida de peso",
+  );
   return (
     <ScreenShell>
       <Eyebrow>La regla absoluta</Eyebrow>
-      <H1 >NUNCA presentes las 3 opciones sin recomendar una.</H1>
+      <H1 >NUNCA presentes las opciones sin recomendar una.</H1>
       <Body className="mt-6">
         Eso le pasa la decisión al paciente. Y el paciente sin guía dice "lo voy a pensar" — que casi siempre significa "no me lo trato".
       </Body>
@@ -577,7 +581,7 @@ const M4_5 = ({ onNext, onBack }: ScreenProps) => {
       </Body>
       <div className="mt-12"><H2>Practica: ¿cuál pack para cada paciente?</H2></div>
       <div className="mt-8">
-        <PackSimulator onComplete={() => setDone(true)} />
+        <PackSimulator allowSurgical={allowSurgical} onComplete={() => setDone(true)} />
       </div>
       <NavigationButtons onBack={onBack} onNext={onNext} nextDisabled={!done} />
     </ScreenShell>
@@ -587,11 +591,15 @@ const M4_5 = ({ onNext, onBack }: ScreenProps) => {
 // 4.6 Formulario de próximo paciente
 const M4_6 = ({ onNext, onBack }: ScreenProps) => {
   const [done, setDone] = useState(false);
+  const { state } = useBariatricaState();
+  const allowSurgical = (state.packsOfrecidos ?? state.packsClinica ?? []).includes(
+    "Programa para pérdida de peso",
+  );
   return (
     <ScreenShell>
       <H2>Piensa en tu próximo paciente real de esta semana</H2>
       <div className="mt-8">
-        <NextPatientForm onComplete={() => setDone(true)} />
+        <NextPatientForm allowSurgical={allowSurgical} onComplete={() => setDone(true)} />
       </div>
       <NavigationButtons onBack={onBack} onNext={onNext} nextLabel="Continuar al Módulo 5" nextDisabled={!done} />
     </ScreenShell>
