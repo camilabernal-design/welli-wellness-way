@@ -128,12 +128,17 @@ const PerfilamientoQuiz = () => {
             {(["aprueba", "rechaza"] as Verdict[]).map((v) => {
               const chosen = picked === v;
               const correct = current.answer === v;
+              const label =
+                v === "aprueba"
+                  ? "Alta probabilidad de aprobación"
+                  : "Baja probabilidad de aprobación";
+              const Icon = v === "aprueba" ? Check : X;
               return (
                 <button
                   key={v}
                   onClick={() => choose(v)}
                   disabled={picked !== null}
-                  className={`rounded-xl border-2 px-4 py-4 font-bold transition-all ${
+                  className={`rounded-xl border-2 px-4 py-4 font-bold transition-all flex items-center justify-center gap-2 ${
                     picked === null
                       ? "border-slate-300 bg-white text-indigo-950 hover:border-welli-yellow"
                       : correct
@@ -143,7 +148,20 @@ const PerfilamientoQuiz = () => {
                           : "border-slate-200 bg-white text-indigo-950/50"
                   }`}
                 >
-                  {v === "aprueba" ? "Alta probabilidad de aprobación" : "Alta probabilidad de rechazo"}
+                  <Icon
+                    className={`w-5 h-5 flex-shrink-0 ${
+                      picked === null
+                        ? v === "aprueba"
+                          ? "text-emerald-500"
+                          : "text-red-500"
+                        : correct
+                          ? "text-emerald-600"
+                          : chosen
+                            ? "text-red-500"
+                            : "text-slate-300"
+                    }`}
+                  />
+                  <span>{label}</span>
                 </button>
               );
             })}
