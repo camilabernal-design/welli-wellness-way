@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Target, ArrowRight, UserCheck, MessageCircle, Camera, Clock, ShieldCheck, Users, AlertCircle } from "lucide-react";
+import PerfilamientoQuiz from "./PerfilamientoQuiz";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -41,6 +42,11 @@ const PerfilamientoModule = ({ onComplete }: ModuleProps) => {
             El paciente debe tener entre <span className="font-bold text-foreground">18 y 75 años</span>
           </p>
         </motion.div>
+
+        {/* Juego de perfilamiento */}
+        <PerfilamientoQuiz />
+
+
 
         {/* Proceso Welli Check - Infografía */}
         <motion.div
