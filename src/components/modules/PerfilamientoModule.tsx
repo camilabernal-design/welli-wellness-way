@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Target, ArrowRight, UserCheck, MessageCircle, Camera, Clock, ShieldCheck, Users, AlertCircle } from "lucide-react";
+import PerfilamientoQuiz from "./PerfilamientoQuiz";
 
 interface ModuleProps {
   onComplete: () => void;
