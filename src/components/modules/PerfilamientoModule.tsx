@@ -42,6 +42,11 @@ const PerfilamientoModule = ({ onComplete }: ModuleProps) => {
           </p>
         </motion.div>
 
+        {/* Juego de perfilamiento */}
+        <PerfilamientoQuiz />
+
+
+
         {/* Proceso Welli Check - Infografía */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
