@@ -94,7 +94,7 @@ const allRoutes: RouteCard[] = [
     borderColor: 'border-welli-yellow',
     bgColor: 'bg-welli-yellow/15',
     duration: '~25 min',
-    modules: 7,
+    modules: 10,
     badge: 'NUEVO',
     category: 'aliados',
   },

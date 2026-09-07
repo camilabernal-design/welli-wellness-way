@@ -108,7 +108,7 @@ const ROUTE_MODULES = {
   farmer: 23,
   aliado: 5,
   'maestria-equipo': 11,
-  'express-aliados': 9,
+  'express-aliados': 10,
   'equipos-medicos': 18,
 };
 
@@ -244,7 +244,8 @@ const Index = forwardRef<HTMLDivElement>((_, ref) => {
       case 6: return <ExpressAliadosModule5Trust onComplete={handleModuleComplete} />;
       case 7: return <ExpressAliadosModule6FirstActivation onComplete={handleModuleComplete} />;
       case 8: return <WelliPointsModule onComplete={handleModuleComplete} />;
-      case 9: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
+      case 9: return <WelliCuponesModule onComplete={handleModuleComplete} />;
+      case 10: return <ExpressAliadosModule7NextSteps onComplete={handleGoToHub} />;
       default: return <ExpressAliadosModule1Welcome onComplete={handleModuleComplete} />;
     }
   };
