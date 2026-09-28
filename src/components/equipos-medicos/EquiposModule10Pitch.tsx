@@ -67,6 +67,11 @@ const EquiposModule10Pitch = ({ onComplete }: Props) => {
           Míralo completo ahora en modo panorámico; en el módulo de proceso operativo lo vamos a
           desglosar paso a paso.
         </p>
+        <YouTubeEmbed
+          videoId="vT9nZub_5Pw"
+          title="Cómo funciona WELLI"
+          borderColor="welli-yellow"
+        />
       </motion.section>
 
       <motion.section
