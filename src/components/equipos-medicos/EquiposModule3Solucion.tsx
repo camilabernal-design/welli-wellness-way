@@ -16,8 +16,8 @@ const conditions = [
   {
     icon: Wallet,
     title: "Alta cobertura",
-    value: "Hasta el 70%",
-    text: "Financiamos hasta el 70% del costo total del equipo cotizado.",
+    value: "Hasta el 80%",
+    text: "Financiamos hasta el 80% del costo total del equipo cotizado.",
   },
   {
     icon: Banknote,
