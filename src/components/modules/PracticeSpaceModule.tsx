@@ -104,7 +104,7 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
               </p>
             </div>
             <YouTubeEmbed 
-              videoId="Y8YTex0JCyg" 
+              videoId="3IMb2IMPCmE" 
               title="Cómo crear una solicitud en segundos"
               isShort={true}
               borderColor="welli-yellow"
