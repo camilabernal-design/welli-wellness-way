@@ -19,7 +19,7 @@ interface ModuleProps {
 }
 
 const videoOptions = [
-  { value: 'general', label: 'Proceso General Welli', id: 'XsU_GECGb5M', isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
+  { value: 'general', label: 'Proceso General Welli', id: '3IMb2IMPCmE', isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
   { value: 'dentalink', label: 'Aliados Dentalink', id: 'ah71UndxWq4', isShort: false, description: 'Proceso integrado con sistema Dentalink' },
   { value: 'dtdental', label: 'Aliados DT Dental', id: 'hgavNjo_aus', isShort: false, description: 'Proceso integrado con DT Dental' },
   { value: 'okvet', label: 'Aliados OK Vet', id: '41bS6Wtk6GU', isShort: false, description: 'Proceso integrado con OK Vet' },
