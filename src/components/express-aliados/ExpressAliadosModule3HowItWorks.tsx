@@ -184,7 +184,7 @@ const QuienAplicaTab = () => (
     </h2>
     <div className="grid md:grid-cols-3 gap-4">
       {[
-        { icon: Users, t: "Entre 18 y 75 años" },
+        { icon: Users, t: "Entre 18 y 70 años" },
         { icon: FileCheck, t: "Sin reportes negativos en Data Crédito" },
         { icon: Building2, t: "6 meses de continuidad laboral" },
       ].map((s, i) => (
