@@ -185,6 +185,7 @@ const QuienAplicaTab = () => (
     <div className="grid md:grid-cols-3 gap-4">
       {[
         { icon: Users, t: "Entre 18 y 70 años" },
+        { icon: Wallet, t: "Monto solicitado: $300.000 a $25.000.000" },
         { icon: FileCheck, t: "Sin reportes negativos en Data Crédito" },
         { icon: Building2, t: "6 meses de continuidad laboral" },
       ].map((s, i) => (

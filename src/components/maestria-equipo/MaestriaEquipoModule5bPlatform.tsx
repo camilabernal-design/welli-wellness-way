@@ -113,7 +113,7 @@ const MaestriaEquipoModule5bPlatform = ({ onComplete }: Props) => {
               <h3 className="font-display text-xl font-bold text-indigo-950 mb-2">5.5 Perfilamiento — SOLO 3 criterios</h3>
               <p className="text-sm text-indigo-800 mb-4">En la primera capacitación, menciona solo estos tres. Los detalles se enseñan en el día a día.</p>
               <div className="space-y-2 mb-4">
-                {["18 a 75 años", "No reportado en Data Crédito", "6 meses de continuidad laboral"].map(c => (
+                {["18 a 70 años", "Monto solicitado: $300.000 a $25.000.000", "No reportado en Data Crédito", "6 meses de continuidad laboral"].map(c => (
                   <div key={c} className="flex items-center gap-3 p-3 rounded-xl bg-welli-yellow/10 border border-welli-yellow/30">
                     <CheckCircle2 className="w-5 h-5 text-welli-yellow" />
                     <span className="font-medium text-indigo-950">{c}</span>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, X, RotateCcw, Gamepad2, Trophy } from "lucide-react";
+import { isEligibleAge, isEligibleAmount } from "@/lib/patientEligibility";
 
 type Verdict = "aprueba" | "rechaza";
 
@@ -15,19 +16,19 @@ interface Case {
 const CASES: Case[] = [
   {
     id: "edad",
-    criterio: "Criterio 1 · Edad (18 a 65 años)",
+    criterio: "Criterio 1 · Edad (18 a 70 años)",
     paciente:
       "Paciente de 17 años. Lleva 1 año trabajando, contrato estable y buen sueldo. Quiere financiar su tratamiento.",
-    answer: "rechaza",
+    answer: isEligibleAge(17) ? "aprueba" : "rechaza",
     reveal:
-      "Se rechaza. La edad es un filtro de entrada: fuera de 18–65 años no se sigue evaluando nada más, por bueno que sea el perfil.",
+      "Se rechaza. La edad es un filtro de entrada: fuera de 18–70 años no se sigue evaluando nada más, por bueno que sea el perfil.",
   },
   {
     id: "monto",
     criterio: "Criterio 2 · Monto ($300.000 a $25.000.000)",
     paciente:
       "Paciente de 42 años, ingresos estables, sin reportes. El tratamiento cuesta $32.000.000 y quiere financiarlo todo con Welli.",
-    answer: "rechaza",
+    answer: isEligibleAmount(32_000_000) ? "aprueba" : "rechaza",
     reveal:
       "Se rechaza por monto. Welli financia entre $300.000 y $25.000.000. Tip: ajusta el plan o combina con otro medio de pago para quedar dentro del rango.",
   },
@@ -214,7 +215,7 @@ const PerfilamientoQuiz = () => {
             </p>
           </div>
           <ul className="text-sm text-indigo-950 space-y-1.5 mb-4">
-            <li>• Edad: 18 a 65 años. Fuera de rango, no se estudia.</li>
+            <li>• Edad: 18 a 70 años. Fuera de rango, no se estudia.</li>
             <li>• Monto: entre $300.000 y $25.000.000 COP.</li>
             <li>• Capacidad de pago: importa el ingreso disponible, no si tiene deudas.</li>
             <li>• Un reporte en centrales no es automáticamente un “no”.</li>

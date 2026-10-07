@@ -8,6 +8,7 @@ import WelliLogoFull from "@/components/WelliLogoFull";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import ScreenShell from "@/components/BariatricaNovo/ScreenShell";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import ApplicationSummaryVideo from "@/components/ApplicationSummaryVideo";
 import NavigationButtons from "@/components/BariatricaNovo/NavigationButtons";
 import ProgressBar from "@/components/BariatricaNovo/ProgressBar";
 import {
@@ -237,6 +238,7 @@ const S04 = ({ onNext, onBack }: ScreenProps) => {
             title="Cómo se hace una aplicación en Welli"
             borderColor="welli-yellow"
           />
+          <ApplicationSummaryVideo />
         </div>
         <div>
           <h3 className="text-xl font-bold text-indigo-950 mb-3">

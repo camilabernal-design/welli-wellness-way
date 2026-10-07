@@ -1,6 +1,7 @@
 // IDs centralizados de videos de Welli usados en varias rutas.
 export const VIDEO_IDS = {
-  applicationGeneral: 'Y8YTex0JCyg',
+  applicationGeneral: '3IMb2IMPCmE',
+  applicationSummary: 'V-TJO5LSIgI',
   applicationDentalink: 'ah71UndxWq4',
   applicationDtDental: 'hgavNjo_aus',
   applicationOkVet: '41bS6Wtk6GU',

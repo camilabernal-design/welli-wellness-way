@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { PATIENT_ELIGIBILITY } from "@/lib/patientEligibility";
 
 const PLAZOS = [6, 12, 18, 24, 30, 36];
-const MIN = 300000;
-const MAX = 25000000;
+const MIN = PATIENT_ELIGIBILITY.minAmount;
+const MAX = PATIENT_ELIGIBILITY.maxAmount;
 const TASA = 0.02;
 
 const cop = (n: number) =>

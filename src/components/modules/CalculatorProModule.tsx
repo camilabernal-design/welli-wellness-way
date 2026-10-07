@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
+import { PATIENT_ELIGIBILITY } from "@/lib/patientEligibility";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -98,8 +99,8 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
             <Slider
               value={[amount]}
               onValueChange={(value) => setAmount(value[0])}
-              min={300000}
-              max={30000000}
+              min={PATIENT_ELIGIBILITY.minAmount}
+              max={PATIENT_ELIGIBILITY.maxAmount}
               step={100000}
               className="w-full"
             />
@@ -108,7 +109,7 @@ const CalculatorProModule = ({ onComplete }: ModuleProps) => {
               <span className="font-display font-bold text-2xl text-foreground">
                 {formatCurrency(amount)}
               </span>
-              <span>$30M</span>
+              <span>$25M</span>
             </div>
           </div>
 
