@@ -41,6 +41,9 @@ const PerfilamientoModule = ({ onComplete }: ModuleProps) => {
           <p className="text-lg text-foreground">
             El paciente debe tener entre <span className="font-bold text-foreground">18 y 70 años</span>
           </p>
+          <p className="text-lg text-foreground mt-2">
+            Monto solicitado: <span className="font-bold">$300.000 a $25.000.000 COP</span>
+          </p>
         </motion.div>
 
         {/* Juego de perfilamiento */}

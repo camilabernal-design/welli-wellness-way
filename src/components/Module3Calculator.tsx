@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calculator, AlertCircle, Heart, ArrowRight, Sparkles, Building2, Percent } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
+import { PATIENT_ELIGIBILITY } from "@/lib/patientEligibility";
 
 interface Module3Props {
   onComplete: () => void;
@@ -63,8 +64,8 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               <Slider
                 value={[amount]}
                 onValueChange={(value) => setAmount(value[0])}
-                min={300000}
-                max={30000000}
+                min={PATIENT_ELIGIBILITY.minAmount}
+                max={PATIENT_ELIGIBILITY.maxAmount}
                 step={100000}
                 className="w-full"
               />
@@ -79,7 +80,7 @@ const Module3Calculator = ({ onComplete }: Module3Props) => {
               >
                 {formatCurrency(amount)}
               </motion.span>
-              <span>$30M</span>
+              <span>$25M</span>
             </div>
           </div>
 

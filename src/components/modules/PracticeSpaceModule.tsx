@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { LayoutDashboard, ArrowRight, ExternalLink, CheckCircle2, Play, Monitor, Smartphone, AlertTriangle } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import ApplicationSummaryVideo from "@/components/ApplicationSummaryVideo";
+import { VIDEO_IDS } from "@/lib/videoIds";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -104,11 +106,12 @@ const PracticeSpaceModule = ({ onComplete }: ModuleProps) => {
               </p>
             </div>
             <YouTubeEmbed 
-              videoId="3IMb2IMPCmE" 
+              videoId={VIDEO_IDS.applicationGeneral}
               title="Cómo crear una solicitud en segundos"
               isShort={true}
               borderColor="welli-yellow"
             />
+            <ApplicationSummaryVideo />
           </motion.div>
 
           {/* Practice Steps Column */}

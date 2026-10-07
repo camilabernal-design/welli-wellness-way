@@ -9,6 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import ApplicationSummaryVideo from "@/components/ApplicationSummaryVideo";
+import { VIDEO_IDS } from "@/lib/videoIds";
 
 interface ModuleProps {
   onComplete: () => void;
@@ -17,7 +19,7 @@ interface ModuleProps {
 }
 
 const videoOptions = [
-  { value: 'general', label: 'Proceso General Welli', id: '3IMb2IMPCmE', isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
+  { value: 'general', label: 'Proceso General Welli', id: VIDEO_IDS.applicationGeneral, isShort: true, description: 'Flujo de aplicación estándar para pacientes' },
   { value: 'dentalink', label: 'Aliados Dentalink', id: 'ah71UndxWq4', isShort: false, description: 'Proceso integrado con sistema Dentalink' },
   { value: 'dtdental', label: 'Aliados DT Dental', id: 'hgavNjo_aus', isShort: false, description: 'Proceso integrado con DT Dental' },
   { value: 'okvet', label: 'Aliados OK Vet', id: '41bS6Wtk6GU', isShort: false, description: 'Proceso integrado con OK Vet' },
@@ -108,6 +110,7 @@ const VideoProcessModule = ({ onComplete, initialVideo = 'general', hideCTA = fa
             borderColor="secondary"
             className="mx-auto"
           />
+          <ApplicationSummaryVideo />
         </motion.div>
 
         {/* Steps */}
