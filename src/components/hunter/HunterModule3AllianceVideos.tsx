@@ -84,6 +84,9 @@ const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo,
         transition={{ duration: 0.3 }}
         className="space-y-4"
       >
+        {currentVideo.value === 'general' ? (
+          <ApplicationSummaryVideo />
+        ) : (
         <Card className="overflow-hidden border-2 border-welli-yellow/50">
           <div className="bg-gradient-to-r from-welli-yellow to-welli-yellow/80 p-4 text-indigo-950 flex items-center gap-3">
             <Play className="w-6 h-6" />
@@ -101,7 +104,7 @@ const HunterModule3AllianceVideos = ({ onComplete, selectedVideo: externalVideo,
             />
           </CardContent>
         </Card>
-        <ApplicationSummaryVideo />
+        )}
       </motion.div>
 
       {/* Process Steps */}
