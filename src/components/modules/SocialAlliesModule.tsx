@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone, Target, Video, MessageSquare, Camera, Send, Upload } from "lucide-react";
+import { Instagram, ArrowRight, ExternalLink, Sparkles, Play, CheckCircle2, FolderOpen, Megaphone, Target, Video, MessageSquare, Camera, Upload } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import pieza1 from "@/assets/welli-pieza-1.png";
 import pieza2 from "@/assets/welli-pieza-2.png";
@@ -77,15 +77,6 @@ const checklistSections = [
       "Audio claro y entendible, sin ruido de fondo (idealmente con micrófono externo).",
       "Sin música añadida, sin textos o subtítulos incrustados.",
       "Sin logos, efectos, transiciones ni marcas de agua de editores.",
-    ],
-  },
-  {
-    icon: Send,
-    title: "5. Envío y publicación",
-    items: [
-      "Envíanos el video por correo, WeTransfer, Google Drive o Dropbox (no por WhatsApp/Telegram, pierde calidad).",
-      "Welli se encarga de la edición y publicación final.",
-      "Solo haremos ajustes si afectan la claridad, duración o veracidad de la información sobre Welli.",
     ],
   },
 ];
